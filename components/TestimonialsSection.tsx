@@ -1,5 +1,6 @@
 'use client';
 
+import Image from "next/image";
 import type { FC } from "react";
 import { effects, gradients, radii } from "./theme";
 
@@ -74,9 +75,11 @@ export const TestimonialsSection: FC<TestimonialsSectionProps> = ({ className = 
               <Stars />
               <blockquote className="text-sm text-white/85">{item.quote}</blockquote>
               <div className="mt-auto flex items-center gap-3 pt-2">
-                <img
+                <Image
                   src={item.avatar}
                   alt={item.name}
+                  width={48}
+                  height={48}
                   className="h-12 w-12 rounded-full border border-[#0f0a18] object-cover"
                 />
                 <figcaption className="text-sm">

@@ -1,5 +1,6 @@
 'use client';
 
+import Image from "next/image";
 import type { FC } from "react";
 import { effects, gradients, radii } from "./theme";
 
@@ -103,10 +104,12 @@ export const BenefitsSection: FC<BenefitsSectionProps> = ({ className = "" }) =>
           <div className="flex items-center gap-3">
             <div className="flex -space-x-3">
               {avatars.map((src, idx) => (
-                <img
+                <Image
                   key={src}
                   src={src}
                   alt={`User ${idx + 1}`}
+                  width={40}
+                  height={40}
                   className="h-10 w-10 rounded-full border border-[#0f0a18] object-cover"
                 />
               ))}

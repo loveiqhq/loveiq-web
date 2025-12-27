@@ -1,5 +1,6 @@
 'use client';
 
+import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 
 type WaitlistModalProps = {
@@ -187,8 +188,15 @@ const WaitlistModal = ({ open, onClose }: WaitlistModalProps) => {
 
             <div className="mb-16 flex items-center gap-4">
               <div className="-space-x-3 flex">
-                {avatars.map((src) => (
-                  <img key={src} className="inline-block h-8 w-8 rounded-full ring-2 ring-[#050208]" src={src} alt="" />
+                {avatars.map((src, idx) => (
+                  <Image
+                    key={src}
+                    className="inline-block h-8 w-8 rounded-full ring-2 ring-[#050208]"
+                    src={src}
+                    alt={`Waitlist avatar ${idx + 1}`}
+                    width={32}
+                    height={32}
+                  />
                 ))}
               </div>
               <span className="text-sm text-gray-400">Join 12,500+ others on the waitlist</span>
