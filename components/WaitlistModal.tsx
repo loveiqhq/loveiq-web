@@ -226,7 +226,7 @@ const WaitlistModal = ({ open, onClose }: WaitlistModalProps) => {
               <span>&gt;</span>
               <span>Become an Affiliate</span>
             </div>
-            <div className="mt-4 text-[10px] text-gray-700">Ac 2025 LoveIQ > Designed based on User Request</div>
+            <div className="mt-4 text-[10px] text-gray-700">Ac 2025 LoveIQ &gt; Designed based on User Request</div>
           </div>
         </div>
       </div>
