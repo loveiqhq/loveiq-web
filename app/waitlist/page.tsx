@@ -1,14 +1,172 @@
 'use client';
 
-import { useRouter } from "next/navigation";
-import WaitlistModal from "../../components/WaitlistModal";
+import Image from "next/image";
+import { useState } from "react";
+
+const faqs = [
+  {
+    question: "What is LoveIQ Early Access?",
+    answer:
+      "Early Access members get priority entry to our platform before the public launch, exclusive content, and a locked-in lifetime discount on premium features.",
+  },
+  {
+    question: "What's included in the survey?",
+    answer:
+      "Our comprehensive assessment covers 5 key psychological dimensions of intimacy. You'll receive a detailed report outlining your unique profile immediately after completion.",
+  },
+  {
+    question: "Is there support available?",
+    answer:
+      "Yes! Our team of relationship psychologists and support staff are available to help interpret your results and guide you through the platform.",
+  },
+  {
+    question: "How much will this cost?",
+    answer:
+      "Joining the waitlist is free. The basic assessment is free, while deeper analytical reports will be available for a one-time fee or subscription.",
+  },
+];
+
+const avatars = [
+  "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=64&h=64",
+  "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=64&h=64",
+  "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=64&h=64",
+  "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=64&h=64",
+];
 
 export default function WaitlistPage() {
-  const router = useRouter();
+  const [email, setEmail] = useState("");
+  const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
+
+  const handleSubmit = async () => {
+    if (!email || !email.includes("@")) {
+      setErrorMessage("Please enter a valid email.");
+      return;
+    }
+    setStatus("loading");
+    setErrorMessage(null);
+    try {
+      const res = await fetch("/api/waitlist", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email, source: "waitlist-page" }),
+      });
+      if (!res.ok) {
+        const data = await res.json().catch(() => ({}));
+        throw new Error(data?.error || "Something went wrong");
+      }
+      setStatus("success");
+    } catch (err) {
+      setStatus("error");
+      setErrorMessage(err instanceof Error ? err.message : "Unable to join waitlist.");
+    }
+  };
 
   return (
     <div className="min-h-screen bg-[#050208] text-white">
-      <WaitlistModal open onClose={() => router.push("/")} />
+      <div className="relative mx-auto flex w-full max-w-6xl flex-col items-center px-4 py-14 sm:px-6 md:py-16">
+        <div className="absolute inset-0 bg-[radial-gradient(70%_70%_at_50%_0%,rgba(254,104,57,0.08),transparent),radial-gradient(70%_70%_at_70%_60%,rgba(84,20,117,0.12),transparent)]" aria-hidden />
+        <div className="relative w-full max-w-4xl rounded-[32px] border border-white/10 bg-[#0b0613] px-6 py-10 shadow-[0_24px_120px_rgba(0,0,0,0.55)] sm:px-10 sm:py-12">
+          <div className="mb-8 flex flex-col items-center gap-4 text-center">
+            <div className="rounded-2xl bg-[#fe6839] p-3 text-white shadow-[0_0_40px_-10px_rgba(254,104,57,0.3)]">
+              <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-zap">
+                <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" />
+              </svg>
+            </div>
+            <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-[0.2em] text-white/60">
+              <span className="relative flex h-2 w-2">
+                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[#FE6839] opacity-75" />
+                <span className="relative inline-flex h-2 w-2 rounded-full bg-[#FE6839]" />
+              </span>
+              <span>Available in early 2025</span>
+            </div>
+            <h1 className="font-serif text-3xl leading-tight tracking-tight sm:text-4xl md:text-5xl">Get early access</h1>
+            <p className="max-w-2xl text-sm text-white/70 sm:text-base">
+              Be amongst the first to experience the new standard in relationship psychology. Sign up to be notified when we launch.
+            </p>
+          </div>
+
+          <form
+            className="mx-auto mb-6 flex w-full max-w-xl flex-col gap-3"
+            onSubmit={(evt) => {
+              evt.preventDefault();
+              if (status !== "loading") {
+                handleSubmit();
+              }
+            }}
+          >
+            <div className="flex items-center rounded-full border border-white/10 bg-white/5 p-1.5 pl-6 shadow-xl shadow-black/20 transition-all hover:bg-white/10 focus-within:border-[#FE6839]/50 focus-within:ring-1 focus-within:ring-[#FE6839]/50">
+              <input
+                type="email"
+                name="email"
+                className="h-12 flex-1 border-none bg-transparent text-base text-white placeholder-white/30 focus:outline-none focus:ring-0"
+                placeholder="name@email.com"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                required
+              />
+              <button
+                type="submit"
+                className="whitespace-nowrap rounded-full bg-[#FE6839] px-8 py-3.5 text-sm font-semibold text-white shadow-lg shadow-[#FE6839]/20 transition-all hover:bg-[#ff7b52] hover:shadow-[#FE6839]/40"
+                disabled={status === "loading"}
+              >
+                {status === "loading" ? "Submitting..." : status === "success" ? "Joined!" : "Join waitlist"}
+              </button>
+            </div>
+            {errorMessage && <p className="text-sm text-red-400">{errorMessage}</p>}
+          </form>
+
+          <div className="mb-8 flex flex-col items-center gap-3">
+            <div className="-space-x-3 flex">
+              {avatars.map((src, idx) => (
+                <Image
+                  key={src}
+                  className="inline-block h-8 w-8 rounded-full ring-2 ring-[#050208]"
+                  src={src}
+                  alt={`Waitlist avatar ${idx + 1}`}
+                  width={32}
+                  height={32}
+                />
+              ))}
+            </div>
+            <span className="text-sm text-white/70">Join 12,500+ others on the waitlist</span>
+          </div>
+
+          <div className="flex flex-col items-center gap-3 text-center">
+            <h2 className="font-serif text-2xl sm:text-3xl">Frequently asked questions</h2>
+            <p className="text-xs text-white/60 sm:text-sm">Everything you need to know about the early access.</p>
+          </div>
+
+          <div className="mt-6 space-y-3">
+            {faqs.map((item) => (
+              <details
+                key={item.question}
+                className="group overflow-hidden rounded-2xl border border-white/5 bg-white/5 transition-all duration-300 hover:bg-white/10 open:bg-white/10"
+              >
+                <summary className="flex cursor-pointer select-none items-center justify-between px-5 py-4 sm:px-6 sm:py-5">
+                  <span className="text-sm font-semibold text-white sm:text-base">{item.question}</span>
+                  <span className="text-white/50 transition-transform duration-300 group-open:rotate-45">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                      <path d="M5 12h14" />
+                      <path d="M12 5v14" />
+                    </svg>
+                  </span>
+                </summary>
+                <div className="px-5 pb-4 pt-0 text-sm leading-relaxed text-gray-300 sm:px-6">{item.answer}</div>
+              </details>
+            ))}
+          </div>
+
+          <div className="mt-10 flex flex-wrap items-center justify-center gap-4 text-[11px] text-gray-500">
+            <span>Built with Science</span>
+            <span className="text-gray-600">&gt;</span>
+            <span>Join the Movement</span>
+            <span className="text-gray-600">&gt;</span>
+            <span>Become an Affiliate</span>
+          </div>
+          <div className="mt-2 text-center text-[10px] text-gray-700">Ac 2025 LoveIQ &gt; Designed based on User Request</div>
+        </div>
+      </div>
     </div>
   );
 }
