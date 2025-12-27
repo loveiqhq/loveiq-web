@@ -1,5 +1,5 @@
-import LoveIQLandingPage from "../components/LoveIQLandingPage";
+import LandingPage from "../components/landing/LandingPage";
 
 export default function Page() {
-  return <LoveIQLandingPage />;
+  return <LandingPage />;
 }
