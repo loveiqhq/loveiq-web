@@ -31,14 +31,14 @@ const NavSection: FC = () => {
             <Link href="#glossary" className="transition hover:text-text-primary focus-visible-ring rounded-pill px-2 py-1">
               Proof & trust
             </Link>
-            <Link href="#start" className="transition hover:text-text-primary focus-visible-ring rounded-pill px-2 py-1">
+            <Link href="/waitlist" className="transition hover:text-text-primary focus-visible-ring rounded-pill px-2 py-1">
               Get started
             </Link>
           </div>
 
           <div className="flex flex-1 justify-end">
             <Link
-              href="#start"
+              href="/waitlist"
               className="inline-flex items-center justify-center gap-2 rounded-full bg-gradient-brand px-6 py-3 text-sm font-semibold text-white shadow-pill transition hover:translate-y-[-2px] focus-visible-ring"
             >
               Start survey now

@@ -38,7 +38,7 @@ const HeroSection: FC = () => {
         <div className="mt-12 flex flex-col items-center gap-4 sm:flex-row">
           <div className="relative rounded-full border border-border bg-white/5 p-2 shadow-[0_25px_80px_rgba(254,104,57,0.25),0_10px_40px_rgba(0,0,0,0.45)] backdrop-blur">
             <Link
-              href="#start"
+              href="/waitlist"
               className="inline-flex items-center justify-center gap-2 rounded-full bg-gradient-brand px-8 py-3 text-base font-semibold text-white shadow-pill transition hover:translate-y-[-2px] focus-visible-ring"
             >
               Start Survey Now

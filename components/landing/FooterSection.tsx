@@ -2,7 +2,7 @@ import Link from "next/link";
 import type { FC } from "react";
 
 const socials = [
-  { label: "Newsletter", href: "#start" },
+  { label: "Newsletter", href: "/waitlist" },
   { label: "Community", href: "#sextypes" },
   { label: "Support", href: "mailto:hello@loveiq.com" },
   { label: "Press", href: "#about" },
@@ -59,7 +59,7 @@ const FooterSection: FC = () => {
             <h3 className="text-lg font-semibold">Platform</h3>
             <ul className="space-y-2 text-sm text-text-secondary">
               <li>
-                <Link href="#start" className="transition hover:text-text-primary focus-visible-ring rounded">
+                <Link href="/waitlist" className="transition hover:text-text-primary focus-visible-ring rounded">
                   Assessment
                 </Link>
               </li>

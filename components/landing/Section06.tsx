@@ -66,7 +66,7 @@ const Section06: FC = () => {
 
           <div className="flex flex-col items-start gap-4 sm:flex-row sm:items-center">
             <a
-              href="#start"
+              href="/waitlist"
               className="inline-flex items-center justify-center gap-2 rounded-full bg-gradient-brand px-6 py-3 text-base font-semibold text-white shadow-pill transition hover:translate-y-[-2px] focus-visible-ring"
             >
               Start Survey Now
