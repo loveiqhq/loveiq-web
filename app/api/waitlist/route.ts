@@ -2,13 +2,15 @@ import { NextResponse } from "next/server";
 
 type Payload = {
   email?: string;
+  source?: string;
 };
 
-const tableName = "waitlist"; // adjust to your actual table name if different
+const tableName = "waitlist_signups"; // matches Supabase table name
 
 export async function POST(request: Request) {
   const body: Payload = await request.json().catch(() => ({}));
   const email = body.email?.trim().toLowerCase();
+  const source = body.source?.trim() || "landing-modal";
 
   if (!email || !email.includes("@")) {
     return NextResponse.json({ error: "Invalid email" }, { status: 400 });
@@ -23,6 +25,7 @@ export async function POST(request: Request) {
 
   const insertPayload = {
     email,
+    source,
     created_at: new Date().toISOString(),
   };
 

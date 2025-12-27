@@ -75,7 +75,7 @@ const WaitlistModal = ({ open, onClose }: WaitlistModalProps) => {
       const res = await fetch("/api/waitlist", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email }),
+        body: JSON.stringify({ email, source: "landing-modal" }),
       });
       if (!res.ok) {
         const data = await res.json().catch(() => ({}));
