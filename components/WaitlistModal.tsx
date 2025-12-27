@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 
 type WaitlistModalProps = {
   open: boolean;
@@ -39,6 +39,9 @@ const avatars = [
 
 const WaitlistModal = ({ open, onClose }: WaitlistModalProps) => {
   const panelRef = useRef<HTMLDivElement>(null);
+  const [email, setEmail] = useState("");
+  const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
   useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
@@ -60,6 +63,30 @@ const WaitlistModal = ({ open, onClose }: WaitlistModalProps) => {
       document.body.style.overflow = "";
     };
   }, [open]);
+
+  const handleSubmit = async () => {
+    if (!email || !email.includes("@")) {
+      setErrorMessage("Please enter a valid email.");
+      return;
+    }
+    setStatus("loading");
+    setErrorMessage(null);
+    try {
+      const res = await fetch("/api/waitlist", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email }),
+      });
+      if (!res.ok) {
+        const data = await res.json().catch(() => ({}));
+        throw new Error(data?.error || "Something went wrong");
+      }
+      setStatus("success");
+    } catch (err) {
+      setStatus("error");
+      setErrorMessage(err instanceof Error ? err.message : "Unable to join waitlist.");
+    }
+  };
 
   const backdropClasses = open
     ? "opacity-100 pointer-events-auto"
@@ -123,23 +150,40 @@ const WaitlistModal = ({ open, onClose }: WaitlistModalProps) => {
               Be amongst the first to experience the new standard in relationship psychology. Sign up to be notified when we launch.
             </p>
 
-            <form className="relative z-10 mb-10 w-full max-w-lg" onSubmit={(evt) => evt.preventDefault()}>
+            <form
+              className="relative z-10 mb-10 w-full max-w-lg"
+              onSubmit={(evt) => {
+                evt.preventDefault();
+                if (status !== "loading") {
+                  handleSubmit();
+                }
+              }}
+            >
               <div className="flex items-center rounded-full border border-white/10 bg-white/5 p-1.5 pl-6 shadow-xl shadow-black/20 transition-all hover:bg-white/10 focus-within:border-[#FE6839]/50 focus-within:ring-1 focus-within:ring-[#FE6839]/50">
                 <input
                   type="email"
                   name="email"
                   className="h-12 flex-1 border-none bg-transparent text-base text-white placeholder-white/30 focus:outline-none focus:ring-0"
                   placeholder="name@email.com"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
                   required
                 />
                 <button
                   type="submit"
                   className="whitespace-nowrap rounded-full bg-[#FE6839] px-8 py-3.5 text-sm font-semibold text-white shadow-lg shadow-[#FE6839]/20 transition-all hover:bg-[#ff7b52] hover:shadow-[#FE6839]/40"
+                  disabled={status === "loading"}
                 >
-                  Join waitlist
+                  {status === "loading" ? "Submitting..." : status === "success" ? "Joined!" : "Join waitlist"}
                 </button>
               </div>
             </form>
+
+            {errorMessage && (
+              <p className="mt-2 text-sm text-red-400">
+                {errorMessage}
+              </p>
+            )}
 
             <div className="mb-16 flex items-center gap-4">
               <div className="-space-x-3 flex">
