@@ -221,9 +221,9 @@ const WaitlistModal = ({ open, onClose }: WaitlistModalProps) => {
 
             <div className="mt-20 flex gap-4 border-t border-white/5 pt-8 text-xs text-gray-600">
               <span>Built with Science</span>
-              <span>></span>
+              <span>&gt;</span>
               <span>Join the Movement</span>
-              <span>></span>
+              <span>&gt;</span>
               <span>Become an Affiliate</span>
             </div>
             <div className="mt-4 text-[10px] text-gray-700">Ac 2025 LoveIQ > Designed based on User Request</div>
