@@ -49,10 +49,7 @@ const icons = [IconBolt, IconScience, IconPrivacy];
 
 const Section07: FC = () => {
   return (
-    <section className="section-shell relative bg-page px-4 text-text-primary" aria-labelledby="pillars-heading">
-      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_10%_30%,rgba(242,109,79,0.1),transparent_45%),radial-gradient(circle_at_80%_30%,rgba(124,88,255,0.12),transparent_45%),radial-gradient(circle_at_50%_70%,rgba(98,77,255,0.12),transparent_55%)]" />
-      <div className="pointer-events-none absolute inset-0 bg-noise opacity-16" />
-
+    <section className="section-shell relative bg-[#0A0510] px-4 text-text-primary" aria-labelledby="pillars-heading">
       <div className="content-shell relative flex flex-col gap-6 lg:flex-row">
         {cards.map((card, idx) => {
           const Icon = icons[idx];

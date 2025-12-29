@@ -85,12 +85,7 @@ const explorationBullets = [
 
 const Section05: FC = () => {
   return (
-    <section className="relative overflow-hidden bg-[#050208] px-4 pb-24 pt-14 text-white">
-      <div className="pointer-events-none absolute inset-0">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_10%_20%,rgba(255,255,255,0.04),transparent_35%),radial-gradient(circle_at_80%_10%,rgba(124,88,255,0.08),transparent_35%),radial-gradient(circle_at_50%_70%,rgba(242,109,79,0.06),transparent_45%)]" />
-        <div className="absolute inset-0 bg-noise opacity-25" />
-      </div>
-
+    <section className="relative mt-12 overflow-hidden bg-[#0A0510] px-4 pb-24 pt-14 text-white">
       <div className="relative mx-auto flex max-w-6xl flex-col gap-14">
         <div className="space-y-3 text-center">
           <h2 className="font-serif text-3xl leading-tight sm:text-4xl md:text-5xl">
@@ -104,11 +99,7 @@ const Section05: FC = () => {
           </p>
         </div>
 
-        <div className="relative overflow-hidden rounded-[28px] border border-white/10 bg-gradient-to-br from-[#13091c]/95 via-[#0d0715]/95 to-[#120a1c]/95 p-8 shadow-[0_26px_120px_rgba(0,0,0,0.55)] backdrop-blur">
-          <div className="pointer-events-none absolute inset-0">
-            <div className="absolute inset-0 bg-[radial-gradient(circle_at_15%_20%,rgba(242,109,79,0.12),transparent_35%),radial-gradient(circle_at_80%_30%,rgba(93,124,255,0.12),transparent_40%)]" />
-            <div className="absolute inset-0 bg-noise opacity-10" />
-          </div>
+        <div className="relative overflow-hidden rounded-[28px] border border-white/10 bg-[#0A0510] p-8 shadow-[0_26px_120px_rgba(0,0,0,0.55)] backdrop-blur">
           <div className="relative grid gap-8 md:grid-cols-[1.2fr_1fr]">
             <div className="space-y-6">
               <div className="inline-flex items-center rounded-full bg-white/5 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.2em] text-white/70">
@@ -160,47 +151,42 @@ const Section05: FC = () => {
         </div>
 
         <div className="grid gap-10 lg:grid-cols-[1.15fr_0.85fr] lg:items-center">
-          <div className="relative overflow-hidden rounded-[26px] border border-white/10 bg-gradient-to-b from-white/5 via-white/10 to-white/0 p-8 shadow-[0_20px_100px_rgba(0,0,0,0.55)]">
-            <div className="pointer-events-none absolute inset-0">
-              <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_30%,rgba(93,124,255,0.08),transparent_45%),radial-gradient(circle_at_80%_50%,rgba(242,109,79,0.08),transparent_45%)]" />
-              <div className="absolute inset-0 bg-noise opacity-12" />
-            </div>
-            <div className="relative space-y-6">
-              <h3 className="font-serif text-3xl leading-tight sm:text-4xl">
-                Embark on an exploration of your desires and connection.
-              </h3>
-              <div className="space-y-5">
-                {explorationBullets.map((item) => (
-                  <div key={item.title} className="flex gap-3">
-                    <div className="mt-1 flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-[#f26d4f] via-[#9c7dff] to-[#5d7cff] text-[#0d0715] shadow-[0_10px_30px_rgba(0,0,0,0.35)]">
-                      <svg
-                        aria-hidden
-                        className="h-4 w-4"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="currentColor"
-                        strokeWidth="2"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                      >
-                        <path d="M5 12l5 5L20 7" />
-                      </svg>
-                    </div>
-                    <div className="space-y-1">
-                      <p className="text-lg font-semibold text-white">{item.title}</p>
-                      <p className="text-sm leading-relaxed text-white/70">{item.description}</p>
-                    </div>
+          <div className="relative space-y-6">
+            <h3 className="font-serif text-3xl leading-tight sm:text-4xl">
+              Embark on an exploration of your desires and connection.
+            </h3>
+            <div className="space-y-5">
+              {explorationBullets.map((item) => (
+                <div key={item.title} className="flex gap-3">
+                  <div className="mt-1 flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-[#f26d4f] via-[#9c7dff] to-[#5d7cff] text-[#0d0715] shadow-[0_10px_30px_rgba(0,0,0,0.35)]">
+                    <svg
+                      aria-hidden
+                      className="h-4 w-4"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    >
+                      <path d="M5 12l5 5L20 7" />
+                    </svg>
                   </div>
-                ))}
-              </div>
+                  <div className="space-y-1">
+                    <p className="text-lg font-semibold text-white">{item.title}</p>
+                    <p className="text-sm leading-relaxed text-white/70">{item.description}</p>
+                  </div>
+                </div>
+              ))}
             </div>
           </div>
 
           <div className="relative flex justify-center">
-            <div className="absolute inset-0 -z-10 rounded-[30px] bg-gradient-to-b from-white/10 via-[#9c7dff]/10 to-transparent blur-[60px]" aria-hidden />
-            <div className="relative overflow-hidden rounded-[28px] border border-white/10 bg-gradient-to-br from-[#ff8a5a] via-[#f26d4f] to-[#8a82ff] p-1 shadow-[0_26px_120px_rgba(0,0,0,0.55)]">
-              <div className="rounded-[24px] bg-[radial-gradient(circle_at_20%_30%,rgba(255,255,255,0.35),transparent_45%),radial-gradient(circle_at_80%_70%,rgba(255,255,255,0.35),transparent_50%),linear-gradient(180deg,rgba(255,255,255,0.15),rgba(255,255,255,0.05))] p-6 backdrop-blur">
-                <div className="aspect-[3/4] w-64 bg-[radial-gradient(circle_at_30%_30%,rgba(255,255,255,0.25),transparent_45%),radial-gradient(circle_at_70%_40%,rgba(255,255,255,0.2),transparent_50%),radial-gradient(circle_at_50%_80%,rgba(255,255,255,0.18),transparent_50%),linear-gradient(135deg,rgba(255,255,255,0.25),rgba(255,255,255,0.05))] opacity-90" />
+            <div className="relative overflow-hidden rounded-[28px] border border-white/10 bg-[#0A0510] p-1 shadow-[0_26px_120px_rgba(0,0,0,0.55)]">
+              <div className="rounded-[24px] bg-[#0A0510] p-4 backdrop-blur">
+                <div className="relative aspect-[3/4] w-72 overflow-hidden rounded-[18px] bg-black/40">
+                  <img src="/762ab2dcc4e38a7a2824b7a4f5174f2627a7eaae.png" alt="Couple illustration" className="h-full w-full object-cover" />
+                </div>
               </div>
             </div>
           </div>

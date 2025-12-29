@@ -31,29 +31,25 @@ const testimonials = [
   },
 ];
 
+const ratingAvatars = ["/a791b20c354705558e2dce132f88640a8b4f563a.jpg", "/762ab2dcc4e38a7a2824b7a4f5174f2627a7eaae.png", "/personas/male.svg"];
+
 const avatars = [
-  { color: "from-[#ff8a5a] to-[#f26d4f]" },
-  { color: "from-[#7c6bff] to-[#c6b2ff]" },
-  { color: "from-[#f7a85c] to-[#6f3fff]" },
-  { color: "from-[#6f3fff] to-[#a65aff]" },
+  { src: "/0caefb431b1f1926399c403cc0418e06f729df1c.jpg" },
+  { src: "/fbc4c2241d9dc0e49b93289c9388c37e2de9be1b.jpg" },
+  { src: "/People in Relationships.png" },
+  { src: "/0f7ed5d44e1082e3707e71327b5df742609705a3.jpg" },
 ];
 
 const Section08: FC = () => {
   return (
-    <section className="section-shell relative overflow-hidden bg-page px-4 text-text-primary" aria-labelledby="stories-heading">
-      <div className="pointer-events-none absolute inset-0">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_15%_20%,rgba(242,109,79,0.12),transparent_40%),radial-gradient(circle_at_80%_20%,rgba(124,88,255,0.14),transparent_45%),radial-gradient(circle_at_50%_80%,rgba(111,63,255,0.14),transparent_55%)]" />
-        <div className="absolute inset-0 bg-noise opacity-16" />
-      </div>
-
+    <section className="section-shell relative overflow-hidden bg-[#0A0510] px-4 text-text-primary" aria-labelledby="stories-heading">
       <div className="content-shell relative flex flex-col items-center gap-10">
         <div className="flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.18em] text-text-secondary">
           <div className="flex -space-x-2">
-            {[0, 1, 2].map((idx) => (
-              <div
-                key={idx}
-                className={`h-7 w-7 rounded-full bg-gradient-to-br ${avatars[idx].color} border border-white/30`}
-              />
+            {ratingAvatars.map((src, idx) => (
+              <div key={idx} className="h-7 w-7 overflow-hidden rounded-full border border-white/30 bg-white/10">
+                <img src={src} alt="Happy customer" className="h-full w-full object-cover" />
+              </div>
             ))}
           </div>
           <span>4.9/5 Rating</span>
@@ -91,7 +87,9 @@ const Section08: FC = () => {
                 “{item.quote}”
               </p>
               <div className="mt-6 flex items-center gap-3 pt-4">
-                <div className={`h-11 w-11 rounded-full bg-gradient-to-br ${avatars[idx].color} border border-white/30 shadow-soft`} aria-hidden />
+                <div className="h-11 w-11 overflow-hidden rounded-full border border-white/30 shadow-soft" aria-hidden>
+                  <img src={avatars[idx]?.src ?? avatars[0].src} alt={item.name} className="h-full w-full object-cover" />
+                </div>
                 <div className="leading-tight">
                   <p className="text-sm font-semibold">{item.name}</p>
                   <p className="text-xs text-text-muted">{item.title}</p>

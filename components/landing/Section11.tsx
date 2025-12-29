@@ -18,12 +18,7 @@ const faqs = [
 
 const Section11: FC = () => {
   return (
-    <section className="section-shell relative overflow-hidden bg-page px-4 text-text-primary" aria-labelledby="faq-heading">
-      <div className="pointer-events-none absolute inset-0">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_10%_30%,rgba(242,109,79,0.12),transparent_45%),radial-gradient(circle_at_80%_15%,rgba(124,88,255,0.14),transparent_45%),radial-gradient(circle_at_50%_80%,rgba(111,63,255,0.12),transparent_55%)]" />
-        <div className="absolute inset-0 bg-noise opacity-16" />
-      </div>
-
+    <section className="section-shell relative overflow-hidden bg-[#0A0510] px-4 text-text-primary" aria-labelledby="faq-heading">
       <div className="content-shell relative flex max-w-4xl flex-col items-center gap-8">
         <div className="flex items-center gap-2 rounded-full border border-border bg-white/5 px-4 py-1 text-[11px] font-semibold uppercase tracking-[0.2em] text-text-secondary">
           FAQs

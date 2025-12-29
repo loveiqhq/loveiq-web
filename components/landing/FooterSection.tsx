@@ -10,12 +10,7 @@ const socials = [
 
 const FooterSection: FC = () => {
   return (
-    <footer className="relative overflow-hidden bg-page px-4 pb-10 pt-12 text-text-primary" aria-labelledby="footer-heading">
-      <div className="pointer-events-none absolute inset-0">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_10%_20%,rgba(242,109,79,0.1),transparent_45%),radial-gradient(circle_at_80%_30%,rgba(124,88,255,0.12),transparent_45%),radial-gradient(circle_at_50%_80%,rgba(111,63,255,0.12),transparent_50%)]" />
-        <div className="absolute inset-0 bg-noise opacity-12" />
-      </div>
-
+    <footer className="relative overflow-hidden bg-[#050208] px-4 pb-10 pt-12 text-text-primary" aria-labelledby="footer-heading">
       <div className="content-shell relative flex flex-col gap-10">
         <div className="grid gap-8 md:grid-cols-[1.2fr_1fr_1fr]">
           <div className="space-y-4">

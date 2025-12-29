@@ -21,12 +21,7 @@ const features = [
 
 const Section06: FC = () => {
   return (
-    <section className="section-shell relative overflow-hidden bg-page px-4 text-text-primary" aria-labelledby="report-heading">
-      <div className="pointer-events-none absolute inset-0">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_10%_40%,rgba(242,109,79,0.12),transparent_45%),radial-gradient(circle_at_80%_20%,rgba(122,88,255,0.16),transparent_40%),radial-gradient(circle_at_70%_80%,rgba(111,63,255,0.18),transparent_45%)]" />
-        <div className="absolute inset-0 bg-noise opacity-18" />
-      </div>
-
+    <section className="section-shell relative overflow-hidden bg-[#0A0510] px-4 text-text-primary" aria-labelledby="report-heading">
       <div className="content-shell relative grid gap-12 lg:grid-cols-[1.05fr_0.95fr] lg:items-center">
         <div className="space-y-8">
           <div className="space-y-4">
@@ -85,7 +80,9 @@ const Section06: FC = () => {
               </svg>
             </a>
             <div className="flex items-center gap-3 text-sm text-white/70">
-              <div className="h-11 w-11 rounded-full border border-border bg-gradient-brand shadow-soft" />
+              <div className="h-11 w-11 overflow-hidden rounded-full border border-border shadow-soft">
+                <img src="/a791b20c354705558e2dce132f88640a8b4f563a.jpg" alt="Alex M." className="h-full w-full object-cover" />
+              </div>
               <div className="space-y-0.5 leading-tight text-text-secondary">
                 <p className="italic">“The accuracy shocked me.”</p>
                 <p className="text-[12px] font-semibold text-accent-orange">— Alex M.</p>
@@ -95,10 +92,7 @@ const Section06: FC = () => {
         </div>
 
         <div className="relative flex items-center justify-center">
-          <div className="absolute -left-10 -top-12 h-48 w-48 rounded-full bg-accent-orange/20 blur-[80px]" aria-hidden />
-          <div className="absolute -right-8 bottom-10 h-56 w-56 rounded-full bg-accent-purple/20 blur-[90px]" aria-hidden />
           <div className="relative w-full max-w-xl overflow-hidden rounded-[24px] border border-border bg-card p-6 shadow-card backdrop-blur">
-            <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(255,255,255,0.08),transparent_35%),radial-gradient(circle_at_80%_40%,rgba(124,88,255,0.1),transparent_40%)] opacity-70" />
             <div className="relative space-y-6">
               <div className="flex items-center justify-between rounded-2xl bg-white/5 px-4 py-2 text-text-secondary">
                 <div className="flex items-center gap-2">
@@ -185,9 +179,9 @@ const Section06: FC = () => {
               </div>
             </div>
 
-            <div className="absolute -right-8 top-16 w-52 rounded-2xl border border-border bg-panel p-4 text-sm shadow-soft">
-              <div className="mb-2 flex items-center gap-3">
-                <div className="flex h-10 w-10 items-center justify-center rounded-full bg-gradient-to-br from-[#7c6bff] to-[#c6b2ff] text-[#140c1e]">
+            <div className="absolute right-4 top-4 inline-flex items-center gap-3 rounded-2xl border border-[rgba(255,255,255,0.12)] bg-[#2b1a3a] px-4 py-3 text-sm shadow-[0_14px_40px_rgba(0,0,0,0.35)]">
+              <div className="flex items-center gap-3">
+                <div className="flex h-10 w-10 items-center justify-center rounded-full bg-[#5b2a8a] text-white">
                   <svg
                     aria-hidden
                     viewBox="0 0 24 24"
@@ -202,12 +196,11 @@ const Section06: FC = () => {
                     <path d="M5.5 21a6.5 6.5 0 0 1 13 0" />
                   </svg>
                 </div>
-                <div>
-                  <p className="text-[11px] font-semibold uppercase tracking-[0.12em] text-text-muted">Archetype Found</p>
-                  <p className="text-sm font-semibold text-text-primary">Deep Connector</p>
+                <div className="leading-tight">
+                  <p className="text-[12px] font-semibold text-white">Archetype Found</p>
+                  <p className="text-[12px] text-[#9ca3af]">Deep Connector</p>
                 </div>
               </div>
-              <div className="h-2 w-full rounded-full bg-white/10" aria-hidden />
             </div>
           </div>
         </div>
