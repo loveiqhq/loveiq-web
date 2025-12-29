@@ -17,12 +17,7 @@ const stats = [
 
 const Section10: FC = () => {
   return (
-    <section className="section-shell relative overflow-hidden bg-page px-4 text-text-primary" aria-labelledby="why-heading">
-      <div className="pointer-events-none absolute inset-0">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_10%_30%,rgba(242,109,79,0.12),transparent_45%),radial-gradient(circle_at_80%_15%,rgba(124,88,255,0.14),transparent_45%),radial-gradient(circle_at_50%_85%,rgba(111,63,255,0.16),transparent_50%)]" />
-        <div className="absolute inset-0 bg-noise opacity-16" />
-      </div>
-
+    <section className="section-shell relative overflow-hidden bg-[#0A0510] px-4 text-text-primary" aria-labelledby="why-heading">
       <div className="content-shell relative flex flex-col items-center gap-12">
         <div className="space-y-4 text-center">
           <h2 id="why-heading" className="font-serif text-4xl leading-tight sm:text-5xl">
@@ -41,9 +36,6 @@ const Section10: FC = () => {
               key={item.value}
               className="relative overflow-hidden rounded-[22px] border border-border bg-card p-6 text-center shadow-soft backdrop-blur"
             >
-              <div className="pointer-events-none absolute inset-0">
-                <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_20%,rgba(242,109,79,0.12),transparent_45%),radial-gradient(circle_at_80%_50%,rgba(124,88,255,0.12),transparent_45%)]" />
-              </div>
               <div className="mb-6 flex items-center justify-center gap-2">
                 <div className="h-2 w-2 rounded-full bg-white/30" />
                 <div className="h-2 w-2 rounded-full bg-white/30" />

@@ -1,18 +1,15 @@
 import type { FC } from "react";
 
 const personas = [
-  { title: "Singles", accent: "from-[#5d7cff]/20 via-[#c36ddf]/10 to-transparent" },
-  { title: "Partners & Couples", accent: "from-[#5d7cff]/15 via-[#f26d4f]/8 to-transparent" },
-  { title: "Communication Builders", accent: "from-[#5d7cff]/15 via-[#f26d4f]/8 to-transparent" },
-  { title: "Long-term Growth", accent: "from-[#f26d4f]/12 via-[#5d7cff]/15 to-transparent" },
+  { title: "Singles", image: "/2239bb32f51b4c83bfb647cee859127eae298678.jpg" },
+  { title: "Partners & Couples", image: "/People in Relationships.png" },
+  { title: "Communication Builders", image: "/People in Relationships.png" },
+  { title: "Long-term Growth", image: "/2239bb32f51b4c83bfb647cee859127eae298678.jpg" },
 ];
 
 const Section09: FC = () => {
   return (
-    <section className="section-shell relative bg-page px-4 text-text-primary" aria-labelledby="audience-heading">
-      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_15%_20%,rgba(242,109,79,0.12),transparent_40%),radial-gradient(circle_at_80%_15%,rgba(124,88,255,0.14),transparent_45%),radial-gradient(circle_at_50%_80%,rgba(111,63,255,0.12),transparent_55%)]" />
-      <div className="pointer-events-none absolute inset-0 bg-noise opacity-16" />
-
+    <section className="section-shell relative bg-[#0A0510] px-4 text-text-primary" aria-labelledby="audience-heading">
       <div className="content-shell relative flex flex-col items-center gap-10">
         <div className="space-y-3 text-center">
           <h2 id="audience-heading" className="font-serif text-4xl leading-tight sm:text-5xl md:text-5xl">
@@ -27,15 +24,14 @@ const Section09: FC = () => {
           {personas.map((item, idx) => (
             <div
               key={`${item.title}-${idx}`}
-              className="relative overflow-hidden rounded-[22px] border border-border bg-card p-4 shadow-soft backdrop-blur"
+              className="relative overflow-hidden rounded-[22px] border border-border bg-card p-0 shadow-soft backdrop-blur"
             >
-              <div className={`pointer-events-none absolute inset-0 bg-gradient-to-b ${item.accent}`} aria-hidden />
-              <div className="flex h-full flex-col justify-end">
-                <div className="flex-1" />
-                <div className="space-y-2">
-                  <p className="text-xl font-semibold text-text-primary">{item.title}</p>
-                  <div className="h-1 w-12 rounded-full bg-white/10" />
-                </div>
+              <div className="aspect-[3/4] w-full overflow-hidden">
+                <img src={item.image} alt={item.title} className="h-full w-full object-cover" />
+              </div>
+              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/30 to-transparent" aria-hidden />
+              <div className="absolute inset-x-0 bottom-0 p-4">
+                <p className="text-xl font-semibold text-white">{item.title}</p>
               </div>
             </div>
           ))}

@@ -111,10 +111,8 @@ const WaitlistModal = ({ open, onClose }: WaitlistModalProps) => {
       <div className="fixed inset-0 z-10 flex w-screen items-center justify-center overflow-y-auto px-4 py-8 sm:px-6">
         <div
           ref={panelRef}
-          className={`relative w-full max-w-5xl transform overflow-hidden rounded-[2.5rem] border border-white/10 bg-[#050208] text-left shadow-2xl transition-all duration-300 ${panelClasses}`}
+          className={`relative w-full max-w-5xl transform overflow-hidden rounded-[2.5rem] border border-white/10 bg-[#0A0510] text-left shadow-2xl transition-all duration-300 ${panelClasses}`}
         >
-          <div className="pointer-events-none absolute right-1/4 top-0 h-[600px] w-[600px] translate-y-[-50%] rounded-full bg-[#FE6839]/10 blur-[120px]" />
-
           <div className="absolute right-8 top-8 z-50">
             <button
               type="button"
@@ -191,7 +189,7 @@ const WaitlistModal = ({ open, onClose }: WaitlistModalProps) => {
                 {avatars.map((src, idx) => (
                   <Image
                     key={src}
-                    className="inline-block h-8 w-8 rounded-full ring-2 ring-[#050208]"
+                    className="inline-block h-8 w-8 rounded-full ring-2 ring-[#0A0510]"
                     src={src}
                     alt={`Waitlist avatar ${idx + 1}`}
                     width={32}

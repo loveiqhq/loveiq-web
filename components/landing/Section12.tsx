@@ -5,7 +5,6 @@ const Section12: FC = () => {
     <section className="section-shell relative overflow-hidden bg-gradient-to-br from-[#1a0d25] via-[#0f0a18] to-[#2a1640] px-4 text-text-primary">
       <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_20%_20%,rgba(242,109,79,0.12),transparent_45%),radial-gradient(circle_at_80%_30%,rgba(124,88,255,0.14),transparent_45%),radial-gradient(circle_at_50%_80%,rgba(111,63,255,0.16),transparent_50%)]" />
       <div className="pointer-events-none absolute inset-0 bg-noise opacity-12" />
-
       <div className="content-shell relative flex max-w-5xl flex-col items-center gap-8 text-center">
         <div className="space-y-3">
           <h3 className="font-serif text-4xl leading-tight sm:text-5xl md:text-6xl">

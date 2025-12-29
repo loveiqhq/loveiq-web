@@ -16,7 +16,7 @@ import ValueFeaturesSection from "./ValueFeaturesSection";
 
 const LandingPage: FC = () => {
   return (
-    <main className="bg-page text-text-primary">
+    <main className="relative bg-page text-text-primary">
       <NavSection />
       <HeroSection />
       <div id="about">
