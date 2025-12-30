@@ -1,4 +1,5 @@
 import "./globals.css";
+import Script from "next/script";
 import { Lora, Manrope } from "next/font/google";
 
 const manrope = Manrope({
@@ -27,6 +28,19 @@ export const metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" className={`scroll-smooth ${manrope.variable} ${lora.variable}`}>
+      <head>
+        <Script src="https://www.googletagmanager.com/gtag/js?id=G-QTYY69L46N" strategy="afterInteractive" />
+        <Script id="ga-init" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-QTYY69L46N', {
+              page_path: window.location.pathname,
+            });
+          `}
+        </Script>
+      </head>
       <body className="bg-white dark:bg-[#050208]">
         {children}
       </body>
