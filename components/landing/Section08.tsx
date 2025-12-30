@@ -1,3 +1,4 @@
+import Image from "next/image";
 import type { FC } from "react";
 
 const testimonials = [
@@ -48,7 +49,7 @@ const Section08: FC = () => {
           <div className="flex -space-x-2">
             {ratingAvatars.map((src, idx) => (
               <div key={idx} className="h-7 w-7 overflow-hidden rounded-full border border-white/30 bg-white/10">
-                <img src={src} alt="Happy customer" className="h-full w-full object-cover" />
+                <Image src={src} alt="Happy customer" width={28} height={28} className="h-full w-full object-cover" />
               </div>
             ))}
           </div>
@@ -88,7 +89,13 @@ const Section08: FC = () => {
               </p>
               <div className="mt-6 flex items-center gap-3 pt-4">
                 <div className="h-11 w-11 overflow-hidden rounded-full border border-white/30 shadow-soft" aria-hidden>
-                  <img src={avatars[idx]?.src ?? avatars[0].src} alt={item.name} className="h-full w-full object-cover" />
+                  <Image
+                    src={avatars[idx]?.src ?? avatars[0].src}
+                    alt={item.name}
+                    width={44}
+                    height={44}
+                    className="h-full w-full object-cover"
+                  />
                 </div>
                 <div className="leading-tight">
                   <p className="text-sm font-semibold">{item.name}</p>

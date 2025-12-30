@@ -1,3 +1,4 @@
+import Image from "next/image";
 import type { FC } from "react";
 
 const features = [
@@ -81,7 +82,13 @@ const Section06: FC = () => {
             </a>
             <div className="flex items-center gap-3 text-sm text-white/70">
               <div className="h-11 w-11 overflow-hidden rounded-full border border-border shadow-soft">
-                <img src="/a791b20c354705558e2dce132f88640a8b4f563a.jpg" alt="Alex M." className="h-full w-full object-cover" />
+                <Image
+                  src="/a791b20c354705558e2dce132f88640a8b4f563a.jpg"
+                  alt="Alex M."
+                  width={44}
+                  height={44}
+                  className="h-full w-full object-cover"
+                />
               </div>
               <div className="space-y-0.5 leading-tight text-text-secondary">
                 <p className="italic">“The accuracy shocked me.”</p>

@@ -1,3 +1,4 @@
+import Image from "next/image";
 import type { CSSProperties, FC } from "react";
 
 const steps = [
@@ -55,7 +56,7 @@ const HowItWorksSection: FC = () => {
                 style={{ transform: `translate(-50%, -50%) rotate(${angle}deg) translateY(-230px) rotate(-${angle}deg)` }}
               >
                 <div className="flex h-full w-full items-center justify-center">
-                  <img src={src} alt="" className="h-6 w-6 object-contain" />
+                  <Image src={src} alt="" width={24} height={24} className="h-6 w-6 object-contain" />
                 </div>
               </div>
             );
@@ -75,7 +76,7 @@ const HowItWorksSection: FC = () => {
                 style={{ transform: `translate(-50%, -50%) rotate(${angle}deg) translateY(-230px) rotate(-${angle}deg)` }}
               >
                 <div className="flex h-full w-full items-center justify-center">
-                  <img src={src} alt="" className="h-6 w-6 object-contain" />
+                  <Image src={src} alt="" width={24} height={24} className="h-6 w-6 object-contain" />
                 </div>
               </div>
             );

@@ -1,3 +1,4 @@
+import Image from "next/image";
 import type { FC } from "react";
 
 const archetypeStats = [
@@ -226,8 +227,8 @@ const Section05: FC = () => {
                 <div className="space-y-3">
                   <h3 className="font-serif text-3xl leading-tight text-white sm:text-[34px]">The Deep Connector</h3>
                   <p className="text-[15px] leading-relaxed text-white/80 sm:text-base">
-                    You thrive on emotional safety before physical intensity. Your arousal network is heavily tied to the "Trust
-                    &amp; Verify" neural pathways.
+                    You thrive on emotional safety before physical intensity. Your arousal network is heavily tied to the &quot;Trust
+                    &amp; Verify&quot; neural pathways.
                   </p>
                 </div>
 
@@ -303,7 +304,14 @@ const Section05: FC = () => {
           <div className="relative flex justify-center">
             <div className="relative overflow-hidden rounded-[34px] bg-gradient-to-b from-[#f4d7f6] via-[#d7b7e9] to-[#90a7e5] p-[10px] shadow-[0_34px_120px_rgba(0,0,0,0.5)]">
               <div className="relative aspect-[3/5] w-full max-w-[360px] sm:max-w-[400px] overflow-hidden rounded-[26px] bg-[#0A0510]/50">
-                <img src="/762ab2dcc4e38a7a2824b7a4f5174f2627a7eaae.png" alt="Couple illustration" className="h-full w-full object-cover" />
+                <Image
+                  src="/762ab2dcc4e38a7a2824b7a4f5174f2627a7eaae.png"
+                  alt="Couple illustration"
+                  fill
+                  sizes="(min-width: 1024px) 400px, 90vw"
+                  className="object-cover"
+                  priority
+                />
               </div>
             </div>
           </div>

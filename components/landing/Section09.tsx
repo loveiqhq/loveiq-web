@@ -1,3 +1,4 @@
+import Image from "next/image";
 import type { FC } from "react";
 
 const personas = [
@@ -62,11 +63,13 @@ const Section09: FC = () => {
               key={`${item.title}-${idx}`}
               className="group relative m-3 h-[520px] w-[320px] overflow-hidden rounded-[32px] border border-white/5 bg-[#0f0a18] shadow-[0_20px_35px_rgba(0,0,0,0.55)] transition-transform duration-700 ease-out transform-gpu hover:-translate-y-3 hover:shadow-[0_28px_50px_rgba(0,0,0,0.65)] sm:w-[360px]"
             >
-              <img
+              <Image
                 src={item.image}
                 alt={item.title}
-                className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.04]"
-                loading="lazy"
+                fill
+                sizes="(min-width: 640px) 360px, 90vw"
+                className="object-cover transition-transform duration-700 group-hover:scale-[1.04]"
+                priority={idx === 0}
               />
               <div
                 className={`pointer-events-none absolute inset-0 bg-gradient-to-t from-[#0a0510]/80 via-[#0a0510]/40 to-transparent ${item.overlay ?? ""}`}
