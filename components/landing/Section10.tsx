@@ -8,7 +8,7 @@ const Section10: FC = () => {
         <div className="absolute left-[-80px] top-1/2 h-[420px] w-[420px] -translate-y-1/2 rounded-full bg-[#541475]/10 blur-[100px]" />
       </div>
 
-      <div className="content-shell relative flex flex-col items-center gap-12">
+      <div className="content-shell relative flex flex-col items-center gap-12 animate-on-scroll">
         <div className="max-w-5xl space-y-4 text-center">
           <h2 id="why-heading" className="font-serif text-4xl leading-tight text-white sm:text-5xl md:text-[52px] md:leading-[1.15]">
             Why we created <span className="bg-gradient-to-r from-[#fe6839] to-[#a78bfa] bg-clip-text text-transparent">LoveIQ?</span>
@@ -20,7 +20,7 @@ const Section10: FC = () => {
           </p>
         </div>
 
-        <div className="grid w-full gap-6 md:grid-cols-3">
+        <div className="grid w-full gap-6 md:grid-cols-3 animate-on-scroll">
           {/* Card 1 */}
           <div className="group relative overflow-hidden rounded-[34px] bg-[#150a22] p-[14px] shadow-[0_25px_50px_-12px_rgba(0,0,0,0.35)] transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_28px_60px_-15px_rgba(254,104,57,0.35)]">
             <div className="pointer-events-none absolute inset-[-1px] rounded-[34px] bg-gradient-to-b from-[#fe6839]/30 to-transparent opacity-0 blur-[4px] transition-opacity duration-500 group-hover:opacity-100" aria-hidden />
