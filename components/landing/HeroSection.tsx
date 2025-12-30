@@ -3,6 +3,7 @@
 import type { FC } from "react";
 import { useEffect, useRef } from "react";
 import Link from "next/link";
+import { trackLearnMore, trackStartSurvey } from "../../lib/analytics";
 
 const HeroSection: FC = () => {
   const sectionRef = useRef<HTMLElement | null>(null);
@@ -92,6 +93,7 @@ const HeroSection: FC = () => {
             <Link
               href="/waitlist"
               className="group relative inline-flex h-[58px] min-w-[220px] items-center justify-center gap-2 overflow-hidden rounded-full bg-gradient-brand px-10 text-[15px] font-semibold text-white shadow-pill transition hover:translate-y-[-2px] focus-visible-ring transition-colors duration-500"
+              onClick={() => trackStartSurvey("hero")}
             >
               <span
                 aria-hidden
@@ -122,6 +124,7 @@ const HeroSection: FC = () => {
           <Link
             href="#about"
             className="inline-flex h-[58px] min-w-[190px] items-center justify-center rounded-full border border-white/30 bg-white/0 px-6 text-sm font-semibold text-white shadow-[0_25px_60px_rgba(0,0,0,0.35)] transition hover:-translate-y-[2px] focus-visible-ring"
+            onClick={() => trackLearnMore("hero")}
           >
             Learn more
           </Link>

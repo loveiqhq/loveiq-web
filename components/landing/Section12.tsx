@@ -1,4 +1,5 @@
 import type { FC } from "react";
+import { trackStartSurvey } from "../../lib/analytics";
 
 const Section12: FC = () => {
   return (
@@ -22,6 +23,7 @@ const Section12: FC = () => {
           <a
             href="/waitlist"
             className="inline-flex items-center justify-center gap-2 rounded-full bg-gradient-to-br from-[#fe6839] via-[#ff7f3e] to-[#ff9450] px-8 py-3 text-base font-semibold text-white shadow-[0_18px_70px_rgba(254,104,57,0.4)] transition hover:translate-y-[-2px]"
+            onClick={() => trackStartSurvey("footer")}
           >
             Start survey now
             <svg

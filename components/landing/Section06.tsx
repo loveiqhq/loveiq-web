@@ -1,5 +1,6 @@
 import Image from "next/image";
 import type { FC } from "react";
+import { trackStartSurvey } from "../../lib/analytics";
 
 const features = [
   {
@@ -64,6 +65,7 @@ const Section06: FC = () => {
             <a
               href="/waitlist"
               className="inline-flex items-center justify-center gap-2 rounded-full bg-gradient-brand px-6 py-3 text-base font-semibold text-white shadow-pill transition hover:translate-y-[-2px] focus-visible-ring"
+              onClick={() => trackStartSurvey("report_section")}
             >
               Start survey now
               <svg

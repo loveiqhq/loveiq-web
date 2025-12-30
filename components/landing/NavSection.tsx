@@ -1,5 +1,6 @@
 import type { FC } from "react";
 import Link from "next/link";
+import { trackStartSurvey } from "../../lib/analytics";
 
 const NavSection: FC = () => {
   return (
@@ -41,6 +42,7 @@ const NavSection: FC = () => {
               <Link
                 href="/waitlist"
                 className="inline-flex items-center justify-center gap-2 rounded-full bg-gradient-to-r from-[#ff6a3a] via-[#ff8f50] to-[#ff6a3a] px-6 py-3 text-sm font-semibold text-white shadow-[0_18px_45px_rgba(254,104,57,0.35)] transition hover:translate-y-[-2px] focus-visible-ring"
+                onClick={() => trackStartSurvey("nav")}
               >
                 Start survey now
                 <svg

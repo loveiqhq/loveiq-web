@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { useState } from "react";
+import { trackWaitlistSignup } from "../../lib/analytics";
 
 const faqs = [
   {
@@ -56,6 +57,7 @@ export default function WaitlistPage() {
         throw new Error(data?.error || "Something went wrong");
       }
       setStatus("success");
+      trackWaitlistSignup("waitlist_page");
     } catch (err) {
       setStatus("error");
       setErrorMessage(err instanceof Error ? err.message : "Unable to join waitlist.");

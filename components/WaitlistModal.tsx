@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
+import { trackWaitlistSignup } from "../lib/analytics";
 
 type WaitlistModalProps = {
   open: boolean;
@@ -83,6 +84,7 @@ const WaitlistModal = ({ open, onClose }: WaitlistModalProps) => {
         throw new Error(data?.error || "Something went wrong");
       }
       setStatus("success");
+      trackWaitlistSignup("landing_modal");
     } catch (err) {
       setStatus("error");
       setErrorMessage(err instanceof Error ? err.message : "Unable to join waitlist.");
