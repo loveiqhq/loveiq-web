@@ -19,6 +19,9 @@ const lora = Lora({
 export const metadata = {
   title: "LoveIQ",
   description: "Science-backed sexual psychology assessment",
+  icons: {
+    icon: "/images/LoveiqLogo.svg",
+  },
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

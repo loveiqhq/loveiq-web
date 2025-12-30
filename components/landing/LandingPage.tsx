@@ -1,4 +1,7 @@
+"use client";
+
 import type { FC } from "react";
+import { useEffect } from "react";
 import FooterSection from "./FooterSection";
 import HeroSection from "./HeroSection";
 import HowItWorksSection from "./HowItWorksSection";
@@ -15,6 +18,28 @@ import TrustedBySection from "./TrustedBySection";
 import ValueFeaturesSection from "./ValueFeaturesSection";
 
 const LandingPage: FC = () => {
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    const elements = Array.from(document.querySelectorAll<HTMLElement>(".animate-on-scroll"));
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("animate");
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      {
+        threshold: 0.12,
+        rootMargin: "0px 0px -10% 0px",
+      },
+    );
+
+    elements.forEach((el) => observer.observe(el));
+    return () => observer.disconnect();
+  }, []);
+
   return (
     <main className="relative bg-page text-text-primary">
       <NavSection />

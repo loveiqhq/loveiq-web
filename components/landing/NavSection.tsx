@@ -3,12 +3,12 @@ import Link from "next/link";
 
 const NavSection: FC = () => {
   return (
-    <header className="pointer-events-none absolute inset-x-0 top-4 z-30 px-4 sm:top-6">
+    <header className="pointer-events-none fixed inset-x-0 top-0 z-40 px-4 sm:top-3">
       <div className="content-shell">
         <div className="relative pointer-events-auto">
           <div className="pointer-events-none absolute inset-[-10px] rounded-[999px] bg-[radial-gradient(80%_120%_at_50%_50%,rgba(0,0,0,0.55),transparent_65%)] blur-3xl" />
           <nav className="relative mx-auto flex w-full max-w-[1200px] items-center justify-between gap-5 rounded-[999px] bg-gradient-to-r from-[#1b0f2a] via-[#120a20] to-[#1b0f2a] pl-6 pr-2 py-[6px] shadow-[0_25px_80px_rgba(0,0,0,0.55)] backdrop-blur">
-            <div className="flex items-center gap-3">
+            <div className="flex flex-1 items-center gap-3">
               <div className="relative flex h-12 w-12 items-center justify-center overflow-hidden rounded-full bg-[#27142f] shadow-[0_12px_30px_rgba(0,0,0,0.38)] focus-visible-ring">
                 <div className="absolute inset-0 bg-gradient-to-br from-[#a2232b] via-[#f05b38] to-[#b15cd3]" />
                 <svg
@@ -28,7 +28,7 @@ const NavSection: FC = () => {
               <span className="font-serif text-xl font-semibold text-white">LoveIQ</span>
             </div>
 
-            <div className="hidden flex-1 items-center justify-center gap-10 text-sm font-semibold text-white/75 lg:flex">
+            <div className="hidden flex-1 items-center justify-center gap-10 text-center text-sm font-semibold text-white/75 lg:flex">
               <Link href="#about" className="rounded-pill px-2 py-1 transition hover:text-white focus-visible-ring">
                 About Us
               </Link>

@@ -119,6 +119,73 @@ h3,
   }
 }
 
+
+@keyframes pulse-glow {
+  0%,
+  100% {
+    opacity: 0.5;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.8;
+    transform: scale(1.05);
+  }
+}
+
+@keyframes orbit-slide-left {
+  0% {
+    opacity: 0;
+    transform: translateX(-120%) rotate(-45deg);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(-85%) rotate(0deg);
+  }
+}
+
+@keyframes orbit-slide-right {
+  0% {
+    opacity: 0;
+    transform: translateX(120%) rotate(45deg);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(85%) rotate(0deg);
+  }
+}
+
+@keyframes slide-in-left {
+  0% {
+    opacity: 0;
+    transform: translateX(-100%);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes gradient-move {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
 @keyframes blob {
   0% {
     transform: translate(0px, 0px) scale(1);
@@ -146,8 +213,45 @@ h3,
 .animate-spin-slow {
   animation: spin-slow 60s linear infinite;
 }
+.animate-spin-slow-reverse {
+  animation: spin-slow 60s linear infinite reverse;
+}
+.spin-on-hover {
+  animation: spin-slow 20s linear infinite;
+  animation-play-state: paused;
+}
+.spin-on-hover-reverse {
+  animation: spin-slow 20s linear infinite reverse;
+  animation-play-state: paused;
+}
+.group:hover .spin-on-hover,
+.group:hover .spin-on-hover-reverse {
+  animation-play-state: running;
+}
 .animate-blob {
   animation: blob 12s ease-in-out infinite;
+}
+.animate-pulse-glow {
+  animation: pulse-glow 4s ease-in-out infinite;
+}
+.animate-orbit-left {
+  animation: orbit-slide-left 1.5s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+}
+.animate-orbit-right {
+  animation: orbit-slide-right 1.5s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+}
+.animate-slide-in-left {
+  animation: slide-in-left 1.2s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+}
+.animate-scroll {
+  animation: scroll 40s linear infinite;
+}
+.animate-scroll:hover {
+  animation-play-state: paused;
+}
+.animate-gradient-move {
+  background-size: 200% 200%;
+  animation: gradient-move 8s ease infinite;
 }
 
 /* Aura-like in-view reveal */

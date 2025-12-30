@@ -42,8 +42,11 @@ const ValueFeaturesSection: FC = () => {
           </h2>
           <div className="space-y-6">
             {bullets.map((item) => (
-              <div key={item.title} className="flex gap-3 rounded-2xl bg-transparent p-4">
-                <div className="mt-1 flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-xl bg-[#241731] text-white shadow-[0_10px_28px_rgba(0,0,0,0.35)]" aria-hidden>
+              <div key={item.title} className="group flex gap-3 rounded-2xl bg-transparent p-4">
+                <div
+                  className="mt-0.5 flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-2xl border border-[#2E0147]/10 bg-[#541475] text-white shadow-[0_10px_28px_rgba(0,0,0,0.2)] transition-colors duration-300 group-hover:bg-white group-hover:text-[#541475] dark:border-white/10 dark:bg-[#a78bfa] dark:text-[#0b0714] dark:group-hover:bg-[#1e102e] dark:group-hover:text-[#a78bfa]"
+                  aria-hidden
+                >
                   {item.icon === "arrow" ? (
                     <svg width="29" height="29" viewBox="0 0 29 29" fill="none" xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-[#a78bfa]">
                       <path d="M24 24.3234H8.9644C8.30923 24.3235 7.68095 24.5809 7.21774 25.0389L4.4977 27.7275C4.25172 27.9888 3.8674 28.0715 3.5338 27.9349C3.20021 27.7983 2.98759 27.4712 3.00056 27.1146V7.22953C3.00054 6.26627 3.5734 5.39301 4.46311 5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />

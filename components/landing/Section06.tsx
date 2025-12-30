@@ -36,8 +36,8 @@ const Section06: FC = () => {
 
           <div className="space-y-5">
             {features.map((item) => (
-              <div key={item.title} className="flex gap-3">
-                <div className="mt-1 flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-full bg-gradient-brand text-[#140c1e] shadow-soft">
+              <div key={item.title} className="group flex gap-3">
+                <div className="mt-1 flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-full bg-white/5 text-accent-orange shadow-soft transition duration-300 ease-out group-hover:-translate-y-[2px] group-hover:scale-105 group-hover:bg-gradient-to-br group-hover:from-[#f26d4f] group-hover:via-[#ff9450] group-hover:to-[#f26d4f] group-hover:text-white">
                   <svg
                     aria-hidden
                     className="h-4 w-4"
@@ -91,21 +91,30 @@ const Section06: FC = () => {
           </div>
         </div>
 
-        <div className="relative flex items-center justify-center">
-          <div className="relative w-full max-w-xl overflow-hidden rounded-[24px] border border-border bg-card p-6 shadow-card backdrop-blur">
-            <div className="relative space-y-6">
-              <div className="flex items-center justify-between rounded-2xl bg-white/5 px-4 py-2 text-text-secondary">
-                <div className="flex items-center gap-2">
-                  <span className="h-2 w-2 rounded-full bg-accent-orange" aria-hidden />
-                  <span className="h-2 w-2 rounded-full bg-accent-peach" aria-hidden />
-                  <span className="h-2 w-2 rounded-full bg-accent-purple" aria-hidden />
-                </div>
-                <div className="h-1.5 w-16 rounded-full bg-white/10" aria-hidden />
-              </div>
+        <div className="relative flex items-center justify-center group">
+          <div
+            className="absolute -right-4 top-6 bottom-6 hidden w-[320px] -rotate-12 rounded-[32px] bg-gradient-to-br from-[#5a2d8b] via-[#2f154e] to-[#f26d4f]/60 blur-[0.5px] transition-transform duration-700 ease-[cubic-bezier(0.2,0.8,0.2,1)] will-change-transform transform-gpu group-hover:-rotate-6 group-hover:translate-x-1 group-hover:translate-y-1 md:block"
+            aria-hidden
+          />
 
-              <div className="space-y-4 rounded-2xl border border-white/5 bg-white/5 p-4">
-                <div className="flex items-center gap-3">
-                  <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-brand text-[#150c1c]">
+          <div className="relative w-full max-w-[360px] overflow-hidden rounded-[32px] border border-[#241631] bg-[#1d122a] shadow-[0_32px_110px_rgba(0,0,0,0.6)] transition-all duration-700 ease-[cubic-bezier(0.2,0.8,0.2,1)] transform-gpu will-change-transform group-hover:-translate-y-2 group-hover:shadow-[0_40px_120px_rgba(0,0,0,0.65)]">
+            <div className="flex items-center justify-between gap-4 border-b border-[#241631] bg-black/15 px-5 py-4">
+              <div className="flex items-center gap-2">
+                <span className="h-3 w-3 rounded-full bg-[#fe6839]" aria-hidden />
+                <span className="h-3 w-3 rounded-full bg-[#ffba5f]" aria-hidden />
+                <span className="h-3 w-3 rounded-full bg-[#9c7dff]" aria-hidden />
+              </div>
+              <span className="h-1.5 w-14 rounded-full bg-white/12" aria-hidden />
+            </div>
+
+            <div className="relative px-5 pb-5 pt-5">
+              <div
+                className="pointer-events-none absolute -right-10 -bottom-6 h-44 w-44 rounded-full bg-gradient-to-br from-[#f26d4f]/50 via-[#f26d4f]/18 to-transparent blur-3xl opacity-80"
+                aria-hidden
+              />
+              <div className="space-y-5">
+                <div className="flex items-start gap-4">
+                  <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-[#2e1c38] text-[#fe6839] shadow-[0_16px_60px_rgba(0,0,0,0.35)]">
                     <svg
                       aria-hidden
                       viewBox="0 0 24 24"
@@ -116,90 +125,102 @@ const Section06: FC = () => {
                       strokeLinecap="round"
                       strokeLinejoin="round"
                     >
-                      <path d="M20 22H4a2 2 0 0 1-2-2V6" />
-                      <path d="M16 2v4" />
-                      <path d="M8 2v4" />
-                      <path d="M2 10h20" />
-                      <path d="m9 16 2 2 4-4" />
+                      <path d="M4 19.5A2.5 2.5 0 0 0 6.5 22h11a2.5 2.5 0 0 0 2.5-2.5v-15A2.5 2.5 0 0 0 17.5 2h-11A2.5 2.5 0 0 0 4 4.5Z" />
+                      <path d="M8 7h8" />
+                      <path d="M8 11h8" />
+                      <path d="M8 15h6" />
                     </svg>
                   </div>
-                  <div className="flex-1 space-y-2 text-text-secondary">
-                    <p className="text-sm font-semibold">Analysis summary</p>
-                    <p className="text-xs text-text-muted">Highlights key behaviors and emotional markers.</p>
+                  <div className="flex-1 space-y-2 text-white/18">
+                    <div className="h-3 w-40 rounded-full bg-white/10" />
+                    <div className="h-3 w-28 rounded-full bg-white/10" />
                   </div>
                 </div>
-              </div>
 
-              <div className="space-y-3 rounded-2xl border border-white/5 bg-white/5 p-4">
-                {[
-                  { label: "Analysis Started", value: 0, tone: "from-[#f26d4f] to-[#fbb25d]" },
-                  { label: "Analysis Complete", value: 100, tone: "from-[#7c6bff] to-[#c6b2ff]" },
-                    ].map((item) => (
-                  <div key={item.label} className="rounded-xl bg-white/5 p-3">
-                    <div className="flex items-center justify-between text-sm font-semibold text-text-secondary">
+                <div className="space-y-2 text-white/12">
+                  <div className="h-3 w-full rounded-full bg-white/10" />
+                  <div className="h-3 w-[94%] rounded-full bg-white/10" />
+                  <div className="h-3 w-[88%] rounded-full bg-white/10" />
+                  <div className="h-3 w-[78%] rounded-full bg-white/10" />
+                </div>
+
+                <div className="space-y-3 text-white/12">
+                  <div className="h-3 w-[96%] rounded-full bg-white/10" />
+                  <div className="h-3 w-[88%] rounded-full bg-white/10" />
+                  <div className="h-3 w-[82%] rounded-full bg-white/10" />
+                </div>
+
+                <div className="space-y-4">
+                  {[
+                    { label: "Analysis Started", value: 0, tone: "from-[#421b6c] to-[#2d153f]", accent: "#f26d4f", icon: "search" },
+                    { label: "Analysis Complete", value: 100, tone: "from-[#3c1c67] to-[#2f134c]", accent: "#ff9450", icon: "check" },
+                  ].map((item) => (
+                    <div
+                      key={item.label}
+                      className="flex items-center justify-between rounded-2xl border border-white/5 bg-gradient-to-br from-[#2f1c3d] to-[#24132d] px-4 py-3 text-sm font-semibold text-white/85 shadow-[0_18px_70px_rgba(0,0,0,0.45)]"
+                    >
                       <div className="flex items-center gap-3">
-                        <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-white/8">
-                          <svg
-                            aria-hidden
-                            className="h-5 w-5"
-                            viewBox="0 0 24 24"
-                            fill="none"
-                            stroke="currentColor"
-                            strokeWidth="2"
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                          >
-                            {item.value === 0 ? (
-                              <>
-                                <circle cx="12" cy="12" r="10" />
-                                <path d="m12 8-4 4 4 4" />
-                                <path d="m16 8-4 4 4 4" />
-                              </>
-                            ) : (
-                              <>
-                                <circle cx="12" cy="12" r="10" />
+                        <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-gradient-to-br from-[#4c2c7a] to-[#352052] text-white">
+                          {item.icon === "search" ? (
+                            <svg
+                              aria-hidden
+                              className="h-5 w-5"
+                              viewBox="0 0 24 24"
+                              fill="none"
+                              stroke="currentColor"
+                              strokeWidth="2"
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                            >
+                              <circle cx="11" cy="11" r="8" />
+                              <path d="m21 21-4.3-4.3" />
+                            </svg>
+                          ) : (
+                            <svg
+                              aria-hidden
+                              className="h-5 w-5"
+                              viewBox="0 0 24 24"
+                              fill="none"
+                              stroke="currentColor"
+                              strokeWidth="2"
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                            >
+                              <circle cx="12" cy="12" r="10" />
                               <path d="m9 12 2 2 4-4" />
-                              </>
-                            )}
-                          </svg>
+                            </svg>
+                          )}
                         </div>
                         <span>{item.label}</span>
                       </div>
-                      <span className="text-accent-peach">{item.value}%</span>
+                      <span className="text-right text-[13px] font-bold" style={{ color: item.accent }}>
+                        {item.value}%
+                      </span>
                     </div>
-                    <div className="mt-3 h-2 rounded-full bg-white/5">
-                      <div
-                        className={`h-2 rounded-full bg-gradient-to-r ${item.tone}`}
-                        style={{ width: `${item.value}%` }}
-                        aria-hidden
-                      />
-                    </div>
-                  </div>
-                ))}
+                  ))}
+                </div>
               </div>
             </div>
 
-            <div className="absolute right-4 top-4 inline-flex items-center gap-3 rounded-2xl border border-[rgba(255,255,255,0.12)] bg-[#2b1a3a] px-4 py-3 text-sm shadow-[0_14px_40px_rgba(0,0,0,0.35)]">
-              <div className="flex items-center gap-3">
-                <div className="flex h-10 w-10 items-center justify-center rounded-full bg-[#5b2a8a] text-white">
-                  <svg
-                    aria-hidden
-                    viewBox="0 0 24 24"
-                    className="h-5 w-5"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  >
-                    <circle cx="12" cy="7" r="4" />
-                    <path d="M5.5 21a6.5 6.5 0 0 1 13 0" />
-                  </svg>
-                </div>
-                <div className="leading-tight">
-                  <p className="text-[12px] font-semibold text-white">Archetype Found</p>
-                  <p className="text-[12px] text-[#9ca3af]">Deep Connector</p>
-                </div>
+            <div className="absolute right-[-24px] top-28 flex min-w-[230px] items-center gap-3 rounded-2xl border border-[#3b2a4d] bg-[#2b1c3b]/95 px-5 py-4 text-sm text-white shadow-[0_22px_90px_rgba(0,0,0,0.6)] backdrop-blur-sm transition duration-300 ease-out animate-float-delayed">
+              <div className="flex h-10 w-10 items-center justify-center rounded-full bg-[#5a2aa3] text-white shadow-[0_10px_30px_rgba(0,0,0,0.35)]">
+                <svg
+                  aria-hidden
+                  viewBox="0 0 24 24"
+                  className="h-5 w-5"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                >
+                  <circle cx="12" cy="7" r="4" />
+                  <path d="M5.5 21a6.5 6.5 0 0 1 13 0" />
+                </svg>
+              </div>
+              <div className="leading-tight">
+                <p className="text-[13px] font-semibold text-white">Archetype Found</p>
+                <p className="text-[12px] text-white/70">Deep Connector</p>
               </div>
             </div>
           </div>

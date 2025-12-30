@@ -48,13 +48,22 @@ const HeroSection: FC = () => {
         <div className="absolute inset-0 bg-gradient-to-b from-[#050208]/70 via-[#0b0613]/75 to-[#0b0613]" />
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_12%,rgba(255,255,255,0.05),transparent_36%),radial-gradient(circle_at_22%_38%,rgba(242,109,79,0.12),transparent_45%),radial-gradient(circle_at_78%_42%,rgba(156,125,255,0.12),transparent_45%)]" />
         <div className="absolute inset-0 bg-[radial-gradient(60%_40%_at_50%_12%,rgba(255,255,255,0.03),transparent)]" />
+        <div
+          className="absolute inset-0 opacity-55 mix-blend-screen animate-gradient-move"
+          style={{
+            backgroundImage:
+              "linear-gradient(120deg, rgba(254,104,57,0.16), rgba(84,20,117,0.12), rgba(254,104,57,0.16))",
+          }}
+        />
         <div className="absolute inset-x-0 bottom-0 h-56 bg-gradient-to-b from-transparent via-[#0b0613]/70 to-[#0A0510]" />
         <div className="absolute inset-0 bg-noise opacity-20" />
+        <div className="animate-orbit-left absolute -left-32 top-1/3 h-56 w-56 rounded-full bg-gradient-to-br from-[#fe6839]/20 to-transparent blur-3xl" />
+        <div className="animate-orbit-right absolute -right-24 bottom-1/4 h-64 w-64 rounded-full bg-gradient-to-tr from-[#541475]/20 to-transparent blur-3xl" />
       </div>
 
       <div className="content-shell relative z-10 flex flex-col items-center px-4 text-center">
         <div className="animate-on-scroll mt-2 inline-flex items-center gap-2 rounded-full border border-border bg-white/5 px-4 py-2 text-[11px] font-semibold uppercase tracking-[0.2em] text-text-secondary shadow-soft backdrop-blur">
-          <span className="h-2 w-2 rounded-full bg-accent-orange shadow-[0_0_0_6px_rgba(242,109,79,0.12)]" aria-hidden />
+          <span className="h-2 w-2 rounded-full bg-accent-orange shadow-[0_0_0_6px_rgba(242,109,79,0.12)] animate-pulse-glow" aria-hidden />
           Science-backed methodology
         </div>
 
@@ -82,14 +91,22 @@ const HeroSection: FC = () => {
           <div className="relative rounded-full p-0 shadow-[0_28px_90px_rgba(254,104,57,0.28),0_14px_50px_rgba(0,0,0,0.45)]">
             <Link
               href="/waitlist"
-              className="group relative inline-flex h-[58px] min-w-[220px] items-center justify-center gap-2 overflow-hidden rounded-full bg-gradient-brand px-10 text-[15px] font-semibold text-white shadow-pill transition hover:translate-y-[-2px] focus-visible-ring"
+              className="group relative inline-flex h-[58px] min-w-[220px] items-center justify-center gap-2 overflow-hidden rounded-full bg-gradient-brand px-10 text-[15px] font-semibold text-white shadow-pill transition hover:translate-y-[-2px] focus-visible-ring transition-colors duration-500"
             >
+              <span
+                aria-hidden
+                className="pointer-events-none absolute inset-0 bg-white opacity-0 transition-opacity duration-500 group-hover:opacity-100"
+              />
+              <div
+                aria-hidden
+                className="absolute inset-0 translate-y-full bg-white/20 transition-transform duration-300 group-hover:translate-y-0"
+              />
               <span className="pointer-events-none absolute inset-0 rounded-full bg-white/10 opacity-0 transition duration-300 group-hover:opacity-100" />
               <span className="pointer-events-none absolute inset-[-12%] rounded-full border border-white/15 mix-blend-screen opacity-70" />
-              Start Survey Now
+              <span className="relative z-10 transition-colors duration-500 group-hover:text-black">Start Survey Now</span>
               <svg
                 aria-hidden
-                className="h-5 w-5"
+                className="relative z-10 h-5 w-5 transition-colors duration-500 group-hover:text-black"
                 viewBox="0 0 24 24"
                 fill="none"
                 stroke="currentColor"
