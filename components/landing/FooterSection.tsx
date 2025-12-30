@@ -79,7 +79,7 @@ const FooterSection: FC = () => {
           <div className="space-y-4">
             <h3 className="text-lg font-semibold">Company</h3>
             <div className="space-y-2 text-sm text-text-secondary">
-              <p>105 North 1st Street, San Jose, CA 94748</p>
+              <p>LoveIQ UG i.G., Hasenheide 62, 10967 Berlin</p>
               <p>hello@loveiq.com</p>
             </div>
           </div>
