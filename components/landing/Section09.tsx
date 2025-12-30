@@ -37,7 +37,7 @@ const Section09: FC = () => {
         <div className="absolute left-0 top-1/2 h-[480px] w-[480px] -translate-y-1/2 rounded-full bg-[#541475]/12 blur-[110px]" aria-hidden />
       </div>
 
-      <div className="content-shell relative flex flex-col items-center gap-8 animate-on-scroll">
+      <div className="content-shell relative flex flex-col items-center gap-8">
         <div className="absolute inset-0 -z-[1]">
           <div className="absolute left-0 top-1/2 h-[420px] w-[420px] -translate-y-1/2 rounded-full bg-[#541475]/10 blur-[90px]" aria-hidden />
         </div>
@@ -52,7 +52,7 @@ const Section09: FC = () => {
         </div>
       </div>
 
-      <div className="relative w-screen max-w-none left-1/2 -translate-x-1/2 overflow-hidden pb-12 animate-on-scroll">
+      <div className="relative w-screen max-w-none left-1/2 -translate-x-1/2 overflow-hidden pb-12">
         <div className="pointer-events-none absolute inset-y-0 left-0 w-16 sm:w-24 bg-gradient-to-r from-[#0a0510] to-transparent" aria-hidden />
         <div className="pointer-events-none absolute inset-y-0 right-0 w-16 sm:w-24 bg-gradient-to-l from-[#0a0510] to-transparent" aria-hidden />
 
