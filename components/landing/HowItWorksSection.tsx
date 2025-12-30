@@ -1,4 +1,3 @@
-import Image from "next/image";
 import type { CSSProperties, FC } from "react";
 
 const steps = [
@@ -25,18 +24,97 @@ const steps = [
   },
 ];
 
-const edgeIcons = [
-  // Removed static edge icons; background orbit clusters provide the ambient motion now.
+type OrbitIconId = "spark" | "heart" | "shield" | "chat" | "target" | "infinity";
+
+const orbitIcons: { id: OrbitIconId; colors: [string, string] }[] = [
+  { id: "spark", colors: ["#fe6839", "#ffb774"] },
+  { id: "heart", colors: ["#a78bfa", "#7c3aed"] },
+  { id: "shield", colors: ["#7dd3fc", "#a78bfa"] },
+  { id: "chat", colors: ["#ff8b5f", "#fe6839"] },
+  { id: "target", colors: ["#c084fc", "#60a5fa"] },
+  { id: "infinity", colors: ["#f97316", "#c084fc"] },
 ];
 
-const orbitIcons = [
-  "https://www.figma.com/api/mcp/asset/0f9e72c8-e950-4676-9f20-e98250ccf550",
-  "https://www.figma.com/api/mcp/asset/47c90bd2-4f0a-4b94-9900-8c7f22f3ff7f",
-  "https://www.figma.com/api/mcp/asset/c031b7b7-c54b-4143-8c0a-133937aa31a5",
-  "https://www.figma.com/api/mcp/asset/081c811f-2400-4011-ac1b-3969251c29dc",
-  "https://www.figma.com/api/mcp/asset/d4afc8df-abbe-48de-a8f7-6c27fafe4945",
-  "https://www.figma.com/api/mcp/asset/f7180989-eeeb-4a74-9c9f-248ad94cbfd1",
-];
+const OrbitGlyph = ({ id }: { id: OrbitIconId }) => {
+  switch (id) {
+    case "spark":
+      return (
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden>
+          <path
+            d="M12 3 13.4 9.2 20 10.6 13.4 12 12 18.2 10.6 12 4 10.6l6.6-1.4L12 3Z"
+            stroke="currentColor"
+            strokeWidth="1.7"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
+        </svg>
+      );
+    case "heart":
+      return (
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden>
+          <path
+            d="M12 19s-5-3.4-5-7.1a4 4 0 0 1 7-2.6 4 4 0 0 1 7 2.6C21 15.6 16 19 16 19h0Z"
+            stroke="currentColor"
+            strokeWidth="1.7"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
+        </svg>
+      );
+    case "shield":
+      return (
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden>
+          <path
+            d="M12 3.5 19 7v5.2c0 3.6-2.9 6.8-7 8-4.1-1.2-7-4.4-7-8V7l7-3.5Z"
+            stroke="currentColor"
+            strokeWidth="1.7"
+            strokeLinejoin="round"
+          />
+          <path d="M9.5 12.5 12 15l3.5-3.5" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" />
+        </svg>
+      );
+    case "chat":
+      return (
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden>
+          <path
+            d="M6.5 6.5h11A1.5 1.5 0 0 1 19 8v6a1.5 1.5 0 0 1-1.5 1.5H11l-3.5 2.5v-2.5h-1A1.5 1.5 0 0 1 5 14V8A1.5 1.5 0 0 1 6.5 6.5Z"
+            stroke="currentColor"
+            strokeWidth="1.7"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
+        </svg>
+      );
+    case "target":
+      return (
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden>
+          <circle cx="12" cy="12" r="6" stroke="currentColor" strokeWidth="1.7" />
+          <circle cx="12" cy="12" r="2.5" stroke="currentColor" strokeWidth="1.7" />
+        </svg>
+      );
+    case "infinity":
+      return (
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden>
+          <path
+            d="M6 12c1.2-2 3.4-2 4.6 0s3.4 2 4.6 0 3.4-2 4.6 0"
+            stroke="currentColor"
+            strokeWidth="1.7"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
+          <path
+            d="M18 12c-1.2 2-3.4 2-4.6 0s-3.4-2-4.6 0-3.4 2-4.6 0"
+            stroke="currentColor"
+            strokeWidth="1.7"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
+        </svg>
+      );
+    default:
+      return null;
+  }
+};
 
 const HowItWorksSection: FC = () => {
   return (
@@ -47,16 +125,28 @@ const HowItWorksSection: FC = () => {
         <div className="absolute inset-0 rounded-full border border-dashed border-[#fe6839]/18 animate-spin-slow" />
         <div className="absolute inset-6 rounded-full border border-dashed border-[#a78bfa]/14 animate-spin-slow" style={{ animationDuration: "50s", animationDirection: "reverse" }} />
         <div className="absolute inset-0 animate-spin-slow" style={{ animationDuration: "55s" }}>
-          {orbitIcons.map((src, idx) => {
+          {orbitIcons.map((icon, idx) => {
             const angle = (idx / orbitIcons.length) * 360;
+            const [from, to] = icon.colors;
+
             return (
               <div
-                key={src}
-                className="absolute left-1/2 top-1/2 h-14 w-14 -translate-x-1/2 -translate-y-1/2 rounded-2xl border border-white/10 bg-[rgba(90,82,102,0.85)] shadow-[0_14px_40px_rgba(0,0,0,0.28)] backdrop-blur-sm"
+                key={icon.id}
+                className="absolute left-1/2 top-1/2 h-14 w-14 -translate-x-1/2 -translate-y-1/2 rounded-2xl border border-white/10 bg-[rgba(20,15,30,0.9)] shadow-[0_16px_36px_rgba(0,0,0,0.35)] backdrop-blur-sm"
                 style={{ transform: `translate(-50%, -50%) rotate(${angle}deg) translateY(-230px) rotate(-${angle}deg)` }}
               >
                 <div className="flex h-full w-full items-center justify-center">
-                  <Image src={src} alt="" width={24} height={24} className="h-6 w-6 object-contain" />
+                  <span
+                    className="flex h-10 w-10 items-center justify-center rounded-xl border border-white/10 text-white/85"
+                    style={{
+                      background: `radial-gradient(circle at 30% 30%, rgba(255,255,255,0.06), transparent 55%), linear-gradient(140deg, ${from}22, ${to}14)`,
+                      boxShadow: `0 10px 26px ${from}22`,
+                      color: "#f6f3ff",
+                    }}
+                    aria-hidden
+                  >
+                    <OrbitGlyph id={icon.id} />
+                  </span>
                 </div>
               </div>
             );
@@ -67,16 +157,28 @@ const HowItWorksSection: FC = () => {
         <div className="absolute inset-0 rounded-full border border-dashed border-[#fe6839]/18 animate-spin-slow" />
         <div className="absolute inset-6 rounded-full border border-dashed border-[#a78bfa]/14 animate-spin-slow" style={{ animationDuration: "50s", animationDirection: "reverse" }} />
         <div className="absolute inset-0 animate-spin-slow" style={{ animationDuration: "55s", animationDirection: "reverse" }}>
-          {orbitIcons.map((src, idx) => {
+          {orbitIcons.map((icon, idx) => {
             const angle = (idx / orbitIcons.length) * 360;
+            const [from, to] = icon.colors;
+
             return (
               <div
-                key={src}
-                className="absolute left-1/2 top-1/2 h-14 w-14 -translate-x-1/2 -translate-y-1/2 rounded-2xl border border-white/10 bg-[rgba(90,82,102,0.85)] shadow-[0_14px_40px_rgba(0,0,0,0.28)] backdrop-blur-sm"
+                key={icon.id}
+                className="absolute left-1/2 top-1/2 h-14 w-14 -translate-x-1/2 -translate-y-1/2 rounded-2xl border border-white/10 bg-[rgba(20,15,30,0.9)] shadow-[0_16px_36px_rgba(0,0,0,0.35)] backdrop-blur-sm"
                 style={{ transform: `translate(-50%, -50%) rotate(${angle}deg) translateY(-230px) rotate(-${angle}deg)` }}
               >
                 <div className="flex h-full w-full items-center justify-center">
-                  <Image src={src} alt="" width={24} height={24} className="h-6 w-6 object-contain" />
+                  <span
+                    className="flex h-10 w-10 items-center justify-center rounded-xl border border-white/10 text-white/85"
+                    style={{
+                      background: `radial-gradient(circle at 30% 30%, rgba(255,255,255,0.06), transparent 55%), linear-gradient(140deg, ${from}22, ${to}14)`,
+                      boxShadow: `0 10px 26px ${from}22`,
+                      color: "#f6f3ff",
+                    }}
+                    aria-hidden
+                  >
+                    <OrbitGlyph id={icon.id} />
+                  </span>
                 </div>
               </div>
             );

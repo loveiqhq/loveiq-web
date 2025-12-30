@@ -1,5 +1,5 @@
-import Image from "next/image";
 import type { FC } from "react";
+// Using a static path because Next/Image was not rendering the asset in prod build; falls back to plain <img>.
 
 const archetypeStats = [
   { label: "Emotional Resonance", value: 85, status: "High", gradient: "from-[#541475] to-[#fe6839]" },
@@ -302,15 +302,15 @@ const Section05: FC = () => {
           </div>
 
           <div className="relative flex justify-center">
-            <div className="relative overflow-hidden rounded-[34px] bg-gradient-to-b from-[#f4d7f6] via-[#d7b7e9] to-[#90a7e5] p-[10px] shadow-[0_34px_120px_rgba(0,0,0,0.5)]">
-              <div className="relative aspect-[3/5] w-full max-w-[360px] sm:max-w-[400px] overflow-hidden rounded-[26px] bg-[#0A0510]/50">
-                <Image
+            <div className="relative w-[320px] overflow-hidden rounded-[34px] bg-gradient-to-b from-[#f4d7f6] via-[#d7b7e9] to-[#90a7e5] p-[10px] shadow-[0_34px_120px_rgba(0,0,0,0.5)] sm:w-[380px] md:w-[420px]">
+              <div className="relative h-[520px] w-full overflow-hidden rounded-[26px] bg-[#0A0510]/50 sm:h-[600px]">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
                   src="/762ab2dcc4e38a7a2824b7a4f5174f2627a7eaae.png"
                   alt="Couple illustration"
-                  fill
-                  sizes="(min-width: 1024px) 400px, 90vw"
-                  className="object-cover"
-                  priority
+                  className="absolute inset-0 h-full w-full object-cover"
+                  loading="eager"
+                  decoding="async"
                 />
               </div>
             </div>
