@@ -60,7 +60,7 @@ const Section08: FC = () => {
           <h2 id="stories-heading" className="font-serif text-3xl leading-tight text-text-primary sm:text-4xl md:text-5xl">
             <span className="text-[#c36ddf]">30,000+</span> people have taken a
             <br />
-            first step to understand their self.
+            first step to understand themselves.
           </h2>
         </div>
 

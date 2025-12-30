@@ -42,7 +42,7 @@ const NavSection: FC = () => {
                 href="/waitlist"
                 className="inline-flex items-center justify-center gap-2 rounded-full bg-gradient-to-r from-[#ff6a3a] via-[#ff8f50] to-[#ff6a3a] px-6 py-3 text-sm font-semibold text-white shadow-[0_18px_45px_rgba(254,104,57,0.35)] transition hover:translate-y-[-2px] focus-visible-ring"
               >
-                Start Survey Now
+                Start survey now
                 <svg
                   aria-hidden
                   className="h-5 w-5"

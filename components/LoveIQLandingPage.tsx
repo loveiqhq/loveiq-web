@@ -204,9 +204,9 @@ const WhyWeCreatedSection = () => (
     <div className="relative mx-auto flex w-full max-w-6xl flex-col gap-12 rounded-[32px] border border-white/50 bg-white/80 p-8 shadow-[0_20px_80px_rgba(0,0,0,0.08)] backdrop-blur dark:border-white/10 dark:bg-[#120b1c]/70 dark:shadow-[0_20px_80px_rgba(0,0,0,0.5)] sm:p-12">
       <div className="space-y-4 text-center">
         <p className="mx-auto inline-flex items-center rounded-full bg-[#FE6839]/10 px-4 py-1 text-xs font-semibold uppercase tracking-[0.2em] text-[#fe6839]">
-          Why we created LoveIQ?
+          Why We Created LoveIQ?
         </p>
-        <h2 className="font-serif text-3xl tracking-tight sm:text-4xl md:text-5xl">Why we created LoveIQ?</h2>
+        <h2 className="font-serif text-3xl tracking-tight sm:text-4xl md:text-5xl">Why We Created LoveIQ?</h2>
         <p className="mx-auto max-w-3xl text-base text-[#3b1f57]/80 dark:text-white/70">
           Intimacy is emotional, psychological, and physical. Most of us never got language for it. LoveIQ translates what you feel into words you can use with yourself and with partners.
         </p>
@@ -232,9 +232,9 @@ const AudienceSection = () => (
     <div className="relative mx-auto flex w-full max-w-6xl flex-col gap-10">
       <div className="space-y-4 text-center">
         <p className="mx-auto inline-flex items-center rounded-full bg-[#2E0147]/5 px-4 py-1 text-xs font-semibold uppercase tracking-[0.2em] text-[#2E0147] dark:bg-white/10 dark:text-white">
-          Who is this perfect for?
+          Who Is This Perfect For?
         </p>
-        <h2 className="font-serif text-3xl tracking-tight sm:text-4xl md:text-5xl">Who is this perfect for?</h2>
+        <h2 className="font-serif text-3xl tracking-tight sm:text-4xl md:text-5xl">Who Is This Perfect For?</h2>
         <p className="mx-auto max-w-3xl text-base text-[#3b1f57]/80 dark:text-white/70">
           Whether you are exploring alone or with someone, LoveIQ gives you vocabulary and direction that fits your stage.
         </p>

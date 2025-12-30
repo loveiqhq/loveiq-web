@@ -79,7 +79,7 @@ export default function WaitlistPage() {
               </span>
               <span>Available in early 2025</span>
             </div>
-            <h1 className="font-serif text-3xl leading-tight tracking-tight sm:text-4xl md:text-5xl">Get early access</h1>
+            <h1 className="font-serif text-3xl leading-tight tracking-tight sm:text-4xl md:text-5xl">Get Early Access</h1>
             <p className="max-w-2xl text-sm text-white/70 sm:text-base">
               Be amongst the first to experience the new standard in relationship psychology. Sign up to be notified when we launch.
             </p>
@@ -132,7 +132,7 @@ export default function WaitlistPage() {
           </div>
 
           <div className="flex flex-col items-center gap-3 text-center">
-            <h2 className="font-serif text-2xl sm:text-3xl">Frequently asked questions</h2>
+            <h2 className="font-serif text-2xl sm:text-3xl">Frequently Asked Questions</h2>
             <p className="text-xs text-white/60 sm:text-sm">Everything you need to know about the early access.</p>
           </div>
 
@@ -157,7 +157,7 @@ export default function WaitlistPage() {
           </div>
 
           <div className="mt-10 flex flex-wrap items-center justify-center gap-4 text-[11px] text-gray-500">
-            <span>Built with Science</span>
+            <span>Built With Science</span>
             <span className="text-gray-600">&gt;</span>
             <span>Join the Movement</span>
             <span className="text-gray-600">&gt;</span>

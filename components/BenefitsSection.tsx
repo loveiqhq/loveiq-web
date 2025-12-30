@@ -119,7 +119,7 @@ export const BenefitsSection: FC<BenefitsSectionProps> = ({ className = "" }) =>
             </span>
           </div>
           <p className="bg-gradient-to-r from-[#fe6839] via-[#a78bfa] to-[#e9d5ff] bg-clip-text text-center font-serif text-3xl text-transparent sm:text-4xl">
-            30,000+ people have taken a first step to understand their self.
+            30,000+ people have taken a first step to understand themselves.
           </p>
         </div>
       </div>

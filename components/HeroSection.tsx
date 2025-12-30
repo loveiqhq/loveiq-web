@@ -56,7 +56,7 @@ export const HeroSection: FC<HeroSectionProps> = ({
                 href="/waitlist"
                 className="inline-flex items-center justify-center rounded-full bg-[#fe6839] px-4 py-2 text-sm font-semibold text-white shadow-lg shadow-[#fe6839]/40 transition hover:-translate-y-0.5 hover:bg-[#ff7a4d] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#fe6839] md:hidden"
               >
-                Start Survey Now
+                Start survey now
               </Link>
             </div>
 
@@ -80,7 +80,7 @@ export const HeroSection: FC<HeroSectionProps> = ({
                 href="/waitlist"
                 className="inline-flex items-center justify-center gap-2 rounded-full bg-[#fe6839] px-5 py-2 text-sm font-semibold text-white shadow-lg shadow-[#fe6839]/40 transition hover:-translate-y-0.5 hover:bg-[#ff7a4d] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#fe6839]"
               >
-                Start Survey Now
+                Start survey now
                 <svg
                   aria-hidden
                   className="h-4 w-4"
@@ -129,7 +129,7 @@ export const HeroSection: FC<HeroSectionProps> = ({
                 onClick={() => router.push("/waitlist")}
                 className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-[#fe6839] px-7 py-3 text-sm font-semibold text-white shadow-lg shadow-[#fe6839]/40 transition hover:-translate-y-0.5 hover:bg-[#ff7a4d] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#fe6839] sm:w-auto"
               >
-                Start Survey Now
+                Start survey now
                 <svg
                   aria-hidden
                   className="h-4 w-4"
@@ -148,7 +148,7 @@ export const HeroSection: FC<HeroSectionProps> = ({
                 href="#how-it-works"
                 className="inline-flex w-full items-center justify-center gap-2 rounded-full border border-white/20 bg-white/5 px-7 py-3 text-sm font-semibold text-white shadow-[0_10px_40px_rgba(0,0,0,0.25)] transition hover:-translate-y-0.5 hover:bg-white/10 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white/60 sm:w-auto"
               >
-                Learn More
+                Learn more
               </Link>
             </div>
           </div>

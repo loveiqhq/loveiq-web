@@ -12,14 +12,14 @@ const steps = [
     step: "Step Two",
     title: "Get a Unique Report",
     description: "Fully personalized report helping you uncover your sexuality in a new way.",
-    badge: "Science grade",
+    badge: "Science-Grade",
     variant: "brain",
   },
   {
     step: "Step Three",
-    title: "Grow with Guidance",
+    title: "Grow With Guidance",
     description: "Discover insights that spark real behavioral change for deeper fulfillment.",
-    badge: "Life Changing",
+    badge: "Life-Changing",
     variant: "chat",
   },
 ];
@@ -198,7 +198,7 @@ const HowItWorksSection: FC = () => {
 
       <div className="content-shell relative flex flex-col gap-12">
         <h2 id="how-it-works-heading" className="text-center font-serif text-[44px] leading-tight text-white sm:text-[52px]">
-          How It Works
+          How it Works
         </h2>
 
         <div className="grid gap-8 md:grid-cols-3">

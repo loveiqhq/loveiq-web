@@ -142,7 +142,7 @@ const WaitlistModal = ({ open, onClose }: WaitlistModalProps) => {
             </div>
 
             <h3 id="waitlist-modal-title" className="mb-6 font-serif text-5xl font-semibold tracking-tighter text-white md:text-7xl">
-              Get early access
+              Get Early Access
             </h3>
 
             <p className="mb-10 max-w-xl text-lg leading-relaxed text-gray-400 text-balance">
@@ -201,7 +201,7 @@ const WaitlistModal = ({ open, onClose }: WaitlistModalProps) => {
             </div>
 
             <div className="w-full max-w-2xl text-left">
-              <h4 className="mb-4 text-center font-serif text-3xl text-white">Frequently asked questions</h4>
+              <h4 className="mb-4 text-center font-serif text-3xl text-white">Frequently Asked Questions</h4>
               <p className="mb-12 text-center text-sm text-gray-400">Everything you need to know about the early access.</p>
 
               <div className="space-y-2">
@@ -226,7 +226,7 @@ const WaitlistModal = ({ open, onClose }: WaitlistModalProps) => {
             </div>
 
             <div className="mt-20 flex gap-4 border-t border-white/5 pt-8 text-xs text-gray-600">
-              <span>Built with Science</span>
+              <span>Built With Science</span>
               <span>&gt;</span>
               <span>Join the Movement</span>
               <span>&gt;</span>

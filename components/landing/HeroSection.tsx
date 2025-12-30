@@ -103,7 +103,7 @@ const HeroSection: FC = () => {
               />
               <span className="pointer-events-none absolute inset-0 rounded-full bg-white/10 opacity-0 transition duration-300 group-hover:opacity-100" />
               <span className="pointer-events-none absolute inset-[-12%] rounded-full border border-white/15 mix-blend-screen opacity-70" />
-              <span className="relative z-10 transition-colors duration-500 group-hover:text-black">Start Survey Now</span>
+              <span className="relative z-10 transition-colors duration-500 group-hover:text-black">Start survey now</span>
               <svg
                 aria-hidden
                 className="relative z-10 h-5 w-5 transition-colors duration-500 group-hover:text-black"
@@ -123,7 +123,7 @@ const HeroSection: FC = () => {
             href="#about"
             className="inline-flex h-[58px] min-w-[190px] items-center justify-center rounded-full border border-white/30 bg-white/0 px-6 text-sm font-semibold text-white shadow-[0_25px_60px_rgba(0,0,0,0.35)] transition hover:-translate-y-[2px] focus-visible-ring"
           >
-            Learn More
+            Learn more
           </Link>
         </div>
       </div>

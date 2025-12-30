@@ -113,7 +113,7 @@ export const LoveIQReportSection: FC<LoveIQReportSectionProps> = ({ className = 
               type="button"
               className="inline-flex items-center justify-center gap-2 rounded-full bg-[#fe6839] px-6 py-3 text-sm font-semibold text-white shadow-lg shadow-[#fe6839]/35 transition hover:-translate-y-0.5 hover:bg-[#ff7a4d] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#fe6839]"
             >
-              Start Survey Now
+              Start survey now
               <svg
                 aria-hidden
                 className="h-4 w-4"
