@@ -18,15 +18,15 @@ const steps = [
     title: "Get a Unique Report",
     step: "Step Two",
     description: "Fully personalized report helping you uncover your sexuality in a new way.",
-    badge: "Science grade",
+    badge: "Science-Grade",
     accent: "from-[#261c3c] to-[#1a1028]",
     detail: "radar",
   },
   {
-    title: "Grow with Guidance",
+    title: "Grow With Guidance",
     step: "Step Three",
     description: "Discover insights that spark real behavioral change for deeper fulfillment.",
-    badge: "Life Changing",
+    badge: "Life-Changing",
     accent: "from-[#261c3c] to-[#1a1028]",
     detail: "cards",
   },
@@ -86,7 +86,7 @@ export const HowItWorksSection: FC = () => {
             id="how-it-works-heading"
             className="font-serif text-3xl text-white sm:text-4xl md:text-5xl"
           >
-            How It Works
+            How it Works
           </h2>
         </div>
 
@@ -136,7 +136,7 @@ export const HowItWorksSection: FC = () => {
             href="/waitlist"
             className="inline-flex items-center justify-center gap-2 rounded-full bg-[#fe6839] px-6 py-3 text-sm font-semibold text-white shadow-lg shadow-[#fe6839]/35 transition hover:-translate-y-0.5 hover:bg-[#ff7a4d] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#fe6839]"
           >
-            Start Survey Now
+            Start survey now
             <svg
               aria-hidden
               className="h-4 w-4"
