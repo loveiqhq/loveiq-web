@@ -31,7 +31,7 @@ const testimonials = [
   },
 ];
 
-const ratingAvatars = ["/a791b20c354705558e2dce132f88640a8b4f563a.jpg", "/762ab2dcc4e38a7a2824b7a4f5174f2627a7eaae.png", "/personas/male.svg"];
+const ratingAvatars = ["/a791b20c354705558e2dce132f88640a8b4f563a.jpg", "/762ab2dcc4e38a7a2824b7a4f5174f2627a7eaae.png", "/2239bb32f51b4c83bfb647cee859127eae298678.jpg"];
 
 const avatars = [
   { src: "/0caefb431b1f1926399c403cc0418e06f729df1c.jpg" },
@@ -67,7 +67,7 @@ const Section08: FC = () => {
           {testimonials.map((item, idx) => (
             <div
               key={item.name}
-              className="flex h-full flex-col rounded-[22px] border border-border bg-card p-6 shadow-card backdrop-blur"
+              className="flex h-full flex-col rounded-[22px] border border-border bg-card p-6 shadow-card backdrop-blur transition-transform duration-500 ease-out transform-gpu hover:-translate-y-2 hover:shadow-[0_20px_60px_rgba(0,0,0,0.35)]"
             >
               <div className="mb-3 flex items-center gap-1 text-accent-orange" aria-label={`${item.stars} star rating`}>
                 {Array.from({ length: item.stars }).map((_, i) => (
