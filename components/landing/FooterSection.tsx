@@ -36,7 +36,7 @@ const FooterSection: FC = () => {
             <p className="max-w-md text-sm leading-relaxed text-text-secondary">
               Democratizing sexual psychology. We translate complex research into actionable insights for everyday life.
             </p>
-            <ul className="grid grid-cols-2 gap-x-3 gap-y-4 text-sm text-text-secondary list-none p-0 m-0 sm:flex sm:flex-wrap sm:items-start sm:gap-3">
+            <ul className="grid grid-cols-2 gap-x-3 gap-y-5 text-sm text-text-secondary list-none p-0 m-0 sm:flex sm:flex-wrap sm:items-start sm:gap-3">
               {socials.map((item) => (
                 <li key={item.label}>
                   <Link
