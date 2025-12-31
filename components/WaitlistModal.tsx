@@ -140,7 +140,7 @@ const WaitlistModal = ({ open, onClose }: WaitlistModalProps) => {
                 <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[#FE6839] opacity-75" />
                 <span className="relative inline-flex h-2 w-2 rounded-full bg-[#FE6839]" />
               </span>
-              <span className="text-xs font-bold uppercase tracking-widest text-white/50">Available in early 2025</span>
+              <span className="text-xs font-bold uppercase tracking-widest text-white/50">Available in early 2026</span>
             </div>
 
             <h3 id="waitlist-modal-title" className="mb-6 font-serif text-5xl font-semibold tracking-tighter text-white md:text-7xl">

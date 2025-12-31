@@ -79,7 +79,7 @@ export default function WaitlistPage() {
                 <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[#FE6839] opacity-75" />
                 <span className="relative inline-flex h-2 w-2 rounded-full bg-[#FE6839]" />
               </span>
-              <span>Available in early 2025</span>
+              <span>Available in early 2026</span>
             </div>
             <h1 className="font-serif text-3xl leading-tight tracking-tight sm:text-4xl md:text-5xl">Get Early Access</h1>
             <p className="max-w-2xl text-sm text-white/70 sm:text-base">
