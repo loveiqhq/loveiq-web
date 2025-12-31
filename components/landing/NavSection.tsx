@@ -41,7 +41,7 @@ const NavSection: FC = () => {
             <div className="flex flex-1 justify-end">
               <Link
                 href="/waitlist"
-                className="inline-flex items-center justify-center gap-2 rounded-full bg-gradient-to-r from-[#ff6a3a] via-[#ff8f50] to-[#ff6a3a] px-6 py-3 text-sm font-semibold text-white shadow-[0_18px_45px_rgba(254,104,57,0.35)] transition hover:translate-y-[-2px] focus-visible-ring"
+                className="inline-flex shrink-0 items-center justify-center gap-2 whitespace-nowrap rounded-full bg-gradient-to-r from-[#ff6a3a] via-[#ff8f50] to-[#ff6a3a] px-4 py-2 text-xs font-semibold text-white shadow-[0_18px_45px_rgba(254,104,57,0.35)] transition hover:translate-y-[-2px] focus-visible-ring sm:px-6 sm:py-3 sm:text-sm"
                 onClick={() => trackStartSurvey("nav")}
               >
                 Start survey now

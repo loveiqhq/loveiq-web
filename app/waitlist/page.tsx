@@ -96,11 +96,11 @@ export default function WaitlistPage() {
               }
             }}
           >
-            <div className="flex items-center rounded-full border border-white/10 bg-white/5 p-1.5 pl-6 shadow-xl shadow-black/20 transition-all hover:bg-white/10 focus-within:border-[#FE6839]/50 focus-within:ring-1 focus-within:ring-[#FE6839]/50">
+            <div className="grid grid-cols-[1fr_auto] items-stretch gap-2 rounded-2xl border border-white/10 bg-white/5 p-2 shadow-xl shadow-black/20 transition-all hover:bg-white/10 focus-within:border-[#FE6839]/50 focus-within:ring-1 focus-within:ring-[#FE6839]/50 sm:gap-3 sm:rounded-full sm:p-2 sm:pl-4">
               <input
                 type="email"
                 name="email"
-                className="h-12 flex-1 border-none bg-transparent text-base text-white placeholder-white/30 focus:outline-none focus:ring-0"
+                className="h-12 min-w-0 w-full border-none bg-transparent text-base text-white placeholder-white/30 focus:outline-none focus:ring-0"
                 placeholder="name@email.com"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
@@ -108,7 +108,7 @@ export default function WaitlistPage() {
               />
               <button
                 type="submit"
-                className="whitespace-nowrap rounded-full bg-[#FE6839] px-8 py-3.5 text-sm font-semibold text-white shadow-lg shadow-[#FE6839]/20 transition-all hover:bg-[#ff7b52] hover:shadow-[#FE6839]/40"
+                className="justify-self-end whitespace-nowrap rounded-full bg-[#FE6839] px-4 py-2.5 text-sm font-semibold text-white shadow-lg shadow-[#FE6839]/20 transition-all hover:bg-[#ff7b52] hover:shadow-[#FE6839]/40 sm:px-7 sm:py-3 sm:text-base"
                 disabled={status === "loading"}
               >
                 {status === "loading" ? "Submitting..." : status === "success" ? "Joined!" : "Join waitlist"}
