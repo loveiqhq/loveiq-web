@@ -180,9 +180,19 @@ const WaitlistModal = ({ open, onClose }: WaitlistModalProps) => {
               </div>
             </form>
 
-            <div className="min-h-[20px] text-left" aria-live="polite" role="status">
-              {status === "success" && <p className="text-sm text-green-400">You’re on the waitlist. Check your email for confirmation.</p>}
-              {status === "error" && errorMessage && <p className="text-sm text-red-400">{errorMessage}</p>}
+            <div className="min-h-[32px] text-left" aria-live="polite" role="status">
+              {status === "success" && (
+                <p className="inline-flex items-center gap-2 rounded-full bg-white/10 px-4 py-2 text-sm font-semibold text-[#9ef0c0] shadow-[0_10px_30px_rgba(0,0,0,0.25)]">
+                  <span className="h-2 w-2 rounded-full bg-[#9ef0c0]" aria-hidden />
+                  You’re on the waitlist. Check your email for confirmation.
+                </p>
+              )}
+              {status === "error" && errorMessage && (
+                <p className="inline-flex items-center gap-2 rounded-full bg-[#2a0f15] px-4 py-2 text-sm font-semibold text-[#fca5a5] shadow-[0_10px_30px_rgba(0,0,0,0.25)]">
+                  <span className="h-2 w-2 rounded-full bg-[#fca5a5]" aria-hidden />
+                  {errorMessage}
+                </p>
+              )}
             </div>
 
             <div className="mb-16 flex items-center gap-4">
