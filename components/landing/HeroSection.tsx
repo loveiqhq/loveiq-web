@@ -38,14 +38,16 @@ const HeroSection: FC = () => {
       <div className="pointer-events-none absolute inset-0 overflow-hidden">
         <video
           className="absolute inset-0 h-full w-full scale-105 object-cover opacity-35"
-          src="/8060391-uhd_4096_2160_25fps.mp4"
           autoPlay
           muted
           loop
           playsInline
           preload="auto"
           aria-hidden
-        />
+        >
+          <source media="(max-width: 640px)" src="/8060391-uhd_4096_2160_25fps-mobile.mp4" type="video/mp4" />
+          <source src="/8060391-uhd_4096_2160_25fps.mp4" type="video/mp4" />
+        </video>
         <div className="absolute inset-0 bg-gradient-to-b from-[#050208]/70 via-[#0b0613]/75 to-[#0b0613]" />
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_12%,rgba(255,255,255,0.05),transparent_36%),radial-gradient(circle_at_22%_38%,rgba(242,109,79,0.12),transparent_45%),radial-gradient(circle_at_78%_42%,rgba(156,125,255,0.12),transparent_45%)]" />
         <div className="absolute inset-0 bg-[radial-gradient(60%_40%_at_50%_12%,rgba(255,255,255,0.03),transparent)]" />
