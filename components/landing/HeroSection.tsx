@@ -37,13 +37,13 @@ const HeroSection: FC = () => {
     >
       <div className="pointer-events-none absolute inset-0 overflow-hidden">
         <video
-          className="absolute inset-0 hidden h-full w-full scale-105 object-cover opacity-35 md:block"
+          className="absolute inset-0 h-full w-full scale-105 object-cover opacity-35"
           src="/8060391-uhd_4096_2160_25fps.mp4"
           autoPlay
           muted
           loop
           playsInline
-          preload="metadata"
+          preload="auto"
           aria-hidden
         />
         <div className="absolute inset-0 bg-gradient-to-b from-[#050208]/70 via-[#0b0613]/75 to-[#0b0613]" />
