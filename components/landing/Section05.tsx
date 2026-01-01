@@ -309,7 +309,7 @@ const Section05: FC = () => {
                   alt="Couple illustration"
                   fill
                   priority
-                  sizes="(max-width: 640px) 90vw, (max-width: 1024px) 480px, 540px"
+                  sizes="(max-width: 640px) 95vw, (max-width: 1024px) 480px, 540px"
                   className="object-cover"
                 />
               </div>
