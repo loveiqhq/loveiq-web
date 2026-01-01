@@ -114,7 +114,10 @@ export default function WaitlistPage() {
                 {status === "loading" ? "Submitting..." : status === "success" ? "Joined!" : "Join waitlist"}
               </button>
             </div>
-            {errorMessage && <p className="text-sm text-red-400">{errorMessage}</p>}
+            <div className="min-h-[20px]" aria-live="polite" role="status">
+              {status === "success" && <p className="text-sm text-green-400">You’re on the waitlist. Check your email for confirmation.</p>}
+              {status === "error" && errorMessage && <p className="text-sm text-red-400">{errorMessage}</p>}
+            </div>
           </form>
 
           <div className="mb-8 flex flex-col items-center gap-3">

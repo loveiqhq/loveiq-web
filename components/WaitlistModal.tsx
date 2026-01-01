@@ -180,11 +180,10 @@ const WaitlistModal = ({ open, onClose }: WaitlistModalProps) => {
               </div>
             </form>
 
-            {errorMessage && (
-              <p className="mt-2 text-sm text-red-400">
-                {errorMessage}
-              </p>
-            )}
+            <div className="min-h-[20px] text-left" aria-live="polite" role="status">
+              {status === "success" && <p className="text-sm text-green-400">You’re on the waitlist. Check your email for confirmation.</p>}
+              {status === "error" && errorMessage && <p className="text-sm text-red-400">{errorMessage}</p>}
+            </div>
 
             <div className="mb-16 flex items-center gap-4">
               <div className="-space-x-3 flex">
