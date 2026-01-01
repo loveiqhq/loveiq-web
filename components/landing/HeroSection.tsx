@@ -37,20 +37,20 @@ const HeroSection: FC = () => {
     >
       <div className="pointer-events-none absolute inset-0 overflow-hidden">
         <video
-          className="absolute inset-0 h-full w-full scale-105 object-cover opacity-35"
+          className="absolute inset-0 hidden h-full w-full scale-105 object-cover opacity-35 md:block"
           src="/8060391-uhd_4096_2160_25fps.mp4"
           autoPlay
           muted
           loop
           playsInline
-          preload="auto"
+          preload="metadata"
           aria-hidden
         />
         <div className="absolute inset-0 bg-gradient-to-b from-[#050208]/70 via-[#0b0613]/75 to-[#0b0613]" />
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_12%,rgba(255,255,255,0.05),transparent_36%),radial-gradient(circle_at_22%_38%,rgba(242,109,79,0.12),transparent_45%),radial-gradient(circle_at_78%_42%,rgba(156,125,255,0.12),transparent_45%)]" />
         <div className="absolute inset-0 bg-[radial-gradient(60%_40%_at_50%_12%,rgba(255,255,255,0.03),transparent)]" />
         <div
-          className="absolute inset-0 opacity-55 mix-blend-screen animate-gradient-move"
+          className="absolute inset-0 opacity-55 mix-blend-screen motion-safe:animate-gradient-move"
           style={{
             backgroundImage:
               "linear-gradient(120deg, rgba(254,104,57,0.16), rgba(84,20,117,0.12), rgba(254,104,57,0.16))",
@@ -58,8 +58,8 @@ const HeroSection: FC = () => {
         />
         <div className="absolute inset-x-0 bottom-0 h-56 bg-gradient-to-b from-transparent via-[#0b0613]/70 to-[#0A0510]" />
         <div className="absolute inset-0 bg-noise opacity-20" />
-        <div className="animate-orbit-left absolute -left-32 top-1/3 h-56 w-56 rounded-full bg-gradient-to-br from-[#fe6839]/20 to-transparent blur-3xl" />
-        <div className="animate-orbit-right absolute -right-24 bottom-1/4 h-64 w-64 rounded-full bg-gradient-to-tr from-[#541475]/20 to-transparent blur-3xl" />
+        <div className="absolute -left-32 top-1/3 h-56 w-56 rounded-full bg-gradient-to-br from-[#fe6839]/20 to-transparent blur-3xl motion-safe:animate-orbit-left" />
+        <div className="absolute -right-24 bottom-1/4 h-64 w-64 rounded-full bg-gradient-to-tr from-[#541475]/20 to-transparent blur-3xl motion-safe:animate-orbit-right" />
       </div>
 
       <div className="content-shell relative z-10 flex flex-col items-center px-4 text-center">
