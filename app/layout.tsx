@@ -20,6 +20,70 @@ const lora = Lora({
   display: "swap",
 });
 
+const organizationSchema = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  name: "LoveIQ",
+  url: siteUrl,
+  logo: `${siteUrl}/images/LoveiqLogo.svg`,
+  contactPoint: {
+    "@type": "ContactPoint",
+    email: "hello@loveiq.org",
+    contactType: "customer support",
+  },
+  address: {
+    "@type": "PostalAddress",
+    addressLocality: "Berlin",
+    addressCountry: "DE",
+  },
+};
+
+const websiteSchema = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  name: "LoveIQ",
+  url: siteUrl,
+};
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: [
+    {
+      "@type": "Question",
+      name: "What is LoveIQ Early Access?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "Early Access members get priority entry to our platform before the public launch, exclusive content, and a locked-in lifetime discount on premium features.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "What's included in the survey?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "Our comprehensive assessment covers 5 key psychological dimensions of intimacy. You will receive a detailed report outlining your unique profile immediately after completion.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "Is there support available?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "Yes. Our team of relationship psychologists and support staff are available to help interpret your results and guide you through the platform.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "How much will this cost?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "Joining the waitlist is free. The basic assessment is free, while deeper analytical reports will be available for a one-time fee or subscription.",
+      },
+    },
+  ],
+};
+
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: "LoveIQ | Science-backed sexual psychology assessment",
@@ -58,6 +122,15 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               page_path: window.location.pathname,
             });
           `}
+        </Script>
+        <Script id="schema-org" type="application/ld+json" strategy="afterInteractive">
+          {JSON.stringify(organizationSchema)}
+        </Script>
+        <Script id="schema-website" type="application/ld+json" strategy="afterInteractive">
+          {JSON.stringify(websiteSchema)}
+        </Script>
+        <Script id="schema-faq" type="application/ld+json" strategy="afterInteractive">
+          {JSON.stringify(faqSchema)}
         </Script>
       </head>
       <body className="bg-white dark:bg-[#050208]">
