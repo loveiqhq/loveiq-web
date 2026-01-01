@@ -29,14 +29,7 @@ const NavSection: FC = () => {
               <span className="font-serif text-xl font-semibold text-white">LoveIQ</span>
             </div>
 
-            <div className="hidden flex-1 items-center justify-center gap-10 text-center text-sm font-semibold text-white/75 lg:flex">
-              <Link href="#about" className="rounded-pill px-2 py-1 transition hover:text-white focus-visible-ring">
-                About Us
-              </Link>
-              <Link href="#glossary" className="rounded-pill px-2 py-1 transition hover:text-white focus-visible-ring">
-                Glossary
-              </Link>
-            </div>
+            <div className="hidden flex-1 lg:flex" aria-hidden />
 
             <div className="flex flex-1 justify-end">
               <Link
