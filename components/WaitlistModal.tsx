@@ -42,6 +42,7 @@ const avatars = [
 const WaitlistModal = ({ open, onClose }: WaitlistModalProps) => {
   const panelRef = useRef<HTMLDivElement>(null);
   const [email, setEmail] = useState("");
+  const [website, setWebsite] = useState(""); // honeypot
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
@@ -77,7 +78,7 @@ const WaitlistModal = ({ open, onClose }: WaitlistModalProps) => {
       const res = await fetch("/api/waitlist", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email, source: "landing-modal" }),
+        body: JSON.stringify({ email, source: "landing-modal", website }),
       });
       if (!res.ok) {
         const data = await res.json().catch(() => ({}));
@@ -160,6 +161,15 @@ const WaitlistModal = ({ open, onClose }: WaitlistModalProps) => {
                 }
               }}
             >
+              <input
+                type="text"
+                name="website"
+                value={website}
+                onChange={(e) => setWebsite(e.target.value)}
+                className="hidden"
+                tabIndex={-1}
+                autoComplete="off"
+              />
               <div className="flex items-center rounded-full border border-white/10 bg-white/5 p-1.5 pl-6 shadow-xl shadow-black/20 transition-all hover:bg-white/10 focus-within:border-[#FE6839]/50 focus-within:ring-1 focus-within:ring-[#FE6839]/50">
                 <input
                   type="email"
