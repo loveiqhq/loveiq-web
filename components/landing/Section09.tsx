@@ -43,17 +43,17 @@ const Section09: FC = () => {
           <div className="absolute left-0 top-1/2 h-[420px] w-[420px] -translate-y-1/2 rounded-full bg-[#541475]/10 blur-[90px]" aria-hidden />
         </div>
 
-        <div className="max-w-4xl space-y-4 text-center">
+        <div className="max-w-4xl space-y-5 text-center sm:space-y-6">
           <h2 id="audience-heading" className="font-serif text-4xl leading-tight text-white sm:text-5xl md:text-[52px] md:leading-[1.1]">
             Who Is This Perfect For<span className="bg-gradient-to-r from-[#fe6839] to-[#a78bfa] bg-clip-text text-transparent">?</span>
           </h2>
-          <p className="text-base text-text-secondary sm:text-lg">
+          <p className="text-base text-text-secondary sm:text-lg leading-relaxed sm:leading-relaxed">
             Designed for everyone on the spectrum of relationship and self-discovery.
           </p>
         </div>
       </div>
 
-      <div className="relative w-screen max-w-none left-1/2 -translate-x-1/2 overflow-hidden pb-12">
+      <div className="relative w-screen max-w-none left-1/2 -translate-x-1/2 overflow-hidden pb-12 mt-8 sm:mt-10">
         <div className="pointer-events-none absolute inset-y-0 left-0 w-16 sm:w-24 bg-gradient-to-r from-[#0a0510] to-transparent" aria-hidden />
         <div className="pointer-events-none absolute inset-y-0 right-0 w-16 sm:w-24 bg-gradient-to-l from-[#0a0510] to-transparent" aria-hidden />
 
