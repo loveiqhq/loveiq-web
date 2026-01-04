@@ -17,7 +17,7 @@ export function waitlistEmail({ firstName }: WaitlistEmailParams) {
     <p style="margin:0 0 14px 0;"><strong>Welcome to LoveIQ.</strong></p>
 
     <p style="margin:0 0 14px 0;">
-      You’re now on the waitlist for <strong>LoveIQ Early Access</strong> — a new way to understand how you experience desire, intimacy, and connection through a scientifically grounded psychometric survey and a personalized report.
+      You’re now on the waitlist for <strong>LoveIQ Early Access</strong> — a new way to understand how you experience desire, intimacy, and connection through a <strong>scientifically grounded psychometric survey and a personalized report.</strong>
     </p>
 
     <p style="margin:0 0 10px 0;"><strong>Early Access gives you:</strong></p>
@@ -33,7 +33,7 @@ export function waitlistEmail({ firstName }: WaitlistEmailParams) {
     </p>
 
     <p style="margin:0 0 18px 0;">
-      We’ll email you as soon as your invitation is ready.
+      <strong>We’ll email you as soon as your invitation is ready.</strong>
     </p>
 
     <p style="margin:0 0 6px 0;">— The LoveIQ Team</p>
@@ -81,4 +81,3 @@ function escapeHtml(input: string) {
     .replaceAll('"', "&quot;")
     .replaceAll("'", "&#039;");
 }
-

@@ -129,13 +129,7 @@ const WaitlistModal = ({ open, onClose }: WaitlistModalProps) => {
             </button>
           </div>
 
-          <div className="relative z-10 flex flex-col items-center px-6 py-20 text-center sm:px-12">
-            <div className="mb-8 rounded-2xl bg-[#FE6839] p-3 text-white shadow-[0_0_40px_-10px_rgba(254,104,57,0.3)]">
-              <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-zap">
-                <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" />
-              </svg>
-            </div>
-
+          <div className="relative z-10 flex flex-col items-center px-6 py-16 text-center sm:px-12">
             <div className="mb-6 flex items-center gap-2">
               <span className="relative flex h-2 w-2">
                 <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[#FE6839] opacity-75" />
@@ -174,10 +168,16 @@ const WaitlistModal = ({ open, onClose }: WaitlistModalProps) => {
                 <input
                   type="email"
                   name="email"
-                  className="h-12 flex-1 border-none bg-transparent text-base text-white placeholder-white/30 focus:outline-none focus:ring-0"
+                  className="h-12 flex-1 border-none bg-transparent pr-12 text-base text-white placeholder-white/30 focus:outline-none focus:ring-0"
                   placeholder="name@email.com"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
+                  autoComplete="email"
+                  inputMode="email"
+                  autoCorrect="off"
+                  autoCapitalize="none"
+                  data-lpignore="true"
+                  data-1p-ignore="true"
                   required
                 />
                 <button
