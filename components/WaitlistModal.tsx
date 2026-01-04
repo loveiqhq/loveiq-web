@@ -218,7 +218,9 @@ const WaitlistModal = ({ open, onClose }: WaitlistModalProps) => {
                   />
                 ))}
               </div>
-              <span className="text-sm text-gray-400">Join 12,500+ others on the waitlist</span>
+              <span className="text-sm text-gray-400">
+                Join the <strong className="font-semibold text-white">fast-growing</strong> early-access waitlist
+              </span>
             </div>
 
             <div className="w-full max-w-2xl text-left">

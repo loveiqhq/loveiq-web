@@ -153,7 +153,9 @@ export default function WaitlistPage() {
                 />
               ))}
             </div>
-            <span className="text-sm text-white/70">Join 12,500+ others on the waitlist</span>
+            <span className="text-sm text-white/70">
+              Join the <strong className="font-semibold text-white">fast-growing</strong> early-access waitlist
+            </span>
           </div>
 
           <div className="flex flex-col items-center gap-3 text-center">
