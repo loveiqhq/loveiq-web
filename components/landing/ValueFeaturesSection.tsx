@@ -21,21 +21,6 @@ const ValueFeaturesSection: FC = () => {
       <div className="content-shell relative grid gap-10 lg:grid-cols-[1fr_1.05fr] lg:items-center">
         <div className="pointer-events-none absolute -left-[302px] top-[52.275px] h-[160px] w-[160px] rounded-full bg-[#FE6839] mix-blend-screen blur-[99.5px]" />
         <div className="pointer-events-none absolute -right-[1014.5px] bottom-[136px] h-[257px] w-[257px] rounded-full bg-[#541475] mix-blend-screen blur-[100px]" />
-        <div className="relative overflow-hidden rounded-[24px] border border-[rgba(255,255,255,0.08)] bg-[#0A0510] shadow-[0_30px_90px_rgba(0,0,0,0.55)] h-[640px] order-2 lg:order-1">
-          <div className="relative h-full w-full overflow-hidden rounded-[20px]">
-            <video
-              className="absolute inset-0 h-full w-full object-cover"
-              src="/8060391-uhd_4096_2160_25fps.mp4"
-              autoPlay
-              muted
-              loop
-              playsInline
-              aria-hidden
-            />
-            <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_30%,rgba(0,0,0,0.35),transparent_55%),radial-gradient(circle_at_70%_70%,rgba(0,0,0,0.28),transparent_58%)]" />
-          </div>
-        </div>
-
         <div className="relative space-y-8 order-1 lg:order-2">
           <h2 id="value-heading" className="font-serif text-[34px] leading-tight text-white sm:text-[38px] lg:text-[44px]">
             Great intimacy requires a vocabulary most of us were never taught.
@@ -71,6 +56,21 @@ const ValueFeaturesSection: FC = () => {
                 </div>
               </div>
             ))}
+          </div>
+        </div>
+
+        <div className="relative overflow-hidden rounded-[24px] border border-[rgba(255,255,255,0.08)] bg-[#0A0510] shadow-[0_30px_90px_rgba(0,0,0,0.55)] h-[640px] order-2 lg:order-1">
+          <div className="relative h-full w-full overflow-hidden rounded-[20px]">
+            <video
+              className="absolute inset-0 h-full w-full object-cover"
+              src="/8060391-uhd_4096_2160_25fps.mp4"
+              autoPlay
+              muted
+              loop
+              playsInline
+              aria-hidden
+            />
+            <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_30%,rgba(0,0,0,0.35),transparent_55%),radial-gradient(circle_at_70%_70%,rgba(0,0,0,0.28),transparent_58%)]" />
           </div>
         </div>
       </div>
