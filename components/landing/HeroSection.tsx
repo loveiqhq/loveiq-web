@@ -86,8 +86,8 @@ const HeroSection: FC = () => {
         </div>
 
         <p className="animate-on-scroll mt-8 max-w-3xl text-lg leading-relaxed text-text-secondary sm:text-xl">
-          Built on 10+ years of research. A{" "}
-          <strong className="font-semibold text-white">10-minute guided survey</strong> that uncovers the sexual patterns and archetype.
+          Built on latest science &amp; research.{" "}
+          <strong className="font-semibold text-white">A 10-minute guided survey</strong> that uncovers your sexual patterns and archetype.
         </p>
 
         <div className="animate-on-scroll mt-12 flex flex-col items-center gap-4 sm:flex-row">

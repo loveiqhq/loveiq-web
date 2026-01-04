@@ -86,7 +86,7 @@ const FooterSection: FC = () => {
         </div>
 
         <div className="flex flex-col gap-3 border-t border-border pt-6 text-xs text-text-muted sm:flex-row sm:items-center sm:justify-between">
-          <p>© 2025 LoveIQ Inc. Designed &amp; developed with care.</p>
+          <p>© 2026 LoveIQ UG i.G. Designed &amp; developed with care.</p>
           <div className="flex gap-4">
             <Link href="/privacy" className="transition hover:text-text-primary focus-visible-ring rounded">
               Privacy Policy
