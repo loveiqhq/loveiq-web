@@ -1,31 +1,61 @@
 import Image from "next/image";
-import type { FC } from "react";
+import type { FC, ReactNode } from "react";
 
-const testimonials = [
+type Testimonial = {
+  quote: ReactNode;
+  name: string;
+  title: string;
+  stars: number;
+};
+
+const testimonials: Testimonial[] = [
   {
-    quote:
-      "The results were more insightful than I expected. It connected dots between emotional triggers and communication styles I hadn’t noticed before. Solid UX, too.",
+    quote: (
+      <>
+        <span>The results were </span>
+        <span className="font-bold text-white">more insightful than I expected</span>
+        <span className="text-white">.</span>
+        <span> It connected dots between emotional triggers and communication styles I hadn’t noticed before. Solid UX, too.</span>
+      </>
+    ),
     name: "Noah, 29",
     title: "Software Engineer",
     stars: 5,
   },
   {
-    quote:
-      "The report was shockingly accurate. And the science behind it? Legit. I liked seeing the blend of emotional intelligence and cognitive behavior models.",
+    quote: (
+      <>
+        <span>The report was </span>
+        <span className="font-bold text-white">shockingly accurate</span>
+        <span className="text-white">.</span>
+        <span> And the science behind it? Legit. I liked seeing the blend of emotional intelligence and cognitive behavior models.</span>
+      </>
+    ),
     name: "Amir, 41",
     title: "Product Manager",
     stars: 5,
   },
   {
-    quote:
-      "We took the quiz together and compared our results—it sparked one of the best conversations we’ve ever had. It helped us understand our emotional rhythm better.",
+    quote: (
+      <>
+        <span>We took the quiz together and compared our results—it </span>
+        <span className="font-bold text-white">sparked one of the best conversations we’ve ever had</span>
+        <span className="text-white">.</span>
+        <span> It helped us understand our emotional rhythm better.</span>
+      </>
+    ),
     name: "Chloe & Andre",
     title: "34 & 35",
     stars: 5,
   },
   {
-    quote:
-      "We thought it’d be just fun. Turns out, it opened a new level of communication in our relationship. Every couple should try this.",
+    quote: (
+      <>
+        <span>We thought it’d be just fun. Turns out, it </span>
+        <span className="font-bold text-white">opened a new level of communication</span>
+        <span> in our relationship. Every couple should try this.</span>
+      </>
+    ),
     name: "Kim & Eli",
     title: "26 & 27",
     stars: 5,
@@ -75,7 +105,7 @@ const Section08: FC = () => {
                   <svg
                     key={i}
                     aria-hidden
-                    className="h-4 w-4"
+                    className="h-5 w-5"
                     viewBox="0 0 24 24"
                     fill="currentColor"
                     stroke="none"
@@ -84,7 +114,7 @@ const Section08: FC = () => {
                   </svg>
                 ))}
               </div>
-              <p className="flex-1 text-sm leading-relaxed text-text-secondary">
+              <p className="flex-1 font-serif text-[20px] leading-[32.5px] italic text-[#d1d5db] [&_span]:font-serif [&_span]:text-[20px] [&_span]:leading-[32.5px] [&_span]:italic [&_span]:text-[#d1d5db]">
                 “{item.quote}”
               </p>
               <div className="mt-6 flex items-center gap-3 pt-4">
@@ -98,8 +128,8 @@ const Section08: FC = () => {
                   />
                 </div>
                 <div className="leading-tight">
-                  <p className="text-sm font-semibold">{item.name}</p>
-                  <p className="text-xs text-text-muted">{item.title}</p>
+                  <p className="text-[18px] font-bold leading-[28px] text-white">{item.name}</p>
+                  <p className="text-[14px] font-medium leading-5 text-[#6b7280]">{item.title}</p>
                 </div>
               </div>
             </div>
