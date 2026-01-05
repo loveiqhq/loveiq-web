@@ -1,20 +1,38 @@
 'use client';
 
 import Image from "next/image";
-import type { FC } from "react";
+import type { FC, ReactNode } from "react";
 import { effects, gradients, radii } from "./theme";
 
 type TestimonialsSectionProps = {
   className?: string;
 };
 
-const testimonials = [
+type Testimonial = {
+  quote: ReactNode;
+  name: string;
+  role: string;
+  avatar: string;
+  quoteClass?: string;
+  nameClass?: string;
+  roleClass?: string;
+};
+
+const testimonials: Testimonial[] = [
   {
-    quote:
-      "The results were more insightful than I expected. It connected dots between emotional triggers and communication styles I hadn’t noticed before. Solid UX, too.",
+    quote: (
+      <>
+        <span>The results were </span>
+        <span className="font-serif font-bold italic text-white">more insightful than I expected</span>
+        <span>. It connected dots between emotional triggers and communication styles I hadn’t noticed before. Solid UX, too.</span>
+      </>
+    ),
     name: "Noah, 29",
     role: "Software Engineer",
     avatar: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=80&q=80",
+    quoteClass: "font-serif text-[20px] leading-[32px] italic text-[#d1d5db]",
+    nameClass: "text-[18px] font-bold leading-[28px] text-white",
+    roleClass: "text-[14px] font-medium leading-5 text-[#6b7280]",
   },
   {
     quote:
@@ -61,9 +79,7 @@ export const TestimonialsSection: FC<TestimonialsSectionProps> = ({ className = 
           <h2 id="testimonials-heading" className="font-serif text-3xl sm:text-4xl">
             What people are saying
           </h2>
-          <p className="text-sm text-white/75">
-            Real insights from people who’ve taken the LoveIQ journey.
-          </p>
+          <p className="text-sm text-white/75">Real insights from people who’ve taken the LoveIQ journey.</p>
         </div>
 
         <div className="grid gap-5 md:grid-cols-2">
@@ -73,7 +89,7 @@ export const TestimonialsSection: FC<TestimonialsSectionProps> = ({ className = 
               className={`flex h-full flex-col gap-4 ${radii.card} ${effects.cardBorder} bg-gradient-to-br from-[#1b1327] via-[#140c21] to-[#0f0a1c] ${effects.cardShadow} p-6 text-left`}
             >
               <Stars />
-              <blockquote className="text-sm text-white/85">{item.quote}</blockquote>
+              <blockquote className={item.quoteClass ?? "text-sm text-white/85"}>{item.quote}</blockquote>
               <div className="mt-auto flex items-center gap-3 pt-2">
                 <Image
                   src={item.avatar}
@@ -82,9 +98,9 @@ export const TestimonialsSection: FC<TestimonialsSectionProps> = ({ className = 
                   height={48}
                   className="h-12 w-12 rounded-full border border-[#0f0a18] object-cover"
                 />
-                <figcaption className="text-sm">
-                  <p className="font-semibold text-white">{item.name}</p>
-                  <p className="text-white/70">{item.role}</p>
+                <figcaption className="leading-tight">
+                  <p className={item.nameClass ?? "font-semibold text-white text-sm"}>{item.name}</p>
+                  <p className={item.roleClass ?? "text-white/70 text-sm"}>{item.role}</p>
                 </figcaption>
               </div>
             </figure>

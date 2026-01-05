@@ -13,7 +13,7 @@ const Section10: FC = () => {
           <h2 id="why-heading" className="font-serif text-4xl leading-tight text-white sm:text-5xl md:text-[52px] md:leading-[1.15]">
             Why we created <span className="bg-gradient-to-r from-[#fe6839] to-[#a78bfa] bg-clip-text text-transparent">LoveIQ?</span>
           </h2>
-          <p className="text-base leading-relaxed text-text-secondary sm:text-lg">
+          <p className="mx-auto max-w-[940px] font-medium text-[20px] leading-[28px] text-center text-[#d1d5db]">
             Positive sexual well-being is highly linked to lower stress, anxiety, and depression, better cardiovascular health, and
             higher relationship satisfaction. Therefore we want to make sexuality something we can explore with curiosity, confidence,
             and care — not shame or confusion.

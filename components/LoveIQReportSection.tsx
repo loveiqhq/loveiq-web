@@ -8,10 +8,22 @@ type LoveIQReportSectionProps = {
 };
 
 const bullets = [
-  "Guided educational survey built with psychology & relationship science.",
-  "Deeply personalized interpretation of your specific patterns and archetype.",
-  "10+ detailed report sections covering turn-ons, fears, strengths, and growth paths.",
-  "Tailored recommendations with curated books & courses for your archetype.",
+  {
+    title: "Guided educational survey",
+    description: "Built with psychology & relationship science.",
+  },
+  {
+    title: "Deeply personalized interpretation",
+    description: "Of your specific patterns and archetype.",
+  },
+  {
+    title: "10+ detailed report sections",
+    description: "Covering turn-ons, fears, strengths, and growth paths.",
+  },
+  {
+    title: "Tailored recommendations",
+    description: "Curated books & courses for your archetype.",
+  },
 ];
 
 const mockCard = (
@@ -77,24 +89,27 @@ export const LoveIQReportSection: FC<LoveIQReportSectionProps> = ({ className = 
     >
       <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(80%_70%_at_20%_20%,rgba(254,104,57,0.12),transparent),radial-gradient(70%_80%_at_80%_50%,rgba(167,139,250,0.16),transparent)]" />
       <div className="relative mx-auto flex w-full max-w-6xl flex-col items-center gap-12 lg:flex-row lg:items-center lg:gap-16">
-        <div className="flex w-full max-w-xl flex-col gap-6 text-white">
-          <div className="space-y-2">
-            <h2 id="loveiq-report-heading" className="font-serif text-3xl sm:text-4xl md:text-[40px]">
+        <div className="flex w-full max-w-xl flex-col gap-8 text-white">
+          <div className="space-y-3">
+            <h2
+              id="loveiq-report-heading"
+              className="font-serif text-[40px] leading-[1.05] tracking-[-0.03em] sm:text-[52px] md:text-[64px] md:leading-[1.05]"
+            >
               The LoveIQ Report
             </h2>
-            <p className="text-sm text-white/80 sm:text-base">
+            <p className="font-medium text-[18px] leading-[1.55] text-[#d1d5db] sm:text-[20px]">
               LoveIQ helps you decode your desires, attachment patterns, emotional needs, and intimate dynamics so you
               can build relationships that feel aligned, exciting, and safe.
             </p>
           </div>
-          <ul className="space-y-3 text-sm text-white/80">
+          <ul className="space-y-5 text-white">
             {bullets.map((item) => (
-              <li key={item} className="flex items-start gap-2">
-                <span className="mt-1 inline-flex h-5 w-5 items-center justify-center rounded-full bg-[#fe6839]/20 text-[#fe6839]">
+              <li key={item.title} className="flex gap-3">
+                <span className="mt-[2px] inline-flex h-10 w-10 items-center justify-center rounded-full bg-[#fe6839]/20 text-[#fe6839]">
                   <svg
                     aria-hidden
                     viewBox="0 0 24 24"
-                    className="h-3.5 w-3.5"
+                    className="h-[18px] w-[18px]"
                     fill="none"
                     stroke="currentColor"
                     strokeWidth="2"
@@ -104,16 +119,21 @@ export const LoveIQReportSection: FC<LoveIQReportSectionProps> = ({ className = 
                     <path d="M5 13l4 4L19 7" />
                   </svg>
                 </span>
-                <span>{item}</span>
+                <div className="space-y-1">
+                  <p className="font-serif text-[20px] font-semibold leading-[28px] text-white">{item.title}</p>
+                  <p className="font-medium text-[14px] leading-5 text-[#9ca3af] sm:text-[16px] sm:leading-[20px]">
+                    {item.description}
+                  </p>
+                </div>
               </li>
             ))}
           </ul>
-          <div className="flex items-center gap-4 pt-2">
+          <div className="flex flex-col gap-3 pt-2 sm:flex-row sm:items-center sm:gap-4">
             <button
               type="button"
-              className="inline-flex items-center justify-center gap-2 rounded-full bg-[#fe6839] px-6 py-3 text-sm font-semibold text-white shadow-lg shadow-[#fe6839]/35 transition hover:-translate-y-0.5 hover:bg-[#ff7a4d] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#fe6839]"
+              className="inline-flex items-center justify-center gap-2 rounded-full bg-[#fe6839] px-6 py-3 text-[16px] font-extrabold leading-6 text-white shadow-lg shadow-[#fe6839]/35 transition hover:-translate-y-0.5 hover:bg-[#ff7a4d] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#fe6839]"
             >
-              Start survey now
+              Start Survey Now
               <svg
                 aria-hidden
                 className="h-4 w-4"
@@ -128,9 +148,9 @@ export const LoveIQReportSection: FC<LoveIQReportSectionProps> = ({ className = 
                 <path d="m13 6 6 6-6 6" />
               </svg>
             </button>
-            <div className="text-xs text-white/70">
-              <p className="font-semibold text-white">“The accuracy shocked me.”</p>
-              <p>— ALEX M.</p>
+            <div className="text-left leading-tight text-white/80">
+              <p className="font-serif text-[14px] italic leading-5 text-[#d1d5db]">“The accuracy shocked me.”</p>
+              <p className="text-[12px] font-bold uppercase tracking-[0.03em] text-[#fe6839]">— Alex M.</p>
             </div>
           </div>
         </div>

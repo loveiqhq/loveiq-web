@@ -29,10 +29,13 @@ const Section06: FC = () => {
       <div className="content-shell relative grid gap-12 lg:grid-cols-[1.05fr_0.95fr] lg:items-center">
         <div className="space-y-8">
           <div className="space-y-4">
-            <h2 id="report-heading" className="font-serif text-3xl leading-tight sm:text-4xl md:text-5xl">
+            <h2
+              id="report-heading"
+              className="font-serif text-[40px] leading-[1.05] tracking-[-0.03em] sm:text-[52px] md:text-[64px] md:leading-[1.05]"
+            >
               The LoveIQ Report
             </h2>
-            <p className="text-lg leading-relaxed text-text-secondary sm:text-xl">
+            <p className="font-medium text-[18px] leading-[1.55] text-[#d1d5db] sm:text-[20px]">
               LoveIQ helps you decode your desires, attachment patterns, emotional needs, and intimate dynamics so you can build
               relationships that feel aligned, exciting, and safe.
             </p>
@@ -41,7 +44,7 @@ const Section06: FC = () => {
           <div className="space-y-5">
             {features.map((item) => (
               <div key={item.title} className="group flex gap-3">
-                <div className="mt-1 flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-full bg-white/5 text-accent-orange shadow-soft transition duration-300 ease-out group-hover:-translate-y-[2px] group-hover:scale-105 group-hover:bg-gradient-to-br group-hover:from-[#f26d4f] group-hover:via-[#ff9450] group-hover:to-[#f26d4f] group-hover:text-white">
+                <div className="mt-[2px] flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full bg-white/5 text-accent-orange shadow-soft transition duration-300 ease-out group-hover:-translate-y-[2px] group-hover:scale-105 group-hover:bg-gradient-to-br group-hover:from-[#f26d4f] group-hover:via-[#ff9450] group-hover:to-[#f26d4f] group-hover:text-white">
                   <svg
                     aria-hidden
                     className="h-4 w-4"
@@ -56,8 +59,10 @@ const Section06: FC = () => {
                   </svg>
                 </div>
                 <div className="space-y-1">
-                  <p className="text-lg font-semibold sm:text-xl">{item.title}</p>
-                  <p className="text-sm text-text-secondary sm:text-base">{item.description}</p>
+                  <p className="font-serif text-[20px] font-semibold leading-[28px] text-white">{item.title}</p>
+                  <p className="font-medium text-[14px] leading-5 text-[#9ca3af] sm:text-[16px] sm:leading-[20px]">
+                    {item.description}
+                  </p>
                 </div>
               </div>
             ))}
@@ -66,10 +71,10 @@ const Section06: FC = () => {
           <div className="flex flex-col items-start gap-4 sm:flex-row sm:items-center">
             <a
               href="/waitlist"
-              className="inline-flex items-center justify-center gap-2 rounded-full bg-gradient-brand px-6 py-3 text-base font-semibold text-white shadow-pill transition hover:translate-y-[-2px] focus-visible-ring"
+              className="inline-flex items-center justify-center gap-2 rounded-full bg-gradient-brand px-6 py-3 text-[16px] font-extrabold leading-6 text-white shadow-pill transition hover:translate-y-[-2px] focus-visible-ring"
               onClick={() => trackStartSurvey("report_section")}
             >
-              Start survey now
+              Start Survey Now
               <svg
                 aria-hidden
                 className="h-5 w-5"
@@ -84,7 +89,7 @@ const Section06: FC = () => {
                 <path d="m12 5 7 7-7 7" />
               </svg>
             </a>
-            <div className="flex items-center gap-3 text-sm text-white/70">
+            <div className="flex items-center gap-3 leading-tight text-white/80">
               <div className="h-11 w-11 overflow-hidden rounded-full border border-border shadow-soft">
                 <Image
                   src="/a791b20c354705558e2dce132f88640a8b4f563a.jpg"
@@ -95,8 +100,8 @@ const Section06: FC = () => {
                 />
               </div>
               <div className="space-y-0.5 leading-tight text-text-secondary">
-                <p className="italic">“The accuracy shocked me.”</p>
-                <p className="text-[12px] font-semibold text-accent-orange">— Alex M.</p>
+                <p className="font-serif text-[14px] italic leading-5 text-[#d1d5db]">“The accuracy shocked me.”</p>
+                <p className="text-[12px] font-bold uppercase tracking-[0.03em] text-accent-orange">— Alex M.</p>
               </div>
             </div>
           </div>
