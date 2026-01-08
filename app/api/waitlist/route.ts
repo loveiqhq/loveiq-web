@@ -58,9 +58,10 @@ const notifySlackWaitlist = async ({
 
   // Mask to avoid sending full PII to Slack
   const maskedEmail = email.replace(/^(.).+(@.+)$/, "$1***$2");
-  const text = `🎉 New waitlist signup: ${firstName ? `*${firstName}* ` : ""}<mailto:${email}|${maskedEmail}>${source ? ` (source: ${source})` : ""}`;
+  const text = `New waitlist signup: ${firstName ? `*${firstName}* ` : ""}<mailto:${email}|${maskedEmail}>${source ? ` (source: ${source})` : ""}`;
 
   try {
+    console.log("Sending Slack waitlist notification for", maskedEmail, "source:", source || "n/a");
     const res = await fetch(url, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -70,6 +71,8 @@ const notifySlackWaitlist = async ({
     if (!res.ok) {
       const body = await res.text().catch(() => "");
       console.error("Slack webhook failed:", res.status, body);
+    } else {
+      console.log("Slack webhook sent:", res.status);
     }
   } catch (err) {
     console.error("Slack webhook error:", err);
