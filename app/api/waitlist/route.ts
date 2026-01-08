@@ -40,6 +40,40 @@ const isRateLimited = (key: string) => {
   return hits.length > rateLimitMax;
 };
 
+const notifySlackWaitlist = async ({
+  email,
+  firstName,
+  source,
+}: {
+  email: string;
+  firstName?: string | null;
+  source?: string | null;
+}) => {
+  const url = process.env.SLACK_WAITLIST_WEBHOOK_URL;
+  const shouldNotify = process.env.VERCEL_ENV === "production" || process.env.NODE_ENV === "production";
+
+  if (!url || !shouldNotify) return;
+
+  // Mask to avoid sending full PII to Slack
+  const maskedEmail = email.replace(/^(.).+(@.+)$/, "$1***$2");
+  const text = `🎉 New waitlist signup: ${firstName ? `*${firstName}* ` : ""}<mailto:${email}|${maskedEmail}>${source ? ` (source: ${source})` : ""}`;
+
+  try {
+    const res = await fetch(url, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ text, username: "waitlist_signup" }),
+    });
+
+    if (!res.ok) {
+      const body = await res.text().catch(() => "");
+      console.error("Slack webhook failed:", res.status, body);
+    }
+  } catch (err) {
+    console.error("Slack webhook error:", err);
+  }
+};
+
 export async function POST(request: Request) {
   const ip = getClientIp(request);
 
@@ -130,6 +164,8 @@ export async function POST(request: Request) {
   if (error) {
     return NextResponse.json({ error: "Unable to process request." }, { status: 500 });
   }
+
+  await notifySlackWaitlist({ email: normalizedEmail, firstName: normalizedFirstName, source });
 
   return NextResponse.json({ success: true });
 }
