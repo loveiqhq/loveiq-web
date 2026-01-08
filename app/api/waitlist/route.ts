@@ -50,9 +50,11 @@ const notifySlackWaitlist = async ({
   source?: string | null;
 }) => {
   const url = process.env.SLACK_WAITLIST_WEBHOOK_URL;
-  const shouldNotify = process.env.VERCEL_ENV === "production" || process.env.NODE_ENV === "production";
 
-  if (!url || !shouldNotify) return;
+  if (!url) {
+    console.warn("Slack webhook missing: set SLACK_WAITLIST_WEBHOOK_URL to enable waitlist alerts.");
+    return;
+  }
 
   // Mask to avoid sending full PII to Slack
   const maskedEmail = email.replace(/^(.).+(@.+)$/, "$1***$2");
