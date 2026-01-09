@@ -379,6 +379,7 @@ const ContactSection: FC = () => {
   const [status, setStatus] = useState<{ type: "idle" | "success" | "error"; message?: string }>({ type: "idle" });
   const [submitting, setSubmitting] = useState(false);
   const [captchaToken, setCaptchaToken] = useState<string | null>(null);
+  const [captchaReady, setCaptchaReady] = useState(false);
   const recaptchaContainerRef = useRef<HTMLDivElement | null>(null);
   const recaptchaIdRef = useRef<number | null>(null);
   const siteKey = process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY;
@@ -416,6 +417,7 @@ const ContactSection: FC = () => {
         "error-callback": () => setCaptchaToken(null),
       });
       recaptchaIdRef.current = id;
+      setCaptchaReady(true);
     };
 
     if (getGrecaptcha()) {
@@ -423,10 +425,13 @@ const ContactSection: FC = () => {
       return;
     }
 
+    if (document.getElementById("recaptcha-script")) return;
+
     const script = document.createElement("script");
     script.src = "https://www.google.com/recaptcha/api.js?render=explicit";
     script.async = true;
     script.defer = true;
+    script.id = "recaptcha-script";
     script.onload = renderCaptcha;
     document.body.appendChild(script);
 
@@ -524,7 +529,17 @@ const ContactSection: FC = () => {
 
             <div className="flex flex-wrap items-center justify-between gap-4">
               <div className="rounded-lg bg-white px-2 py-1">
-                <div ref={recaptchaContainerRef} className="g-recaptcha" />
+                <div
+                  ref={recaptchaContainerRef}
+                  className="g-recaptcha min-h-[78px] min-w-[304px]"
+                  aria-label="reCAPTCHA"
+                  data-theme="light"
+                />
+                {!captchaReady && (
+                  <div className="mt-2 text-xs font-medium text-[#4B5563]">
+                    Captcha loading… If it does not appear, disable blockers and reload.
+                  </div>
+                )}
               </div>
               <button
                 type="submit"
