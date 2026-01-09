@@ -382,6 +382,7 @@ const ContactSection: FC = () => {
   const [captchaToken, setCaptchaToken] = useState<string | null>(null);
   const [captchaReady, setCaptchaReady] = useState(false);
   const recaptchaContainerRef = useRef<HTMLDivElement | null>(null);
+  const widgetIdRef = useRef<number | null>(null);
   const siteKey = process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY;
   const getGrecaptcha = () =>
     typeof window === "undefined"
@@ -396,21 +397,48 @@ const ContactSection: FC = () => {
   const resetCaptcha = () => {
     const grecaptcha = getGrecaptcha();
     if (!grecaptcha) return;
-    grecaptcha.reset();
+    if (widgetIdRef.current !== null) {
+      grecaptcha.reset(widgetIdRef.current);
+    } else {
+      grecaptcha.reset();
+    }
     setCaptchaToken(null);
   };
 
   useEffect(() => {
-    if (!siteKey) return;
-    const interval = setInterval(() => {
+    if (!siteKey || typeof window === "undefined") return;
+
+    (window as unknown as { onRecaptchaLoad?: () => void }).onRecaptchaLoad = () => {
       const grecaptcha = getGrecaptcha();
-      if (grecaptcha) {
+      if (!grecaptcha || !recaptchaContainerRef.current || widgetIdRef.current !== null) return;
+      try {
+        const id = grecaptcha.render(recaptchaContainerRef.current, {
+          sitekey: siteKey,
+          theme: "light",
+          callback: (token: string) => setCaptchaToken(token),
+          "expired-callback": () => setCaptchaToken(null),
+          "error-callback": () => setCaptchaToken(null),
+        });
+        widgetIdRef.current = id;
         setCaptchaReady(true);
-        clearInterval(interval);
+        setStatus((prev) => (prev.type === "error" && prev.message?.includes("Captcha failed") ? { type: "idle" } : prev));
+      } catch (err) {
+        console.error("reCAPTCHA render error", err);
+        setStatus({ type: "error", message: "Captcha failed to load. Please reload and try again." });
       }
-    }, 500);
-    return () => clearInterval(interval);
-  }, [siteKey]);
+    };
+
+    const timeout = setTimeout(() => {
+      if (!captchaReady) {
+        setStatus({ type: "error", message: "Captcha failed to load. Please reload and try again." });
+      }
+    }, 8000);
+
+    return () => {
+      clearTimeout(timeout);
+      delete (window as unknown as { onRecaptchaLoad?: () => void }).onRecaptchaLoad;
+    };
+  }, [captchaReady, siteKey]);
 
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -422,7 +450,7 @@ const ContactSection: FC = () => {
     }
 
     const grecaptcha = getGrecaptcha();
-    const token = captchaToken || grecaptcha?.getResponse();
+    const token = captchaToken || (widgetIdRef.current !== null ? grecaptcha?.getResponse(widgetIdRef.current) : grecaptcha?.getResponse());
     if (!token) {
       setStatus({ type: "error", message: "Please confirm you are not a robot." });
       return;
@@ -473,7 +501,7 @@ const ContactSection: FC = () => {
 
         <div className="rounded-[32px] border border-white/10 bg-[#120B1C] p-8 sm:p-10">
           <Script
-            src="https://www.google.com/recaptcha/api.js"
+            src="https://www.google.com/recaptcha/api.js?onload=onRecaptchaLoad&render=explicit"
             strategy="afterInteractive"
             id="recaptcha-script"
             onLoad={() => setCaptchaReady(true)}
