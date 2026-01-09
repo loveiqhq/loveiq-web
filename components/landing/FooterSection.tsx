@@ -4,7 +4,7 @@ import type { FC } from "react";
 const socials = [
   { label: "Newsletter", href: "/waitlist" },
   { label: "Community", href: "#sextypes" },
-  { label: "Support", href: "mailto:hello@loveiq.com" },
+  { label: "Support", href: "mailto:hello@loveiq.org" },
   { label: "Press", href: "#about" },
 ];
 
@@ -80,7 +80,7 @@ const FooterSection: FC = () => {
             <h3 className="text-lg font-semibold">Company</h3>
             <div className="space-y-2 text-sm text-text-secondary">
               <p>LoveIQ UG i.G., Hasenheide 62, 10967 Berlin</p>
-              <p>hello@loveiq.com</p>
+              <p>hello@loveiq.org</p>
             </div>
           </div>
         </div>
