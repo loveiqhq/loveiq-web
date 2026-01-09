@@ -1,9 +1,10 @@
  "use client";
 
 import type { ChangeEvent, FC, FormEvent, ReactNode } from "react";
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import Script from "next/script";
 import NavSection from "../landing/NavSection";
 
 const CircleIcon: FC<{ color: string; icon: "user" | "bolt" }> = ({ color, icon }) => (
@@ -380,6 +381,7 @@ const ContactSection: FC = () => {
   const [submitting, setSubmitting] = useState(false);
   const [captchaToken, setCaptchaToken] = useState<string | null>(null);
   const [captchaReady, setCaptchaReady] = useState(false);
+  const [scriptLoaded, setScriptLoaded] = useState(false);
   const recaptchaContainerRef = useRef<HTMLDivElement | null>(null);
   const recaptchaIdRef = useRef<number | null>(null);
   const siteKey = process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY;
@@ -401,44 +403,28 @@ const ContactSection: FC = () => {
     }
   };
 
+  const renderCaptcha = useCallback(() => {
+    const grecaptcha = getGrecaptcha();
+    if (!recaptchaContainerRef.current || !grecaptcha || !siteKey) return;
+    if (recaptchaIdRef.current !== null) return;
+
+    const id = grecaptcha.render(recaptchaContainerRef.current, {
+      sitekey: siteKey,
+      theme: "light",
+      callback: (token: string) => setCaptchaToken(token),
+      "expired-callback": () => setCaptchaToken(null),
+      "error-callback": () => setCaptchaToken(null),
+    });
+    recaptchaIdRef.current = id;
+    setCaptchaReady(true);
+  }, [siteKey]);
+
   useEffect(() => {
     if (!siteKey) return;
-
-    const renderCaptcha = () => {
-      const grecaptcha = getGrecaptcha();
-      if (!recaptchaContainerRef.current || !grecaptcha) return;
-      if (recaptchaIdRef.current !== null) return;
-
-      const id = grecaptcha.render(recaptchaContainerRef.current, {
-        sitekey: siteKey,
-        theme: "light",
-        callback: (token: string) => setCaptchaToken(token),
-        "expired-callback": () => setCaptchaToken(null),
-        "error-callback": () => setCaptchaToken(null),
-      });
-      recaptchaIdRef.current = id;
-      setCaptchaReady(true);
-    };
-
-    if (getGrecaptcha()) {
+    if (scriptLoaded && getGrecaptcha()) {
       renderCaptcha();
-      return;
     }
-
-    if (document.getElementById("recaptcha-script")) return;
-
-    const script = document.createElement("script");
-    script.src = "https://www.google.com/recaptcha/api.js?render=explicit";
-    script.async = true;
-    script.defer = true;
-    script.id = "recaptcha-script";
-    script.onload = renderCaptcha;
-    document.body.appendChild(script);
-
-    return () => {
-      script.remove();
-    };
-  }, [siteKey]);
+  }, [renderCaptcha, scriptLoaded, siteKey]);
 
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -500,6 +486,13 @@ const ContactSection: FC = () => {
         </div>
 
         <div className="rounded-[32px] border border-white/10 bg-[#120B1C] p-8 sm:p-10">
+          <Script
+            src="https://www.google.com/recaptcha/api.js?render=explicit"
+            strategy="afterInteractive"
+            id="recaptcha-script"
+            onLoad={() => setScriptLoaded(true)}
+            onError={() => setStatus({ type: "error", message: "Captcha failed to load. Please reload and try again." })}
+          />
           <form className="space-y-6" onSubmit={handleSubmit}>
             <div className="grid gap-5 sm:grid-cols-2">
               <FormField label="First name*" id="firstName" type="text" value={form.firstName} onChange={handleChange} disabled={submitting} />
