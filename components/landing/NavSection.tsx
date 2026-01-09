@@ -4,6 +4,8 @@ import type { FC } from "react";
 import Link from "next/link";
 import { trackStartSurvey } from "../../lib/analytics";
 
+const navLinks = [{ label: "About", href: "/about" }];
+
 const NavSection: FC = () => {
   return (
     <header className="pointer-events-none fixed inset-x-0 top-0 z-40 px-4 sm:top-3">
@@ -29,9 +31,25 @@ const NavSection: FC = () => {
               <span className="font-serif text-xl font-semibold text-white">LoveIQ</span>
             </div>
 
-            <div className="hidden flex-1 lg:flex" aria-hidden />
+            <div className="hidden flex-1 items-center justify-center gap-6 lg:flex">
+              {navLinks.map((item) => (
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  className="rounded-full px-4 py-2 text-sm font-semibold text-white/80 transition hover:bg-white/10 hover:text-white focus-visible-ring"
+                >
+                  {item.label}
+                </Link>
+              ))}
+            </div>
 
-            <div className="flex flex-1 justify-end">
+            <div className="flex flex-1 items-center justify-end gap-3">
+              <Link
+                href="/about"
+                className="inline-flex shrink-0 items-center justify-center gap-2 whitespace-nowrap rounded-full border border-white/15 bg-white/5 px-4 py-2 text-xs font-semibold text-white/85 shadow-[0_15px_40px_rgba(0,0,0,0.35)] transition hover:-translate-y-[2px] hover:border-white/25 hover:text-white focus-visible-ring lg:hidden"
+              >
+                About
+              </Link>
               <Link
                 href="/waitlist"
                 className="inline-flex shrink-0 items-center justify-center gap-2 whitespace-nowrap rounded-full bg-gradient-to-r from-[#ff6a3a] via-[#ff8f50] to-[#ff6a3a] px-4 py-2 text-xs font-semibold text-white shadow-[0_18px_45px_rgba(254,104,57,0.35)] transition hover:translate-y-[-2px] focus-visible-ring sm:px-6 sm:py-3 sm:text-sm"
