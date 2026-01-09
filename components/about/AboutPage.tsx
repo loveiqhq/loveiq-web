@@ -382,14 +382,20 @@ const ContactSection: FC = () => {
   const recaptchaContainerRef = useRef<HTMLDivElement | null>(null);
   const recaptchaIdRef = useRef<number | null>(null);
   const siteKey = process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY;
+  const getGrecaptcha = () =>
+    typeof window === "undefined"
+      ? undefined
+      : (window as unknown as { grecaptcha?: { render: Function; reset: (id?: number) => void; getResponse: (id?: number) => string } })
+          .grecaptcha;
 
   const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setForm((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   };
 
   const resetCaptcha = () => {
-    if (recaptchaIdRef.current !== null && window.grecaptcha) {
-      window.grecaptcha.reset(recaptchaIdRef.current);
+    const grecaptcha = getGrecaptcha();
+    if (recaptchaIdRef.current !== null && grecaptcha) {
+      grecaptcha.reset(recaptchaIdRef.current);
       setCaptchaToken(null);
     }
   };
@@ -398,10 +404,11 @@ const ContactSection: FC = () => {
     if (!siteKey) return;
 
     const renderCaptcha = () => {
-      if (!recaptchaContainerRef.current || !window.grecaptcha) return;
+      const grecaptcha = getGrecaptcha();
+      if (!recaptchaContainerRef.current || !grecaptcha) return;
       if (recaptchaIdRef.current !== null) return;
 
-      const id = window.grecaptcha.render(recaptchaContainerRef.current, {
+      const id = grecaptcha.render(recaptchaContainerRef.current, {
         sitekey: siteKey,
         theme: "light",
         callback: (token: string) => setCaptchaToken(token),
@@ -411,7 +418,7 @@ const ContactSection: FC = () => {
       recaptchaIdRef.current = id;
     };
 
-    if (window.grecaptcha) {
+    if (getGrecaptcha()) {
       renderCaptcha();
       return;
     }
@@ -437,7 +444,8 @@ const ContactSection: FC = () => {
       return;
     }
 
-    const token = captchaToken || (recaptchaIdRef.current !== null ? window.grecaptcha?.getResponse(recaptchaIdRef.current) : "");
+    const grecaptcha = getGrecaptcha();
+    const token = captchaToken || (recaptchaIdRef.current !== null ? grecaptcha?.getResponse(recaptchaIdRef.current) : "");
     if (!token) {
       setStatus({ type: "error", message: "Please confirm you are not a robot." });
       return;
