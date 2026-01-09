@@ -381,6 +381,7 @@ const ContactSection: FC = () => {
   const [submitting, setSubmitting] = useState(false);
   const [captchaToken, setCaptchaToken] = useState<string | null>(null);
   const [captchaReady, setCaptchaReady] = useState(false);
+  const [scriptLoaded, setScriptLoaded] = useState(false);
   const recaptchaContainerRef = useRef<HTMLDivElement | null>(null);
   const widgetIdRef = useRef<number | null>(null);
   const siteKey = process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY;
@@ -405,28 +406,40 @@ const ContactSection: FC = () => {
     setCaptchaToken(null);
   };
 
+  const tryRenderCaptcha = () => {
+    const grecaptcha = getGrecaptcha();
+    if (!grecaptcha || !recaptchaContainerRef.current || !siteKey) return false;
+    try {
+      if (widgetIdRef.current !== null) return true;
+      const id = grecaptcha.render(recaptchaContainerRef.current, {
+        sitekey: siteKey,
+        theme: "light",
+        callback: (token: string) => setCaptchaToken(token),
+        "expired-callback": () => setCaptchaToken(null),
+        "error-callback": () => setCaptchaToken(null),
+      });
+      widgetIdRef.current = id;
+      setCaptchaReady(true);
+      setStatus((prev) => (prev.type === "error" && prev.message?.includes("Captcha failed") ? { type: "idle" } : prev));
+      return true;
+    } catch (err) {
+      console.error("reCAPTCHA render error", err);
+      setStatus({ type: "error", message: "Captcha failed to load. Please reload and try again." });
+      return false;
+    }
+  };
+
   useEffect(() => {
     if (!siteKey || typeof window === "undefined") return;
+    if (!scriptLoaded) return;
 
-    (window as unknown as { onRecaptchaLoad?: () => void }).onRecaptchaLoad = () => {
-      const grecaptcha = getGrecaptcha();
-      if (!grecaptcha || !recaptchaContainerRef.current || widgetIdRef.current !== null) return;
-      try {
-        const id = grecaptcha.render(recaptchaContainerRef.current, {
-          sitekey: siteKey,
-          theme: "light",
-          callback: (token: string) => setCaptchaToken(token),
-          "expired-callback": () => setCaptchaToken(null),
-          "error-callback": () => setCaptchaToken(null),
-        });
-        widgetIdRef.current = id;
-        setCaptchaReady(true);
-        setStatus((prev) => (prev.type === "error" && prev.message?.includes("Captcha failed") ? { type: "idle" } : prev));
-      } catch (err) {
-        console.error("reCAPTCHA render error", err);
-        setStatus({ type: "error", message: "Captcha failed to load. Please reload and try again." });
+    if (tryRenderCaptcha()) return;
+
+    const interval = setInterval(() => {
+      if (tryRenderCaptcha()) {
+        clearInterval(interval);
       }
-    };
+    }, 600);
 
     const timeout = setTimeout(() => {
       if (!captchaReady) {
@@ -435,10 +448,12 @@ const ContactSection: FC = () => {
     }, 8000);
 
     return () => {
+      clearInterval(interval);
       clearTimeout(timeout);
-      delete (window as unknown as { onRecaptchaLoad?: () => void }).onRecaptchaLoad;
     };
-  }, [captchaReady, siteKey]);
+    // tryRenderCaptcha intentionally not added to deps to avoid re-creating intervals each render
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [captchaReady, scriptLoaded, siteKey]);
 
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -501,10 +516,10 @@ const ContactSection: FC = () => {
 
         <div className="rounded-[32px] border border-white/10 bg-[#120B1C] p-8 sm:p-10">
           <Script
-            src="https://www.google.com/recaptcha/api.js?onload=onRecaptchaLoad&render=explicit"
+            src="https://www.google.com/recaptcha/api.js?render=explicit"
             strategy="afterInteractive"
             id="recaptcha-script"
-            onLoad={() => setCaptchaReady(true)}
+            onLoad={() => setScriptLoaded(true)}
             onError={() => setStatus({ type: "error", message: "Captcha failed to load. Please reload and try again." })}
           />
           <form className="space-y-6" onSubmit={handleSubmit}>
