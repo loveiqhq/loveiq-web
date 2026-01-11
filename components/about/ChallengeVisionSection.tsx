@@ -1,7 +1,6 @@
 "use client";
 
 import type { FC } from "react";
-import Image from "next/image";
 
 const IconContainer: FC<{ children: React.ReactNode }> = ({ children }) => (
   <div className="flex h-12 w-12 items-center justify-center rounded-full bg-white/10">
@@ -109,16 +108,97 @@ const ChallengeVisionSection: FC = () => {
               </p>
             </div>
 
-            {/* Right image */}
-            <div className="relative h-[250px] w-full overflow-hidden rounded-2xl border border-white/5 lg:w-[543px]">
-              <Image
-                src="/about/about-vision-bg.png"
-                alt="Abstract gradient background"
-                fill
-                sizes="(min-width: 1024px) 543px, 100vw"
-                className="object-cover"
-                priority
-              />
+            {/* Animated Vision Visual */}
+            <div className="group relative flex h-64 min-h-[250px] w-full items-center justify-center overflow-hidden rounded-2xl border border-white/5 bg-[#0A0510] md:h-full lg:w-[543px]">
+              {/* Animation Keyframes */}
+              <style jsx>{`
+                @keyframes mist-cycle {
+                  0% { opacity: 0; transform: scale(0.9) translateY(4px); filter: blur(8px); }
+                  15% { opacity: 1; transform: scale(1) translateY(0); filter: blur(0px); }
+                  35% { opacity: 1; transform: scale(1) translateY(0); filter: blur(0px); }
+                  50% { opacity: 0; transform: scale(1.05) translateY(-4px); filter: blur(6px); }
+                  100% { opacity: 0; }
+                }
+                @keyframes pulse-core {
+                  0%, 100% { transform: scale(1); opacity: 0.3; }
+                  50% { transform: scale(1.2); opacity: 0.5; }
+                }
+                @keyframes rotate-slow {
+                  0% { transform: rotate(0deg); }
+                  100% { transform: rotate(360deg); }
+                }
+              `}</style>
+
+              {/* Ambient Background */}
+              <div className="absolute inset-0 bg-gradient-to-b from-[#2E0147]/10 via-[#0A0510] to-[#0A0510]" />
+              <div className="absolute h-48 w-48 animate-[pulse-core_6s_ease-in-out_infinite] rounded-full bg-[#FE6839] opacity-10 blur-[90px]" />
+
+              {/* Orbit Ring */}
+              <div className="absolute h-[180px] w-[180px] animate-[rotate-slow_30s_linear_infinite] rounded-full border border-dashed border-white/10 opacity-30" />
+
+              {/* Sequence Content Container */}
+              <div className="relative flex h-full w-full items-center justify-center">
+                {/* Phase 1: Identity (Fingerprint) */}
+                <div className="absolute flex flex-col items-center justify-center opacity-0 mix-blend-plus-lighter animate-[mist-cycle_12s_ease-in-out_infinite_0s]">
+                  <div className="flex h-14 w-14 items-center justify-center rounded-full border border-[#a855f7]/30 bg-gradient-to-b from-[#a855f7]/20 to-[#a855f7]/5 text-[#e9d5ff] shadow-[0_0_30px_rgba(168,85,247,0.25)] backdrop-blur-md">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                      <path d="M12 10a2 2 0 0 0-2 2c0 1.02-.1 2.51-2.6 4" />
+                      <path d="M14 13.12c0-2.38 0-6.38-5-6.38-1.7 0-2.6 1.6-2.6 1.6" />
+                      <path d="m2 16 6-6" />
+                      <path d="M17.48 10.52c.96.93.52 2.92.52 2.92" />
+                      <path d="M18 16c0-1.29-.62-2.3-2-2.3" />
+                      <path d="M10 21v-1a2 2 0 0 1 2-2 2 2 0 0 1 2 2v1" />
+                      <path d="M2 12h.01" />
+                      <path d="M21.8 16c.2-2 .13-2.42-1.1-4.2-.27-.4-.28-1.13.1-1.3.47-.21.98-.18 1.2.2.14.24.2.4.2.6" />
+                    </svg>
+                  </div>
+                  <div className="mt-4 text-[11px] font-mono font-semibold uppercase tracking-[0.2em] text-[#e9d5ff] opacity-90 drop-shadow-[0_0_10px_rgba(168,85,247,0.5)]">
+                    Identity
+                  </div>
+                </div>
+
+                {/* Phase 2: Needs (Heart - Filled) */}
+                <div className="absolute flex flex-col items-center justify-center opacity-0 mix-blend-plus-lighter animate-[mist-cycle_12s_ease-in-out_infinite_4s]">
+                  <div className="flex h-14 w-14 items-center justify-center rounded-full border border-[#c084fc]/30 bg-gradient-to-b from-[#c084fc]/20 to-[#9333ea]/10 text-[#f3e8ff] shadow-[0_0_30px_rgba(192,132,252,0.25)] backdrop-blur-md">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" stroke="none" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                      <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z" />
+                    </svg>
+                  </div>
+                  <div className="mt-4 text-[11px] font-mono font-semibold uppercase tracking-[0.2em] text-[#f3e8ff] opacity-90 drop-shadow-[0_0_10px_rgba(192,132,252,0.5)]">
+                    Needs
+                  </div>
+                </div>
+
+                {/* Phase 3: Patterns (Sparkles - Filled) */}
+                <div className="absolute flex flex-col items-center justify-center opacity-0 mix-blend-plus-lighter animate-[mist-cycle_12s_ease-in-out_infinite_8s]">
+                  <div className="flex h-14 w-14 items-center justify-center rounded-full border border-[#7c3aed]/30 bg-gradient-to-b from-[#7c3aed]/20 to-[#6d28d9]/10 text-[#ddd6fe] shadow-[0_0_30px_rgba(124,58,237,0.25)] backdrop-blur-md">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" stroke="none" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                      <path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z" />
+                      <path d="M5 3v4" />
+                      <path d="M9 5H5" />
+                      <path d="M6 17v4" />
+                      <path d="M10 19H6" />
+                    </svg>
+                  </div>
+                  <div className="mt-4 text-[11px] font-mono font-semibold uppercase tracking-[0.2em] text-[#ddd6fe] opacity-90 drop-shadow-[0_0_10px_rgba(124,58,237,0.5)]">
+                    Pattern
+                  </div>
+                </div>
+              </div>
+
+              {/* Bottom Indicator */}
+              <div className="absolute bottom-4 z-20">
+                <div className="flex items-center gap-2 rounded-lg border border-white/5 bg-[#0A0510]/60 px-3 py-1.5 backdrop-blur-md">
+                  <div className="flex gap-1">
+                    <div className="h-1 w-1 animate-pulse rounded-full bg-[#FE6839]" />
+                    <div className="h-1 w-1 animate-pulse rounded-full bg-[#a855f7]" style={{ animationDelay: "0.2s" }} />
+                    <div className="h-1 w-1 animate-pulse rounded-full bg-white" style={{ animationDelay: "0.4s" }} />
+                  </div>
+                  <span className="font-mono text-[9px] uppercase tracking-tight text-white/40">
+                    Vision Index
+                  </span>
+                </div>
+              </div>
             </div>
           </div>
         </div>

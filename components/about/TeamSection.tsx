@@ -51,7 +51,7 @@ const TeamSection: FC = () => {
     },
     {
       name: "Ferhad Jukić",
-      role: "Tech Lead",
+      role: "Full Stack Engineer",
       image: "/about/team-ferhad-jukic.png",
       socials: ["linkedin"],
       hoverColor: "purple",
@@ -89,9 +89,12 @@ const TeamSection: FC = () => {
 
   return (
     <section id="team" className="relative overflow-hidden border-t border-white/5 bg-[#0A0510] px-6 py-16 md:py-24">
-      {/* Ambient Background Glow */}
-      <div className="pointer-events-none absolute left-1/2 top-1/2 z-0 mx-auto h-full max-h-[800px] w-full max-w-7xl -translate-x-1/2 -translate-y-1/2">
-        <div className="absolute right-1/4 top-0 h-[500px] w-[500px] rounded-full bg-[#2E0147] opacity-20 blur-[120px] mix-blend-screen" />
+      {/* Ambient Background Glows - Left and Right */}
+      <div className="pointer-events-none absolute inset-0 z-0 overflow-hidden">
+        {/* Left gradient circle */}
+        <div className="absolute -left-64 top-1/3 h-[600px] w-[600px] rounded-full bg-[#2E0147] opacity-30 blur-[150px]" />
+        {/* Right gradient circle */}
+        <div className="absolute -right-64 bottom-1/4 h-[600px] w-[600px] rounded-full bg-[#2E0147] opacity-30 blur-[150px]" />
       </div>
 
       <div className="content-shell relative z-10">
