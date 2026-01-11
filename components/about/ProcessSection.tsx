@@ -31,11 +31,10 @@ const FileCheckIcon: FC<{ className?: string }> = ({ className = "w-8 h-8" }) =>
 );
 
 const ChartIcon: FC<{ className?: string }> = ({ className = "w-8 h-8" }) => (
-  <svg className={className} viewBox="0 0 24 24" fill="none" stroke="#a78bfa" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-    <rect x="3" y="3" width="18" height="18" rx="2" />
-    <path d="M7 16V8" />
-    <path d="M12 16v-5" />
-    <path d="M17 16v-8" />
+  <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M4 4V25.3333C4 26.0406 4.28095 26.7189 4.78105 27.219C5.28115 27.719 5.95942 28 6.66667 28H28" stroke="#A78BFA" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" />
+    <path d="M24 6.66663H21.3333C20.597 6.66663 20 7.26358 20 7.99996V21.3333C20 22.0697 20.597 22.6666 21.3333 22.6666H24C24.7364 22.6666 25.3333 22.0697 25.3333 21.3333V7.99996C25.3333 7.26358 24.7364 6.66663 24 6.66663Z" stroke="#A78BFA" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" />
+    <path d="M13.3335 10.6666H10.6668C9.93045 10.6666 9.3335 11.2636 9.3335 12V21.3333C9.3335 22.0697 9.93045 22.6666 10.6668 22.6666H13.3335C14.0699 22.6666 14.6668 22.0697 14.6668 21.3333V12C14.6668 11.2636 14.0699 10.6666 13.3335 10.6666Z" stroke="#A78BFA" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" />
   </svg>
 );
 
@@ -151,20 +150,16 @@ const OrbitalDiagram: FC = () => (
       <div className="absolute left-1/2 top-1/2 flex h-[128px] w-[128px] -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border border-white/10 bg-gradient-to-b from-[#1a1025] to-[#0a0510] shadow-[0_0_60px_rgba(46,1,71,0.5)]">
         <div className="relative flex items-center justify-center">
           {/* Brain/Insights icon */}
-          <svg className="h-9 w-9" viewBox="0 0 24 24" fill="none" stroke="url(#gradient)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-            <defs>
-              <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                <stop offset="0%" stopColor="#fe6839" />
-                <stop offset="100%" stopColor="#a78bfa" />
-              </linearGradient>
-            </defs>
-            <path d="M9.5 2A2.5 2.5 0 0 1 12 4.5v15a2.5 2.5 0 0 1-4.96.44 2.5 2.5 0 0 1-2.96-3.08 3 3 0 0 1-.34-5.58 2.5 2.5 0 0 1 1.32-4.24 2.5 2.5 0 0 1 1.98-3A2.5 2.5 0 0 1 9.5 2Z" />
-            <path d="M14.5 2A2.5 2.5 0 0 0 12 4.5v15a2.5 2.5 0 0 0 4.96.44 2.5 2.5 0 0 0 2.96-3.08 3 3 0 0 0 .34-5.58 2.5 2.5 0 0 0-1.32-4.24 2.5 2.5 0 0 0-1.98-3A2.5 2.5 0 0 0 14.5 2Z" />
-          </svg>
-          {/* Small badge */}
+          <svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M22.5 3H9C7.34425 3 6 4.34425 6 6V30C6 31.6557 7.34425 33 9 33H27C28.6557 33 30 31.6557 30 30V10.5L22.5 3" stroke="#A78BFA" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round" />
+            <path d="M21 3V9C21 10.6557 22.3443 12 24 12H30" stroke="#A78BFA" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round" />
+            <path d="M15 13.5H12" stroke="#A78BFA" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round" />
+            <path d="M24 19.5H12" stroke="#A78BFA" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round" />
+            <path d="M24 25.5H12" stroke="#A78BFA" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round" />
+          </svg>          {/* Small badge */}
           <div className="absolute -bottom-2 -right-2 flex h-[26px] w-[26px] items-center justify-center rounded-full border border-[#a78bfa] bg-[#1a1025]">
-            <svg className="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="#a78bfa" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-              <path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z" />
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M12.6668 9.33333C13.6602 8.36 14.6668 7.19333 14.6668 5.66667C14.6668 3.64298 13.0239 2 11.0002 2C9.82683 2 9.00016 2.33333 8.00016 3.33333C7.00016 2.33333 6.1735 2 5.00016 2C2.97512 2 1.3335 3.64162 1.3335 5.66667C1.3335 7.2 2.3335 8.36667 3.3335 9.33333L8.00016 14L12.6668 9.33333Z" fill="#A78BFA" />
             </svg>
           </div>
         </div>

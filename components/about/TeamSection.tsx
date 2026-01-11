@@ -6,8 +6,10 @@ import Link from "next/link";
 
 // Social icons
 const LinkedInIcon: FC = () => (
-  <svg width="18" height="18" viewBox="0 0 24 24" fill="#6b7280">
-    <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
+  <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M12 6C14.4836 6 16.5 8.01638 16.5 10.5V15.75H13.5V10.5C13.5 9.67213 12.8279 9 12 9C11.1721 9 10.5 9.67213 10.5 10.5V15.75H7.5V10.5C7.5 8.01638 9.51638 6 12 6V6" stroke="#6B7280" stroke-width="1.125" stroke-linecap="round" stroke-linejoin="round" />
+    <path d="M1.5 6.75H4.5V6.75V15.75V15.75H1.5V15.75V6.75V6.75V6.75" stroke="#6B7280" stroke-width="1.125" stroke-linecap="round" stroke-linejoin="round" />
+    <path d="M1.5 3C1.5 3.82787 2.17213 4.5 3 4.5C3.82787 4.5 4.5 3.82787 4.5 3C4.5 2.17213 3.82787 1.5 3 1.5C2.17213 1.5 1.5 2.17213 1.5 3H1.5" stroke="#6B7280" stroke-width="1.125" stroke-linecap="round" stroke-linejoin="round" />
   </svg>
 );
 
@@ -49,13 +51,14 @@ const TeamSection: FC = () => {
       name: "Ferhad Jukić",
       role: "Tech Lead",
       image: "/about/team-ferhad-jukic.png",
-      socials: ["linkedin", "twitter"],
+      socials: ["linkedin"],
     },
     {
       name: "Ismar Fazlić",
       role: "Design Lead",
       image: "/about/team-ismar-fazlic-74951d.png",
-      socials: ["dribbble", "twitter", "linkedin"],
+      socials: ["linkedin", "twitter", "dribbble"],
+
     },
     {
       name: "Marcus Börner",

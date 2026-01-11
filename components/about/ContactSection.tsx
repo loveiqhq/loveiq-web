@@ -14,13 +14,13 @@ type FormFieldProps = {
 };
 
 const FormField: FC<FormFieldProps> = ({ id, label, type = "text", value, onChange, disabled }) => (
-  <label htmlFor={id} className="space-y-2">
-    <span className="block text-sm font-medium text-[#9CA3AF]">{label}</span>
+  <label htmlFor={id} className="flex flex-col gap-2">
+    <span className="text-sm font-medium text-[#9CA3AF]">{label}</span>
     <input
       id={id}
       name={id}
       type={type}
-      className="h-12 w-full rounded-xl border-b border-white/10 bg-transparent px-3 text-sm text-white transition focus:border-white/30 focus:outline-none focus:ring-0 disabled:opacity-60"
+      className="h-[49px] w-full border-b border-white/10 bg-transparent text-sm text-white transition focus:border-white/30 focus:outline-none focus:ring-0 disabled:opacity-60"
       value={value}
       onChange={onChange}
       required
@@ -154,21 +154,21 @@ const ContactSection: FC = () => {
   };
 
   return (
-    <section id="contact" className="bg-[#0A0510] px-4 py-20 sm:py-24">
-      <div className="content-shell grid gap-6 lg:grid-cols-[1.05fr_1fr]">
-        <div className="relative overflow-hidden rounded-[32px] border border-white/10 bg-[#120B1C] p-10">
-          <div className="pointer-events-none absolute -left-40 -top-40 h-80 w-80 rounded-full bg-[#2e0147] opacity-40 blur-[180px]" />
-          <div className="pointer-events-none absolute -bottom-16 right-10 h-56 w-56 rounded-full bg-[#fe6839] opacity-35 blur-[150px]" />
+    <section id="contact" className="bg-[#0A0510] px-6 py-24">
+      <div className="content-shell grid gap-6 lg:grid-cols-2">
+        <div className="relative overflow-hidden rounded-[32px] border border-white/10 bg-[#120B1C] p-16">
+          <div className="pointer-events-none absolute -left-64 -top-64 h-[500px] w-[500px] rounded-full bg-[#2e0147] blur-[200px]" />
+          <div className="pointer-events-none absolute -bottom-52 -right-40 h-[300px] w-[300px] rounded-full bg-[#fe6839] blur-[200px]" />
           <div className="relative">
-            <h2 className="font-serif text-5xl font-semibold leading-[1.05] text-white sm:text-[60px]">
+            <h2 className="font-serif text-[60px] font-semibold leading-[60px] tracking-[-0.025em] text-white">
               Contact Our
               <br />
-              Team
+              <span className="text-[#fe6839]">Team</span>
             </h2>
           </div>
         </div>
 
-        <div className="rounded-[32px] border border-white/10 bg-[#120B1C] p-8 sm:p-10">
+        <div className="rounded-[32px] border border-white/10 bg-[#120B1C] p-12">
           <Script
             src="https://www.google.com/recaptcha/api.js?render=explicit"
             strategy="afterInteractive"
@@ -176,23 +176,23 @@ const ContactSection: FC = () => {
             onLoad={() => setScriptLoaded(true)}
             onError={() => setStatus({ type: "error", message: "Captcha failed to load. Please reload and try again." })}
           />
-          <form className="space-y-6" onSubmit={handleSubmit}>
-            <div className="grid gap-5 sm:grid-cols-2">
+          <form className="space-y-8" onSubmit={handleSubmit}>
+            <div className="flex flex-col gap-8">
               <FormField label="First name*" id="firstName" type="text" value={form.firstName} onChange={handleChange} disabled={submitting} />
               <FormField label="Last name*" id="lastName" type="text" value={form.lastName} onChange={handleChange} disabled={submitting} />
               <FormField label="Phone*" id="phone" type="tel" value={form.phone} onChange={handleChange} disabled={submitting} />
               <FormField label="Email*" id="email" type="email" value={form.email} onChange={handleChange} disabled={submitting} />
             </div>
 
-            <div className="space-y-3">
+            <div className="flex flex-col gap-2">
               <label htmlFor="message" className="text-sm font-medium text-[#9CA3AF]">
                 How can we help you?*
               </label>
               <textarea
                 id="message"
                 name="message"
-                rows={5}
-                className="w-full rounded-xl border border-white/15 bg-[#0a0510]/80 px-4 py-3 text-sm text-white shadow-inner shadow-black/20 focus:border-white/30 focus:outline-none focus:ring-2 focus:ring-[#fe6839]/40 disabled:opacity-60"
+                rows={4}
+                className="w-full rounded-xl border border-white/10 bg-[#0a0510]/50 px-4 py-4 text-sm font-light text-white placeholder:text-[#4B5563] focus:border-white/30 focus:outline-none disabled:opacity-60"
                 placeholder="Tell us a bit about yourself and your project goals"
                 value={form.message}
                 onChange={handleChange}
@@ -200,27 +200,29 @@ const ContactSection: FC = () => {
                 required
                 disabled={submitting}
               />
-              <div className="text-right text-xs font-medium text-[#4B5563]">1000 character limit</div>
+              <div className="text-right text-xs text-[#4B5563]">1000 character limit</div>
             </div>
 
-            <div className="flex flex-wrap items-center justify-between gap-4">
-              <div className="rounded-lg bg-white px-2 py-1">
-                <div
-                  ref={recaptchaContainerRef}
-                  className="g-recaptcha min-h-[78px] min-w-[304px]"
-                  aria-label="reCAPTCHA"
-                  data-theme="light"
-                  data-sitekey={siteKey}
-                />
-                {!captchaReady && (
-                  <div className="mt-2 text-xs font-medium text-[#4B5563]">
-                    Captcha loading... If it does not appear, disable blockers and reload.
-                  </div>
-                )}
+            <div className="flex flex-col gap-8">
+              <div className="inline-flex">
+                <div className="rounded-[3px] border border-[#d3d3d3] bg-[#f9f9f9] px-3 py-3 shadow-sm">
+                  <div
+                    ref={recaptchaContainerRef}
+                    className="g-recaptcha min-h-[78px] min-w-[304px]"
+                    aria-label="reCAPTCHA"
+                    data-theme="light"
+                    data-sitekey={siteKey}
+                  />
+                  {!captchaReady && (
+                    <div className="mt-2 text-xs font-medium text-[#4B5563]">
+                      Captcha loading... If it does not appear, disable blockers and reload.
+                    </div>
+                  )}
+                </div>
               </div>
               <button
                 type="submit"
-                className="inline-flex items-center gap-2 rounded-full border border-white/20 px-6 py-3 text-sm font-bold text-white transition hover:-translate-y-[2px] hover:border-white/35 focus-visible-ring disabled:cursor-not-allowed disabled:opacity-60"
+                className="inline-flex w-fit items-center gap-2 rounded-full border border-white/20 px-8 py-3 text-sm font-bold text-white transition hover:-translate-y-[2px] hover:border-white/35 focus-visible-ring disabled:cursor-not-allowed disabled:opacity-60"
                 disabled={submitting}
               >
                 {submitting ? "Sending..." : "Submit"}
