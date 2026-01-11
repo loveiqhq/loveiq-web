@@ -1,5 +1,6 @@
 "use client";
 
+import { useState, useEffect } from "react";
 import type { FC } from "react";
 import Link from "next/link";
 import { trackStartSurvey } from "../../lib/analytics";
@@ -7,6 +8,19 @@ import { trackStartSurvey } from "../../lib/analytics";
 const navLinks = [{ label: "About", href: "/about" }];
 
 const NavSection: FC = () => {
+  const [menuOpen, setMenuOpen] = useState(false);
+
+  useEffect(() => {
+    if (!menuOpen) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setMenuOpen(false);
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [menuOpen]);
+
+  const closeMenu = () => setMenuOpen(false);
+
   return (
     <header className="pointer-events-none fixed inset-x-0 top-0 z-40 px-4 sm:top-3">
       <div className="content-shell">
@@ -83,7 +97,9 @@ const NavSection: FC = () => {
               <button
                 type="button"
                 className="flex h-10 w-10 items-center justify-center rounded-2xl border border-white/10 bg-white/5 text-white/80 shadow-[0_10px_20px_rgba(0,0,0,0.25)] transition hover:border-white/20 hover:text-white focus-visible-ring sm:hidden"
-                aria-label="Open menu"
+                aria-label="Toggle menu"
+                aria-expanded={menuOpen}
+                onClick={() => setMenuOpen((prev) => !prev)}
               >
                 <svg
                   aria-hidden
@@ -102,6 +118,52 @@ const NavSection: FC = () => {
               </button>
             </div>
           </nav>
+          {menuOpen && (
+            <div className="pointer-events-auto absolute left-0 right-0 top-[68px] mx-auto w-full max-w-[360px] rounded-2xl border border-white/10 bg-[#0A0510]/95 p-4 shadow-[0_25px_80px_rgba(0,0,0,0.55)] backdrop-blur sm:hidden">
+              <div className="flex flex-col gap-3">
+                <Link
+                  href="/about"
+                  className="w-full rounded-xl bg-white/5 px-4 py-3 text-left text-sm font-semibold text-white hover:bg-white/10 focus-visible-ring"
+                  onClick={closeMenu}
+                >
+                  About
+                </Link>
+                <Link
+                  href="/waitlist"
+                  className="group relative inline-flex w-full items-center justify-center gap-2 overflow-hidden rounded-full bg-gradient-brand px-5 py-3 text-sm font-semibold text-white shadow-pill transition hover:translate-y-[-2px] focus-visible-ring"
+                  onClick={() => {
+                    trackStartSurvey("nav");
+                    closeMenu();
+                  }}
+                >
+                  <span
+                    aria-hidden
+                    className="pointer-events-none absolute inset-0 bg-white opacity-0 transition-opacity duration-500 group-hover:opacity-100"
+                  />
+                  <div
+                    aria-hidden
+                    className="absolute inset-0 translate-y-full bg-white/20 transition-transform duration-300 group-hover:translate-y-0"
+                  />
+                  <span className="pointer-events-none absolute inset-0 rounded-full bg-white/10 opacity-0 transition duration-300 group-hover:opacity-100" />
+                  <span className="pointer-events-none absolute inset-[-12%] rounded-full border border-white/15 mix-blend-screen opacity-70" />
+                  <span className="relative z-10 transition-colors duration-500 group-hover:text-black">Start survey now</span>
+                  <svg
+                    aria-hidden
+                    className="relative z-10 h-5 w-5 transition-colors duration-500 group-hover:text-black"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2.2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  >
+                    <path d="M5 12h14" />
+                    <path d="m12 5 7 7-7 7" />
+                  </svg>
+                </Link>
+              </div>
+            </div>
+          )}
         </div>
       </div>
     </header>
