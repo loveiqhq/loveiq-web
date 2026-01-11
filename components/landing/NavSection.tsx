@@ -12,8 +12,8 @@ const NavSection: FC = () => {
       <div className="content-shell">
         <div className="relative pointer-events-auto">
           <div className="pointer-events-none absolute inset-[-10px] rounded-[999px] bg-[radial-gradient(80%_120%_at_50%_50%,rgba(0,0,0,0.55),transparent_65%)] blur-3xl" />
-          <nav className="relative mx-auto flex w-full max-w-[1200px] items-center justify-between gap-5 rounded-[999px] bg-gradient-to-r from-[#1b0f2a] via-[#120a20] to-[#1b0f2a] pl-6 pr-2 py-[6px] shadow-[0_25px_80px_rgba(0,0,0,0.55)] backdrop-blur">
-            <div className="flex flex-1 items-center gap-2.5">
+          <nav className="relative mx-auto flex w-full max-w-[1200px] items-center justify-between gap-3 rounded-[999px] bg-gradient-to-r from-[#1b0f2a] via-[#120a20] to-[#1b0f2a] px-3 py-2 shadow-[0_25px_80px_rgba(0,0,0,0.55)] backdrop-blur sm:gap-5 sm:pl-6 sm:pr-2 sm:py-[6px]">
+            <div className="flex flex-1 items-center gap-2">
               <div className="relative flex h-7 w-7 items-center justify-center overflow-hidden rounded-2xl bg-gradient-to-br from-[#ff9450] via-[#fe6839] to-[#c36ddf] shadow-[0_8px_18px_rgba(0,0,0,0.28)] focus-visible-ring">
                 <svg
                   aria-hidden
@@ -43,7 +43,7 @@ const NavSection: FC = () => {
               ))}
             </div>
 
-            <div className="flex flex-1 items-center justify-end gap-3">
+            <div className="flex flex-1 items-center justify-end gap-2 sm:gap-3">
               <Link
                 href="/about"
                 className="inline-flex shrink-0 items-center justify-center gap-2 whitespace-nowrap rounded-full border border-white/15 bg-white/5 px-4 py-2 text-xs font-semibold text-white/85 shadow-[0_15px_40px_rgba(0,0,0,0.35)] transition hover:-translate-y-[2px] hover:border-white/25 hover:text-white focus-visible-ring lg:hidden"
@@ -52,7 +52,7 @@ const NavSection: FC = () => {
               </Link>
               <Link
                 href="/waitlist"
-                className="group relative inline-flex shrink-0 items-center justify-center gap-2 overflow-hidden whitespace-nowrap rounded-full bg-gradient-brand px-4 py-2 text-xs font-semibold text-white shadow-pill transition hover:translate-y-[-2px] focus-visible-ring sm:px-6 sm:py-3 sm:text-sm"
+                className="group relative inline-flex shrink-0 items-center justify-center gap-2 overflow-hidden whitespace-nowrap rounded-full bg-gradient-brand px-3.5 py-2 text-[13px] font-semibold text-white shadow-pill transition hover:translate-y-[-2px] focus-visible-ring sm:px-6 sm:py-3 sm:text-sm"
                 onClick={() => trackStartSurvey("nav")}
               >
                 <span

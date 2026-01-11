@@ -286,8 +286,8 @@ const Section05: FC = () => {
         <div className="grid gap-12 lg:grid-cols-[1.05fr_0.95fr] lg:items-center">
           <div className="relative space-y-7">
             <h3 className="font-serif text-4xl leading-tight sm:text-5xl md:text-[46px]">
-              <span className="block whitespace-nowrap">Embark on an exploration of</span>
-              <span className="block whitespace-nowrap">your desires and connection.</span>
+              <span className="block md:whitespace-nowrap">Embark on an exploration of</span>
+              <span className="block md:whitespace-nowrap">your desires and connection.</span>
             </h3>
             <div className="space-y-6">
               {explorationBullets.map((item) => (
@@ -304,8 +304,8 @@ const Section05: FC = () => {
             </div>
           </div>
 
-          <div className="relative flex justify-center">
-            <div className="relative w-[320px] overflow-hidden rounded-[34px] shadow-[0_34px_120px_rgba(0,0,0,0.5)] sm:w-[380px] md:w-[420px]">
+          <div className="relative flex justify-center px-2 sm:px-0">
+            <div className="relative w-full max-w-[320px] overflow-hidden rounded-[34px] shadow-[0_34px_120px_rgba(0,0,0,0.5)] sm:max-w-[380px] md:max-w-[420px]">
               <div className="relative h-[520px] w-full overflow-hidden rounded-[34px] sm:h-[600px]">
                 <Image
                   src="/762ab2dcc4e38a7a2824b7a4f5174f2627a7eaae.webp"
