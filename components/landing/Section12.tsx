@@ -65,13 +65,13 @@ const Section12: FC = () => {
               <path d="m12 5 7 7-7 7" />
             </svg>
           </a>
-          <div className="flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.2em] text-white/75">
+          <div className="flex flex-wrap items-center justify-center gap-x-3 gap-y-1 text-[11px] font-semibold uppercase tracking-[0.18em] text-white/75 sm:text-xs">
             <svg aria-hidden className="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
               <circle cx="12" cy="12" r="10" />
               <path d="M12 6v6l4 2" />
             </svg>
             <span>Takes 10 minutes</span>
-            <span className="h-1 w-1 rounded-full bg-white/60" aria-hidden />
+            <span className="h-1.5 w-1.5 rounded-full bg-white/60" aria-hidden />
             <span>No account required</span>
           </div>
         </div>
