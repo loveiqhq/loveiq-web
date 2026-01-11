@@ -1,0 +1,77 @@
+"use client";
+
+import type { FC } from "react";
+import Link from "next/link";
+
+const ArrowIcon: FC = () => (
+  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#6b7280" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <path d="M7 17 17 7" />
+    <path d="M7 7h10v10" />
+  </svg>
+);
+
+const PublicationsSection: FC = () => {
+  const publications = [
+    {
+      title: "Intimacy and sexual well-being in couples coping with sexual interest/arousal disorder",
+      meta: "2025 • Harvard University",
+      stagger: "",
+    },
+    {
+      title: "The importance of perceived partner responsiveness in modern relationships",
+      meta: "2025 • Stanford Psychology",
+      stagger: "stagger-1",
+    },
+    {
+      title: "Digital Therapeutics: Bridging the gap between diagnosis and daily wellness",
+      meta: "2024 • Journal of Digital Health",
+      stagger: "stagger-2",
+    },
+  ];
+
+  return (
+    <section id="publications" className="border-t border-white/5 bg-[#0A0510] px-6 py-16 md:py-24">
+      <div className="mx-auto max-w-4xl px-6">
+        {/* Header with dividers */}
+        <div className="reveal-on-scroll mb-12 flex items-center gap-4">
+          <div className="h-px flex-1 bg-white/10" aria-hidden />
+          <h2 className="whitespace-nowrap font-serif text-2xl font-normal text-white">
+            Latest Science &amp; Publications
+          </h2>
+          <div className="h-px flex-1 bg-white/10" aria-hidden />
+        </div>
+
+        {/* Publication cards */}
+        <div className="flex flex-col gap-6">
+          {publications.map((pub) => (
+            <Link
+              key={pub.title}
+              href="#"
+              className={`reveal-on-scroll ${pub.stagger} group relative block overflow-hidden`}
+            >
+              <div className="relative overflow-hidden rounded-xl border border-white/5 bg-[#120B1C] p-6 transition-all duration-500 ease-out hover:-translate-y-1 hover:border-[#a855f7]/50 hover:shadow-[0_0_30px_-5px_rgba(168,85,247,0.15)]">
+                {/* Hover shine effect */}
+                <div className="pointer-events-none absolute inset-0 translate-x-[-100%] bg-gradient-to-r from-[#a855f7]/0 via-[#a855f7]/5 to-[#a855f7]/0 transition-transform duration-1000 ease-in-out group-hover:translate-x-[100%]" />
+                <div className="relative z-10 flex items-start justify-between gap-4">
+                  <div>
+                    <h3 className="mb-2 font-sans text-lg font-semibold tracking-tight text-white transition-colors duration-300 group-hover:text-[#a855f7]">
+                      {pub.title}
+                    </h3>
+                    <p className="font-sans text-xs font-medium text-gray-500 transition-colors group-hover:text-gray-400">
+                      {pub.meta}
+                    </p>
+                  </div>
+                  <div className="shrink-0 text-gray-500 transition-colors duration-300 group-hover:text-[#a855f7]">
+                    <ArrowIcon />
+                  </div>
+                </div>
+              </div>
+            </Link>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+};
+
+export default PublicationsSection;

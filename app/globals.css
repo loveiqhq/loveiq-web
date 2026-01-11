@@ -201,6 +201,34 @@ h3,
   }
 }
 
+@keyframes inner-orbit-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(-360deg);
+  }
+}
+
+@keyframes inner-orbit-icon {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-inner-orbit {
+  animation: inner-orbit-spin 90s linear infinite;
+  animation-play-state: running;
+}
+
+.animate-inner-orbit-icon {
+  animation: inner-orbit-icon 90s linear infinite;
+  animation-play-state: running;
+}
+
 .animate-float {
   animation: float 6s ease-in-out infinite;
 }
@@ -303,4 +331,71 @@ h3,
 }
 .delay-7 {
   animation-delay: 0.7s;
+}
+
+/* About page scroll reveal animations */
+.reveal-on-scroll {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 1s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+.reveal-on-scroll.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Stagger classes for reveal-on-scroll */
+.stagger-1 { transition-delay: 100ms; }
+.stagger-2 { transition-delay: 200ms; }
+.stagger-3 { transition-delay: 300ms; }
+.stagger-4 { transition-delay: 400ms; }
+
+/* Hero character-by-character animation */
+@keyframes sensual-char-reveal {
+  0% {
+    opacity: 0;
+    filter: blur(12px);
+    transform: translateY(15px) scale(0.9);
+  }
+  100% {
+    opacity: 1;
+    filter: blur(0);
+    transform: translateY(0) scale(1);
+  }
+}
+
+.char-anim {
+  display: inline-block;
+  opacity: 0;
+  animation: sensual-char-reveal 1.8s cubic-bezier(0.2, 0.6, 0.2, 1) forwards;
+  will-change: transform, opacity, filter;
+}
+
+/* Hero sensual fade animation */
+@keyframes sensual-reveal {
+  0% {
+    opacity: 0;
+    filter: blur(12px);
+    transform: translateY(30px) scale(0.98);
+  }
+  100% {
+    opacity: 1;
+    filter: blur(0);
+    transform: translateY(0) scale(1);
+  }
+}
+
+.sensual-anim {
+  opacity: 0;
+  animation: sensual-reveal 1.8s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+}
+
+/* Icon float animation */
+@keyframes icon-float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-5px); }
+}
+
+.animate-icon-float {
+  animation: icon-float 3s ease-in-out infinite;
 }
