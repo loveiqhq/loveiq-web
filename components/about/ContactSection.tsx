@@ -154,13 +154,13 @@ const ContactSection: FC = () => {
   };
 
   return (
-    <section id="contact" className="bg-[#0A0510] px-6 py-24">
+    <section id="contact" className="bg-[#0A0510] px-6 py-16 md:py-24">
       <div className="content-shell grid gap-6 lg:grid-cols-2">
-        <div className="reveal-on-scroll relative overflow-hidden rounded-[32px] border border-white/10 bg-[#120B1C] p-16">
+        <div className="reveal-on-scroll relative overflow-hidden rounded-[24px] border border-white/10 bg-[#120B1C] p-8 md:rounded-[32px] md:p-16">
           <div className="pointer-events-none absolute -left-64 -top-64 h-[500px] w-[500px] rounded-full bg-[#2e0147] blur-[200px]" />
           <div className="pointer-events-none absolute -bottom-52 -right-40 h-[300px] w-[300px] rounded-full bg-[#fe6839] blur-[200px]" />
           <div className="relative">
-            <h2 className="font-serif text-[60px] font-semibold leading-[60px] tracking-[-0.025em] text-white">
+            <h2 className="font-serif text-4xl font-semibold leading-[1] tracking-[-0.025em] text-white md:text-[60px] md:leading-[60px]">
               Contact Our
               <br />
               <span className="text-[#fe6839]">Team</span>
@@ -168,7 +168,7 @@ const ContactSection: FC = () => {
           </div>
         </div>
 
-        <div className="reveal-on-scroll stagger-1 rounded-[32px] border border-white/10 bg-[#120B1C] p-12">
+        <div className="reveal-on-scroll stagger-1 rounded-[24px] border border-white/10 bg-[#120B1C] p-6 md:rounded-[32px] md:p-12">
           <Script
             src="https://www.google.com/recaptcha/api.js?render=explicit"
             strategy="afterInteractive"
@@ -176,8 +176,8 @@ const ContactSection: FC = () => {
             onLoad={() => setScriptLoaded(true)}
             onError={() => setStatus({ type: "error", message: "Captcha failed to load. Please reload and try again." })}
           />
-          <form className="space-y-8" onSubmit={handleSubmit}>
-            <div className="flex flex-col gap-8">
+          <form className="space-y-6 md:space-y-8" onSubmit={handleSubmit}>
+            <div className="flex flex-col gap-6 md:gap-8">
               <FormField label="First name*" id="firstName" type="text" value={form.firstName} onChange={handleChange} disabled={submitting} />
               <FormField label="Last name*" id="lastName" type="text" value={form.lastName} onChange={handleChange} disabled={submitting} />
               <FormField label="Phone*" id="phone" type="tel" value={form.phone} onChange={handleChange} disabled={submitting} />
@@ -203,12 +203,13 @@ const ContactSection: FC = () => {
               <div className="text-right text-xs text-[#4B5563]">1000 character limit</div>
             </div>
 
-            <div className="flex flex-col gap-8">
+            <div className="flex flex-col gap-6 md:gap-8">
               <div className="inline-flex">
-                <div className="rounded-[3px] border border-[#d3d3d3] bg-[#f9f9f9] px-3 py-3 shadow-sm">
+                <div className="w-full overflow-x-auto rounded-[3px] border border-[#d3d3d3] bg-[#f9f9f9] px-2 py-2 shadow-sm md:w-auto md:px-3 md:py-3">
                   <div
                     ref={recaptchaContainerRef}
-                    className="g-recaptcha min-h-[78px] min-w-[304px]"
+                    className="g-recaptcha min-h-[78px]"
+                    style={{ transform: "scale(0.85)", transformOrigin: "0 0" }}
                     aria-label="reCAPTCHA"
                     data-theme="light"
                     data-sitekey={siteKey}
@@ -222,7 +223,7 @@ const ContactSection: FC = () => {
               </div>
               <button
                 type="submit"
-                className="inline-flex w-fit items-center gap-2 rounded-full border border-white/20 px-8 py-3 text-sm font-bold text-white transition hover:-translate-y-[2px] hover:border-white/35 focus-visible-ring disabled:cursor-not-allowed disabled:opacity-60"
+                className="inline-flex w-full items-center justify-center gap-2 rounded-full border border-white/20 px-6 py-3 text-sm font-bold text-white transition hover:-translate-y-[2px] hover:border-white/35 focus-visible-ring disabled:cursor-not-allowed disabled:opacity-60 md:w-fit md:px-8"
                 disabled={submitting}
               >
                 {submitting ? "Sending..." : "Submit"}

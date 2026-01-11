@@ -2,7 +2,7 @@
 
 import type { FC } from "react";
 import { useEffect } from "react";
-import NavSection from "../landing/NavSection";
+import AboutNavSection from "./AboutNavSection";
 import HeroSection from "./HeroSection";
 import ChallengeVisionSection from "./ChallengeVisionSection";
 import SolutionSection from "./SolutionSection";
@@ -41,8 +41,8 @@ const AboutPage: FC = () => {
 
   return (
     <main className="relative bg-[#0A0510] text-white">
-      <NavSection />
-      <div className="space-y-16 pt-28 sm:pt-32 md:space-y-20">
+      <AboutNavSection />
+      <div className="space-y-16 pt-24 sm:pt-32 md:space-y-20">
         <HeroSection />
         <ChallengeVisionSection />
         <SolutionSection />
