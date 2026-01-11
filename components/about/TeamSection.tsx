@@ -40,31 +40,35 @@ const TeamSection: FC = () => {
       role: "Product Lead",
       image: "/about/team-ema-djedovic.png",
       socials: ["linkedin", "twitter", "globe"],
+      hoverColor: "purple",
     },
     {
       name: "Eman Čičkušić",
       role: "Tech Lead",
       image: "/about/team-eman-cickusic-61a88a.png",
       socials: ["linkedin", "twitter", "dribbble"],
+      hoverColor: "orange",
     },
     {
       name: "Ferhad Jukić",
       role: "Tech Lead",
       image: "/about/team-ferhad-jukic.png",
       socials: ["linkedin"],
+      hoverColor: "purple",
     },
     {
       name: "Ismar Fazlić",
       role: "Design Lead",
       image: "/about/team-ismar-fazlic-74951d.png",
       socials: ["linkedin", "twitter", "dribbble"],
-
+      hoverColor: "orange",
     },
     {
       name: "Marcus Börner",
       role: "Strategy Lead",
       image: "/about/team-marcus-borner-56586a.png",
       socials: ["linkedin"],
+      hoverColor: "purple",
     },
   ];
 
@@ -84,71 +88,80 @@ const TeamSection: FC = () => {
   };
 
   return (
-    <section id="team" className="relative overflow-hidden border-t border-white/5 bg-[#0A0510] px-6 pb-24 pt-24">
-      {/* Background blurs */}
-      <div className="pointer-events-none absolute left-[-600px] top-[294px] h-[695px] w-[695px] rounded-full bg-[#2e0147] opacity-100 blur-[110px] mix-blend-screen" />
-      <div className="pointer-events-none absolute right-[-591px] top-[341px] h-[692px] w-[692px] rounded-full bg-[#2e0147] opacity-100 blur-[110px] mix-blend-screen" />
+    <section id="team" className="relative overflow-hidden border-t border-white/5 bg-[#0A0510] px-6 py-16 md:py-24">
+      {/* Ambient Background Glow */}
+      <div className="pointer-events-none absolute left-1/2 top-1/2 z-0 mx-auto h-full max-h-[800px] w-full max-w-7xl -translate-x-1/2 -translate-y-1/2">
+        <div className="absolute right-1/4 top-0 h-[500px] w-[500px] rounded-full bg-[#2E0147] opacity-20 blur-[120px] mix-blend-screen" />
+      </div>
 
       <div className="content-shell relative z-10">
         {/* Header */}
-        <div className="mb-20 flex flex-col items-center gap-6">
-          {/* Our Team badge - positioned to the right */}
-          <div className="relative w-full">
-            <div className="absolute right-[10%] top-0 rotate-12 rounded-full bg-[#fe6839] px-3 py-1.5 text-[10px] font-bold uppercase tracking-[0.5px] text-white shadow-[0_4px_10px_rgba(254,104,57,0.3)]">
+        <div className="reveal-on-scroll mb-20 text-center">
+          <div className="relative inline-block">
+            <h2 className="font-serif text-4xl tracking-tight text-white md:text-5xl">
+              Leadership Team With Vision
+            </h2>
+            {/* Badge */}
+            <div className="absolute -right-8 -top-6 rotate-12 cursor-default rounded-full bg-[#FE6839] px-3 py-1.5 text-[10px] font-bold uppercase tracking-wider text-white shadow-[0_4px_10px_rgba(254,104,57,0.3)] transition-transform hover:rotate-6 md:-right-16">
               Our Team
             </div>
           </div>
-
-          <h2 className="mt-8 font-serif text-[48px] font-medium leading-[1] tracking-[-1.2px] text-white">
-            Leadership Team With Vision
-          </h2>
-          <p className="max-w-[672px] text-center text-xl leading-[1.46] text-[#9CA3AF]">
+          <p className="mx-auto mt-6 max-w-2xl text-lg font-light leading-relaxed text-gray-400">
             We&apos;ve combined years of clinical experience, cutting-edge psychology, and intuitive design to create a platform that gives you complete visibility into your emotional well-being.
           </p>
         </div>
 
-        {/* Team cards */}
-        <div className="mx-auto flex max-w-[920px] flex-wrap justify-center gap-6">
-          {team.map((member) => (
-            <div
-              key={member.name}
-              className="flex w-[290px] flex-col gap-5 rounded-[32px] border border-white/5 bg-[#120B1C] p-[17px]"
-            >
-              {/* Photo */}
-              <div className="relative h-[256px] w-[256px] overflow-hidden rounded-2xl bg-[#0a0510]">
-                <Image
-                  src={member.image}
-                  alt={member.name}
-                  fill
-                  sizes="256px"
-                  className="object-cover"
-                />
-              </div>
+        {/* Team Grid */}
+        <div className="mx-auto grid max-w-5xl grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4">
+          {team.map((member, index) => {
+            const isPurple = member.hoverColor === "purple";
+            const hoverShadow = isPurple
+              ? "hover:shadow-[0_20px_40px_-12px_rgba(46,1,71,0.5)]"
+              : "hover:shadow-[0_20px_40px_-12px_rgba(254,104,57,0.3)]";
+            const nameHoverColor = isPurple ? "group-hover:text-[#a855f7]" : "group-hover:text-[#FE6839]";
 
-              {/* Info */}
-              <div className="flex flex-col gap-1 px-2 pb-2">
-                <h3 className="text-xl font-medium leading-[1.4] text-white">
-                  {member.name}
-                </h3>
-                <p className="text-sm font-normal leading-[1.43] text-[#6B7280]">
-                  {member.role}
-                </p>
+            return (
+              <div
+                key={member.name}
+                className={`reveal-on-scroll stagger-${Math.min(index + 1, 4)} group rounded-[2rem] border border-white/5 bg-[#120B1C] p-4 transition-all duration-500 ease-[cubic-bezier(0.25,0.4,0.25,1)] hover:-translate-y-2 hover:border-white/20 hover:bg-[#1a1025] ${hoverShadow}`}
+              >
+                {/* Photo */}
+                <div className="relative mb-5 aspect-square overflow-hidden rounded-2xl bg-[#0A0510]">
+                  <div className="pointer-events-none absolute inset-0 z-10 bg-gradient-to-t from-[#0A0510] via-transparent to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-60" />
+                  <Image
+                    src={member.image}
+                    alt={member.name}
+                    fill
+                    sizes="256px"
+                    className="object-cover opacity-90 grayscale-[20%] transition-all duration-700 ease-out group-hover:scale-110 group-hover:opacity-100 group-hover:grayscale-0"
+                  />
+                </div>
 
-                {/* Social links */}
-                <div className="flex gap-4 pt-4">
-                  {member.socials.map((social) => (
-                    <Link
-                      key={social}
-                      href="#"
-                      className="transition-opacity hover:opacity-70"
-                    >
-                      {getSocialIcon(social)}
-                    </Link>
-                  ))}
+                {/* Info */}
+                <div className="relative z-20 px-2 pb-2">
+                  <h3 className={`mb-1 text-xl font-medium text-white transition-colors duration-300 ${nameHoverColor}`}>
+                    {member.name}
+                  </h3>
+                  <p className="mb-5 text-sm text-gray-500 transition-colors duration-300 group-hover:text-gray-400">
+                    {member.role}
+                  </p>
+
+                  {/* Social links */}
+                  <div className="flex items-center gap-4 text-gray-500">
+                    {member.socials.map((social) => (
+                      <Link
+                        key={social}
+                        href="#"
+                        className="transition-all duration-300 hover:scale-110 hover:text-white"
+                      >
+                        {getSocialIcon(social)}
+                      </Link>
+                    ))}
+                  </div>
                 </div>
               </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
       </div>
     </section>

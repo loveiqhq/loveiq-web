@@ -156,7 +156,7 @@ const ContactSection: FC = () => {
   return (
     <section id="contact" className="bg-[#0A0510] px-6 py-24">
       <div className="content-shell grid gap-6 lg:grid-cols-2">
-        <div className="relative overflow-hidden rounded-[32px] border border-white/10 bg-[#120B1C] p-16">
+        <div className="reveal-on-scroll relative overflow-hidden rounded-[32px] border border-white/10 bg-[#120B1C] p-16">
           <div className="pointer-events-none absolute -left-64 -top-64 h-[500px] w-[500px] rounded-full bg-[#2e0147] blur-[200px]" />
           <div className="pointer-events-none absolute -bottom-52 -right-40 h-[300px] w-[300px] rounded-full bg-[#fe6839] blur-[200px]" />
           <div className="relative">
@@ -168,7 +168,7 @@ const ContactSection: FC = () => {
           </div>
         </div>
 
-        <div className="rounded-[32px] border border-white/10 bg-[#120B1C] p-12">
+        <div className="reveal-on-scroll stagger-1 rounded-[32px] border border-white/10 bg-[#120B1C] p-12">
           <Script
             src="https://www.google.com/recaptcha/api.js?render=explicit"
             strategy="afterInteractive"

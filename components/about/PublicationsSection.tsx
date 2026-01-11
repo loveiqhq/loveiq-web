@@ -15,24 +15,27 @@ const PublicationsSection: FC = () => {
     {
       title: "Intimacy and sexual well-being in couples coping with sexual interest/arousal disorder",
       meta: "2025 • Harvard University",
+      stagger: "",
     },
     {
       title: "The importance of perceived partner responsiveness in modern relationships",
       meta: "2025 • Stanford Psychology",
+      stagger: "stagger-1",
     },
     {
       title: "Digital Therapeutics: Bridging the gap between diagnosis and daily wellness",
       meta: "2024 • Journal of Digital Health",
+      stagger: "stagger-2",
     },
   ];
 
   return (
-    <section id="publications" className="border-t border-white/5 bg-[#0A0510] px-6 py-24">
-      <div className="mx-auto max-w-[896px] px-6">
+    <section id="publications" className="border-t border-white/5 bg-[#0A0510] px-6 py-16 md:py-24">
+      <div className="mx-auto max-w-4xl px-6">
         {/* Header with dividers */}
-        <div className="mb-12 flex items-center gap-4">
+        <div className="reveal-on-scroll mb-12 flex items-center gap-4">
           <div className="h-px flex-1 bg-white/10" aria-hidden />
-          <h2 className="whitespace-nowrap font-serif text-2xl font-normal leading-[1.33] text-white">
+          <h2 className="whitespace-nowrap font-serif text-2xl font-normal text-white">
             Latest Science &amp; Publications
           </h2>
           <div className="h-px flex-1 bg-white/10" aria-hidden />
@@ -44,18 +47,24 @@ const PublicationsSection: FC = () => {
             <Link
               key={pub.title}
               href="#"
-              className="group flex items-start justify-between gap-4 rounded-xl border border-white/5 bg-[#120B1C] p-6 transition-all hover:border-white/10 hover:bg-[#1a1025]"
+              className={`reveal-on-scroll ${pub.stagger} group relative block overflow-hidden`}
             >
-              <div className="flex flex-col gap-2">
-                <h3 className="text-lg font-normal leading-[1.56] text-white">
-                  {pub.title}
-                </h3>
-                <p className="text-xs font-normal leading-[1.33] text-[#6B7280]">
-                  {pub.meta}
-                </p>
-              </div>
-              <div className="shrink-0 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5">
-                <ArrowIcon />
+              <div className="relative overflow-hidden rounded-xl border border-white/5 bg-[#120B1C] p-6 transition-all duration-500 ease-out hover:-translate-y-1 hover:border-[#a855f7]/50 hover:shadow-[0_0_30px_-5px_rgba(168,85,247,0.15)]">
+                {/* Hover shine effect */}
+                <div className="pointer-events-none absolute inset-0 translate-x-[-100%] bg-gradient-to-r from-[#a855f7]/0 via-[#a855f7]/5 to-[#a855f7]/0 transition-transform duration-1000 ease-in-out group-hover:translate-x-[100%]" />
+                <div className="relative z-10 flex items-start justify-between gap-4">
+                  <div>
+                    <h3 className="mb-2 font-sans text-lg font-semibold tracking-tight text-white transition-colors duration-300 group-hover:text-[#a855f7]">
+                      {pub.title}
+                    </h3>
+                    <p className="font-sans text-xs font-medium text-gray-500 transition-colors group-hover:text-gray-400">
+                      {pub.meta}
+                    </p>
+                  </div>
+                  <div className="shrink-0 text-gray-500 transition-colors duration-300 group-hover:text-[#a855f7]">
+                    <ArrowIcon />
+                  </div>
+                </div>
               </div>
             </Link>
           ))}

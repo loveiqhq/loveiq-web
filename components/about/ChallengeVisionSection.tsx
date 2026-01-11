@@ -34,15 +34,17 @@ const ChallengeVisionSection: FC = () => {
   const missionTags = ["Safe", "Private", "Non-judgmental"];
 
   return (
-    <section id="challenge-vision" className="relative bg-[#0A0510] px-6 py-24">
+    <section id="challenge-vision" className="relative bg-[#0A0510] px-6 py-16 md:py-24">
       <div className="content-shell relative z-10">
         {/* Top row: Challenge + Mission */}
         <div className="grid gap-6 lg:grid-cols-[1.65fr_1fr]">
           {/* The Challenge Card */}
           <div
-            className="relative overflow-hidden rounded-[32px] border border-white/10 p-12"
+            className="reveal-on-scroll group relative overflow-hidden rounded-[32px] border border-white/10 p-12"
             style={{ backgroundImage: "linear-gradient(155deg, rgba(31, 16, 41, 1) 0%, rgba(10, 5, 16, 1) 100%)" }}
           >
+            {/* Hover glow effect */}
+            <div className="pointer-events-none absolute right-0 top-0 h-32 w-32 bg-[#FE6839] opacity-5 blur-[80px] transition-opacity duration-700 group-hover:opacity-10" />
             <div className="flex flex-col gap-6">
               <IconContainer>
                 <ZapIcon />
@@ -59,7 +61,7 @@ const ChallengeVisionSection: FC = () => {
 
           {/* Our Mission Card */}
           <div
-            className="relative overflow-hidden rounded-[32px] border border-white/10 p-12"
+            className="reveal-on-scroll stagger-1 relative overflow-hidden rounded-[32px] border border-white/10 p-12"
             style={{ backgroundImage: "linear-gradient(143deg, rgba(31, 16, 41, 1) 0%, rgba(10, 5, 16, 1) 100%)" }}
           >
             <div className="flex flex-col gap-6">
@@ -89,7 +91,7 @@ const ChallengeVisionSection: FC = () => {
 
         {/* Bottom row: Our Vision */}
         <div
-          className="mt-6 overflow-hidden rounded-[32px] border border-white/10 p-12"
+          className="reveal-on-scroll stagger-2 mt-6 overflow-hidden rounded-[32px] border border-white/10 p-12"
           style={{ backgroundImage: "linear-gradient(163deg, rgba(31, 16, 41, 1) 0%, rgba(10, 5, 16, 1) 100%)" }}
         >
           <div className="flex flex-col items-center gap-12 lg:flex-row">
