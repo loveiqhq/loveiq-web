@@ -100,158 +100,164 @@ const SmallSettingsIcon: FC = () => (
 );
 
 // Orbital diagram component with spinning animations
-const OrbitalDiagram: FC = () => (
-  <div className="relative mx-auto h-[400px] w-[568px] max-w-full">
-    {/* Gradient blur background with pulse */}
-    <div
-      className="pointer-events-none absolute left-1/2 top-1/2 h-[400px] w-[400px] -translate-x-1/2 -translate-y-1/2 animate-pulse rounded-full blur-[100px]"
-      style={{ backgroundImage: "linear-gradient(45deg, rgba(46, 1, 71, 0.3) 0%, rgba(254, 104, 57, 0.15) 100%)" }}
-    />
+const OrbitalDiagram: FC = () => {
+  const innerOrbitItems = [
+    {
+      key: "research",
+      label: "Research",
+      angle: -90,
+      icon: <SmallMicroscopeIcon />,
+      tooltipClass:
+        "pointer-events-none absolute -top-10 z-[999] translate-y-2 select-none whitespace-nowrap rounded-full border border-[#a855f7]/30 bg-[#16121D]/90 px-3 py-1.5 text-[10px] font-bold uppercase tracking-wider text-white opacity-0 shadow-[0_4px_15px_rgba(0,0,0,0.5)] backdrop-blur-md transition-all duration-300 group-hover/icon:translate-y-0 group-hover/icon:opacity-100",
+      ringClass:
+        "flex h-10 w-10 cursor-pointer items-center justify-center rounded-full border border-[#a855f7]/30 bg-[#16121D] shadow-[0_0_15px_rgba(168,85,247,0.15)] transition-all duration-500 hover:scale-110 hover:border-[#a855f7]/50 hover:shadow-[0_0_25px_rgba(168,85,247,0.3)]",
+    },
+    {
+      key: "actions",
+      label: "Actions",
+      angle: 30,
+      icon: <SmallFootprintsIcon />,
+      tooltipClass:
+        "pointer-events-none absolute -top-10 z-[999] translate-y-2 select-none whitespace-nowrap rounded-full border border-[#a855f7]/30 bg-[#16121D]/90 px-3 py-1.5 text-[10px] font-bold uppercase tracking-wider text-white opacity-0 shadow-[0_4px_15px_rgba(0,0,0,0.5)] backdrop-blur-md transition-all duration-300 group-hover/icon:translate-y-0 group-hover/icon:opacity-100",
+      ringClass:
+        "flex h-10 w-10 cursor-pointer items-center justify-center rounded-full border border-[#a855f7]/30 bg-[#16121D] shadow-[0_0_15px_rgba(168,85,247,0.15)] transition-all duration-500 hover:scale-110 hover:border-[#a855f7]/50 hover:shadow-[0_0_25px_rgba(168,85,247,0.3)]",
+    },
+    {
+      key: "settings",
+      label: "Settings",
+      angle: 150,
+      icon: <SmallSettingsIcon />,
+      tooltipClass:
+        "pointer-events-none absolute -top-10 z-[999] translate-y-2 select-none whitespace-nowrap rounded-full border border-[#FE6839]/30 bg-[#16121D]/90 px-3 py-1.5 text-[10px] font-bold uppercase tracking-wider text-[#FE6839] opacity-0 shadow-[0_4px_15px_rgba(0,0,0,0.5)] backdrop-blur-md transition-all duration-300 group-hover/icon:translate-y-0 group-hover/icon:opacity-100",
+      ringClass:
+        "flex h-10 w-10 cursor-pointer items-center justify-center rounded-full border border-[#FE6839]/30 bg-[#16121D] shadow-[0_0_15px_rgba(254,104,57,0.15)] transition-all duration-500 hover:scale-110 hover:border-[#FE6839]/50 hover:shadow-[0_0_25px_rgba(254,104,57,0.3)]",
+    },
+  ];
 
-    {/* Main circular container */}
-    <div className="absolute left-1/2 top-1/2 h-[380px] w-[380px] -translate-x-1/2 -translate-y-1/2">
-      {/* === OUTER ORBIT SYSTEM (Clockwise at 120s) === */}
-      <div className="absolute inset-0 flex animate-[spin_120s_linear_infinite] items-center justify-center">
-        {/* Outer dashed circle */}
-        <div className="relative h-[90%] w-[90%] rounded-full border border-dashed border-white/10">
-          {/* Research Pill (Top Left) */}
-          <div className="absolute left-[18%] top-[18%] -translate-x-1/2 -translate-y-1/2">
-            <div className="animate-[spin_120s_linear_infinite_reverse]">
-              <div className="group cursor-pointer rounded-full border border-white/10 bg-[#0A0510]/90 px-5 py-2.5 shadow-[0_4px_20px_rgba(0,0,0,0.5)] backdrop-blur-md transition-all hover:border-white/20">
-                <span className="text-sm font-medium tracking-wide text-gray-200 transition-colors group-hover:text-white">
-                  Research
-                </span>
-              </div>
-            </div>
-          </div>
+  return (
+    <div className="relative mx-auto h-[400px] w-[568px] max-w-full">
+      {/* Gradient blur background with pulse */}
+      <div
+        className="pointer-events-none absolute left-1/2 top-1/2 h-[400px] w-[400px] -translate-x-1/2 -translate-y-1/2 animate-pulse rounded-full blur-[100px]"
+        style={{ backgroundImage: "linear-gradient(45deg, rgba(46, 1, 71, 0.3) 0%, rgba(254, 104, 57, 0.15) 100%)" }}
+      />
 
-          {/* Transform Icon (Top Right) - Orange */}
-          <div className="absolute right-[22%] top-[12%] -translate-y-1/2 translate-x-1/2">
-            <div className="animate-[spin_120s_linear_infinite_reverse]">
-              <div className="group flex h-12 w-12 cursor-pointer items-center justify-center rounded-full border border-[#FE6839]/30 bg-[#16121D] shadow-[0_0_15px_rgba(254,104,57,0.15)] transition-transform duration-500 hover:scale-110">
-                <SmallTransformIcon />
-              </div>
-            </div>
-          </div>
-
-          {/* Insights Pill (Right) */}
-          <div className="absolute -right-[2%] top-1/2 -translate-y-1/2 translate-x-1/2">
-            <div className="animate-[spin_120s_linear_infinite_reverse]">
-              <div className="group cursor-pointer rounded-full border border-white/10 bg-[#0A0510]/90 px-5 py-2.5 shadow-[0_4px_20px_rgba(0,0,0,0.5)] backdrop-blur-md transition-all hover:border-white/20">
-                <span className="text-sm font-medium tracking-wide text-gray-200 transition-colors group-hover:text-white">
-                  Insights
-                </span>
-              </div>
-            </div>
-          </div>
-
-          {/* Chart Icon (Bottom Right) - Purple */}
-          <div className="absolute bottom-[15%] right-[15%] translate-x-1/2 translate-y-1/2">
-            <div className="animate-[spin_120s_linear_infinite_reverse]">
-              <div className="group flex h-12 w-12 cursor-pointer items-center justify-center rounded-full border border-[#a855f7]/30 bg-[#16121D] shadow-[0_0_15px_rgba(168,85,247,0.15)] transition-transform duration-500 hover:scale-110">
-                <SmallChartIcon />
-              </div>
-            </div>
-          </div>
-
-          {/* Knowledge Pill (Bottom Left) */}
-          <div className="absolute bottom-[10%] left-[25%] -translate-x-1/2 translate-y-1/2">
-            <div className="animate-[spin_120s_linear_infinite_reverse]">
-              <div className="group cursor-pointer rounded-full border border-white/10 bg-[#0A0510]/90 px-5 py-2.5 shadow-[0_4px_20px_rgba(0,0,0,0.5)] backdrop-blur-md transition-all hover:border-white/20">
-                <span className="text-sm font-medium tracking-wide text-gray-200 transition-colors group-hover:text-white">
-                  Knowledge
-                </span>
-              </div>
-            </div>
-          </div>
-
-          {/* FileCheck Icon (Left) - Purple */}
-          <div className="absolute -left-[2%] top-1/2 -translate-x-1/2 -translate-y-1/2">
-            <div className="animate-[spin_120s_linear_infinite_reverse]">
-              <div className="group flex h-12 w-12 cursor-pointer items-center justify-center rounded-full border border-[#a855f7]/30 bg-[#16121D] shadow-[0_0_15px_rgba(168,85,247,0.15)] transition-transform duration-500 hover:scale-110">
-                <SmallFileCheckIcon />
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      {/* === INNER ORBIT SYSTEM (Counter-Clockwise at 90s, pauses on hover) === */}
-      <div className="group/orbit pointer-events-none absolute inset-0 z-10 flex animate-[spin_90s_linear_infinite_reverse] items-center justify-center hover:[animation-play-state:paused]">
-        {/* Inner dashed circle */}
-        <div className="relative h-[200px] w-[200px] rounded-full border border-dashed border-white/10 opacity-50 transition-all duration-500 group-hover/orbit:border-white/20 group-hover/orbit:opacity-100 md:h-[220px] md:w-[220px]">
-          {/* Microscope Icon (Top) - Purple */}
-          <div className="pointer-events-auto absolute left-1/2 top-[-6%] -translate-x-1/2">
-            <div className="animate-[spin_90s_linear_infinite] group-hover/orbit:[animation-play-state:paused]">
-              <div className="group/icon relative flex flex-col items-center">
-                {/* Tooltip */}
-                <div className="pointer-events-none absolute -top-10 z-50 translate-y-2 select-none whitespace-nowrap rounded-full border border-[#a855f7]/30 bg-[#16121D]/90 px-3 py-1.5 text-[10px] font-bold uppercase tracking-wider text-white opacity-0 shadow-[0_4px_15px_rgba(0,0,0,0.5)] backdrop-blur-md transition-all duration-300 group-hover/icon:translate-y-0 group-hover/icon:opacity-100">
-                  Research
-                </div>
-                <div className="flex h-10 w-10 cursor-pointer items-center justify-center rounded-full border border-[#a855f7]/30 bg-[#16121D] shadow-[0_0_15px_rgba(168,85,247,0.15)] transition-all duration-500 hover:scale-110 hover:border-[#a855f7]/50 hover:shadow-[0_0_25px_rgba(168,85,247,0.3)]">
-                  <SmallMicroscopeIcon />
+      {/* Main circular container */}
+      <div className="absolute left-1/2 top-1/2 h-[380px] w-[380px] -translate-x-1/2 -translate-y-1/2">
+        {/* === OUTER ORBIT SYSTEM (Clockwise at 120s) === */}
+        <div className="absolute inset-0 z-20 flex animate-[spin_120s_linear_infinite] items-center justify-center">
+          {/* Outer dashed circle */}
+          <div className="relative h-[90%] w-[90%] rounded-full border border-dashed border-white/10">
+            {/* Research Pill (Top Left) */}
+            <div className="absolute left-[18%] top-[18%] -translate-x-1/2 -translate-y-1/2">
+              <div className="animate-[spin_120s_linear_infinite_reverse]">
+                <div className="group cursor-pointer rounded-full border border-white/10 bg-[#0A0510]/90 px-5 py-2.5 shadow-[0_4px_20px_rgba(0,0,0,0.5)] backdrop-blur-md transition-all hover:border-white/20">
+                  <span className="text-sm font-medium tracking-wide text-gray-200 transition-colors group-hover:text-white">
+                    Research
+                  </span>
                 </div>
               </div>
             </div>
-          </div>
 
-          {/* Footprints Icon (Bottom Right) - Purple */}
-          <div className="pointer-events-auto absolute bottom-[20%] right-[10%]">
-            <div className="animate-[spin_90s_linear_infinite] group-hover/orbit:[animation-play-state:paused]">
-              <div className="group/icon relative flex flex-col items-center">
-                {/* Tooltip */}
-                <div className="pointer-events-none absolute -top-10 z-50 translate-y-2 select-none whitespace-nowrap rounded-full border border-[#a855f7]/30 bg-[#16121D]/90 px-3 py-1.5 text-[10px] font-bold uppercase tracking-wider text-white opacity-0 shadow-[0_4px_15px_rgba(0,0,0,0.5)] backdrop-blur-md transition-all duration-300 group-hover/icon:translate-y-0 group-hover/icon:opacity-100">
-                  Actions
-                </div>
-                <div className="flex h-10 w-10 cursor-pointer items-center justify-center rounded-full border border-[#a855f7]/30 bg-[#16121D] shadow-[0_0_15px_rgba(168,85,247,0.15)] transition-all duration-500 hover:scale-110 hover:border-[#a855f7]/50 hover:shadow-[0_0_25px_rgba(168,85,247,0.3)]">
-                  <SmallFootprintsIcon />
+            {/* Transform Icon (Top Right) - Orange */}
+            <div className="absolute right-[22%] top-[12%] -translate-y-1/2 translate-x-1/2">
+              <div className="animate-[spin_120s_linear_infinite_reverse]">
+                <div className="group flex h-12 w-12 cursor-pointer items-center justify-center rounded-full border border-[#FE6839]/30 bg-[#16121D] shadow-[0_0_15px_rgba(254,104,57,0.15)] transition-transform duration-500 hover:scale-110">
+                  <SmallTransformIcon />
                 </div>
               </div>
             </div>
-          </div>
 
-          {/* Settings Icon (Bottom Left) - Orange */}
-          <div className="pointer-events-auto absolute bottom-[20%] left-[10%]">
-            <div className="animate-[spin_90s_linear_infinite] group-hover/orbit:[animation-play-state:paused]">
-              <div className="group/icon relative flex flex-col items-center">
-                {/* Tooltip */}
-                <div className="pointer-events-none absolute -top-10 z-50 translate-y-2 select-none whitespace-nowrap rounded-full border border-[#FE6839]/30 bg-[#16121D]/90 px-3 py-1.5 text-[10px] font-bold uppercase tracking-wider text-[#FE6839] opacity-0 shadow-[0_4px_15px_rgba(0,0,0,0.5)] backdrop-blur-md transition-all duration-300 group-hover/icon:translate-y-0 group-hover/icon:opacity-100">
-                  Settings
+            {/* Insights Pill (Right) */}
+            <div className="absolute -right-[2%] top-1/2 -translate-y-1/2 translate-x-1/2">
+              <div className="animate-[spin_120s_linear_infinite_reverse]">
+                <div className="group cursor-pointer rounded-full border border-white/10 bg-[#0A0510]/90 px-5 py-2.5 shadow-[0_4px_20px_rgba(0,0,0,0.5)] backdrop-blur-md transition-all hover:border-white/20">
+                  <span className="text-sm font-medium tracking-wide text-gray-200 transition-colors group-hover:text-white">
+                    Insights
+                  </span>
                 </div>
-                <div className="flex h-10 w-10 cursor-pointer items-center justify-center rounded-full border border-[#FE6839]/30 bg-[#16121D] shadow-[0_0_15px_rgba(254,104,57,0.15)] transition-all duration-500 hover:scale-110 hover:border-[#FE6839]/50 hover:shadow-[0_0_25px_rgba(254,104,57,0.3)]">
-                  <SmallSettingsIcon />
+              </div>
+            </div>
+
+            {/* Chart Icon (Bottom Right) - Purple */}
+            <div className="absolute bottom-[15%] right-[15%] translate-x-1/2 translate-y-1/2">
+              <div className="animate-[spin_120s_linear_infinite_reverse]">
+                <div className="group flex h-12 w-12 cursor-pointer items-center justify-center rounded-full border border-[#a855f7]/30 bg-[#16121D] shadow-[0_0_15px_rgba(168,85,247,0.15)] transition-transform duration-500 hover:scale-110">
+                  <SmallChartIcon />
+                </div>
+              </div>
+            </div>
+
+            {/* Knowledge Pill (Bottom Left) */}
+            <div className="absolute bottom-[10%] left-[25%] -translate-x-1/2 translate-y-1/2">
+              <div className="animate-[spin_120s_linear_infinite_reverse]">
+                <div className="group cursor-pointer rounded-full border border-white/10 bg-[#0A0510]/90 px-5 py-2.5 shadow-[0_4px_20px_rgba(0,0,0,0.5)] backdrop-blur-md transition-all hover:border-white/20">
+                  <span className="text-sm font-medium tracking-wide text-gray-200 transition-colors group-hover:text-white">
+                    Knowledge
+                  </span>
+                </div>
+              </div>
+            </div>
+
+            {/* FileCheck Icon (Left) - Purple */}
+            <div className="absolute -left-[2%] top-1/2 -translate-x-1/2 -translate-y-1/2">
+              <div className="animate-[spin_120s_linear_infinite_reverse]">
+                <div className="group flex h-12 w-12 cursor-pointer items-center justify-center rounded-full border border-[#a855f7]/30 bg-[#16121D] shadow-[0_0_15px_rgba(168,85,247,0.15)] transition-transform duration-500 hover:scale-110">
+                  <SmallFileCheckIcon />
                 </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
 
-      {/* === CENTER CORE (Static with hover effect) === */}
-      <div className="group absolute left-1/2 top-1/2 z-20 flex h-[128px] w-[128px] -translate-x-1/2 -translate-y-1/2 cursor-pointer items-center justify-center rounded-full border border-white/10 bg-gradient-to-b from-[#1a1025] to-[#0a0510] shadow-[0_0_60px_rgba(46,1,71,0.5)] transition-all duration-500 hover:border-[#a855f7]/30 hover:shadow-[0_0_80px_rgba(168,85,247,0.3)]">
-        {/* Pulse ring on hover */}
-        <div className="absolute inset-0 rounded-full border-2 border-[#a855f7]/0 transition-all duration-500 group-hover:scale-110 group-hover:border-[#a855f7]/20 group-hover:opacity-0" />
+        {/* === INNER ORBIT SYSTEM (Counter-Clockwise at 90s, pauses on hover) === */}
+        <div
+          className="group/orbit pointer-events-auto absolute inset-0 z-0 flex items-center justify-center hover:[animation-play-state:paused] group-hover/orbit:[animation-play-state:paused] animate-inner-orbit"
+        >
+          {/* Inner dashed circle */}
+          <div className="relative h-[200px] w-[200px] rounded-full border border-dashed border-white/10 opacity-50 transition-all duration-500 group-hover/orbit:border-white/20 group-hover/orbit:opacity-100 md:h-[220px] md:w-[220px]">
+            {innerOrbitItems.map((item) => (
+              <div key={item.key} className="pointer-events-auto absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
+                <div style={{ transform: `rotate(${item.angle}deg) translateX(110px)` }}>
+                  <div className="group-hover/orbit:[animation-play-state:paused] hover:[animation-play-state:paused] animate-inner-orbit-icon">
+                    <div className="group/icon relative flex flex-col items-center" style={{ transform: `rotate(${-item.angle}deg)` }}>
+                      {/* Tooltip */}
+                      <div className={item.tooltipClass}>{item.label}</div>
+                      <div className={item.ringClass}>{item.icon}</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
 
-        <div className="relative flex items-center justify-center">
-          {/* Brain/Insights icon */}
-          <svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg" className="transition-transform duration-500 group-hover:scale-110">
-            <path d="M22.5 3H9C7.34425 3 6 4.34425 6 6V30C6 31.6557 7.34425 33 9 33H27C28.6557 33 30 31.6557 30 30V10.5L22.5 3" stroke="#A78BFA" strokeWidth="2.25" strokeLinecap="round" strokeLinejoin="round" />
-            <path d="M21 3V9C21 10.6557 22.3443 12 24 12H30" stroke="#A78BFA" strokeWidth="2.25" strokeLinecap="round" strokeLinejoin="round" />
-            <path d="M15 13.5H12" stroke="#A78BFA" strokeWidth="2.25" strokeLinecap="round" strokeLinejoin="round" />
-            <path d="M24 19.5H12" stroke="#A78BFA" strokeWidth="2.25" strokeLinecap="round" strokeLinejoin="round" />
-            <path d="M24 25.5H12" stroke="#A78BFA" strokeWidth="2.25" strokeLinecap="round" strokeLinejoin="round" />
-          </svg>
-          {/* Small badge */}
-          <div className="absolute -bottom-2 -right-2 flex h-[26px] w-[26px] items-center justify-center rounded-full border border-[#a78bfa] bg-[#1a1025] transition-all duration-500 group-hover:scale-110 group-hover:shadow-[0_0_15px_rgba(168,85,247,0.4)]">
-            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M12.6668 9.33333C13.6602 8.36 14.6668 7.19333 14.6668 5.66667C14.6668 3.64298 13.0239 2 11.0002 2C9.82683 2 9.00016 2.33333 8.00016 3.33333C7.00016 2.33333 6.1735 2 5.00016 2C2.97512 2 1.3335 3.64162 1.3335 5.66667C1.3335 7.2 2.3335 8.36667 3.3335 9.33333L8.00016 14L12.6668 9.33333Z" fill="#A78BFA" />
+        {/* === CENTER CORE (Static with hover effect) === */}
+        <div className="group absolute left-1/2 top-1/2 z-30 flex h-[128px] w-[128px] -translate-x-1/2 -translate-y-1/2 cursor-pointer items-center justify-center rounded-full border border-white/10 bg-gradient-to-b from-[#1a1025] to-[#0a0510] shadow-[0_0_60px_rgba(46,1,71,0.5)] transition-all duration-500 hover:border-[#a855f7]/30 hover:shadow-[0_0_80px_rgba(168,85,247,0.3)]">
+          {/* Pulse ring on hover */}
+          <div className="absolute inset-0 rounded-full border-2 border-[#a855f7]/0 transition-all duration-500 group-hover:scale-110 group-hover:border-[#a855f7]/20 group-hover:opacity-0" />
+
+          <div className="relative flex items-center justify-center">
+            {/* Brain/Insights icon */}
+            <svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg" className="transition-transform duration-500 group-hover:scale-110">
+              <path d="M22.5 3H9C7.34425 3 6 4.34425 6 6V30C6 31.6557 7.34425 33 9 33H27C28.6557 33 30 31.6557 30 30V10.5L22.5 3" stroke="#A78BFA" strokeWidth="2.25" strokeLinecap="round" strokeLinejoin="round" />
+              <path d="M21 3V9C21 10.6557 22.3443 12 24 12H30" stroke="#A78BFA" strokeWidth="2.25" strokeLinecap="round" strokeLinejoin="round" />
+              <path d="M15 13.5H12" stroke="#A78BFA" strokeWidth="2.25" strokeLinecap="round" strokeLinejoin="round" />
+              <path d="M24 19.5H12" stroke="#A78BFA" strokeWidth="2.25" strokeLinecap="round" strokeLinejoin="round" />
+              <path d="M24 25.5H12" stroke="#A78BFA" strokeWidth="2.25" strokeLinecap="round" strokeLinejoin="round" />
             </svg>
+            {/* Small badge */}
+            <div className="absolute -bottom-2 -right-2 flex h-[26px] w-[26px] items-center justify-center rounded-full border border-[#a78bfa] bg-[#1a1025] transition-all duration-500 group-hover:scale-110 group-hover:shadow-[0_0_15px_rgba(168,85,247,0.4)]">
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12.6668 9.33333C13.6602 8.36 14.6668 7.19333 14.6668 5.66667C14.6668 3.64298 13.0239 2 11.0002 2C9.82683 2 9.00016 2.33333 8.00016 3.33333C7.00016 2.33333 6.1735 2 5.00016 2C2.97512 2 1.3335 3.64162 1.3335 5.66667C1.3335 7.2 2.3335 8.36667 3.3335 9.33333L8.00016 14L12.6668 9.33333Z" fill="#A78BFA" />
+              </svg>
+            </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
-);
+  );
+};
 
 const ProcessSection: FC = () => {
   const steps = [

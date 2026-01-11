@@ -201,6 +201,34 @@ h3,
   }
 }
 
+@keyframes inner-orbit-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(-360deg);
+  }
+}
+
+@keyframes inner-orbit-icon {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-inner-orbit {
+  animation: inner-orbit-spin 90s linear infinite;
+  animation-play-state: running;
+}
+
+.animate-inner-orbit-icon {
+  animation: inner-orbit-icon 90s linear infinite;
+  animation-play-state: running;
+}
+
 .animate-float {
   animation: float 6s ease-in-out infinite;
 }

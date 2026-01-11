@@ -32,18 +32,21 @@ const CircleIcon: FC<{ color: string; icon: "user" | "bolt"; delay: number }> = 
       backgroundColor: `${color}05`,
       boxShadow: `0 0 20px ${color}10`,
       animationDelay: `${delay}ms`,
+      lineHeight: 0,
     }}
   >
-    {icon === "user" ? (
-      <svg aria-hidden viewBox="0 0 24 24" className="h-7 w-7 md:h-10 md:w-10" fill="none" stroke={color} strokeWidth="1.5">
-        <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2" />
-        <circle cx="12" cy="7" r="4" />
-      </svg>
-    ) : (
-      <svg aria-hidden viewBox="0 0 24 24" className="h-7 w-7 md:h-10 md:w-10" fill="none" stroke={color} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-        <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" />
-      </svg>
-    )}
+    <span className="absolute inset-0 flex items-center justify-center">
+      {icon === "user" ? (
+        <svg aria-hidden viewBox="0 0 24 24" className="h-7 w-7 md:h-10 md:w-10" fill="none" stroke={color} strokeWidth="1.5">
+          <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2" />
+          <circle cx="12" cy="7" r="4" />
+        </svg>
+      ) : (
+        <svg aria-hidden viewBox="0 0 24 24" className="h-7 w-7 md:h-10 md:w-10" fill="none" stroke={color} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+          <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" />
+        </svg>
+      )}
+    </span>
   </span>
 );
 

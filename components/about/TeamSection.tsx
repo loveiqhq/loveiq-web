@@ -112,7 +112,7 @@ const TeamSection: FC = () => {
         </div>
 
         {/* Team Grid */}
-        <div className="mx-auto grid max-w-5xl grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4">
+        <div className="mx-auto flex w-full max-w-[920px] flex-wrap justify-center gap-6">
           {team.map((member, index) => {
             const isPurple = member.hoverColor === "purple";
             const hoverShadow = isPurple
@@ -123,10 +123,10 @@ const TeamSection: FC = () => {
             return (
               <div
                 key={member.name}
-                className={`reveal-on-scroll stagger-${Math.min(index + 1, 4)} group rounded-[2rem] border border-white/5 bg-[#120B1C] p-4 transition-all duration-500 ease-[cubic-bezier(0.25,0.4,0.25,1)] hover:-translate-y-2 hover:border-white/20 hover:bg-[#1a1025] ${hoverShadow}`}
+                className={`reveal-on-scroll stagger-${Math.min(index + 1, 4)} group w-[290px] flex-shrink-0 rounded-[2rem] border border-white/5 bg-[#120B1C] p-4 transition-all duration-500 ease-[cubic-bezier(0.25,0.4,0.25,1)] hover:-translate-y-2 hover:border-white/20 hover:bg-[#1a1025] ${hoverShadow}`}
               >
                 {/* Photo */}
-                <div className="relative mb-5 aspect-square overflow-hidden rounded-2xl bg-[#0A0510]">
+                <div className="relative mb-5 h-[256px] w-full overflow-hidden rounded-2xl bg-[#0A0510]">
                   <div className="pointer-events-none absolute inset-0 z-10 bg-gradient-to-t from-[#0A0510] via-transparent to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-60" />
                   <Image
                     src={member.image}
