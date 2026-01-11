@@ -41,7 +41,7 @@ const Section06: FC = () => {
             </p>
           </div>
 
-          <div className="space-y-5">
+          <div className="space-y-8">
             {features.map((item) => (
               <div key={item.title} className="group flex gap-3">
                 <div className="mt-[2px] flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full bg-white/5 text-accent-orange shadow-soft transition duration-300 ease-out group-hover:-translate-y-[2px] group-hover:scale-105 group-hover:bg-gradient-to-br group-hover:from-[#f26d4f] group-hover:via-[#ff9450] group-hover:to-[#f26d4f] group-hover:text-white">
@@ -71,13 +71,23 @@ const Section06: FC = () => {
           <div className="flex flex-col items-start gap-4 sm:flex-row sm:items-center">
             <a
               href="/waitlist"
-              className="inline-flex items-center justify-center gap-2 rounded-full bg-gradient-brand px-6 py-3 text-[16px] font-extrabold leading-6 text-white shadow-pill transition hover:translate-y-[-2px] focus-visible-ring"
+              className="group relative inline-flex items-center justify-center gap-2 overflow-hidden rounded-full bg-gradient-brand px-6 py-3 text-[16px] font-semibold leading-6 text-white shadow-pill transition hover:translate-y-[-2px] focus-visible-ring"
               onClick={() => trackStartSurvey("report_section")}
             >
-              Start Survey Now
+              <span
+                aria-hidden
+                className="pointer-events-none absolute inset-0 bg-white opacity-0 transition-opacity duration-500 group-hover:opacity-100"
+              />
+              <div
+                aria-hidden
+                className="absolute inset-0 translate-y-full bg-white/20 transition-transform duration-300 group-hover:translate-y-0"
+              />
+              <span className="pointer-events-none absolute inset-0 rounded-full bg-white/10 opacity-0 transition duration-300 group-hover:opacity-100" />
+              <span className="pointer-events-none absolute inset-[-12%] rounded-full border border-white/15 mix-blend-screen opacity-70" />
+              <span className="relative z-10 transition-colors duration-500 group-hover:text-black">Start Survey Now</span>
               <svg
                 aria-hidden
-                className="h-5 w-5"
+                className="relative z-10 h-5 w-5 transition-colors duration-500 group-hover:text-black"
                 viewBox="0 0 24 24"
                 fill="none"
                 stroke="currentColor"

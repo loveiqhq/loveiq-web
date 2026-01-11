@@ -52,13 +52,23 @@ const NavSection: FC = () => {
               </Link>
               <Link
                 href="/waitlist"
-                className="inline-flex shrink-0 items-center justify-center gap-2 whitespace-nowrap rounded-full bg-gradient-to-r from-[#ff6a3a] via-[#ff8f50] to-[#ff6a3a] px-4 py-2 text-xs font-semibold text-white shadow-[0_18px_45px_rgba(254,104,57,0.35)] transition hover:translate-y-[-2px] focus-visible-ring sm:px-6 sm:py-3 sm:text-sm"
+                className="group relative inline-flex shrink-0 items-center justify-center gap-2 overflow-hidden whitespace-nowrap rounded-full bg-gradient-brand px-4 py-2 text-xs font-semibold text-white shadow-pill transition hover:translate-y-[-2px] focus-visible-ring sm:px-6 sm:py-3 sm:text-sm"
                 onClick={() => trackStartSurvey("nav")}
               >
-                Start survey now
+                <span
+                  aria-hidden
+                  className="pointer-events-none absolute inset-0 bg-white opacity-0 transition-opacity duration-500 group-hover:opacity-100"
+                />
+                <div
+                  aria-hidden
+                  className="absolute inset-0 translate-y-full bg-white/20 transition-transform duration-300 group-hover:translate-y-0"
+                />
+                <span className="pointer-events-none absolute inset-0 rounded-full bg-white/10 opacity-0 transition duration-300 group-hover:opacity-100" />
+                <span className="pointer-events-none absolute inset-[-12%] rounded-full border border-white/15 mix-blend-screen opacity-70" />
+                <span className="relative z-10 transition-colors duration-500 group-hover:text-black">Start survey now</span>
                 <svg
                   aria-hidden
-                  className="h-5 w-5"
+                  className="relative z-10 h-5 w-5 transition-colors duration-500 group-hover:text-black"
                   viewBox="0 0 24 24"
                   fill="none"
                   stroke="currentColor"

@@ -89,13 +89,13 @@ const explorationBullets = [
     title: "Explore your inner landscape.",
     description:
       "Turn inward and map out the desires, boundaries, and emotions you've never fully named. The guided questions give you language you can grow with.",
-    icon: (
-      <svg
-        aria-hidden
-        className="h-5 w-5"
-        viewBox="0 0 28 28"
-        fill="none"
-        xmlns="http://www.w3.org/2000/svg"
+      icon: (
+        <svg
+          aria-hidden
+          className="h-7 w-7"
+          viewBox="0 0 28 28"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
       >
         <path
           d="M2.33331 14C2.33331 20.439 7.56097 25.6667 14 25.6667C20.439 25.6667 25.6666 20.439 25.6666 14C25.6666 7.56103 20.439 2.33337 14 2.33337C7.56097 2.33337 2.33331 7.56103 2.33331 14V14"
@@ -118,13 +118,13 @@ const explorationBullets = [
     title: "Uncover your unique erotic signature.",
     description:
       "Discover patterns that belong only to you -- no horoscopes here. Our science-based lens connects your mind, body, and heart so you can express yourself on your own terms.",
-    icon: (
-      <svg
-        aria-hidden
-        className="h-5 w-5"
-        viewBox="0 0 28 28"
-        fill="none"
-        xmlns="http://www.w3.org/2000/svg"
+      icon: (
+        <svg
+          aria-hidden
+          className="h-7 w-7"
+          viewBox="0 0 28 28"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
       >
         <path
           d="M14 11.6666C12.7122 11.6666 11.6667 12.7122 11.6667 14C11.6667 15.19 11.55 16.9283 11.3633 18.6666"
@@ -190,17 +190,19 @@ const explorationBullets = [
 
 const Section05: FC = () => {
   return (
-    <section className="relative mt-12 overflow-hidden bg-[#0A0510] px-4 pb-24 pt-14 text-white">
+    <section className="relative mt-0 overflow-hidden bg-[#0A0510] px-4 pb-24 pt-14 text-white">
       <div className="relative mx-auto flex max-w-6xl flex-col gap-14">
-        <div className="space-y-3 text-center">
-          <h2 className="font-serif text-3xl leading-tight sm:text-4xl md:text-5xl">
+        <div className="space-y-6 text-center">
+          <h2 className="font-serif text-3xl leading-tight text-white sm:text-4xl md:text-5xl">
             LoveIQ Gives You{" "}
-            <span className="italic bg-gradient-to-r from-[#5d7cff] via-[#9c7dff] to-[#f26d4f] bg-clip-text text-transparent">
+            <span className="italic bg-gradient-to-r from-[#A78BFA] via-[#CBB9FF] to-[#E9D5FF] bg-clip-text text-transparent">
               Language.
             </span>
           </h2>
           <p className="text-sm text-white/70 sm:text-base">
-            Stop guessing. Get clarity, vocabulary, and an actionable roadmap designed for your personal growth.
+            Stop guessing. Get clarity, vocabulary, and an actionable roadmap
+            <br />
+            designed for your personal growth.
           </p>
         </div>
 
@@ -284,7 +286,8 @@ const Section05: FC = () => {
         <div className="grid gap-12 lg:grid-cols-[1.05fr_0.95fr] lg:items-center">
           <div className="relative space-y-7">
             <h3 className="font-serif text-4xl leading-tight sm:text-5xl md:text-[46px]">
-              Embark on an exploration of your desires and connection.
+              <span className="block whitespace-nowrap">Embark on an exploration of</span>
+              <span className="block whitespace-nowrap">your desires and connection.</span>
             </h3>
             <div className="space-y-6">
               {explorationBullets.map((item) => (
@@ -302,8 +305,8 @@ const Section05: FC = () => {
           </div>
 
           <div className="relative flex justify-center">
-            <div className="relative w-[320px] overflow-hidden rounded-[34px] bg-gradient-to-b from-[#f4d7f6] via-[#d7b7e9] to-[#90a7e5] p-[10px] shadow-[0_34px_120px_rgba(0,0,0,0.5)] sm:w-[380px] md:w-[420px]">
-              <div className="relative h-[520px] w-full overflow-hidden rounded-[26px] bg-[#0A0510]/50 sm:h-[600px]">
+            <div className="relative w-[320px] overflow-hidden rounded-[34px] shadow-[0_34px_120px_rgba(0,0,0,0.5)] sm:w-[380px] md:w-[420px]">
+              <div className="relative h-[520px] w-full overflow-hidden rounded-[34px] sm:h-[600px]">
                 <Image
                   src="/762ab2dcc4e38a7a2824b7a4f5174f2627a7eaae.webp"
                   alt="Couple illustration"

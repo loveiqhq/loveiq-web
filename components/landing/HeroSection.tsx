@@ -38,7 +38,7 @@ const HeroSection: FC = () => {
       <div className="pointer-events-none absolute inset-0 overflow-hidden">
         <video
           ref={videoRef}
-          className="absolute inset-0 h-full w-full scale-105 object-cover"
+          className="absolute inset-0 h-full w-full object-cover"
           autoPlay
           muted
           loop
@@ -46,7 +46,13 @@ const HeroSection: FC = () => {
           preload="none"
           poster="/762ab2dcc4e38a7a2824b7a4f5174f2627a7eaae.webp"
           aria-hidden
-          style={{ opacity: videoReady ? 0.35 : 0, transition: "opacity 480ms ease" }}
+          style={{
+            opacity: videoReady ? 0.8 : 0,
+            transition: "opacity 480ms ease",
+            filter: "none",
+            transform: "scale(1.05) translateY(2%)",
+            objectPosition: "50% 60%",
+          }}
         >
           {loadVideo && (
             <>
@@ -55,29 +61,17 @@ const HeroSection: FC = () => {
             </>
           )}
         </video>
-        <div className="absolute inset-0 bg-gradient-to-b from-[#050208]/70 via-[#0b0613]/75 to-[#0b0613]" />
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_12%,rgba(255,255,255,0.05),transparent_36%),radial-gradient(circle_at_22%_38%,rgba(242,109,79,0.12),transparent_45%),radial-gradient(circle_at_78%_42%,rgba(156,125,255,0.12),transparent_45%)]" />
-        <div className="absolute inset-0 bg-[radial-gradient(60%_40%_at_50%_12%,rgba(255,255,255,0.03),transparent)]" />
-        <div
-          className="absolute inset-0 opacity-55 mix-blend-screen motion-safe:animate-gradient-move"
-          style={{
-            backgroundImage:
-              "linear-gradient(120deg, rgba(254,104,57,0.16), rgba(84,20,117,0.12), rgba(254,104,57,0.16))",
-          }}
-        />
-        <div className="absolute inset-x-0 bottom-0 h-56 bg-gradient-to-b from-transparent via-[#0b0613]/70 to-[#0A0510]" />
-        <div className="absolute inset-0 bg-noise opacity-20" />
-        <div className="absolute -left-32 top-1/3 h-56 w-56 rounded-full bg-gradient-to-br from-[#fe6839]/20 to-transparent blur-3xl motion-safe:animate-orbit-left" />
-        <div className="absolute -right-24 bottom-1/4 h-64 w-64 rounded-full bg-gradient-to-tr from-[#541475]/20 to-transparent blur-3xl motion-safe:animate-orbit-right" />
+        <div className="absolute inset-0 bg-gradient-to-b from-[#0b0613]/35 via-[#0b0613]/55 to-[#0b0613]/80" />
+        <div className="absolute inset-x-0 bottom-0 h-64 bg-gradient-to-b from-transparent via-[#0b0613]/65 to-[#0A0510]" />
       </div>
 
       <div className="content-shell relative z-10 flex flex-col items-center px-4 text-center">
-        <div className="animate-on-scroll mt-2 inline-flex items-center gap-2 rounded-full border border-border bg-white/5 px-4 py-2 text-[11px] font-semibold uppercase tracking-[0.2em] text-text-secondary shadow-soft backdrop-blur">
+        <div className="animate-on-scroll mt-2 inline-flex items-center gap-2 rounded-full border border-border bg-white/5 px-4 py-2 text-[11px] font-semibold tracking-[0.08em] text-[#D8B4FE] shadow-soft backdrop-blur">
           <span className="h-2 w-2 rounded-full bg-accent-orange shadow-[0_0_0_6px_rgba(242,109,79,0.12)] animate-pulse-glow" aria-hidden />
           Science-backed methodology
         </div>
 
-        <div className="mt-8 space-y-5">
+        <div className="mt-8 space-y-[2px]">
           <h1 className="animate-on-scroll font-serif text-[40px] font-semibold leading-[1.04] tracking-[-0.6px] sm:text-[48px] md:text-[60px] lg:text-[72px] lg:leading-[72px] lg:tracking-[-1.4px]">
             Gain Insights Into Your
           </h1>
@@ -85,16 +79,25 @@ const HeroSection: FC = () => {
             <span className="bg-gradient-to-r from-[#ff6a3a] via-[#cf5afb] to-[#7d88ff] bg-clip-text font-serif text-[72px] font-[500] italic leading-[72px] tracking-[-1.8px] text-transparent">
               Sexual Psychology
             </span>
-            <span
-              aria-hidden
-              className="pointer-events-none absolute left-1/2 top-full mt-[10px] h-[3px] w-[560.23px] -translate-x-1/2 rounded-full bg-[#ff6a3a] opacity-30"
-            />
+            <div aria-hidden className="pointer-events-none absolute inset-x-0 top-full mt-[4px]">
+              <svg viewBox="0 0 100 24" fill="none" preserveAspectRatio="none" className="h-[14px] w-full">
+                <path
+                  d="M0 10 C 25 22, 75 22, 100 10"
+                  stroke="#FE6839"
+                  strokeWidth="9"
+                  strokeLinecap="round"
+                  opacity="0.3"
+                />
+              </svg>
+            </div>
           </div>
         </div>
 
         <p className="animate-on-scroll mt-8 max-w-3xl text-lg leading-relaxed text-text-secondary sm:text-xl">
           Built on latest science &amp; research.{" "}
-          <strong className="font-semibold text-white">A 10-minute guided survey</strong> that uncovers your sexual patterns and archetype.
+          <strong className="font-semibold text-white">A 10-minute guided survey</strong> that
+          <br />
+          uncovers your sexual patterns and archetype.
         </p>
 
         <div className="animate-on-scroll mt-12 flex flex-col items-center gap-4 sm:flex-row">

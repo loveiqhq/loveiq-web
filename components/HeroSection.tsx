@@ -54,9 +54,19 @@ export const HeroSection: FC<HeroSectionProps> = ({
               </div>
               <Link
                 href="/waitlist"
-                className="inline-flex items-center justify-center rounded-full bg-[#fe6839] px-4 py-2 text-sm font-semibold text-white shadow-lg shadow-[#fe6839]/40 transition hover:-translate-y-0.5 hover:bg-[#ff7a4d] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#fe6839] md:hidden"
+                className="group relative inline-flex items-center justify-center overflow-hidden rounded-full bg-gradient-brand px-4 py-2 text-sm font-semibold text-white shadow-pill transition hover:-translate-y-0.5 focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0510] focus-visible:ring-white md:hidden"
               >
-                Start survey now
+                <span
+                  aria-hidden
+                  className="pointer-events-none absolute inset-0 bg-white opacity-0 transition-opacity duration-500 group-hover:opacity-100"
+                />
+                <div
+                  aria-hidden
+                  className="absolute inset-0 translate-y-full bg-white/20 transition-transform duration-300 group-hover:translate-y-0"
+                />
+                <span className="pointer-events-none absolute inset-0 rounded-full bg-white/10 opacity-0 transition duration-300 group-hover:opacity-100" />
+                <span className="pointer-events-none absolute inset-[-12%] rounded-full border border-white/15 mix-blend-screen opacity-70" />
+                <span className="relative z-10 transition-colors duration-500 group-hover:text-black">Start survey now</span>
               </Link>
             </div>
 
@@ -78,12 +88,22 @@ export const HeroSection: FC<HeroSectionProps> = ({
             <div className="hidden md:block">
               <Link
                 href="/waitlist"
-                className="inline-flex items-center justify-center gap-2 rounded-full bg-[#fe6839] px-5 py-2 text-sm font-semibold text-white shadow-lg shadow-[#fe6839]/40 transition hover:-translate-y-0.5 hover:bg-[#ff7a4d] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#fe6839]"
+                className="group relative inline-flex items-center justify-center gap-2 overflow-hidden rounded-full bg-gradient-brand px-5 py-2 text-sm font-semibold text-white shadow-pill transition hover:-translate-y-0.5 focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0510] focus-visible:ring-white"
               >
-                Start survey now
+                <span
+                  aria-hidden
+                  className="pointer-events-none absolute inset-0 bg-white opacity-0 transition-opacity duration-500 group-hover:opacity-100"
+                />
+                <div
+                  aria-hidden
+                  className="absolute inset-0 translate-y-full bg-white/20 transition-transform duration-300 group-hover:translate-y-0"
+                />
+                <span className="pointer-events-none absolute inset-0 rounded-full bg-white/10 opacity-0 transition duration-300 group-hover:opacity-100" />
+                <span className="pointer-events-none absolute inset-[-12%] rounded-full border border-white/15 mix-blend-screen opacity-70" />
+                <span className="relative z-10 transition-colors duration-500 group-hover:text-black">Start survey now</span>
                 <svg
                   aria-hidden
-                  className="h-4 w-4"
+                  className="relative z-10 h-4 w-4 transition-colors duration-500 group-hover:text-black"
                   viewBox="0 0 24 24"
                   fill="none"
                   stroke="currentColor"
@@ -127,12 +147,22 @@ export const HeroSection: FC<HeroSectionProps> = ({
               <button
                 type="button"
                 onClick={() => router.push("/waitlist")}
-                className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-[#fe6839] px-7 py-3 text-sm font-semibold text-white shadow-lg shadow-[#fe6839]/40 transition hover:-translate-y-0.5 hover:bg-[#ff7a4d] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#fe6839] sm:w-auto"
+                className="group relative inline-flex w-full items-center justify-center gap-2 overflow-hidden rounded-full bg-gradient-brand px-7 py-3 text-sm font-semibold text-white shadow-pill transition hover:-translate-y-0.5 focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0510] focus-visible:ring-white sm:w-auto"
               >
-                Start survey now
+                <span
+                  aria-hidden
+                  className="pointer-events-none absolute inset-0 bg-white opacity-0 transition-opacity duration-500 group-hover:opacity-100"
+                />
+                <div
+                  aria-hidden
+                  className="absolute inset-0 translate-y-full bg-white/20 transition-transform duration-300 group-hover:translate-y-0"
+                />
+                <span className="pointer-events-none absolute inset-0 rounded-full bg-white/10 opacity-0 transition duration-300 group-hover:opacity-100" />
+                <span className="pointer-events-none absolute inset-[-12%] rounded-full border border-white/15 mix-blend-screen opacity-70" />
+                <span className="relative z-10 transition-colors duration-500 group-hover:text-black">Start survey now</span>
                 <svg
                   aria-hidden
-                  className="h-4 w-4"
+                  className="relative z-10 h-4 w-4 transition-colors duration-500 group-hover:text-black"
                   viewBox="0 0 24 24"
                   fill="none"
                   stroke="currentColor"

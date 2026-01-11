@@ -182,10 +182,22 @@ const WaitlistModal = ({ open, onClose }: WaitlistModalProps) => {
                 />
                 <button
                   type="submit"
-                  className="whitespace-nowrap rounded-full bg-[#FE6839] px-8 py-3.5 text-sm font-semibold text-white shadow-lg shadow-[#FE6839]/20 transition-all hover:bg-[#ff7b52] hover:shadow-[#FE6839]/40"
+                  className="group relative whitespace-nowrap overflow-hidden rounded-full bg-gradient-brand px-8 py-3.5 text-sm font-semibold text-white shadow-pill transition hover:-translate-y-0.5 focus-visible-ring disabled:cursor-not-allowed disabled:opacity-80"
                   disabled={status === "loading"}
                 >
-                  {status === "loading" ? "Submitting..." : status === "success" ? "Joined!" : "Join waitlist"}
+                  <span
+                    aria-hidden
+                    className="pointer-events-none absolute inset-0 bg-white opacity-0 transition-opacity duration-500 group-hover:opacity-100"
+                  />
+                  <div
+                    aria-hidden
+                    className="absolute inset-0 translate-y-full bg-white/20 transition-transform duration-300 group-hover:translate-y-0"
+                  />
+                  <span className="pointer-events-none absolute inset-0 rounded-full bg-white/10 opacity-0 transition duration-300 group-hover:opacity-100" />
+                  <span className="pointer-events-none absolute inset-[-12%] rounded-full border border-white/15 mix-blend-screen opacity-70" />
+                  <span className="relative z-10 transition-colors duration-500 group-hover:text-black">
+                    {status === "loading" ? "Submitting..." : status === "success" ? "Joined!" : "Join waitlist"}
+                  </span>
                 </button>
               </div>
             </form>

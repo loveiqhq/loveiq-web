@@ -118,12 +118,11 @@ const OrbitGlyph = ({ id }: { id: OrbitIconId }) => {
 
 const HowItWorksSection: FC = () => {
   return (
-    <section className="section-shell relative overflow-hidden bg-[#0A0510] px-4 text-text-primary" aria-labelledby="how-it-works-heading">
+    <section className="section-shell relative overflow-hidden bg-[#0A0510] px-4 pt-24 pb-16 text-text-primary md:pt-28 md:pb-20" aria-labelledby="how-it-works-heading">
       <div className="pointer-events-none absolute inset-0" />
       <div className="pointer-events-none absolute inset-x-0 -top-20 h-24 bg-gradient-to-b from-[#0b0613] via-[#0b0613]/60 to-[#0A0510]" />
       <div className="pointer-events-none absolute left-[-440px] top-1/2 hidden h-[520px] w-[520px] -translate-y-1/2 lg:block">
-        <div className="absolute inset-0 rounded-full border border-dashed border-[#fe6839]/18 animate-spin-slow" />
-        <div className="absolute inset-6 rounded-full border border-dashed border-[#a78bfa]/14 animate-spin-slow" style={{ animationDuration: "50s", animationDirection: "reverse" }} />
+        <div className="absolute inset-6 rounded-full border border-dashed border-[#a78bfa]/14 animate-spin-slow" style={{ animationDuration: "50s" }} />
         <div className="absolute inset-0 animate-spin-slow" style={{ animationDuration: "55s" }}>
           {orbitIcons.map((icon, idx) => {
             const angle = (idx / orbitIcons.length) * 360;
@@ -154,7 +153,6 @@ const HowItWorksSection: FC = () => {
         </div>
       </div>
       <div className="pointer-events-none absolute right-[-440px] top-1/2 hidden h-[520px] w-[520px] -translate-y-1/2 lg:block">
-        <div className="absolute inset-0 rounded-full border border-dashed border-[#fe6839]/18 animate-spin-slow" />
         <div className="absolute inset-6 rounded-full border border-dashed border-[#a78bfa]/14 animate-spin-slow" style={{ animationDuration: "50s", animationDirection: "reverse" }} />
         <div className="absolute inset-0 animate-spin-slow" style={{ animationDuration: "55s", animationDirection: "reverse" }}>
           {orbitIcons.map((icon, idx) => {
@@ -185,36 +183,26 @@ const HowItWorksSection: FC = () => {
           })}
         </div>
       </div>
-      <div className="pointer-events-none absolute left-[8%] top-[22%] text-[#541475]/12 dark:text-white/12 animate-spin-slow">
-        <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor" aria-hidden>
-          <path d="M11 11V5h2v6h6v2h-6v6h-2v-6H5v-2h6z" />
-        </svg>
-      </div>
-      <div className="pointer-events-none absolute right-[6%] bottom-[26%] text-[#fe6839]/14 dark:text-[#fe6839]/20 animate-spin-slow" style={{ animationDirection: "reverse" }}>
-        <svg width="34" height="34" viewBox="0 0 24 24" fill="currentColor" aria-hidden>
-          <path d="M11 11V5h2v6h6v2h-6v6h-2v-6H5v-2h6z" />
-        </svg>
-      </div>
-
       <div className="content-shell relative flex flex-col gap-12">
         <h2 id="how-it-works-heading" className="text-center font-serif text-[44px] leading-tight text-white sm:text-[52px]">
           How it Works
         </h2>
 
-        <div className="grid gap-8 md:grid-cols-3">
-          {steps.map((item, idx) => {
-            const isFirst = idx === 0;
+        <div className="relative">
+          <div className="grid gap-8 md:grid-cols-3">
+            {steps.map((item, idx) => {
+              const isFirst = idx === 0;
 
-            return (
-              <div
-                key={item.title}
-                className={`group col-anim relative flex h-full flex-col gap-6 overflow-hidden rounded-[28px] border border-[rgba(255,255,255,0.05)] shadow-[0_26px_80px_rgba(0,0,0,0.55)] transition-all duration-500 ${
-                  isFirst
-                    ? "min-h-[400px] bg-[#161024] px-7 py-7 hover:-translate-y-2 hover:shadow-[0_28px_90px_rgba(84,20,117,0.18)]"
-                    : "min-h-[480px] bg-[#1e102e] px-8 py-7 hover:-translate-y-2 hover:shadow-[0_28px_90px_rgba(84,20,117,0.14)] hover:border-[rgba(167,139,250,0.35)]"
-                }`}
-                style={{ animationDelay: `${0.08 * idx}s` } as CSSProperties}
-              >
+              return (
+                <div
+                  key={item.title}
+                  className={`group col-anim relative flex h-full flex-col gap-6 overflow-visible rounded-[28px] border border-[rgba(255,255,255,0.05)] shadow-[0_26px_80px_rgba(0,0,0,0.55)] transition-all duration-500 ${
+                    isFirst
+                      ? "min-h-[400px] bg-[#1e102e] px-7 py-7 hover:-translate-y-2 hover:shadow-[0_28px_90px_rgba(84,20,117,0.18)]"
+                      : "min-h-[480px] bg-[#1e102e] px-8 py-7 hover:-translate-y-2 hover:border-[rgba(167,139,250,0.35)] hover:shadow-[0_28px_90px_rgba(84,20,117,0.14)]"
+                  }`}
+                  style={{ animationDelay: `${0.08 * idx}s` } as CSSProperties}
+                >
               <div className="pointer-events-none absolute inset-0">
                 <div className="absolute inset-0 bg-[radial-gradient(circle_at_14%_18%,rgba(242,109,79,0.08),transparent_42%),radial-gradient(circle_at_82%_28%,rgba(124,88,255,0.08),transparent_40%)]" />
               </div>
@@ -330,21 +318,60 @@ const HowItWorksSection: FC = () => {
                 )}
               </div>
 
-                <div className="relative mt-3 flex items-center gap-3">
-                  <div
-                    className={`inline-flex items-center gap-3 font-semibold ${
-                      isFirst
-                        ? "rounded-[12px] border border-[#2f2543] bg-[#231733] px-4 py-2 text-[13px] text-[#c9c3dd] shadow-[0_0_0_rgba(124,88,255,0)] transition-all duration-300 group-hover:shadow-[0_0_24px_rgba(124,88,255,0.55)]"
-                        : "rounded-full border border-[rgba(255,255,255,0.08)] bg-[#2a1838] px-4 py-2 text-[12px] text-[#a78bfa] shadow-[0_0_0_rgba(124,88,255,0)] transition-all duration-300 group-hover:shadow-[0_0_20px_rgba(124,88,255,0.4)]"
-                    }`}
-                  >
-                    {!isFirst && <span className="inline-flex h-2 w-2 rounded-full bg-accent-orange shadow-[0_0_0_8px_rgba(242,109,79,0.12)]" aria-hidden />}
-                    <span className="tracking-wide">{item.badge}</span>
+                  <div className="relative mt-3 flex items-center gap-3">
+                    <div
+                      className={`inline-flex items-center gap-3 font-semibold ${
+                        isFirst
+                          ? "rounded-[12px] border border-[#2f2543] bg-[#231733] px-4 py-2 text-[13px] text-[#A78BFA] shadow-none transition-all duration-300"
+                          : "rounded-full border border-[rgba(255,255,255,0.08)] bg-[#2a1838] px-4 py-2 text-[12px] text-[#a78bfa] shadow-none transition-all duration-300"
+                      }`}
+                    >
+                      <span className="tracking-wide">{item.badge}</span>
+                    </div>
                   </div>
+
+                  {idx < steps.length - 1 && (
+                    <>
+                      <div
+                        className="pointer-events-auto absolute right-[-28px] top-1/2 hidden h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full border border-[#3a2c4a] bg-[#2A1838] text-white/65 shadow-[0_10px_15px_-3px_rgba(0,0,0,0.1),0_4px_6px_-4px_rgba(0,0,0,0.1)] transition group-hover:-translate-y-[55%] group-hover:border-[#3a2c4a] group-hover:text-white md:flex"
+                      >
+                        <svg
+                          viewBox="0 0 24 24"
+                          className="h-[14px] w-[14px]"
+                          fill="none"
+                          stroke="currentColor"
+                          strokeWidth="1.1"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          aria-hidden
+                        >
+                          <path d="M5 12h14" />
+                          <path d="m13 6 6 6-6 6" />
+                        </svg>
+                      </div>
+                      <div
+                        className="pointer-events-auto absolute left-1/2 bottom-[-28px] flex h-10 w-10 -translate-x-1/2 items-center justify-center rounded-full border border-[#3a2c4a] bg-[#2A1838] text-white/65 shadow-[0_10px_15px_-3px_rgba(0,0,0,0.1),0_4px_6px_-4px_rgba(0,0,0,0.1)] transition group-hover:-translate-y-[6px] group-hover:border-[#3a2c4a] group-hover:text-white md:hidden"
+                      >
+                        <svg
+                          viewBox="0 0 24 24"
+                          className="h-[14px] w-[14px] rotate-90"
+                          fill="none"
+                          stroke="currentColor"
+                          strokeWidth="1.1"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          aria-hidden
+                        >
+                          <path d="M5 12h14" />
+                          <path d="m13 6 6 6-6 6" />
+                        </svg>
+                      </div>
+                    </>
+                  )}
                 </div>
-              </div>
-            );
-          })}
+              );
+            })}
+          </div>
         </div>
       </div>
 

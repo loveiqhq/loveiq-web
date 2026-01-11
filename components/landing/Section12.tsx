@@ -9,28 +9,51 @@ const Section12: FC = () => {
       <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_20%_20%,rgba(242,109,79,0.12),transparent_45%),radial-gradient(circle_at_80%_30%,rgba(124,88,255,0.14),transparent_45%),radial-gradient(circle_at_50%_80%,rgba(111,63,255,0.16),transparent_50%)]" />
       <div className="pointer-events-none absolute inset-0 bg-noise opacity-12" />
       <div className="content-shell relative flex max-w-5xl flex-col items-center gap-8 text-center">
-        <div className="space-y-3">
-          <h3 className="font-serif text-4xl leading-tight sm:text-5xl md:text-6xl">
-            Ready to understand your <br />
-            <span className="inline-block text-[#f26d4f] underline decoration-[#f26d4f]/80 decoration-4 underline-offset-4">
+        <div className="space-y-8">
+          <h3 className="font-serif text-[48px] leading-[1.05] font-semibold sm:text-[60px] md:text-[72px] md:leading-[1.05]">
+            Ready to understand your{" "}
+            <span className="relative inline-block -top-1 align-baseline italic text-[#FE6839]">
               deepest self?
+              <div className="pointer-events-none mt-[2px]">
+                <svg viewBox="0 0 320 16" fill="none" preserveAspectRatio="none" className="h-[14px] w-full">
+                  <path
+                    d="M6 6 C 110 18, 210 18, 314 6"
+                    stroke="#FE6839"
+                    strokeWidth="6"
+                    strokeLinecap="round"
+                    opacity="0.7"
+                  />
+                </svg>
+              </div>
             </span>
           </h3>
           <p className="text-lg leading-relaxed text-white/85">
-            Join 30,000+ others who have unlocked better relationships, clearer communication, and deeper confidence.
+            Join 30,000+ others who have unlocked better relationships,
+            <br />
+            clearer communication, and deeper confidence.
           </p>
         </div>
 
-        <div className="flex flex-col items-center gap-4">
+        <div className="flex flex-col items-center gap-6">
           <a
             href="/waitlist"
-            className="inline-flex items-center justify-center gap-2 rounded-full bg-gradient-to-br from-[#fe6839] via-[#ff7f3e] to-[#ff9450] px-8 py-3 text-base font-semibold text-white shadow-[0_18px_70px_rgba(254,104,57,0.4)] transition hover:translate-y-[-2px]"
+            className="group relative inline-flex items-center justify-center gap-2 overflow-hidden rounded-full bg-gradient-brand px-8 py-3 text-base font-semibold text-white shadow-pill transition hover:translate-y-[-2px] focus-visible-ring"
             onClick={() => trackStartSurvey("footer")}
           >
-            Start survey now
+            <span
+              aria-hidden
+              className="pointer-events-none absolute inset-0 bg-white opacity-0 transition-opacity duration-500 group-hover:opacity-100"
+            />
+            <div
+              aria-hidden
+              className="absolute inset-0 translate-y-full bg-white/20 transition-transform duration-300 group-hover:translate-y-0"
+            />
+            <span className="pointer-events-none absolute inset-0 rounded-full bg-white/10 opacity-0 transition duration-300 group-hover:opacity-100" />
+            <span className="pointer-events-none absolute inset-[-12%] rounded-full border border-white/15 mix-blend-screen opacity-70" />
+            <span className="relative z-10 transition-colors duration-500 group-hover:text-black">Start survey now</span>
             <svg
               aria-hidden
-              className="h-5 w-5"
+              className="relative z-10 h-5 w-5 transition-colors duration-500 group-hover:text-black"
               viewBox="0 0 24 24"
               fill="none"
               stroke="currentColor"
