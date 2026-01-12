@@ -76,7 +76,8 @@ const Section11: FC = () => {
         </div>
         <div className="space-y-3 text-center">
           <h2 id="faq-heading" className="font-serif text-3xl leading-tight sm:text-4xl md:text-5xl">
-            Curious Minds Ask. <span className="text-[#9c7dff]">We Answer.</span>
+            <span className="block sm:inline">Curious Minds Ask.</span>{" "}
+            <span className="block sm:inline text-[#9c7dff]">We Answer.</span>
           </h2>
         </div>
 

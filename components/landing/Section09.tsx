@@ -45,10 +45,14 @@ const Section09: FC = () => {
 
         <div className="max-w-4xl space-y-5 text-center sm:space-y-6">
           <h2 id="audience-heading" className="font-serif text-4xl leading-tight text-white sm:text-5xl md:text-[52px] md:leading-[1.1]">
-            Who Is This Perfect For<span className="bg-gradient-to-r from-[#fe6839] to-[#a78bfa] bg-clip-text text-transparent">?</span>
+            <span className="block sm:inline">Who Is This</span>{" "}
+            <span className="block sm:inline">
+              Perfect For<span className="bg-gradient-to-r from-[#fe6839] to-[#a78bfa] bg-clip-text text-transparent">?</span>
+            </span>
           </h2>
-          <p className="text-base text-text-secondary sm:text-lg leading-relaxed sm:leading-relaxed">
-            Designed for everyone on the spectrum of relationship and self-discovery.
+          <p className="text-base leading-relaxed text-text-secondary sm:text-lg sm:leading-relaxed">
+            <span className="block sm:inline">Designed for everyone on the spectrum</span>{" "}
+            <span className="block sm:inline">of relationship and self-discovery.</span>
           </p>
         </div>
       </div>

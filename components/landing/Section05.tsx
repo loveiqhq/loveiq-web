@@ -88,12 +88,19 @@ const explorationBullets = [
   {
     title: "Explore your inner landscape.",
     description:
-      "Turn inward and map out the desires, boundaries, and emotions you've never fully named. The guided questions give you language you can grow with.",
-      icon: (
-        <svg
-          aria-hidden
-          className="h-7 w-7"
-          viewBox="0 0 28 28"
+      "Turn inward and map out the desires, boundaries, and emotions you’ve never fully named. LoveIQ guides you with thoughtful questions so you can give language to what you feel and want.",
+    mobileLines: [
+      "Turn inward and map out the desires,",
+      "boundaries, and emotions you’ve never",
+      "fully named. LoveIQ guides you with",
+      "thoughtful questions so you can give",
+      "language to what you feel and want.",
+    ],
+    icon: (
+      <svg
+        aria-hidden
+        className="h-7 w-7"
+        viewBox="0 0 28 28"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
       >
@@ -117,12 +124,19 @@ const explorationBullets = [
   {
     title: "Uncover your unique erotic signature.",
     description:
-      "Discover patterns that belong only to you -- no horoscopes here. Our science-based lens connects your mind, body, and heart so you can express yourself on your own terms.",
-      icon: (
-        <svg
-          aria-hidden
-          className="h-7 w-7"
-          viewBox="0 0 28 28"
+      "Discover patterns that belong only to you - no generic horoscopes here. Our science based quiz reveals how your mind, body, and heart connect so you can understand yourself on your own.",
+    mobileLines: [
+      "Discover patterns that belong only to",
+      "you - no generic horoscopes here. Our",
+      "science based quiz reveals how your",
+      "mind, body, and heart connect so you",
+      "can understand yourself on your own.",
+    ],
+    icon: (
+      <svg
+        aria-hidden
+        className="h-7 w-7"
+        viewBox="0 0 28 28"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
       >
@@ -297,7 +311,22 @@ const Section05: FC = () => {
                   </div>
                   <div className="space-y-1">
                     <p className="font-serif text-lg font-semibold text-white">{item.title}</p>
-                    <p className="text-[15px] leading-relaxed text-white/70">{item.description}</p>
+                    <p className="text-[15px] leading-relaxed text-white/70">
+                      {item.mobileLines ? (
+                        <>
+                          <span className="hidden sm:inline">{item.description}</span>
+                          <span className="sm:hidden">
+                            {item.mobileLines.map((line, idx) => (
+                              <span key={line + idx} className="block">
+                                {line}
+                              </span>
+                            ))}
+                          </span>
+                        </>
+                      ) : (
+                        item.description
+                      )}
+                    </p>
                   </div>
                 </div>
               ))}

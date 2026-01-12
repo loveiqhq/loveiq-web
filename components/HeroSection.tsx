@@ -137,10 +137,13 @@ export const HeroSection: FC<HeroSectionProps> = ({
               </span>
             </h1>
 
-            <p className="max-w-2xl text-base text-white/80 sm:text-lg">
-              Built on 10+ years of research. A{" "}
-              <strong className="font-semibold text-white">10-minute guided survey</strong> that
-              uncovers the sexual patterns and archetype.
+            <p
+              className="mt-4 max-w-2xl text-center text-base leading-6 text-white/80 sm:mt-5 sm:text-lg sm:leading-7 sm:[&>span]:inline [&>span]:mb-1 [&>span]:block sm:[&>span]:mb-0 sm:[&>span]:mr-1"
+            >
+              <span>Built on latest science &amp; research.</span>
+              <span className="font-semibold text-white">A 10-minute guided survey</span>
+              <span>that uncovers your sexual</span>
+              <span>patterns and archetype.</span>
             </p>
 
             <div className="flex w-full flex-col items-center justify-center gap-3 sm:flex-row sm:gap-4">
