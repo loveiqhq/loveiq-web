@@ -137,11 +137,11 @@ const AboutNavSection: FC = () => {
             </div>
           </nav>
           {menuOpen && (
-            <div className="pointer-events-auto absolute left-0 right-0 top-[68px] mx-auto w-full max-w-[360px] rounded-2xl border border-white/10 bg-[#0A0510]/95 p-4 shadow-[0_25px_80px_rgba(0,0,0,0.55)] backdrop-blur sm:hidden">
-              <div className="flex flex-col gap-3">
+            <div className="pointer-events-auto absolute left-0 right-0 top-[68px] mx-auto w-full max-w-[360px] rounded-2xl border border-white/15 bg-black/60 p-5 shadow-[0_30px_90px_rgba(0,0,0,0.65)] backdrop-blur-xl sm:hidden">
+              <div className="flex flex-col items-center gap-4">
                 <Link
                   href="/"
-                  className="w-full rounded-xl bg-white/5 px-4 py-3 text-center text-sm font-semibold text-white hover:bg-white/10 focus-visible-ring"
+                  className="w-full rounded-xl bg-white/10 px-4 py-3 text-center text-sm font-semibold text-white hover:bg-white/15 focus-visible-ring"
                   onClick={closeMenu}
                 >
                   Home
