@@ -62,11 +62,11 @@ const NavSection: FC = () => {
                 href="/about"
                 className="hidden shrink-0 items-center justify-center gap-2 whitespace-nowrap rounded-full border border-white/15 bg-white/5 px-4 py-2 text-xs font-semibold text-white/85 shadow-[0_15px_40px_rgba(0,0,0,0.35)] transition hover:-translate-y-[2px] hover:border-white/25 hover:text-white focus-visible-ring sm:inline-flex lg:hidden"
               >
-                About
+                About Us
               </Link>
               <Link
                 href="/waitlist"
-                className="group relative inline-flex shrink-0 items-center justify-center gap-2 overflow-hidden whitespace-nowrap rounded-full bg-gradient-brand px-3.5 py-2 text-[13px] font-semibold text-white shadow-pill transition hover:translate-y-[-2px] focus-visible-ring sm:px-6 sm:py-3 sm:text-sm"
+                className="group relative hidden shrink-0 items-center justify-center gap-2 overflow-hidden whitespace-nowrap rounded-full bg-gradient-brand px-3.5 py-2 text-[13px] font-semibold text-white shadow-pill transition hover:translate-y-[-2px] focus-visible-ring sm:inline-flex sm:px-6 sm:py-3 sm:text-sm"
                 onClick={() => trackStartSurvey("nav")}
               >
                 <span
@@ -101,20 +101,36 @@ const NavSection: FC = () => {
                 aria-expanded={menuOpen}
                 onClick={() => setMenuOpen((prev) => !prev)}
               >
-                <svg
-                  aria-hidden
-                  viewBox="0 0 24 24"
-                  className="h-5 w-5"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                >
-                  <path d="M4 7h16" />
-                  <path d="M4 12h16" />
-                  <path d="M4 17h16" />
-                </svg>
+                {menuOpen ? (
+                  <svg
+                    aria-hidden
+                    viewBox="0 0 24 24"
+                    className="h-5 w-5"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  >
+                    <path d="M18 6 6 18" />
+                    <path d="m6 6 12 12" />
+                  </svg>
+                ) : (
+                  <svg
+                    aria-hidden
+                    viewBox="0 0 24 24"
+                    className="h-5 w-5"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  >
+                    <path d="M4 7h16" />
+                    <path d="M4 12h16" />
+                    <path d="M4 17h16" />
+                  </svg>
+                )}
               </button>
             </div>
           </nav>
@@ -123,10 +139,10 @@ const NavSection: FC = () => {
               <div className="flex flex-col gap-3">
                 <Link
                   href="/about"
-                  className="w-full rounded-xl bg-white/5 px-4 py-3 text-left text-sm font-semibold text-white hover:bg-white/10 focus-visible-ring"
+                  className="w-full rounded-xl bg-white/5 px-4 py-3 text-center text-sm font-semibold text-white hover:bg-white/10 focus-visible-ring"
                   onClick={closeMenu}
                 >
-                  About
+                  About Us
                 </Link>
                 <Link
                   href="/waitlist"
