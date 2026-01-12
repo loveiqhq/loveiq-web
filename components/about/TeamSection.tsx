@@ -39,20 +39,23 @@ const TeamSection: FC = () => {
       name: "Ema Djedović",
       role: "Product Lead",
       image: "/about/team-ema-djedovic.png",
-      socials: ["linkedin", "twitter", "globe"],
+      linkedinUrl: "https://www.linkedin.com/in/ema-djedovic/",
+      socials: ["linkedin"],
       hoverColor: "purple",
     },
     {
       name: "Eman Čičkušić",
       role: "Tech Lead",
       image: "/about/team-eman-cickusic-61a88a.png",
-      socials: ["linkedin", "twitter", "dribbble"],
+      linkedinUrl: "https://www.linkedin.com/in/eman-cickusic/",
+      socials: ["linkedin"],
       hoverColor: "orange",
     },
     {
       name: "Ferhad Jukić",
       role: "Full Stack Engineer",
       image: "/about/team-ferhad-jukic.png",
+      linkedinUrl: "https://www.linkedin.com/in/ferhad-juki%C4%87-7a9049333/",
       socials: ["linkedin"],
       hoverColor: "purple",
     },
@@ -60,13 +63,15 @@ const TeamSection: FC = () => {
       name: "Ismar Fazlić",
       role: "Design Lead",
       image: "/about/team-ismar-fazlic-74951d.png",
-      socials: ["linkedin", "twitter", "dribbble"],
+      linkedinUrl: "https://www.linkedin.com/in/ismar-fazlic/",
+      socials: ["linkedin"],
       hoverColor: "orange",
     },
     {
       name: "Marcus Börner",
       role: "Strategy Lead",
       image: "/about/team-marcus-borner-56586a.png",
+      linkedinUrl: "https://www.linkedin.com/in/marcusb1/",
       socials: ["linkedin"],
       hoverColor: "purple",
     },
@@ -151,15 +156,16 @@ const TeamSection: FC = () => {
 
                   {/* Social links */}
                   <div className="flex items-center gap-4 text-gray-500">
-                    {member.socials.map((social) => (
+                    {member.linkedinUrl && (
                       <Link
-                        key={social}
-                        href="#"
+                        href={member.linkedinUrl}
                         className="transition-all duration-300 hover:scale-110 hover:text-white"
+                        target="_blank"
+                        rel="noreferrer"
                       >
-                        {getSocialIcon(social)}
+                        <LinkedInIcon />
                       </Link>
-                    ))}
+                    )}
                   </div>
                 </div>
               </div>

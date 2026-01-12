@@ -14,22 +14,22 @@ const FooterSection: FC = () => {
       <div className="content-shell relative flex flex-col gap-10">
         <div className="grid gap-8 md:grid-cols-[1.2fr_1fr_1fr]">
           <div className="space-y-4">
-            <div className="flex items-center gap-3">
-              <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-gradient-brand text-white shadow-pill">
+            <div className="flex items-center gap-2.5">
+              <div className="relative flex h-7 w-7 items-center justify-center overflow-hidden rounded-2xl bg-gradient-to-br from-[#ff9450] via-[#fe6839] to-[#c36ddf] shadow-[0_8px_18px_rgba(0,0,0,0.28)]">
                 <svg
                   aria-hidden
                   viewBox="0 0 24 24"
-                  className="h-6 w-6"
+                  className="relative h-3.5 w-3.5 text-white"
                   fill="none"
                   stroke="currentColor"
                   strokeWidth="2"
                   strokeLinecap="round"
                   strokeLinejoin="round"
                 >
-                  <path d="M2 9.5a5.5 5.5 0 0 1 9.591-3.676.56.56 0 0 0 .818 0A5.49 5.49 0 0 1 22 9.5c0 2.29-1.5 4-3 5.5l-5.492 5.313a2 2 0 0 1-3 .019L5 15c-1.5-1.5-3-3.2-3-5.5" />
+                  <path d="M12 19s-7-4-7-9a4 4 0 0 1 7-2.5A4 4 0 0 1 19 10c0 5-7 9-7 9Z" />
                 </svg>
               </div>
-              <h2 id="footer-heading" className="font-serif text-2xl font-semibold">
+              <h2 id="footer-heading" className="font-serif text-xl font-semibold text-white">
                 LoveIQ
               </h2>
             </div>

@@ -131,21 +131,31 @@ export const LoveIQReportSection: FC<LoveIQReportSectionProps> = ({ className = 
           <div className="flex flex-col gap-3 pt-2 sm:flex-row sm:items-center sm:gap-4">
             <button
               type="button"
-              className="inline-flex items-center justify-center gap-2 rounded-full bg-[#fe6839] px-6 py-3 text-[16px] font-extrabold leading-6 text-white shadow-lg shadow-[#fe6839]/35 transition hover:-translate-y-0.5 hover:bg-[#ff7a4d] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#fe6839]"
+              className="group relative inline-flex items-center justify-center gap-2 overflow-hidden rounded-full bg-gradient-brand px-6 py-3 text-[16px] font-semibold leading-6 text-white shadow-pill transition hover:-translate-y-0.5 focus-visible-ring"
             >
-              Start Survey Now
+              <span
+                aria-hidden
+                className="pointer-events-none absolute inset-0 bg-white opacity-0 transition-opacity duration-500 group-hover:opacity-100"
+              />
+              <div
+                aria-hidden
+                className="absolute inset-0 translate-y-full bg-white/20 transition-transform duration-300 group-hover:translate-y-0"
+              />
+              <span className="pointer-events-none absolute inset-0 rounded-full bg-white/10 opacity-0 transition duration-300 group-hover:opacity-100" />
+              <span className="pointer-events-none absolute inset-[-12%] rounded-full border border-white/15 mix-blend-screen opacity-70" />
+              <span className="relative z-10 transition-colors duration-500 group-hover:text-black">Start Survey Now</span>
               <svg
                 aria-hidden
-                className="h-4 w-4"
+                className="relative z-10 h-5 w-5 transition-colors duration-500 group-hover:text-black"
                 viewBox="0 0 24 24"
                 fill="none"
                 stroke="currentColor"
-                strokeWidth="2"
+                strokeWidth="2.2"
                 strokeLinecap="round"
                 strokeLinejoin="round"
               >
                 <path d="M5 12h14" />
-                <path d="m13 6 6 6-6 6" />
+                <path d="m12 5 7 7-7 7" />
               </svg>
             </button>
             <div className="text-left leading-tight text-white/80">

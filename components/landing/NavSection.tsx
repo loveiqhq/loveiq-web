@@ -5,7 +5,7 @@ import type { FC } from "react";
 import Link from "next/link";
 import { trackStartSurvey } from "../../lib/analytics";
 
-const navLinks = [{ label: "About", href: "/about" }];
+const navLinks = [{ label: "About Us", href: "/about" }];
 
 const NavSection: FC = () => {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -66,7 +66,7 @@ const NavSection: FC = () => {
               </Link>
               <Link
                 href="/waitlist"
-                className="hidden sm:group sm:relative sm:inline-flex sm:shrink-0 sm:items-center sm:justify-center sm:gap-2 sm:overflow-hidden sm:whitespace-nowrap sm:rounded-full sm:bg-gradient-brand sm:px-6 sm:py-3 sm:text-sm sm:font-semibold sm:text-white sm:shadow-pill sm:transition sm:hover:translate-y-[-2px] sm:focus-visible-ring"
+                className="group relative inline-flex shrink-0 items-center justify-center gap-2 overflow-hidden whitespace-nowrap rounded-full bg-gradient-brand px-3.5 py-2 text-[13px] font-semibold text-white shadow-pill transition hover:translate-y-[-2px] focus-visible-ring sm:px-6 sm:py-3 sm:text-sm"
                 onClick={() => trackStartSurvey("nav")}
               >
                 <span

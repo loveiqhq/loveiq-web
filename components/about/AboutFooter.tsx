@@ -16,23 +16,25 @@ const FooterLink: FC<FooterLinkProps> = ({ href, children }) => (
 
 const AboutFooter: FC = () => (
   <footer className="relative overflow-hidden border-t border-white/5 bg-[#050208] pb-10 pt-20">
-    {/* Background Watermark */}
-    <div className="pointer-events-none absolute inset-0 flex items-center justify-center">
-      <span className="select-none font-serif text-[150px] font-extrabold leading-none text-black md:text-[250px]">
-        LoveIQ
-      </span>
-    </div>
-
     <div className="content-shell relative z-10">
       <div className="flex flex-col gap-20 px-6">
         {/* Main Footer Content */}
         <div className="flex flex-col justify-between gap-10 md:flex-row">
           {/* Left: Logo & Description */}
           <div className="flex max-w-[384px] flex-col gap-6">
-            <div className="flex items-center gap-2">
-              <div className="flex h-8 w-8 items-center justify-center rounded-full bg-[#FE6839]">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M12 19s-7-4-7-9a4 4 0 0 1 7-2.5A4 4 0 0 1 19 10c0 5-7 9-7 9Z" fill="white" />
+            <div className="flex items-center gap-2.5">
+              <div className="relative flex h-7 w-7 items-center justify-center overflow-hidden rounded-2xl bg-gradient-to-br from-[#ff9450] via-[#fe6839] to-[#c36ddf] shadow-[0_8px_18px_rgba(0,0,0,0.28)]">
+                <svg
+                  aria-hidden
+                  viewBox="0 0 24 24"
+                  className="relative h-3.5 w-3.5 text-white"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                >
+                  <path d="M12 19s-7-4-7-9a4 4 0 0 1 7-2.5A4 4 0 0 1 19 10c0 5-7 9-7 9Z" />
                 </svg>
               </div>
               <span className="font-serif text-xl text-white">LoveIQ</span>
