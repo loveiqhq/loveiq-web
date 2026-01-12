@@ -5,6 +5,7 @@ import { z } from "zod";
 const resend = new Resend(process.env.RESEND_API_KEY);
 const recaptchaSecret = process.env.RECAPTCHA_SECRET_KEY;
 const contactToEmail = process.env.CONTACT_TO_EMAIL || "hello@loveiq.org";
+const slackContactWebhook = process.env.SLACK_CONTACT_WEBHOOK_URL;
 const rateLimitWindowMs = 60_000;
 const rateLimitMax = 5;
 const ipHits = new Map<string, number[]>();
@@ -64,6 +65,43 @@ const verifyCaptcha = async (token: string, ip: string) => {
   }
 };
 
+const sendSlackContactNotification = async (payload: {
+  firstName: string;
+  lastName: string;
+  email: string;
+  phone?: string;
+  message: string;
+}) => {
+  const webhookUrl = slackContactWebhook;
+  if (!webhookUrl) {
+    console.warn("Slack contact webhook missing: SLACK_CONTACT_WEBHOOK_URL");
+    return;
+  }
+
+  const text =
+    `📩 *New contact request*\n` +
+    `• *Name:* ${payload.firstName} ${payload.lastName}\n` +
+    `• *Email:* ${payload.email}\n` +
+    (payload.phone ? `• *Phone:* ${payload.phone}\n` : "") +
+    `• *Message:* ${payload.message}`;
+
+  try {
+    const res = await fetch(webhookUrl, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ text }),
+    });
+    const body = await res.text();
+    if (!res.ok) {
+      console.error("Slack contact webhook failed:", res.status, body);
+    } else {
+      console.log("Slack contact webhook sent:", res.status);
+    }
+  } catch (err) {
+    console.error("Slack contact webhook error:", err);
+  }
+};
+
 export async function POST(request: Request) {
   const ip = getClientIp(request);
 
@@ -99,6 +137,8 @@ export async function POST(request: Request) {
         message,
       ].join("\n"),
     });
+
+    await sendSlackContactNotification({ firstName, lastName, email, phone, message });
   } catch (err) {
     console.error("Contact email send error:", err);
     return NextResponse.json({ error: "Unable to send message. Please try later." }, { status: 500 });
