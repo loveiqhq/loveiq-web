@@ -23,7 +23,7 @@ const AboutNavSection: FC = () => {
 
   return (
     <header className="pointer-events-none fixed inset-x-0 top-0 z-[120] px-4 sm:top-3 sm:z-40">
-      <div className="content-shell flex justify-center">
+      <div className="content-shell">
         <div className="relative pointer-events-auto">
           <div className="pointer-events-none absolute inset-[-10px] rounded-[999px] bg-[radial-gradient(80%_120%_at_50%_50%,rgba(0,0,0,0.55),transparent_65%)] blur-3xl" />
           <nav className="relative mx-auto flex w-full max-w-[340px] items-center justify-between gap-3 rounded-[999px] bg-gradient-to-r from-[#1b0f2a] via-[#120a20] to-[#1b0f2a] px-3 py-2 shadow-[0_25px_80px_rgba(0,0,0,0.55)] backdrop-blur sm:max-w-[1200px] sm:gap-5 sm:pl-6 sm:pr-2 sm:py-[6px]">
