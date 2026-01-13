@@ -93,16 +93,20 @@ const Section07: FC = () => {
           return (
             <div
               key={card.title}
-              className="flex flex-1 flex-col gap-4 rounded-[24px] border border-border bg-card p-6 shadow-soft backdrop-blur transition-transform duration-500 ease-out transform-gpu hover:-translate-y-2 hover:shadow-[0_20px_60px_rgba(0,0,0,0.35)]"
+              className="group relative flex flex-1 flex-col items-start justify-center gap-4 rounded-[32px] border border-white/10 bg-[#150A22] px-10 py-12 shadow-[0_25px_50px_-12px_rgba(167,139,250,0.1)] transition-all duration-500 ease-out transform-gpu hover:-translate-y-2 hover:shadow-[0_25px_60px_-12px_rgba(167,139,250,0.25)]"
             >
-              <div className="inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-[rgba(255,255,255,0.05)] text-white shadow-[0_12px_40px_rgba(0,0,0,0.35)]">
+              <div
+                className="pointer-events-none absolute inset-0 rounded-[32px] bg-[radial-gradient(circle_at_50%_50%,rgba(167,139,250,0.15),transparent_70%)] opacity-0 transition-opacity duration-500 group-hover:opacity-100"
+                aria-hidden
+              />
+              <div className="relative inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-white/5 text-white shadow-[0_12px_40px_rgba(0,0,0,0.35)]">
                 <Icon />
               </div>
-              <div className="space-y-2">
-                <h3 className="font-serif text-xl" id={idx === 0 ? "pillars-heading" : undefined}>
+              <div className="relative space-y-2">
+                <h3 className="font-serif text-xl font-semibold text-white" id={idx === 0 ? "pillars-heading" : undefined}>
                   {card.title}
                 </h3>
-                <p className="text-sm leading-relaxed text-text-secondary">{card.description}</p>
+                <p className="text-sm leading-relaxed text-white/60">{card.description}</p>
               </div>
             </div>
           );

@@ -98,38 +98,42 @@ const Section08: FC = () => {
           {testimonials.map((item, idx) => (
             <div
               key={item.name}
-              className="flex h-full flex-col rounded-[22px] border border-border bg-card p-6 shadow-card backdrop-blur transition-transform duration-500 ease-out transform-gpu hover:-translate-y-2 hover:shadow-[0_20px_60px_rgba(0,0,0,0.35)]"
+              className="flex h-full flex-col justify-between rounded-[24px] border border-white/5 bg-[rgba(30,16,46,0.6)] p-10 shadow-[0_10px_44px_-3px_rgba(167,139,250,0.1),0_4px_6px_-4px_#A78BFA] backdrop-blur-[2px] transition-transform duration-500 ease-out transform-gpu hover:-translate-y-2 hover:shadow-[0_20px_60px_-3px_rgba(167,139,250,0.2),0_8px_12px_-4px_#A78BFA]"
             >
-              <div className="mb-3 flex items-center gap-1 text-accent-orange" aria-label={`${item.stars} star rating`}>
-                {Array.from({ length: item.stars }).map((_, i) => (
-                  <svg
-                    key={i}
-                    aria-hidden
-                    className="h-5 w-5"
-                    viewBox="0 0 24 24"
-                    fill="currentColor"
-                    stroke="none"
-                  >
-                    <path d="M12 2.5 14.9 8l6.1.8-4.5 4.5 1.1 6.2-5.5-3-5.5 3 1-6.2-4.5-4.5 6.1-.8z" />
-                  </svg>
-                ))}
-              </div>
-              <p className="flex-1 font-serif text-[20px] leading-[32.5px] italic text-[#d1d5db] [&_span]:font-serif [&_span]:text-[20px] [&_span]:leading-[32.5px] [&_span]:italic [&_span]:text-[#d1d5db]">
-                “{item.quote}”
-              </p>
-              <div className="mt-6 flex items-center gap-3 pt-4">
-                <div className="h-11 w-11 overflow-hidden rounded-full border border-white/30 shadow-soft" aria-hidden>
-                  <Image
-                    src={avatars[idx]?.src ?? avatars[0].src}
-                    alt={item.name}
-                    width={44}
-                    height={44}
-                    className="h-full w-full object-cover"
-                  />
+              <div>
+                <div className="mb-4 flex items-center gap-1 text-accent-orange" aria-label={`${item.stars} star rating`}>
+                  {Array.from({ length: item.stars }).map((_, i) => (
+                    <svg
+                      key={i}
+                      aria-hidden
+                      className="h-5 w-5"
+                      viewBox="0 0 24 24"
+                      fill="currentColor"
+                      stroke="none"
+                    >
+                      <path d="M12 2.5 14.9 8l6.1.8-4.5 4.5 1.1 6.2-5.5-3-5.5 3 1-6.2-4.5-4.5 6.1-.8z" />
+                    </svg>
+                  ))}
                 </div>
-                <div className="leading-tight">
-                  <p className="text-[18px] font-bold leading-[28px] text-white">{item.name}</p>
-                  <p className="text-[14px] font-medium leading-5 text-[#6b7280]">{item.title}</p>
+                <p className="font-serif text-[18px] leading-[28px] italic text-[#d1d5db] [&_span]:font-serif [&_span]:text-[18px] [&_span]:leading-[28px] [&_span]:italic [&_span]:text-[#d1d5db]">
+                  "{item.quote}"
+                </p>
+              </div>
+              <div className="mt-8 border-t border-white/10 pt-6">
+                <div className="flex items-center gap-3">
+                  <div className="h-14 w-14 overflow-hidden rounded-full border border-white/20 shadow-soft" aria-hidden="true">
+                    <Image
+                      src={avatars[idx]?.src ?? avatars[0].src}
+                      alt={item.name}
+                      width={56}
+                      height={56}
+                      className="h-full w-full object-cover"
+                    />
+                  </div>
+                  <div className="leading-tight">
+                    <p className="text-[16px] font-semibold leading-6 text-white">{item.name}</p>
+                    <p className="text-[14px] font-medium leading-5 text-[#6b7280]">{item.title}</p>
+                  </div>
                 </div>
               </div>
             </div>
