@@ -135,18 +135,18 @@ const NavSection: FC = () => {
             </div>
           </nav>
           {menuOpen && (
-            <div className="pointer-events-auto absolute left-0 right-0 top-[68px] mx-auto w-full max-w-[360px] rounded-2xl border border-white/15 bg-black/60 p-5 shadow-[0_30px_90px_rgba(0,0,0,0.65)] backdrop-blur-xl sm:hidden">
-              <div className="flex flex-col items-center gap-4">
+            <div className="pointer-events-auto absolute left-0 right-0 top-[72px] mx-auto w-full max-w-[332px] rounded-[24px] border border-white/10 bg-[rgba(21,10,34,0.5)] px-2.5 py-7 shadow-[0_25px_50px_-12px_rgba(0,0,0,0.5)] backdrop-blur-xl sm:hidden">
+              <div className="flex flex-col items-center gap-10">
                 <Link
                   href="/about"
-                  className="w-full rounded-xl bg-white/10 px-4 py-3 text-center text-sm font-semibold text-white hover:bg-white/15 focus-visible-ring"
+                  className="text-base font-semibold text-white hover:text-white/80 focus-visible-ring"
                   onClick={closeMenu}
                 >
                   About Us
                 </Link>
                 <Link
                   href="/waitlist"
-                  className="group relative inline-flex w-full items-center justify-center gap-2 overflow-hidden rounded-full bg-gradient-brand px-5 py-3 text-sm font-semibold text-white shadow-pill transition hover:translate-y-[-2px] focus-visible-ring"
+                  className="group relative inline-flex items-center justify-center gap-2 overflow-hidden rounded-full bg-gradient-brand px-5 py-3 text-sm font-semibold text-white shadow-pill transition hover:translate-y-[-2px] focus-visible-ring"
                   onClick={() => {
                     trackStartSurvey("nav");
                     closeMenu();
@@ -162,7 +162,7 @@ const NavSection: FC = () => {
                   />
                   <span className="pointer-events-none absolute inset-0 rounded-full bg-white/10 opacity-0 transition duration-300 group-hover:opacity-100" />
                   <span className="pointer-events-none absolute inset-[-12%] rounded-full border border-white/15 mix-blend-screen opacity-70" />
-                  <span className="relative z-10 transition-colors duration-500 group-hover:text-black">Start survey now</span>
+                  <span className="relative z-10 transition-colors duration-500 group-hover:text-black">Start Survey Now</span>
                   <svg
                     aria-hidden
                     className="relative z-10 h-5 w-5 transition-colors duration-500 group-hover:text-black"
