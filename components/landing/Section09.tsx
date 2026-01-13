@@ -1,5 +1,7 @@
+"use client";
+
 import Image from "next/image";
-import type { FC } from "react";
+import { useRef, useState, useEffect, useCallback, type FC } from "react";
 
 const personas = [
   {
@@ -32,6 +34,73 @@ const personas = [
 ];
 
 const Section09: FC = () => {
+  const carouselRef = useRef<HTMLDivElement>(null);
+  const [isPaused, setIsPaused] = useState(false);
+  const isDraggingRef = useRef(false);
+  const startXRef = useRef(0);
+  const currentTranslateRef = useRef(0);
+  const startTranslateRef = useRef(0);
+  const animationRef = useRef<number | null>(null);
+  const lastTimeRef = useRef<number>(0);
+  const cardWidth = 366; // card width + margin
+  const totalWidth = cardWidth * personas.length;
+
+  const animate = useCallback((timestamp: number) => {
+    if (!lastTimeRef.current) lastTimeRef.current = timestamp;
+    const delta = timestamp - lastTimeRef.current;
+    lastTimeRef.current = timestamp;
+
+    if (!isPaused && !isDraggingRef.current) {
+      currentTranslateRef.current -= delta * 0.03; // Speed: pixels per ms
+
+      // Reset to beginning when we've scrolled past the first set
+      if (Math.abs(currentTranslateRef.current) >= totalWidth) {
+        currentTranslateRef.current = currentTranslateRef.current + totalWidth;
+      }
+
+      if (carouselRef.current) {
+        carouselRef.current.style.transform = `translateX(${currentTranslateRef.current}px)`;
+      }
+    }
+
+    animationRef.current = requestAnimationFrame(animate);
+  }, [isPaused, totalWidth]);
+
+  useEffect(() => {
+    animationRef.current = requestAnimationFrame(animate);
+    return () => {
+      if (animationRef.current) cancelAnimationFrame(animationRef.current);
+    };
+  }, [animate]);
+
+  const handleDragStart = (clientX: number) => {
+    isDraggingRef.current = true;
+    startXRef.current = clientX;
+    startTranslateRef.current = currentTranslateRef.current;
+  };
+
+  const handleDragMove = (clientX: number) => {
+    if (!isDraggingRef.current) return;
+    const diff = clientX - startXRef.current;
+    currentTranslateRef.current = startTranslateRef.current + diff;
+
+    // Keep within bounds (wrap around)
+    if (currentTranslateRef.current > 0) {
+      currentTranslateRef.current = -totalWidth + currentTranslateRef.current;
+    } else if (Math.abs(currentTranslateRef.current) >= totalWidth) {
+      currentTranslateRef.current = currentTranslateRef.current + totalWidth;
+    }
+
+    if (carouselRef.current) {
+      carouselRef.current.style.transform = `translateX(${currentTranslateRef.current}px)`;
+    }
+  };
+
+  const handleDragEnd = () => {
+    isDraggingRef.current = false;
+    lastTimeRef.current = 0; // Reset to avoid jump
+  };
+
   return (
     <section className="section-shell relative overflow-hidden bg-[#0A0510] px-4 text-text-primary" aria-labelledby="audience-heading">
       <div className="absolute inset-0 pointer-events-none">
@@ -58,10 +127,27 @@ const Section09: FC = () => {
       </div>
 
       <div className="relative w-screen max-w-none left-1/2 -translate-x-1/2 overflow-hidden pb-12 mt-8 sm:mt-10">
-        <div className="pointer-events-none absolute inset-y-0 left-0 w-16 sm:w-24 bg-gradient-to-r from-[#0a0510] to-transparent" aria-hidden />
-        <div className="pointer-events-none absolute inset-y-0 right-0 w-16 sm:w-24 bg-gradient-to-l from-[#0a0510] to-transparent" aria-hidden />
+        <div className="pointer-events-none absolute inset-y-0 left-0 w-16 sm:w-24 bg-gradient-to-r from-[#0a0510] to-transparent z-10" aria-hidden />
+        <div className="pointer-events-none absolute inset-y-0 right-0 w-16 sm:w-24 bg-gradient-to-l from-[#0a0510] to-transparent z-10" aria-hidden />
 
-        <div className="flex w-max animate-scroll hover:[animation-play-state:paused]">
+        <div
+          ref={carouselRef}
+          className="flex w-max cursor-grab active:cursor-grabbing select-none"
+          onMouseDown={(e) => {
+            e.preventDefault();
+            handleDragStart(e.clientX);
+          }}
+          onMouseMove={(e) => handleDragMove(e.clientX)}
+          onMouseUp={handleDragEnd}
+          onMouseLeave={() => {
+            handleDragEnd();
+            setIsPaused(false);
+          }}
+          onTouchStart={(e) => handleDragStart(e.touches[0].clientX)}
+          onTouchMove={(e) => handleDragMove(e.touches[0].clientX)}
+          onTouchEnd={handleDragEnd}
+          onMouseEnter={() => setIsPaused(true)}
+        >
           {[...personas, ...personas].map((item, idx) => (
             <div
               key={`${item.title}-${idx}`}
