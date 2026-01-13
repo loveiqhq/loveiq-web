@@ -220,15 +220,9 @@ const Section05: FC = () => {
           </p>
         </div>
 
-        <div className="relative overflow-hidden rounded-[34px] border border-white/10 bg-gradient-to-br from-[#1a0f28] via-[#150c20] to-[#12091c] shadow-[0_26px_120px_rgba(0,0,0,0.65)]">
-          <div className="absolute inset-0">
-            <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_20%,rgba(124,88,255,0.08),transparent_35%)]" />
-            <div className="absolute inset-0 bg-[radial-gradient(circle_at_85%_30%,rgba(254,104,57,0.14),transparent_40%)]" />
-            <div className="absolute inset-0 bg-[radial-gradient(circle_at_60%_60%,rgba(111,63,255,0.08),transparent_45%)]" />
-          </div>
-
-          <div className="relative overflow-hidden rounded-[32px] border border-white/5 bg-white/5">
-            <div className="flex items-center gap-3 border-b border-white/5 bg-black/20 px-6 py-4 backdrop-blur">
+        <div className="relative overflow-hidden rounded-[40px] border border-white/10 bg-[#1E102E] shadow-[0_25px_50px_-12px_rgba(0,0,0,0.5)] backdrop-blur-[12px]">
+          <div className="relative">
+            <div className="flex items-center gap-3 border-b border-white/5 px-6 py-4">
               <span className="h-3 w-3 rounded-full bg-[#fe6839]/60" />
               <span className="h-3 w-3 rounded-full bg-[#541475]/60" />
               <span className="h-3 w-3 rounded-full bg-[#2e0147]/60" />
