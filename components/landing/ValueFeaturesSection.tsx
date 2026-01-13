@@ -50,17 +50,17 @@ const ValueFeaturesSection: FC = () => {
             {bullets.map((item) => (
               <div key={item.title} className="group flex gap-3 rounded-2xl bg-transparent p-4">
                 <div
-                  className="mt-0.5 flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-2xl border border-[#2E0147]/10 bg-[#541475] text-white shadow-[0_10px_28px_rgba(0,0,0,0.2)] transition-colors duration-300 group-hover:bg-white group-hover:text-[#541475] dark:border-white/10 dark:bg-[#a78bfa] dark:text-[#0b0714] dark:group-hover:bg-[#1e102e] dark:group-hover:text-[#a78bfa]"
+                  className="mt-0.5 flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-2xl border border-white/10 bg-[#241433]/80 text-[#cbb8ff] shadow-[0_16px_50px_rgba(0,0,0,0.35)] transition duration-300 ease-out group-hover:-translate-y-1 group-hover:scale-[1.03] group-hover:border-white/20 group-hover:bg-gradient-to-br group-hover:from-[#f26d4f] group-hover:via-[#9c7dff] group-hover:to-[#5d7cff] group-hover:text-[#0d0715]"
                   aria-hidden
                 >
                   {item.icon === "arrow" ? (
-                    <svg width="29" height="29" viewBox="0 0 29 29" fill="none" xmlns="http://www.w3.org/2000/svg" className="h-7 w-7 text-[#a78bfa]">
+                    <svg width="29" height="29" viewBox="0 0 29 29" fill="none" xmlns="http://www.w3.org/2000/svg" className="h-7 w-7">
                       <path d="M24 24.3234H8.9644C8.30923 24.3235 7.68095 24.5809 7.21774 25.0389L4.4977 27.7275C4.25172 27.9888 3.8674 28.0715 3.5338 27.9349C3.20021 27.7983 2.98759 27.4712 3.00056 27.1146V7.22953C3.00054 6.26627 3.5734 5.39301 4.46311 5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
                       <path d="M1 1L26.5 26" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
                       <path d="M8 3H24.1523C25.724 3 27 4.20886 27 5.69784V21" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
                     </svg>
                   ) : (
-                    <svg width="24" height="17" viewBox="0 0 24 17" fill="none" xmlns="http://www.w3.org/2000/svg" className="h-7 w-7 text-[#a78bfa]">
+                    <svg width="24" height="17" viewBox="0 0 24 17" fill="none" xmlns="http://www.w3.org/2000/svg" className="h-7 w-7">
                       <path
                         d="M3.19748 14.4785C0.958739 12.1228 0.368225 8.58644 1.71419 5.5958C3.06017 2.60516 6.06198 0.783745 9.25429 1.02069C12.4466 1.25764 15.1638 3.50354 16.0795 6.66205H18.0486C20.2294 6.66179 22.1534 8.13129 22.7864 10.2806C23.4194 12.4298 22.6123 14.7526 20.7988 16.0001"
                         stroke="currentColor"
@@ -72,7 +72,7 @@ const ValueFeaturesSection: FC = () => {
                   )}
                 </div>
                 <div className="space-y-1">
-                  <p className="text-[17px] font-semibold text-white">{item.title}</p>
+                  <p className="font-serif text-[17px] font-semibold text-white">{item.title}</p>
                   <p className="text-base leading-relaxed text-white/70">{item.description}</p>
                 </div>
               </div>
