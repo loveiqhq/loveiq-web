@@ -116,7 +116,7 @@ const Section08: FC = () => {
                   ))}
                 </div>
                 <p className="font-serif text-[18px] leading-[28px] italic text-[#d1d5db] [&_span]:font-serif [&_span]:text-[18px] [&_span]:leading-[28px] [&_span]:italic [&_span]:text-[#d1d5db]">
-                  "{item.quote}"
+                  &ldquo;{item.quote}&rdquo;
                 </p>
               </div>
               <div className="mt-8 border-t border-white/10 pt-6">
