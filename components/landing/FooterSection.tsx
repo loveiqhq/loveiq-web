@@ -79,14 +79,14 @@ const FooterSection: FC = () => {
           <div className="space-y-4">
             <h3 className="text-lg font-semibold">Company</h3>
             <div className="space-y-2 text-sm text-text-secondary">
-              <p>LoveIQ UG i.G., Hasenheide 62, 10967 Berlin</p>
+              <p>Applied Psychometrics UG i.G., Hasenheide 62, 10967 Berlin</p>
               <p>hello@loveiq.org</p>
             </div>
           </div>
         </div>
 
         <div className="flex flex-col gap-3 border-t border-border pt-6 text-xs text-text-muted sm:flex-row sm:items-center sm:justify-between">
-          <p>© 2026 LoveIQ UG i.G. Designed &amp; developed with care.</p>
+          <p>© 2026 Applied Psychometrics UG i.G. Designed &amp; developed with care.</p>
           <div className="flex gap-4">
             <Link href="/privacy" className="transition hover:text-text-primary focus-visible-ring rounded">
               Privacy Policy
