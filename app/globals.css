@@ -399,3 +399,8 @@ h3,
 .animate-icon-float {
   animation: icon-float 3s ease-in-out infinite;
 }
+
+/* Hide scrollbar for carousel swipe */
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
