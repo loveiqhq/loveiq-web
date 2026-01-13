@@ -44,7 +44,7 @@ const TeamSection: FC = () => {
       hoverColor: "purple",
     },
     {
-      name: "Eman Čičkušić",
+      name: "Eman Cickusic",
       role: "Tech Lead",
       image: "/about/team-eman-cickusic-61a88a.png",
       linkedinUrl: "https://www.linkedin.com/in/eman-cickusic/",
