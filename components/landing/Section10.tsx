@@ -178,7 +178,7 @@ const Section10: FC = () => {
               {/* Text below inner box */}
               <div className="mt-5 space-y-2 px-4 pb-4 text-center">
                 <p className="text-xl font-semibold text-white">Only 20%</p>
-                <p className="text-sm leading-relaxed text-text-secondary">of adults say they're satisfied with their sex life.</p>
+                <p className="text-sm leading-relaxed text-text-secondary">of adults say they&apos;re satisfied with their sex life.</p>
               </div>
             </div>
           </div>
