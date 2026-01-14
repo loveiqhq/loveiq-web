@@ -14,9 +14,23 @@ const Section10: FC = () => {
             Why we created <span className="bg-gradient-to-r from-[#fe6839] to-[#a78bfa] bg-clip-text text-transparent">LoveIQ?</span>
           </h2>
           <p className="mx-auto max-w-[940px] font-medium text-[20px] leading-[28px] text-center text-[#d1d5db]">
-            Positive sexual well-being is highly linked to lower stress, anxiety, and depression, better cardiovascular health, and
-            higher relationship satisfaction. Therefore we want to make sexuality something we can explore with curiosity, confidence,
-            and care — not shame or confusion.
+            <span className="hidden sm:inline">
+              Positive sexual well-being is highly linked to lower stress, anxiety, and depression, better cardiovascular health, and
+              higher relationship satisfaction. Therefore we want to make sexuality something we can explore with curiosity, confidence,
+              and care — not shame or confusion.
+            </span>
+            <span className="sm:hidden">
+              <span className="block">Positive sexual well-being is highly</span>
+              <span className="block">linked to lower stress, anxiety, and</span>
+              <span className="block">depression, better cardiovascular</span>
+              <span className="block">health, and higher relationship</span>
+              <span className="block">satisfaction.</span>
+              <span className="block h-[28px]" />
+              <span className="block">Therefore we want to make sexuality</span>
+              <span className="block">something we can explore with</span>
+              <span className="block">curiosity, confidence, and care — not</span>
+              <span className="block">shame or confusion.</span>
+            </span>
           </p>
         </div>
 
