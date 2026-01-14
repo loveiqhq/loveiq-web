@@ -196,7 +196,7 @@ export default function WaitlistPage() {
             <span className="text-gray-600">&gt;</span>
             <span>Become an Affiliate</span>
           </div>
-          <div className="mt-2 text-center text-[10px] text-gray-700">Ac 2025 LoveIQ &gt; Designed based on User Request</div>
+          <div className="mt-2 text-center text-[10px] text-gray-700">Ac 2026 LoveIQ &gt; Designed based on User Request</div>
         </div>
       </div>
     </div>
