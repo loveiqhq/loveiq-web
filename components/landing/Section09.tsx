@@ -27,11 +27,13 @@ const personas = [
     description: "Anyone obsessed with understanding their psychology, attachment style, and desire patterns.",
     image: "/images/carouselGrowth.png",
     overlay: "from-[#1a0b2a]/85 via-[#0a0510]/75 to-transparent",
+    smallText: true,
   },
   {
     title: "Therapists & Coaches",
     description: "Use a structured psychometric tool to help clients articulate their emotional and sexual identity.",
     image: "/images/carouselTherapist.png",
+    smallText: true,
   },
 ];
 
@@ -173,13 +175,15 @@ const Section09: FC = () => {
                 aria-hidden
               />
               <div className="absolute inset-x-0 bottom-0 p-6 pb-8 space-y-3 transition-all duration-500 group-hover:translate-y-[-4px]">
-                <p className="font-serif text-2xl font-semibold text-white drop-shadow-md min-h-[64px] leading-tight flex items-end">
-                  {item.title}
-                </p>
+                <div className="min-h-[64px] flex items-end">
+                  <p className="font-serif text-2xl font-semibold text-white drop-shadow-md leading-tight">
+                    {item.title}
+                  </p>
+                </div>
                 {item.description && (
                   <div className="relative">
                     <div className="pointer-events-none absolute inset-x-[-8px] bottom-[-16px] top-auto h-16 rounded-b-2xl bg-[radial-gradient(circle_at_50%_100%,rgba(167,139,250,0.42),transparent_70%)] opacity-0 blur-md transition-opacity duration-400 group-hover:opacity-100" />
-                    <p className="relative text-sm text-white/80 opacity-0 transition-opacity duration-400 group-hover:opacity-100">
+                    <p className={`relative text-white/80 opacity-0 transition-opacity duration-400 group-hover:opacity-100 ${item.smallText ? "text-xs" : "text-sm"}`}>
                       {item.description}
                     </p>
                   </div>
