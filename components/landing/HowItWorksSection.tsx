@@ -127,28 +127,34 @@ const HowItWorksSection: FC = () => {
           {orbitIcons.map((icon, idx) => {
             const angle = (idx / orbitIcons.length) * 360;
             const [from, to] = icon.colors;
+            const iconSpinStyle = { animation: "spin-slow 55s linear infinite reverse" };
 
             return (
               <div
                 key={icon.id}
-                className="absolute left-1/2 top-1/2 h-14 w-14 -translate-x-1/2 -translate-y-1/2 rounded-2xl border border-white/10 bg-[rgba(20,15,30,0.9)] shadow-[0_16px_36px_rgba(0,0,0,0.35)] backdrop-blur-sm"
-                style={{ transform: `translate(-50%, -50%) rotate(${angle}deg) translateY(-230px) rotate(-${angle}deg)` }}
+                className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2"
               >
-                <div className="flex h-full w-full items-center justify-center">
-                  <span
-                    className="flex h-10 w-10 items-center justify-center rounded-xl border border-white/10 text-white/85"
-                    style={{
-                      background: `radial-gradient(circle at 30% 30%, rgba(255,255,255,0.06), transparent 55%), linear-gradient(140deg, ${from}22, ${to}14)`,
-                      boxShadow: `0 10px 26px ${from}22`,
-                      color: "#f6f3ff",
-                    }}
-                    aria-hidden
+                <div className="h-14 w-14" style={{ transform: `rotate(${angle}deg) translateY(-230px) rotate(-${angle}deg)` }}>
+                  <div
+                    className="flex h-full w-full items-center justify-center rounded-2xl border border-white/10 bg-[rgba(20,15,30,0.9)] shadow-[0_16px_36px_rgba(0,0,0,0.35)] backdrop-blur-sm"
+                    style={{ ...iconSpinStyle, transformOrigin: 'center center' }}
                   >
-                    <OrbitGlyph id={icon.id} />
-                  </span>
+                    <span
+                      className="flex h-10 w-10 items-center justify-center rounded-xl border border-white/10 text-white/85"
+                      style={{
+                        background: `radial-gradient(circle at 30% 30%, rgba(255,255,255,0.06), transparent 55%), linear-gradient(140deg, ${from}22, ${to}14)`,
+                        boxShadow: `0 10px 26px ${from}22`,
+                        color: "#f6f3ff",
+                      }}
+                      aria-hidden
+                    >
+                      <OrbitGlyph id={icon.id} />
+                    </span>
+                  </div>
                 </div>
               </div>
             );
+
           })}
         </div>
       </div>
@@ -158,28 +164,34 @@ const HowItWorksSection: FC = () => {
           {orbitIcons.map((icon, idx) => {
             const angle = (idx / orbitIcons.length) * 360;
             const [from, to] = icon.colors;
+            const iconSpinStyle = { animation: "spin-slow 55s linear infinite" };
 
             return (
               <div
                 key={icon.id}
-                className="absolute left-1/2 top-1/2 h-14 w-14 -translate-x-1/2 -translate-y-1/2 rounded-2xl border border-white/10 bg-[rgba(20,15,30,0.9)] shadow-[0_16px_36px_rgba(0,0,0,0.35)] backdrop-blur-sm"
-                style={{ transform: `translate(-50%, -50%) rotate(${angle}deg) translateY(-230px) rotate(-${angle}deg)` }}
+                className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2"
               >
-                <div className="flex h-full w-full items-center justify-center">
-                  <span
-                    className="flex h-10 w-10 items-center justify-center rounded-xl border border-white/10 text-white/85"
-                    style={{
-                      background: `radial-gradient(circle at 30% 30%, rgba(255,255,255,0.06), transparent 55%), linear-gradient(140deg, ${from}22, ${to}14)`,
-                      boxShadow: `0 10px 26px ${from}22`,
-                      color: "#f6f3ff",
-                    }}
-                    aria-hidden
+                <div className="h-14 w-14" style={{ transform: `rotate(${angle}deg) translateY(-230px) rotate(-${angle}deg)` }}>
+                  <div
+                    className="flex h-full w-full items-center justify-center rounded-2xl border border-white/10 bg-[rgba(20,15,30,0.9)] shadow-[0_16px_36px_rgba(0,0,0,0.35)] backdrop-blur-sm"
+                    style={{ ...iconSpinStyle, transformOrigin: 'center center' }}
                   >
-                    <OrbitGlyph id={icon.id} />
-                  </span>
+                    <span
+                      className="flex h-10 w-10 items-center justify-center rounded-xl border border-white/10 text-white/85"
+                      style={{
+                        background: `radial-gradient(circle at 30% 30%, rgba(255,255,255,0.06), transparent 55%), linear-gradient(140deg, ${from}22, ${to}14)`,
+                        boxShadow: `0 10px 26px ${from}22`,
+                        color: "#f6f3ff",
+                      }}
+                      aria-hidden
+                    >
+                      <OrbitGlyph id={icon.id} />
+                    </span>
+                  </div>
                 </div>
               </div>
             );
+
           })}
         </div>
       </div>
@@ -199,7 +211,7 @@ const HowItWorksSection: FC = () => {
                   className={`group col-anim relative flex h-full flex-col gap-6 overflow-visible rounded-[28px] border border-[rgba(255,255,255,0.05)] shadow-[0_26px_80px_rgba(0,0,0,0.55)] transition-all duration-500 ${
                     isFirst
                       ? "min-h-[400px] bg-[#1e102e] px-7 py-7 hover:-translate-y-2 hover:shadow-[0_28px_90px_rgba(84,20,117,0.18)]"
-                      : "min-h-[480px] bg-[#1e102e] px-8 py-7 hover:-translate-y-2 hover:border-[rgba(167,139,250,0.35)] hover:shadow-[0_28px_90px_rgba(84,20,117,0.14)]"
+                      : "min-h-[480px] bg-[#1e102e] px-8 py-7 hover:-translate-y-2 hover:border-[rgba(167,139,250,0.35)] hover:shadow-[0_28px_90px_rgba(84,20,117,0.18)]"
                   }`}
                   style={{ animationDelay: `${0.08 * idx}s` } as CSSProperties}
                 >
@@ -213,11 +225,11 @@ const HowItWorksSection: FC = () => {
                   <p className="text-[15px] leading-relaxed text-white/70">{item.description}</p>
                 </div>
 
-                <div className={`relative mt-auto overflow-hidden rounded-2xl ${isFirst ? "border border-[#241938] bg-[#1f152f] p-6 shadow-[0_22px_60px_rgba(0,0,0,0.55)] transition-colors duration-500 group-hover:bg-[#251a35]" : "border border-white/5 bg-white/5 p-5"}`}>
+                <div className="relative mt-auto overflow-hidden rounded-2xl border border-[#241938] bg-[#1f152f] p-6 shadow-[0_22px_60px_rgba(0,0,0,0.55)] transition-colors duration-500 group-hover:bg-[#251a35]">
                   {item.variant === "sliders" && (
                     <>
                       {isFirst ? (
-                        <div className="relative overflow-hidden rounded-[18px] bg-[#1d132b] p-6 shadow-[0_18px_42px_rgba(0,0,0,0.4)]">
+                        <div className="relative flex h-[170px] items-center justify-center overflow-hidden rounded-[18px] bg-[#1d132b] p-6 shadow-[0_18px_42px_rgba(0,0,0,0.4)]">
                           <div className="pointer-events-none absolute inset-0 rounded-[18px] bg-[radial-gradient(circle_at_30%_30%,rgba(254,104,57,0.08),transparent_55%),radial-gradient(circle_at_70%_70%,rgba(124,88,255,0.08),transparent_55%)]" />
                           <div className="relative flex flex-col gap-3 text-white/80">
                             {[
@@ -237,7 +249,7 @@ const HowItWorksSection: FC = () => {
                           </div>
                         </div>
                       ) : (
-                        <div className="relative overflow-hidden rounded-[18px] border border-[rgba(255,255,255,0.05)] bg-[#22142f] p-5 shadow-[0_20px_40px_rgba(0,0,0,0.32)]">
+                        <div className="relative flex h-[170px] items-center justify-center overflow-hidden rounded-[18px] border border-[rgba(255,255,255,0.05)] bg-[#22142f] p-6 shadow-[0_20px_40px_rgba(0,0,0,0.32)]">
                           <div className="relative flex flex-col gap-3 text-white/70">
                             <div className="flex items-center gap-3 rounded-[10px] border border-[rgba(255,255,255,0.08)] bg-[#2a1838]/80 px-4 py-2 shadow-[0_6px_18px_rgba(0,0,0,0.28)]">
                               <span className="h-3 w-3 rounded-full bg-[#ff6a3a]" />
