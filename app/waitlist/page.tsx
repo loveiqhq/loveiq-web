@@ -66,14 +66,21 @@ export default function WaitlistPage() {
   };
 
   return (
-    <div className="min-h-screen bg-[#050208] text-white">
+    <div className="relative min-h-screen overflow-hidden bg-gradient-to-b from-[#541475] via-[#1a0d25] to-[#0A0510] text-white">
+      {/* Animated floating gradient orbs */}
+      <div className="pointer-events-none absolute inset-0 overflow-hidden">
+        <div className="absolute top-[5%] left-[10%] h-[250px] w-[250px] md:h-[500px] md:w-[500px] md:top-[10%] md:left-[15%] rounded-full bg-[rgba(84,20,117,0.6)] blur-[30px] md:blur-[45px] animate-float1" />
+        <div className="absolute top-[15%] right-[5%] h-[220px] w-[220px] md:h-[450px] md:w-[450px] md:top-[20%] md:right-[10%] rounded-full bg-[rgba(84,20,117,0.5)] blur-[25px] md:blur-[40px] animate-float2" />
+        <div className="absolute bottom-[20%] left-[20%] h-[200px] w-[200px] md:h-[400px] md:w-[400px] md:bottom-[25%] md:left-[30%] rounded-full bg-[rgba(84,20,117,0.55)] blur-[25px] md:blur-[35px] animate-float3" />
+        <div className="absolute top-[50%] right-[15%] h-[180px] w-[180px] md:h-[350px] md:w-[350px] md:top-[45%] md:right-[20%] rounded-full bg-[rgba(84,20,117,0.45)] blur-[20px] md:blur-[30px] animate-float4" />
+      </div>
       <div className="relative mx-auto flex w-full max-w-6xl flex-col items-center px-4 py-14 sm:px-6 md:py-16">
-        <div className="relative w-full max-w-4xl rounded-[32px] border border-white/10 bg-[#0A0510] px-6 py-10 shadow-[0_24px_120px_rgba(0,0,0,0.55)] sm:px-10 sm:py-12">
+        <div className="relative w-full max-w-4xl rounded-[32px] border border-white/10 bg-[rgba(10,5,16,0.8)] backdrop-blur-xl px-6 py-10 shadow-[0_24px_120px_rgba(0,0,0,0.55)] sm:px-10 sm:py-12">
           <div className="mb-8 flex flex-col items-center gap-3 text-center">
             <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-[0.2em] text-white/60">
               <span className="relative flex h-2 w-2">
-                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[#FE6839] opacity-75" />
-                <span className="relative inline-flex h-2 w-2 rounded-full bg-[#FE6839]" />
+                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[#541475] opacity-75" />
+                <span className="relative inline-flex h-2 w-2 rounded-full bg-[#541475]" />
               </span>
               <span>Available in early 2026</span>
             </div>
