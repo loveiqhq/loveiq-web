@@ -271,7 +271,7 @@ const HowItWorksSection: FC = () => {
                     </>
                   )}
                   {item.variant === "brain" && (
-                    <div className="relative flex items-center justify-center overflow-hidden rounded-[18px] border border-[rgba(255,255,255,0.05)] bg-[#241731] p-10 shadow-[0_18px_42px_rgba(0,0,0,0.32)] transition-transform duration-500 group-hover:scale-[1.02]">
+                    <div className="relative flex h-[170px] items-center justify-center overflow-hidden rounded-[18px] border border-[rgba(255,255,255,0.05)] bg-[#241731] p-10 shadow-[0_18px_42px_rgba(0,0,0,0.32)] transition-transform duration-500 group-hover:scale-[1.02]">
                       <div className="absolute h-[140px] w-[140px] rounded-full border border-[rgba(254,104,57,0.24)] border-dashed transition-transform duration-700 spin-on-hover" />
                       <div className="absolute h-[180px] w-[180px] rounded-full border border-[rgba(84,20,117,0.22)] border-dashed transition-transform duration-700 spin-on-hover-reverse" />
                       <div className="relative flex h-16 w-16 items-center justify-center rounded-2xl bg-[#2a1838] shadow-[0_10px_30px_rgba(0,0,0,0.35)] transition-transform duration-500 group-hover:translate-y-[-4px] group-hover:scale-105">
