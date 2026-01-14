@@ -497,3 +497,30 @@ h3,
 .animate-float4 {
   animation: float4 18s ease-in-out infinite;
 }
+
+/* Simple up/down float animations for waitlist */
+@keyframes float-up-down {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-40px);
+  }
+}
+
+@keyframes float-up-down-reverse {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(40px);
+  }
+}
+
+.animate-float-up-down {
+  animation: float-up-down 8s ease-in-out infinite;
+}
+
+.animate-float-up-down-reverse {
+  animation: float-up-down-reverse 10s ease-in-out infinite;
+}

@@ -66,13 +66,11 @@ export default function WaitlistPage() {
   };
 
   return (
-    <div className="relative min-h-screen overflow-hidden bg-gradient-to-b from-[#541475] via-[#1a0d25] to-[#0A0510] text-white">
-      {/* Animated floating gradient orbs */}
+    <div className="relative min-h-screen overflow-hidden bg-[#0A0510] text-white">
+      {/* Purple gradient orbs */}
       <div className="pointer-events-none absolute inset-0 overflow-hidden">
-        <div className="absolute top-[5%] left-[10%] h-[250px] w-[250px] md:h-[500px] md:w-[500px] md:top-[10%] md:left-[15%] rounded-full bg-[rgba(84,20,117,0.6)] blur-[30px] md:blur-[45px] animate-float1" />
-        <div className="absolute top-[15%] right-[5%] h-[220px] w-[220px] md:h-[450px] md:w-[450px] md:top-[20%] md:right-[10%] rounded-full bg-[rgba(84,20,117,0.5)] blur-[25px] md:blur-[40px] animate-float2" />
-        <div className="absolute bottom-[20%] left-[20%] h-[200px] w-[200px] md:h-[400px] md:w-[400px] md:bottom-[25%] md:left-[30%] rounded-full bg-[rgba(84,20,117,0.55)] blur-[25px] md:blur-[35px] animate-float3" />
-        <div className="absolute top-[50%] right-[15%] h-[180px] w-[180px] md:h-[350px] md:w-[350px] md:top-[45%] md:right-[20%] rounded-full bg-[rgba(84,20,117,0.45)] blur-[20px] md:blur-[30px] animate-float4" />
+        <div className="absolute top-[-20%] left-[-20%] h-[500px] w-[500px] md:h-[800px] md:w-[800px] rounded-full bg-[radial-gradient(circle,rgba(84,20,117,0.7)_0%,rgba(84,20,117,0)_70%)] animate-float-up-down" />
+        <div className="absolute bottom-[-20%] right-[-20%] h-[500px] w-[500px] md:h-[800px] md:w-[800px] rounded-full bg-[radial-gradient(circle,rgba(84,20,117,0.7)_0%,rgba(84,20,117,0)_70%)] animate-float-up-down-reverse" />
       </div>
       <div className="relative mx-auto flex w-full max-w-6xl flex-col items-center px-4 py-14 sm:px-6 md:py-16">
         <div className="relative w-full max-w-4xl rounded-[32px] border border-white/10 bg-[rgba(10,5,16,0.8)] backdrop-blur-xl px-6 py-10 shadow-[0_24px_120px_rgba(0,0,0,0.55)] sm:px-10 sm:py-12">
