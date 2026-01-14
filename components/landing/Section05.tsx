@@ -329,14 +329,14 @@ const Section05: FC = () => {
 
           <div className="relative flex justify-center px-2 sm:px-0">
             <div className="relative w-full max-w-[320px] overflow-hidden rounded-[34px] shadow-[0_34px_120px_rgba(0,0,0,0.5)] sm:max-w-[380px] md:max-w-[420px]">
-              <div className="relative h-[520px] w-full overflow-hidden rounded-[34px] sm:h-[600px]">
+              <div className="relative aspect-square w-full overflow-hidden rounded-[34px] sm:aspect-auto sm:h-[600px]">
                 <Image
                   src="/762ab2dcc4e38a7a2824b7a4f5174f2627a7eaae.webp"
                   alt="Couple illustration"
                   fill
                   priority
                   sizes="(max-width: 640px) 95vw, (max-width: 1024px) 480px, 540px"
-                  className="object-cover"
+                  className="object-cover object-[50%_10%] sm:object-center"
                 />
               </div>
             </div>
