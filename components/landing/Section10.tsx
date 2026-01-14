@@ -10,7 +10,7 @@ const Section10: FC = () => {
 
       <div className="content-shell relative flex flex-col items-center gap-12 animate-on-scroll">
         <div className="max-w-5xl space-y-4 text-center">
-          <h2 id="why-heading" className="font-serif text-4xl leading-tight text-white sm:text-5xl md:text-[52px] md:leading-[1.15]">
+          <h2 id="why-heading" className="font-serif text-[48px] leading-tight text-white">
             Why we created <span className="bg-gradient-to-r from-[#fe6839] to-[#a78bfa] bg-clip-text text-transparent">LoveIQ?</span>
           </h2>
           <p className="mx-auto max-w-[940px] font-medium text-[20px] leading-[28px] text-center text-[#d1d5db]">
