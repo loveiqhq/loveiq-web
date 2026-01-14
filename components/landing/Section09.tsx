@@ -14,17 +14,19 @@ const personas = [
     title: "People in Relationships",
     description: "Decode each other’s needs and create more intimacy, ease, and connection.",
     image: "/images/carouselRelationships.png",
+    overlay: "from-[#1a0b2a]/85 via-[#0a0510]/35 to-transparent",
   },
   {
     title: "Couples Exploring Growth",
     description: "Strengthen communication, sexual alignment, and long-term compatibility.",
     image: "/images/CarouselCouple.png",
+    overlay: "from-[#1a0b2a]/85 via-[#0a0510]/35 to-transparent",
   },
   {
     title: "Self-Development Lovers",
     description: "Anyone obsessed with understanding their psychology, attachment style, and desire patterns.",
     image: "/images/carouselGrowth.png",
-    overlay: "from-[#2e0147]/90 via-[#2e0147]/55 to-transparent",
+    overlay: "from-[#1a0b2a]/85 via-[#0a0510]/75 to-transparent",
   },
   {
     title: "Therapists & Coaches",
@@ -112,7 +114,7 @@ const Section09: FC = () => {
           <div className="absolute left-0 top-1/2 h-[420px] w-[420px] -translate-y-1/2 rounded-full bg-[#541475]/10 blur-[90px]" aria-hidden />
         </div>
 
-        <div className="max-w-4xl space-y-5 text-center sm:space-y-6">
+        <div className="max-w-4xl space-y-5 text-center sm:space-y-6 mb-8 sm:mb-10">
           <h2 id="audience-heading" className="font-serif text-4xl leading-tight text-white sm:text-5xl md:text-[52px] md:leading-[1.1]">
             <span className="block sm:inline">Who Is This</span>{" "}
             <span className="block sm:inline">
@@ -158,9 +160,8 @@ const Section09: FC = () => {
                 alt={item.title}
                 fill
                 sizes="(min-width: 640px) 360px, 90vw"
-                className={`object-cover transition-transform duration-700 ${
-                  item.image === "/images/CarouselCouple.png" ? "scale-[1.05] group-hover:scale-[1.1]" : "group-hover:scale-[1.04]"
-                }`}
+                className={`object-cover transition-transform duration-700 ${item.image === "/images/CarouselCouple.png" ? "scale-[1.05] group-hover:scale-[1.1]" : "group-hover:scale-[1.04]"
+                  }`}
                 priority={idx === 0}
               />
               <div
@@ -172,7 +173,9 @@ const Section09: FC = () => {
                 aria-hidden
               />
               <div className="absolute inset-x-0 bottom-0 p-6 pb-8 space-y-3 transition-all duration-500 group-hover:translate-y-[-4px]">
-                <p className="font-serif text-2xl font-semibold text-white drop-shadow-md">{item.title}</p>
+                <p className="font-serif text-2xl font-semibold text-white drop-shadow-md min-h-[64px] leading-tight flex items-end">
+                  {item.title}
+                </p>
                 {item.description && (
                   <div className="relative">
                     <div className="pointer-events-none absolute inset-x-[-8px] bottom-[-16px] top-auto h-16 rounded-b-2xl bg-[radial-gradient(circle_at_50%_100%,rgba(167,139,250,0.42),transparent_70%)] opacity-0 blur-md transition-opacity duration-400 group-hover:opacity-100" />
