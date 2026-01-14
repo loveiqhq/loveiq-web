@@ -119,25 +119,21 @@ const Section06: FC = () => {
 
         <div className="relative flex items-center justify-center group">
           <div
-            className="absolute -right-4 top-6 bottom-6 hidden w-[320px] -rotate-12 rounded-[32px] bg-gradient-to-br from-[#5a2d8b] via-[#2f154e] to-[#f26d4f]/60 blur-[0.5px] transition-transform duration-700 ease-[cubic-bezier(0.2,0.8,0.2,1)] will-change-transform transform-gpu group-hover:-rotate-6 group-hover:translate-x-1 group-hover:translate-y-1 md:block"
+            className="absolute -right-4 top-6 bottom-6 hidden w-[320px] -rotate-12 rounded-[32px] bg-[#2a1840] blur-[0.5px] transition-transform duration-700 ease-[cubic-bezier(0.2,0.8,0.2,1)] will-change-transform transform-gpu group-hover:-rotate-6 group-hover:translate-x-1 group-hover:translate-y-1 md:block"
             aria-hidden
           />
 
           <div className="relative w-full max-w-[360px] overflow-hidden rounded-[32px] border border-[#241631] bg-[#1d122a] shadow-[0_32px_110px_rgba(0,0,0,0.6)] transition-all duration-700 ease-[cubic-bezier(0.2,0.8,0.2,1)] transform-gpu will-change-transform group-hover:-translate-y-2 group-hover:shadow-[0_40px_120px_rgba(0,0,0,0.65)]">
-            <div className="flex items-center justify-between gap-4 border-b border-[#241631] bg-black/15 px-5 py-4">
+            <div className="flex items-center justify-between gap-4 border-b border-[#241631] bg-[#1a1127] px-5 py-4">
               <div className="flex items-center gap-2">
-                <span className="h-3 w-3 rounded-full bg-[#fe6839]" aria-hidden />
-                <span className="h-3 w-3 rounded-full bg-[#ffba5f]" aria-hidden />
-                <span className="h-3 w-3 rounded-full bg-[#9c7dff]" aria-hidden />
+                <span className="h-3 w-3 rounded-full bg-[#FE6839]" aria-hidden />
+                <span className="h-3 w-3 rounded-full bg-[#541475]" aria-hidden />
+                <span className="h-3 w-3 rounded-full bg-[#4B5563]" aria-hidden />
               </div>
               <span className="h-1.5 w-14 rounded-full bg-white/12" aria-hidden />
             </div>
 
             <div className="relative px-5 pb-5 pt-5">
-              <div
-                className="pointer-events-none absolute -right-10 -bottom-6 h-44 w-44 rounded-full bg-gradient-to-br from-[#f26d4f]/50 via-[#f26d4f]/18 to-transparent blur-3xl opacity-80"
-                aria-hidden
-              />
               <div className="space-y-5">
                 <div className="flex items-start gap-4">
                   <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-[#2e1c38] text-[#fe6839] shadow-[0_16px_60px_rgba(0,0,0,0.35)]">
@@ -178,15 +174,15 @@ const Section06: FC = () => {
 
                 <div className="space-y-4">
                   {[
-                    { label: "Analysis Started", value: 0, tone: "from-[#421b6c] to-[#2d153f]", accent: "#f26d4f", icon: "search" },
-                    { label: "Analysis Complete", value: 100, tone: "from-[#3c1c67] to-[#2f134c]", accent: "#ff9450", icon: "check" },
+                    { label: "Analysis Started", value: 0, icon: "search" },
+                    { label: "Analysis Complete", value: 100, icon: "check" },
                   ].map((item) => (
                     <div
                       key={item.label}
-                      className="flex items-center justify-between rounded-2xl border border-white/5 bg-gradient-to-br from-[#2f1c3d] to-[#24132d] px-4 py-3 text-sm font-semibold text-white/85 shadow-[0_18px_70px_rgba(0,0,0,0.45)]"
+                      className="flex items-center justify-between rounded-2xl border border-white/5 bg-[#261832] px-4 py-3 text-sm font-semibold text-white/85"
                     >
                       <div className="flex items-center gap-3">
-                        <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-gradient-to-br from-[#4c2c7a] to-[#352052] text-white">
+                        <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-[#3a2350] text-white">
                           {item.icon === "search" ? (
                             <svg
                               aria-hidden
@@ -212,14 +208,13 @@ const Section06: FC = () => {
                               strokeLinecap="round"
                               strokeLinejoin="round"
                             >
-                              <circle cx="12" cy="12" r="10" />
                               <path d="m9 12 2 2 4-4" />
                             </svg>
                           )}
                         </div>
                         <span>{item.label}</span>
                       </div>
-                      <span className="text-right text-[13px] font-bold" style={{ color: item.accent }}>
+                      <span className="text-right text-[13px] font-medium text-white/60">
                         {item.value}%
                       </span>
                     </div>
