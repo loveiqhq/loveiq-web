@@ -170,7 +170,6 @@ const Section10: FC = () => {
                         strokeDasharray="301.59"
                         strokeDashoffset="241"
                         strokeLinecap="round"
-                        className="drop-shadow-[0_0_12px_rgba(254,104,57,0.45)]"
                       />
                     </svg>
                     <div className="absolute inset-[10px] rounded-full border border-[#26212f] bg-[#0f0a18]" />
