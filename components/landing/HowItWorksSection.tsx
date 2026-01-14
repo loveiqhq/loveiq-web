@@ -127,28 +127,34 @@ const HowItWorksSection: FC = () => {
           {orbitIcons.map((icon, idx) => {
             const angle = (idx / orbitIcons.length) * 360;
             const [from, to] = icon.colors;
+            const iconSpinStyle = { animation: "spin-slow 55s linear infinite reverse" };
 
             return (
               <div
                 key={icon.id}
-                className="absolute left-1/2 top-1/2 h-14 w-14 -translate-x-1/2 -translate-y-1/2 rounded-2xl border border-white/10 bg-[rgba(20,15,30,0.9)] shadow-[0_16px_36px_rgba(0,0,0,0.35)] backdrop-blur-sm"
-                style={{ transform: `translate(-50%, -50%) rotate(${angle}deg) translateY(-230px) rotate(-${angle}deg)` }}
+                className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2"
               >
-                <div className="flex h-full w-full items-center justify-center">
-                  <span
-                    className="flex h-10 w-10 items-center justify-center rounded-xl border border-white/10 text-white/85"
-                    style={{
-                      background: `radial-gradient(circle at 30% 30%, rgba(255,255,255,0.06), transparent 55%), linear-gradient(140deg, ${from}22, ${to}14)`,
-                      boxShadow: `0 10px 26px ${from}22`,
-                      color: "#f6f3ff",
-                    }}
-                    aria-hidden
+                <div className="h-14 w-14" style={{ transform: `rotate(${angle}deg) translateY(-230px) rotate(-${angle}deg)` }}>
+                  <div
+                    className="flex h-full w-full items-center justify-center rounded-2xl border border-white/10 bg-[rgba(20,15,30,0.9)] shadow-[0_16px_36px_rgba(0,0,0,0.35)] backdrop-blur-sm"
+                    style={{ ...iconSpinStyle, transformOrigin: 'center center' }}
                   >
-                    <OrbitGlyph id={icon.id} />
-                  </span>
+                    <span
+                      className="flex h-10 w-10 items-center justify-center rounded-xl border border-white/10 text-white/85"
+                      style={{
+                        background: `radial-gradient(circle at 30% 30%, rgba(255,255,255,0.06), transparent 55%), linear-gradient(140deg, ${from}22, ${to}14)`,
+                        boxShadow: `0 10px 26px ${from}22`,
+                        color: "#f6f3ff",
+                      }}
+                      aria-hidden
+                    >
+                      <OrbitGlyph id={icon.id} />
+                    </span>
+                  </div>
                 </div>
               </div>
             );
+
           })}
         </div>
       </div>
@@ -158,28 +164,34 @@ const HowItWorksSection: FC = () => {
           {orbitIcons.map((icon, idx) => {
             const angle = (idx / orbitIcons.length) * 360;
             const [from, to] = icon.colors;
+            const iconSpinStyle = { animation: "spin-slow 55s linear infinite" };
 
             return (
               <div
                 key={icon.id}
-                className="absolute left-1/2 top-1/2 h-14 w-14 -translate-x-1/2 -translate-y-1/2 rounded-2xl border border-white/10 bg-[rgba(20,15,30,0.9)] shadow-[0_16px_36px_rgba(0,0,0,0.35)] backdrop-blur-sm"
-                style={{ transform: `translate(-50%, -50%) rotate(${angle}deg) translateY(-230px) rotate(-${angle}deg)` }}
+                className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2"
               >
-                <div className="flex h-full w-full items-center justify-center">
-                  <span
-                    className="flex h-10 w-10 items-center justify-center rounded-xl border border-white/10 text-white/85"
-                    style={{
-                      background: `radial-gradient(circle at 30% 30%, rgba(255,255,255,0.06), transparent 55%), linear-gradient(140deg, ${from}22, ${to}14)`,
-                      boxShadow: `0 10px 26px ${from}22`,
-                      color: "#f6f3ff",
-                    }}
-                    aria-hidden
+                <div className="h-14 w-14" style={{ transform: `rotate(${angle}deg) translateY(-230px) rotate(-${angle}deg)` }}>
+                  <div
+                    className="flex h-full w-full items-center justify-center rounded-2xl border border-white/10 bg-[rgba(20,15,30,0.9)] shadow-[0_16px_36px_rgba(0,0,0,0.35)] backdrop-blur-sm"
+                    style={{ ...iconSpinStyle, transformOrigin: 'center center' }}
                   >
-                    <OrbitGlyph id={icon.id} />
-                  </span>
+                    <span
+                      className="flex h-10 w-10 items-center justify-center rounded-xl border border-white/10 text-white/85"
+                      style={{
+                        background: `radial-gradient(circle at 30% 30%, rgba(255,255,255,0.06), transparent 55%), linear-gradient(140deg, ${from}22, ${to}14)`,
+                        boxShadow: `0 10px 26px ${from}22`,
+                        color: "#f6f3ff",
+                      }}
+                      aria-hidden
+                    >
+                      <OrbitGlyph id={icon.id} />
+                    </span>
+                  </div>
                 </div>
               </div>
             );
+
           })}
         </div>
       </div>
