@@ -53,7 +53,7 @@ const TeamSection: FC = () => {
     },
     {
       name: "Ferhad Jukić",
-      role: "Full Stack Engineer",
+      role: "Full-Stack Engineer",
       image: "/about/team-ferhad-jukic.png",
       linkedinUrl: "https://www.linkedin.com/in/ferhad-juki%C4%87-7a9049333/",
       socials: ["linkedin"],

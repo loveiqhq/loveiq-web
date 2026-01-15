@@ -1,7 +1,17 @@
 {
   "permissions": {
     "allow": [
-      "Bash(git fetch:*)"
+      "Bash(git fetch:*)",
+      "Bash(npm audit:*)",
+      "Bash(find:*)",
+      "Bash(npm view:*)",
+      "Bash(npm install)",
+      "Bash(git rm:*)",
+      "Bash(npm run build:*)",
+      "Bash(npm run lint:*)",
+      "Bash(git add:*)",
+      "Bash(git commit:*)",
+      "Bash(git push:*)"
     ]
   }
 }
