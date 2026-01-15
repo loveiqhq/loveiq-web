@@ -3,6 +3,8 @@ import { Resend } from "resend";
 import { waitlistEmail } from "../../../lib/emails/waitlist";
 import { z } from "zod";
 import { checkRateLimit, checkCooldown, getClientIp } from "../../../lib/ratelimit";
+import { fetchWithTimeout } from "../../../lib/fetch-with-timeout";
+import { verifyCsrfToken } from "../../../lib/csrf";
 
 type Payload = {
   email?: string;
@@ -52,10 +54,11 @@ const notifySlackWaitlist = async ({
 
   try {
     console.log("Sending Slack waitlist notification for", maskedEmail, "source:", source || "n/a");
-    const res = await fetch(url, {
+    const res = await fetchWithTimeout(url, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ text, username: "waitlist_signup" }),
+      timeoutMs: 5000, // 5 second timeout
     });
 
     if (!res.ok) {
@@ -70,6 +73,12 @@ const notifySlackWaitlist = async ({
 };
 
 export async function POST(request: Request) {
+  // Verify CSRF token
+  const csrfValid = await verifyCsrfToken(request);
+  if (!csrfValid) {
+    return NextResponse.json({ error: "Invalid request." }, { status: 403 });
+  }
+
   const ip = getClientIp(request);
 
   // Check IP-based rate limit (persistent across restarts)
@@ -123,13 +132,17 @@ export async function POST(request: Request) {
   };
 
   // Idempotency: if the email already exists, return success to avoid enumeration
-  const existingRes = await fetch(`${url}/rest/v1/${tableName}?email=eq.${encodeURIComponent(normalizedEmail)}&select=id&limit=1`, {
-    headers: {
-      apikey: serviceRoleKey,
-      Authorization: `Bearer ${serviceRoleKey}`,
-    },
-    cache: "no-store",
-  });
+  const existingRes = await fetchWithTimeout(
+    `${url}/rest/v1/${tableName}?email=eq.${encodeURIComponent(normalizedEmail)}&select=id&limit=1`,
+    {
+      headers: {
+        apikey: serviceRoleKey,
+        Authorization: `Bearer ${serviceRoleKey}`,
+      },
+      cache: "no-store",
+      timeoutMs: 10000, // 10 second timeout for DB
+    }
+  );
 
   if (!existingRes.ok) {
     return NextResponse.json({ error: "Unable to process request." }, { status: 500 });
@@ -140,7 +153,7 @@ export async function POST(request: Request) {
     return NextResponse.json({ success: true, already: true });
   }
 
-  const response = await fetch(`${url}/rest/v1/${tableName}`, {
+  const response = await fetchWithTimeout(`${url}/rest/v1/${tableName}`, {
     method: "POST",
     headers: {
       apikey: serviceRoleKey,
@@ -149,6 +162,7 @@ export async function POST(request: Request) {
       Prefer: "return=representation",
     },
     body: JSON.stringify(insertPayload),
+    timeoutMs: 10000, // 10 second timeout for DB
   });
 
   if (!response.ok) {

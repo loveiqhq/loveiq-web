@@ -95,3 +95,38 @@ $$ LANGUAGE plpgsql SECURITY DEFINER;
 -- Grant execute to service role
 GRANT EXECUTE ON FUNCTION check_rate_limit(TEXT, INTEGER, BIGINT, BIGINT) TO service_role;
 GRANT EXECUTE ON FUNCTION cleanup_old_rate_limits() TO service_role;
+
+-- ============================================
+-- RLS Policies for waitlist_signups table (3.3)
+-- ============================================
+-- Run this to secure your waitlist_signups table
+
+-- Enable RLS on waitlist_signups (if not already enabled)
+ALTER TABLE waitlist_signups ENABLE ROW LEVEL SECURITY;
+
+-- Drop any existing permissive policies that might allow public access
+DROP POLICY IF EXISTS "Allow public read" ON waitlist_signups;
+DROP POLICY IF EXISTS "Allow public insert" ON waitlist_signups;
+DROP POLICY IF EXISTS "Allow anon read" ON waitlist_signups;
+DROP POLICY IF EXISTS "Allow anon insert" ON waitlist_signups;
+
+-- Create restrictive policies: ONLY service_role can access
+-- This ensures the anon key cannot read or write to this table
+CREATE POLICY "Service role can insert" ON waitlist_signups
+  FOR INSERT TO service_role
+  WITH CHECK (true);
+
+CREATE POLICY "Service role can select" ON waitlist_signups
+  FOR SELECT TO service_role
+  USING (true);
+
+CREATE POLICY "Service role can update" ON waitlist_signups
+  FOR UPDATE TO service_role
+  USING (true)
+  WITH CHECK (true);
+
+-- No delete policy = no one can delete (even service_role)
+-- If you need delete access, add: CREATE POLICY "Service role can delete" ON waitlist_signups FOR DELETE TO service_role USING (true);
+
+-- Verify: Run this query to check policies
+-- SELECT * FROM pg_policies WHERE tablename = 'waitlist_signups';

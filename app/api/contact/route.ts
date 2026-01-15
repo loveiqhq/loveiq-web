@@ -2,6 +2,8 @@ import { NextResponse } from "next/server";
 import { Resend } from "resend";
 import { z } from "zod";
 import { checkRateLimit, getClientIp } from "../../../lib/ratelimit";
+import { fetchWithTimeout } from "../../../lib/fetch-with-timeout";
+import { verifyCsrfToken } from "../../../lib/csrf";
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 const recaptchaSecret = process.env.RECAPTCHA_SECRET_KEY;
@@ -36,11 +38,12 @@ const verifyCaptcha = async (token: string, ip: string) => {
     params.set("response", token);
     if (ip) params.set("remoteip", ip);
 
-    const res = await fetch("https://www.google.com/recaptcha/api/siteverify", {
+    const res = await fetchWithTimeout("https://www.google.com/recaptcha/api/siteverify", {
       method: "POST",
       headers: { "Content-Type": "application/x-www-form-urlencoded" },
       body: params.toString(),
       cache: "no-store",
+      timeoutMs: 5000, // 5 second timeout
     });
 
     if (!res.ok) {
@@ -93,10 +96,11 @@ const sendSlackContactNotification = async (payload: {
     `• *Message:* ${escapeSlack(truncatedMessage)}`;
 
   try {
-    const res = await fetch(webhookUrl, {
+    const res = await fetchWithTimeout(webhookUrl, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ text }),
+      timeoutMs: 5000, // 5 second timeout
     });
     const body = await res.text();
     if (!res.ok) {
@@ -110,6 +114,12 @@ const sendSlackContactNotification = async (payload: {
 };
 
 export async function POST(request: Request) {
+  // Verify CSRF token
+  const csrfValid = await verifyCsrfToken(request);
+  if (!csrfValid) {
+    return NextResponse.json({ error: "Invalid request." }, { status: 403 });
+  }
+
   // Validate required config
   if (!contactToEmail) {
     console.error("Missing CONTACT_TO_EMAIL environment variable");

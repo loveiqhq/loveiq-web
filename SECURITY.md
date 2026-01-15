@@ -1,9 +1,28 @@
 # Security Guide
 
 ## Environment & secrets
-- Set all secrets only in Vercel env vars (never in client bundles): `SUPABASE_URL`, `SUPABASE_SERVICE_ROLE_KEY`, `RESEND_API_KEY`, `RESEND_FROM`, `RESEND_REPLY_TO`, `NEXT_PUBLIC_SITE_URL`.
-- Rotate keys at least quarterly or on incident; update Vercel vars and redeploy.
+- Set all secrets only in Vercel env vars (never in client bundles): `SUPABASE_URL`, `SUPABASE_SERVICE_ROLE_KEY`, `RESEND_API_KEY`, `RESEND_FROM`, `RESEND_REPLY_TO`, `CONTACT_TO_EMAIL`, `NEXT_PUBLIC_SITE_URL`.
 - Never expose the Supabase service role key to the client; keep all DB access server-side.
+
+## Secrets rotation schedule
+
+| Secret | Rotation | How to rotate |
+|--------|----------|---------------|
+| `SUPABASE_SERVICE_ROLE_KEY` | Quarterly / on incident | Supabase Dashboard → Settings → API → Regenerate |
+| `RESEND_API_KEY` | Quarterly / on incident | Resend Dashboard → API Keys → Create new → Delete old |
+| `RECAPTCHA_SECRET_KEY` | Annually / on incident | Google reCAPTCHA Admin → Settings → Regenerate |
+| `SLACK_*_WEBHOOK_URL` | On incident only | Slack App → Incoming Webhooks → Add new → Remove old |
+
+**Rotation checklist:**
+1. Generate new key in the service dashboard
+2. Update Vercel environment variable
+3. Trigger redeploy
+4. Verify functionality (test form submissions)
+5. Revoke/delete the old key
+6. Log the rotation date
+
+**Rotation reminders:** Set calendar reminders for:
+- January 1, April 1, July 1, October 1 (quarterly review)
 
 ## Monitoring & alerts
 - Watch Vercel logs for spikes or 429/500s on `/api/waitlist`.
@@ -21,8 +40,10 @@
 - Keep generic error messages to avoid information disclosure.
 
 ## Secure headers & CSP
-- Security headers are set in `next.config.js` (HSTS, X-Frame-Options, X-Content-Type-Options, Referrer-Policy, Permissions-Policy, CSP).
-- If you add new third-party scripts/resources, update CSP accordingly.
+- Security headers are set in `middleware.ts` with nonce-based CSP (HSTS, X-Frame-Options, X-Content-Type-Options, Referrer-Policy, Permissions-Policy, CSP).
+- If you add new third-party scripts/resources, update CSP in `middleware.ts` accordingly.
+- All inline scripts must use the `nonce` prop passed from the layout.
+- **SRI (Subresource Integrity):** Google Analytics and reCAPTCHA don't support SRI hashes because their scripts change dynamically. Our nonce-based CSP provides equivalent protection by only allowing scripts with valid nonces to execute.
 
 ## Dependencies
 - Run `npm audit` regularly; patch high/critical issues. Avoid shipping dev-only tooling to production if not needed.

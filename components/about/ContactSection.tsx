@@ -129,9 +129,18 @@ const ContactSection: FC = () => {
     setStatus({ type: "idle" });
 
     try {
+      // Get CSRF token from cookie
+      const csrfToken = document.cookie
+        .split("; ")
+        .find((row) => row.startsWith("__csrf="))
+        ?.split("=")[1] || "";
+
       const res = await fetch("/api/contact", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: {
+          "Content-Type": "application/json",
+          "x-csrf-token": csrfToken,
+        },
         body: JSON.stringify({ ...form, captcha: token }),
       });
 

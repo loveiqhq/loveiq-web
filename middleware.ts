@@ -1,6 +1,15 @@
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
 
+const CSRF_COOKIE_NAME = "__csrf";
+const CSRF_TOKEN_LENGTH = 32;
+
+function generateCsrfToken(): string {
+  const array = new Uint8Array(CSRF_TOKEN_LENGTH);
+  crypto.getRandomValues(array);
+  return Array.from(array, (byte) => byte.toString(16).padStart(2, "0")).join("");
+}
+
 export function middleware(request: NextRequest) {
   // Generate a random nonce for CSP
   const nonce = Buffer.from(crypto.randomUUID()).toString("base64");
@@ -44,6 +53,34 @@ export function middleware(request: NextRequest) {
     "Strict-Transport-Security",
     "max-age=63072000; includeSubDomains; preload"
   );
+
+  // Set CSRF cookie if not present
+  const existingCsrf = request.cookies.get(CSRF_COOKIE_NAME);
+  if (!existingCsrf) {
+    const csrfToken = generateCsrfToken();
+    response.cookies.set(CSRF_COOKIE_NAME, csrfToken, {
+      httpOnly: false, // Must be readable by JavaScript
+      secure: process.env.NODE_ENV === "production",
+      sameSite: "strict",
+      path: "/",
+      maxAge: 60 * 60 * 24, // 24 hours
+    });
+  }
+
+  // Security logging for API routes (3.4)
+  if (request.nextUrl.pathname.startsWith("/api/")) {
+    const ip = request.headers.get("x-real-ip") || request.headers.get("x-forwarded-for")?.split(",")[0] || "unknown";
+    console.log(
+      JSON.stringify({
+        type: "api_request",
+        timestamp: new Date().toISOString(),
+        method: request.method,
+        path: request.nextUrl.pathname,
+        ip,
+        userAgent: request.headers.get("user-agent")?.slice(0, 100) || "unknown",
+      })
+    );
+  }
 
   return response;
 }
