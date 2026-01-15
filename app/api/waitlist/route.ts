@@ -14,7 +14,15 @@ type Payload = {
 };
 
 const tableName = "waitlist_signups"; // matches Supabase table name
-const resend = new Resend(process.env.RESEND_API_KEY);
+
+// Lazy initialization to avoid build-time errors when env vars are not set
+let _resend: Resend | null = null;
+function getResend(): Resend {
+  if (!_resend) {
+    _resend = new Resend(process.env.RESEND_API_KEY);
+  }
+  return _resend;
+}
 
 const waitlistSchema = z.object({
   email: z.string().email().max(320),
@@ -174,7 +182,7 @@ export async function POST(request: Request) {
   const replyTo = process.env.RESEND_REPLY_TO || "hello@loveiq.org";
   const tpl = waitlistEmail({ firstName: normalizedFirstName });
 
-  const { error } = await resend.emails.send({
+  const { error } = await getResend().emails.send({
     from,
     to: normalizedEmail,
     replyTo,

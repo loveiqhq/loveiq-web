@@ -5,7 +5,15 @@ import { checkRateLimit, getClientIp } from "../../../lib/ratelimit";
 import { fetchWithTimeout } from "../../../lib/fetch-with-timeout";
 import { verifyCsrfToken } from "../../../lib/csrf";
 
-const resend = new Resend(process.env.RESEND_API_KEY);
+// Lazy initialization to avoid build-time errors when env vars are not set
+let _resend: Resend | null = null;
+function getResend(): Resend {
+  if (!_resend) {
+    _resend = new Resend(process.env.RESEND_API_KEY);
+  }
+  return _resend;
+}
+
 const recaptchaSecret = process.env.RECAPTCHA_SECRET_KEY;
 const contactToEmail = process.env.CONTACT_TO_EMAIL;
 const slackContactWebhook = process.env.SLACK_CONTACT_WEBHOOK_URL;
@@ -166,7 +174,7 @@ export async function POST(request: Request) {
   const from = process.env.RESEND_FROM || "LoveIQ <hello@send.loveiq.org>";
 
   try {
-    await resend.emails.send({
+    await getResend().emails.send({
       from,
       to: contactToEmail!,
       replyTo: sanitizedReplyTo,
