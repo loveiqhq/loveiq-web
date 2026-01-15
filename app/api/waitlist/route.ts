@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import { Resend } from "resend";
 import { waitlistEmail } from "../../../lib/emails/waitlist";
 import { z } from "zod";
+import { checkRateLimit, checkCooldown, getClientIp } from "../../../lib/ratelimit";
 
 type Payload = {
   email?: string;
@@ -20,25 +21,14 @@ const waitlistSchema = z.object({
   website: z.string().max(0).optional().nullable(), // honeypot must be empty
 });
 
-const rateLimitWindowMs = 60_000;
-const rateLimitMax = 5;
-const emailCooldownMs = 60_000;
-const ipHits = new Map<string, number[]>();
-const emailLast = new Map<string, number>();
-
-const getClientIp = (req: Request) => {
-  const forwarded = req.headers.get("x-forwarded-for");
-  if (forwarded) return forwarded.split(",")[0]?.trim() || "unknown";
-  return req.headers.get("x-real-ip") || "unknown";
+// Rate limit configuration
+const RATE_LIMIT_CONFIG = {
+  bucket: "waitlist",
+  limit: 5,
+  windowMs: 60_000, // 1 minute
 };
 
-const isRateLimited = (key: string) => {
-  const now = Date.now();
-  const hits = ipHits.get(key)?.filter((t) => now - t < rateLimitWindowMs) ?? [];
-  hits.push(now);
-  ipHits.set(key, hits);
-  return hits.length > rateLimitMax;
-};
+const EMAIL_COOLDOWN_MS = 60_000; // 1 minute per email
 
 const notifySlackWaitlist = async ({
   email,
@@ -82,8 +72,16 @@ const notifySlackWaitlist = async ({
 export async function POST(request: Request) {
   const ip = getClientIp(request);
 
-  if (isRateLimited(ip)) {
-    return NextResponse.json({ error: "Please try again later." }, { status: 429 });
+  // Check IP-based rate limit (persistent across restarts)
+  const rateLimit = await checkRateLimit(ip, RATE_LIMIT_CONFIG);
+  if (!rateLimit.allowed) {
+    return NextResponse.json(
+      { error: "Please try again later." },
+      {
+        status: 429,
+        headers: { "Retry-After": String(Math.ceil((rateLimit.resetAt.getTime() - Date.now()) / 1000)) },
+      }
+    );
   }
 
   const parsed = waitlistSchema.safeParse(await request.json().catch(() => ({} as Payload)));
@@ -99,12 +97,17 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: "Invalid input" }, { status: 400 });
   }
 
-  const lastHit = emailLast.get(normalizedEmail);
-  const now = Date.now();
-  if (lastHit && now - lastHit < emailCooldownMs) {
-    return NextResponse.json({ error: "Please wait before retrying." }, { status: 429 });
+  // Check email-based cooldown (persistent across restarts)
+  const cooldown = await checkCooldown(normalizedEmail, "waitlist-email", EMAIL_COOLDOWN_MS);
+  if (!cooldown.allowed) {
+    return NextResponse.json(
+      { error: "Please wait before retrying." },
+      {
+        status: 429,
+        headers: { "Retry-After": String(Math.ceil(cooldown.retryAfterMs / 1000)) },
+      }
+    );
   }
-  emailLast.set(normalizedEmail, now);
 
   const url = process.env.SUPABASE_URL;
   const serviceRoleKey = process.env.SUPABASE_SERVICE_ROLE_KEY;

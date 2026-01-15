@@ -23,3 +23,8 @@ yarn-debug.log*
 yarn-error.log*
 pnpm-debug.log*
 
+# Build artifacts / temp files
+tmp_*
+*.tmp
+dist/
+

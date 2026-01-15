@@ -2,6 +2,7 @@ import "./globals.css";
 import Script from "next/script";
 import type { Metadata } from "next";
 import { Lora, Manrope } from "next/font/google";
+import { headers } from "next/headers";
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://loveiq.org";
 
@@ -108,12 +109,19 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default async function RootLayout({ children }: { children: React.ReactNode }) {
+  const headersList = await headers();
+  const nonce = headersList.get("x-nonce") || "";
+
   return (
     <html lang="en" className={`scroll-smooth ${manrope.variable} ${lora.variable}`}>
       <head>
-        <Script src="https://www.googletagmanager.com/gtag/js?id=G-QTYY69L46N" strategy="afterInteractive" />
-        <Script id="ga-init" strategy="afterInteractive">
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=G-QTYY69L46N"
+          strategy="afterInteractive"
+          nonce={nonce}
+        />
+        <Script id="ga-init" strategy="afterInteractive" nonce={nonce}>
           {`
             window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}
@@ -123,13 +131,13 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             });
           `}
         </Script>
-        <Script id="schema-org" type="application/ld+json" strategy="afterInteractive">
+        <Script id="schema-org" type="application/ld+json" strategy="afterInteractive" nonce={nonce}>
           {JSON.stringify(organizationSchema)}
         </Script>
-        <Script id="schema-website" type="application/ld+json" strategy="afterInteractive">
+        <Script id="schema-website" type="application/ld+json" strategy="afterInteractive" nonce={nonce}>
           {JSON.stringify(websiteSchema)}
         </Script>
-        <Script id="schema-faq" type="application/ld+json" strategy="afterInteractive">
+        <Script id="schema-faq" type="application/ld+json" strategy="afterInteractive" nonce={nonce}>
           {JSON.stringify(faqSchema)}
         </Script>
       </head>

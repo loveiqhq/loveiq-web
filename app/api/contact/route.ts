@@ -1,14 +1,19 @@
 import { NextResponse } from "next/server";
 import { Resend } from "resend";
 import { z } from "zod";
+import { checkRateLimit, getClientIp } from "../../../lib/ratelimit";
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 const recaptchaSecret = process.env.RECAPTCHA_SECRET_KEY;
-const contactToEmail = process.env.CONTACT_TO_EMAIL || "hello@loveiq.org";
+const contactToEmail = process.env.CONTACT_TO_EMAIL;
 const slackContactWebhook = process.env.SLACK_CONTACT_WEBHOOK_URL;
-const rateLimitWindowMs = 60_000;
-const rateLimitMax = 5;
-const ipHits = new Map<string, number[]>();
+
+// Rate limit configuration
+const RATE_LIMIT_CONFIG = {
+  bucket: "contact",
+  limit: 5,
+  windowMs: 60_000, // 1 minute
+};
 
 const contactSchema = z.object({
   firstName: z.string().trim().min(1).max(120),
@@ -18,20 +23,6 @@ const contactSchema = z.object({
   message: z.string().trim().min(10).max(1000),
   captcha: z.string().min(10),
 });
-
-const getClientIp = (req: Request) => {
-  const forwarded = req.headers.get("x-forwarded-for");
-  if (forwarded) return forwarded.split(",")[0]?.trim() || "unknown";
-  return req.headers.get("x-real-ip") || "unknown";
-};
-
-const isRateLimited = (key: string) => {
-  const now = Date.now();
-  const hits = ipHits.get(key)?.filter((t) => now - t < rateLimitWindowMs) ?? [];
-  hits.push(now);
-  ipHits.set(key, hits);
-  return hits.length > rateLimitMax;
-};
 
 const verifyCaptcha = async (token: string, ip: string) => {
   if (!recaptchaSecret) {
@@ -78,12 +69,28 @@ const sendSlackContactNotification = async (payload: {
     return;
   }
 
+  // Mask PII to avoid sending full details to Slack
+  const maskedEmail = payload.email.replace(/^(.).+(@.+)$/, "$1***$2");
+  const maskedPhone = payload.phone
+    ? payload.phone.slice(0, 3) + "***" + payload.phone.slice(-2)
+    : null;
+
+  // Truncate message to prevent overly long Slack messages
+  const truncatedMessage =
+    payload.message.length > 200
+      ? payload.message.slice(0, 200) + "..."
+      : payload.message;
+
+  // Escape special Slack markdown characters in user content
+  const escapeSlack = (s: string) =>
+    s.replace(/[&<>*_~`]/g, (c) => `\\${c}`);
+
   const text =
     `📩 *New contact request*\n` +
-    `• *Name:* ${payload.firstName} ${payload.lastName}\n` +
-    `• *Email:* ${payload.email}\n` +
-    (payload.phone ? `• *Phone:* ${payload.phone}\n` : "") +
-    `• *Message:* ${payload.message}`;
+    `• *Name:* ${escapeSlack(payload.firstName)} ${escapeSlack(payload.lastName)}\n` +
+    `• *Email:* ${maskedEmail}\n` +
+    (maskedPhone ? `• *Phone:* ${maskedPhone}\n` : "") +
+    `• *Message:* ${escapeSlack(truncatedMessage)}`;
 
   try {
     const res = await fetch(webhookUrl, {
@@ -103,10 +110,24 @@ const sendSlackContactNotification = async (payload: {
 };
 
 export async function POST(request: Request) {
+  // Validate required config
+  if (!contactToEmail) {
+    console.error("Missing CONTACT_TO_EMAIL environment variable");
+    return NextResponse.json({ error: "Service unavailable." }, { status: 503 });
+  }
+
   const ip = getClientIp(request);
 
-  if (isRateLimited(ip)) {
-    return NextResponse.json({ error: "Please try again later." }, { status: 429 });
+  // Check IP-based rate limit (persistent across restarts)
+  const rateLimit = await checkRateLimit(ip, RATE_LIMIT_CONFIG);
+  if (!rateLimit.allowed) {
+    return NextResponse.json(
+      { error: "Please try again later." },
+      {
+        status: 429,
+        headers: { "Retry-After": String(Math.ceil((rateLimit.resetAt.getTime() - Date.now()) / 1000)) },
+      }
+    );
   }
 
   const parsed = contactSchema.safeParse(await request.json().catch(() => ({})));
@@ -121,13 +142,24 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: "Captcha failed. Please try again." }, { status: 400 });
   }
 
+  // Sanitize email for use in Reply-To header to prevent header injection
+  // Remove any newlines, carriage returns, or null bytes
+  const sanitizedReplyTo = email.replace(/[\r\n\0]/g, "").trim();
+
+  // Additional validation - reject if sanitization changed the email
+  // (indicates attempted header injection)
+  if (sanitizedReplyTo !== email.trim()) {
+    console.warn("Potential header injection attempt in email:", email.slice(0, 50));
+    return NextResponse.json({ error: "Invalid email format." }, { status: 400 });
+  }
+
   const from = process.env.RESEND_FROM || "LoveIQ <hello@send.loveiq.org>";
 
   try {
     await resend.emails.send({
       from,
-      to: contactToEmail,
-      replyTo: email,
+      to: contactToEmail!,
+      replyTo: sanitizedReplyTo,
       subject: `New contact request from ${firstName} ${lastName}`,
       text: [
         `Name: ${firstName} ${lastName}`,
