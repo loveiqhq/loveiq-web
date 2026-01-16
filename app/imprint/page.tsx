@@ -27,7 +27,7 @@ export default function ImprintPage() {
             <span className="font-semibold text-white">
               Applied Psychometrics UG
             </span>{" "}
-            i.G. (haftungsbeschränkt)
+            (haftungsbeschränkt)
             <br />
             Hasenheide 62,
             <br />

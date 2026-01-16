@@ -26,7 +26,6 @@ export default function TermsOfUsePage() {
         >
           {/* Intro */}
           <section>
-            <p className="mb-4 text-gray-400">Last updated: 14.01.2026</p>
             <p className="mb-4">
               These Terms of Use govern how you may access and use the LoveIQ
               platform operated by:

@@ -44,10 +44,10 @@ export default function TermsAndConditionsPage() {
               <br />
               Email:{" "}
               <a
-                href="mailto:help@loveiq.ai"
+                href="mailto:hello@loveiq.org"
                 className="text-gray-300 hover:text-white transition-colors"
               >
-                help@loveiq.ai
+                hello@loveiq.org
               </a>
             </p>
             <p className="mb-4">

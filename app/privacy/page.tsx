@@ -246,10 +246,10 @@ export default function PrivacyPage() {
             <p>
               Requests can be sent to:{" "}
               <a
-                href="mailto:help@loveiq.ai"
+                href="mailto:hello@loveiq.org"
                 className="text-gray-300 hover:text-white transition-colors"
               >
-                help@loveiq.ai
+                hello@loveiq.org
               </a>
             </p>
           </section>
