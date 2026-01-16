@@ -36,6 +36,7 @@ const FooterSection: FC = () => {
             <p className="max-w-md text-sm leading-relaxed text-text-secondary">
               Democratizing sexual psychology. We translate complex research into actionable insights for everyday life.
             </p>
+{/* Hidden for now
             <ul className="grid grid-cols-2 gap-x-3 gap-y-5 text-sm text-text-secondary list-none p-0 m-0 sm:flex sm:flex-wrap sm:items-start sm:gap-3">
               {socials.map((item) => (
                 <li key={item.label}>
@@ -48,8 +49,10 @@ const FooterSection: FC = () => {
                 </li>
               ))}
             </ul>
+*/}
           </div>
 
+{/* Hidden for now
           <div className="space-y-4">
             <h3 className="text-lg font-semibold">Platform</h3>
             <ul className="space-y-2 text-sm text-text-secondary">
@@ -75,6 +78,10 @@ const FooterSection: FC = () => {
               </li>
             </ul>
           </div>
+*/}
+
+          {/* Empty placeholder to maintain grid layout */}
+          <div className="hidden md:block" />
 
           <div className="space-y-4">
             <h3 className="text-lg font-semibold">Company</h3>
