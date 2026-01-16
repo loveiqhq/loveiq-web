@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import LegalNavSection from "../../components/legal/LegalNavSection";
 
 export const metadata: Metadata = {
   title: "Medical & Psychological Disclaimer | LoveIQ",
@@ -8,17 +9,19 @@ export const metadata: Metadata = {
 
 export default function MedicalDisclaimerPage() {
   return (
-    <main
-      className="min-h-screen px-4 py-20"
-      style={{ backgroundColor: "#09050F" }}
-    >
-      <article className="mx-auto max-w-3xl">
-        <h1
-          className="font-serif font-light text-white mb-10"
-          style={{ fontSize: "36px" }}
-        >
-          Medical & Psychological Disclaimer
-        </h1>
+    <>
+      <LegalNavSection />
+      <main
+        className="min-h-screen px-4 py-20"
+        style={{ backgroundColor: "#09050F" }}
+      >
+        <article className="mx-auto max-w-3xl">
+          <h1
+            className="font-serif font-light text-white mb-10"
+            style={{ fontSize: "36px" }}
+          >
+            Medical & Psychological Disclaimer
+          </h1>
 
         <div
           className="font-sans space-y-8 text-gray-300 leading-relaxed"
@@ -241,5 +244,6 @@ export default function MedicalDisclaimerPage() {
         </div>
       </article>
     </main>
+    </>
   );
 }

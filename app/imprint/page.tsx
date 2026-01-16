@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import LegalNavSection from "../../components/legal/LegalNavSection";
 
 export const metadata: Metadata = {
   title: "Imprint | LoveIQ",
@@ -7,22 +8,24 @@ export const metadata: Metadata = {
 
 export default function ImprintPage() {
   return (
-    <main
-      className="min-h-screen px-4 py-20"
-      style={{ backgroundColor: "#09050F" }}
-    >
-      <article className="mx-auto max-w-3xl">
-        <h1
-          className="font-serif font-light text-white mb-10"
-          style={{ fontSize: "36px" }}
-        >
-          Imprint
-        </h1>
+    <>
+      <LegalNavSection />
+      <main
+        className="min-h-screen px-4 py-20"
+        style={{ backgroundColor: "#09050F" }}
+      >
+        <article className="mx-auto max-w-3xl">
+          <h1
+            className="font-serif font-light text-white mb-10"
+            style={{ fontSize: "36px" }}
+          >
+            Imprint
+          </h1>
 
-        <div
-          className="font-sans space-y-6 text-gray-300 leading-relaxed"
-          style={{ fontSize: "18px" }}
-        >
+          <div
+            className="font-sans space-y-6 text-gray-300 leading-relaxed"
+            style={{ fontSize: "18px" }}
+          >
           <p>
             <span className="font-semibold text-white">
               Applied Psychometrics UG
@@ -60,5 +63,6 @@ export default function ImprintPage() {
         </div>
       </article>
     </main>
+    </>
   );
 }
