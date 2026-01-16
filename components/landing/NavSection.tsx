@@ -162,7 +162,7 @@ const NavSection: FC = () => {
                   />
                   <span className="pointer-events-none absolute inset-0 rounded-full bg-white/10 opacity-0 transition duration-300 group-hover:opacity-100" />
                   <span className="pointer-events-none absolute inset-[-12%] rounded-full border border-white/15 mix-blend-screen opacity-70" />
-                  <span className="relative z-10 transition-colors duration-500 group-hover:text-black">Start Survey Now</span>
+                  <span className="relative z-10 transition-colors duration-500 group-hover:text-black">Start survey now</span>
                   <svg
                     aria-hidden
                     className="relative z-10 h-5 w-5 transition-colors duration-500 group-hover:text-black"
