@@ -27,8 +27,8 @@ export default function TermsAndConditionsPage() {
           {/* Intro */}
           <section>
             <p className="mb-4">
-              These Terms & Conditions ("Terms") govern the contractual
-              relationship between:
+              These Terms & Conditions (&quot;Terms&quot;) govern the
+              contractual relationship between:
             </p>
             <p className="mb-4">
               Applied Psychometrics UG (in formation) (haftungsbeschränkt)
@@ -50,8 +50,10 @@ export default function TermsAndConditionsPage() {
                 help@loveiq.ai
               </a>
             </p>
-            <p className="mb-4">("LoveIQ", "we", "us")</p>
-            <p>and users ("you", "User") of the LoveIQ platform.</p>
+            <p className="mb-4">
+              (&quot;LoveIQ&quot;, &quot;we&quot;, &quot;us&quot;)
+            </p>
+            <p>and users (&quot;you&quot;, &quot;User&quot;) of the LoveIQ platform.</p>
           </section>
 
           {/* Section 1 */}

@@ -47,7 +47,7 @@ export default function PrivacyPage() {
                 hello@loveiq.org
               </a>
             </p>
-            <p>("LoveIQ", "we", "us")</p>
+            <p>(&quot;LoveIQ&quot;, &quot;we&quot;, &quot;us&quot;)</p>
           </section>
 
           {/* Section 2 */}
@@ -59,7 +59,7 @@ export default function PrivacyPage() {
               This Privacy Policy applies to the LoveIQ platform, including our
               website, mobile applications, surveys, psychometric tools,
               reports, subscription services and any related digital services
-              ("Platform"). We process personal data in compliance with the
+              (&quot;Platform&quot;). We process personal data in compliance with the
               General Data Protection Regulation (GDPR), the German Federal Data
               Protection Act (BDSG), and all applicable EU data-protection laws.
             </p>

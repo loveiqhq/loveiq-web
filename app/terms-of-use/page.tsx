@@ -51,7 +51,9 @@ export default function TermsOfUsePage() {
                 hello@loveiq.org
               </a>
             </p>
-            <p className="mb-4">("LoveIQ", "we", "us")</p>
+            <p className="mb-4">
+              (&quot;LoveIQ&quot;, &quot;we&quot;, &quot;us&quot;)
+            </p>
             <p>By accessing or using LoveIQ, you agree to these Terms of Use.</p>
           </section>
 

@@ -47,7 +47,7 @@ export default function MedicalDisclaimerPage() {
                 hello@loveiq.org
               </a>
             </p>
-            <p>("LoveIQ", "we", "us")</p>
+            <p>(&quot;LoveIQ&quot;, &quot;we&quot;, &quot;us&quot;)</p>
           </section>
 
           {/* Section 1 */}
