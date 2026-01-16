@@ -80,31 +80,59 @@ const FooterSection: FC = () => {
           </div>
 */}
 
-          {/* Empty placeholder to maintain grid layout */}
-          <div className="hidden md:block" />
-
           <div className="space-y-4">
             <h3 className="text-lg font-semibold">Company</h3>
             <div className="space-y-2 text-sm text-text-secondary">
-              <p>Applied Psychometrics UG, Hasenheide 62, 10967 Berlin</p>
+              <p>Applied Psychometrics UG</p>
+              <p>Hasenheide 62, 10967 Berlin</p>
               <p>hello@loveiq.org</p>
             </div>
           </div>
+
+          <div className="space-y-4">
+            <h3 className="text-lg font-semibold">Legal</h3>
+            <ul className="space-y-2 text-sm text-text-secondary list-none p-0 m-0">
+              <li>
+                <Link href="/privacy" className="transition hover:text-text-primary focus-visible-ring rounded">
+                  Privacy Policy
+                </Link>
+              </li>
+              <li>
+                <Link href="/cookies" className="transition hover:text-text-primary focus-visible-ring rounded">
+                  Cookie Policy
+                </Link>
+              </li>
+              <li>
+                <Link href="/imprint" className="transition hover:text-text-primary focus-visible-ring rounded">
+                  Imprint
+                </Link>
+              </li>
+              <li>
+                <Link href="/terms-and-conditions" className="transition hover:text-text-primary focus-visible-ring rounded">
+                  Terms & Conditions
+                </Link>
+              </li>
+              <li>
+                <Link href="/terms-of-use" className="transition hover:text-text-primary focus-visible-ring rounded">
+                  Terms of Use
+                </Link>
+              </li>
+              <li>
+                <Link href="/digital-content-terms" className="transition hover:text-text-primary focus-visible-ring rounded">
+                  Digital Content & Subscription Terms
+                </Link>
+              </li>
+              <li>
+                <Link href="/medical-disclaimer" className="transition hover:text-text-primary focus-visible-ring rounded">
+                  Medical & Psychological Disclaimer
+                </Link>
+              </li>
+            </ul>
+          </div>
         </div>
 
-        <div className="flex flex-col gap-3 border-t border-border pt-6 text-xs text-text-muted sm:flex-row sm:items-center sm:justify-between">
-          <p>© 2026 Applied Psychometrics UG Designed &amp; developed with care.</p>
-          <div className="flex gap-4">
-            <Link href="/privacy" className="transition hover:text-text-primary focus-visible-ring rounded">
-              Privacy Policy
-            </Link>
-            <Link href="/terms" className="transition hover:text-text-primary focus-visible-ring rounded">
-              Terms of Service
-            </Link>
-            <Link href="/cookies" className="transition hover:text-text-primary focus-visible-ring rounded">
-              Cookie Policy
-            </Link>
-          </div>
+        <div className="border-t border-border pt-6 text-xs text-text-muted">
+          <p>© 2026 Applied Psychometrics UG. Designed &amp; developed with care.</p>
         </div>
       </div>
     </footer>
