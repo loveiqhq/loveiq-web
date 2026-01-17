@@ -39,7 +39,7 @@ export default function ImprintPage() {
             Germany
           </p>
 
-          <p>Commercial Register: TBD</p>
+          <p>Commercial Register: HRB 282986 B</p>
 
           <p>VAT Identification Number pursuant to §27a UStG: TBD</p>
 
