@@ -213,22 +213,20 @@ const ContactSection: FC = () => {
             </div>
 
             <div className="flex flex-col gap-6 md:gap-8">
-              <div className="inline-flex">
-                <div className="w-full overflow-x-auto rounded-[3px] border border-[#d3d3d3] bg-[#f9f9f9] px-2 py-2 shadow-sm md:w-auto md:px-3 md:py-3">
-                  <div
-                    ref={recaptchaContainerRef}
-                    className="g-recaptcha min-h-[78px]"
-                    style={{ transform: "scale(0.85)", transformOrigin: "0 0" }}
-                    aria-label="reCAPTCHA"
-                    data-theme="light"
-                    data-sitekey={siteKey}
-                  />
-                  {!captchaReady && (
-                    <div className="mt-2 text-xs font-medium text-[#4B5563]">
-                      Captcha loading... If it does not appear, disable blockers and reload.
-                    </div>
-                  )}
-                </div>
+              <div>
+                <div
+                  ref={recaptchaContainerRef}
+                  className="g-recaptcha min-h-[78px]"
+                  style={{ transform: "scale(0.85)", transformOrigin: "0 0" }}
+                  aria-label="reCAPTCHA"
+                  data-theme="light"
+                  data-sitekey={siteKey}
+                />
+                {!captchaReady && (
+                  <div className="mt-2 text-xs font-medium text-[#4B5563]">
+                    Captcha loading... If it does not appear, disable blockers and reload.
+                  </div>
+                )}
               </div>
               <button
                 type="submit"
