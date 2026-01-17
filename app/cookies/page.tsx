@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import LegalNavSection from "../../components/legal/LegalNavSection";
+import FooterSection from "../../components/landing/FooterSection";
 
 export const metadata: Metadata = {
   title: "Cookie Policy | LoveIQ",
@@ -16,6 +17,7 @@ export default function CookiesPage() {
           <p className="text-text-secondary">Content coming soon.</p>
         </article>
       </main>
+      <FooterSection />
     </>
   );
 }

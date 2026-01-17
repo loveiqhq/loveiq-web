@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import LegalNavSection from "../../components/legal/LegalNavSection";
+import FooterSection from "../../components/landing/FooterSection";
 
 export const metadata: Metadata = {
   title: "Terms & Conditions | LoveIQ",
@@ -295,7 +296,8 @@ export default function TermsAndConditionsPage() {
           </section>
         </div>
       </article>
-    </main>
+      </main>
+      <FooterSection />
     </>
   );
 }

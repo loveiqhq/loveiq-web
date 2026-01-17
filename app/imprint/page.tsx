@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import LegalNavSection from "../../components/legal/LegalNavSection";
+import FooterSection from "../../components/landing/FooterSection";
 
 export const metadata: Metadata = {
   title: "Imprint | LoveIQ",
@@ -62,7 +63,8 @@ export default function ImprintPage() {
           </p>
         </div>
       </article>
-    </main>
+      </main>
+      <FooterSection />
     </>
   );
 }

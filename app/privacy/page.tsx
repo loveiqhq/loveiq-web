@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import LegalNavSection from "../../components/legal/LegalNavSection";
+import FooterSection from "../../components/landing/FooterSection";
 
 export const metadata: Metadata = {
   title: "Privacy Policy | LoveIQ",
@@ -324,7 +325,8 @@ export default function PrivacyPage() {
           </section>
         </div>
       </article>
-    </main>
+      </main>
+      <FooterSection />
     </>
   );
 }
