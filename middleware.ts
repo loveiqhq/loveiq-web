@@ -17,12 +17,12 @@ export function middleware(request: NextRequest) {
   // Build CSP header with nonce
   const cspHeader = [
     "default-src 'self'",
-    `script-src 'self' 'nonce-${nonce}' 'strict-dynamic' https://www.googletagmanager.com https://www.google-analytics.com https://www.google.com/recaptcha/ https://www.gstatic.com/recaptcha/`,
+    `script-src 'self' 'nonce-${nonce}' 'strict-dynamic' https://www.googletagmanager.com https://www.google-analytics.com https://www.google.com/recaptcha/ https://www.gstatic.com/recaptcha/ https://cdn-cookieyes.com`,
     "style-src 'self' 'unsafe-inline'", // Tailwind requires unsafe-inline for styles
-    "img-src 'self' data: blob: https://images.unsplash.com https://www.google-analytics.com https://www.googletagmanager.com https://www.figma.com",
+    "img-src 'self' data: blob: https://images.unsplash.com https://www.google-analytics.com https://www.googletagmanager.com https://www.figma.com https://cdn-cookieyes.com",
     "media-src 'self'",
-    "connect-src 'self' https://www.google-analytics.com https://www.googletagmanager.com https://images.unsplash.com https://www.figma.com https://www.google.com/recaptcha/",
-    "frame-src 'self' https://www.google.com/recaptcha/ https://recaptcha.google.com/recaptcha/ https://www.gstatic.com/recaptcha/",
+    "connect-src 'self' https://www.google-analytics.com https://www.googletagmanager.com https://images.unsplash.com https://www.figma.com https://www.google.com/recaptcha/ https://cdn-cookieyes.com https://log.cookieyes.com",
+    "frame-src 'self' https://www.google.com/recaptcha/ https://recaptcha.google.com/recaptcha/ https://www.gstatic.com/recaptcha/ https://cdn-cookieyes.com",
     "frame-ancestors 'none'",
     "base-uri 'self'",
     "form-action 'self'",
