@@ -121,6 +121,12 @@ export default async function RootLayout({ children }: { children: React.ReactNo
           strategy="afterInteractive"
           nonce={nonce}
         />
+        <Script
+          id="cookieyes"
+          src="https://cdn-cookieyes.com/client_data/761bc9303937f7b41b200de8ed556d45/script.js"
+          strategy="afterInteractive"
+          nonce={nonce}
+        />
         <Script id="ga-init" strategy="afterInteractive" nonce={nonce}>
           {`
             window.dataLayer = window.dataLayer || [];
