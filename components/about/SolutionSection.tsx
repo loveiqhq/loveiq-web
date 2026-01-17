@@ -187,7 +187,7 @@ const SolutionSection: FC = () => {
             Our Solution
           </h2>
           <p className="max-w-[672px] text-lg font-light leading-[1.4] text-[#9CA3AF]">
-            Complete tools to transform insights into life changing actions.
+            We build tools to transform insights into life changing actions.
           </p>
         </div>
 
