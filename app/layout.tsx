@@ -117,13 +117,13 @@ export default async function RootLayout({ children }: { children: React.ReactNo
     <html lang="en" className={`scroll-smooth ${manrope.variable} ${lora.variable}`}>
       <head>
         <Script
-          src="https://www.googletagmanager.com/gtag/js?id=G-QTYY69L46N"
-          strategy="afterInteractive"
+          id="cookieyes"
+          src="https://cdn-cookieyes.com/client_data/761bc9303937f7b41b200de8ed556d45/script.js"
+          strategy="beforeInteractive"
           nonce={nonce}
         />
         <Script
-          id="cookieyes"
-          src="https://cdn-cookieyes.com/client_data/761bc9303937f7b41b200de8ed556d45/script.js"
+          src="https://www.googletagmanager.com/gtag/js?id=G-QTYY69L46N"
           strategy="afterInteractive"
           nonce={nonce}
         />
