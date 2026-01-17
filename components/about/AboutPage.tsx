@@ -10,7 +10,7 @@ import ProcessSection from "./ProcessSection";
 import PublicationsSection from "./PublicationsSection";
 import TeamSection from "./TeamSection";
 import ContactSection from "./ContactSection";
-import AboutFooter from "./AboutFooter";
+import FooterSection from "../landing/FooterSection";
 
 const AboutPage: FC = () => {
   // Scroll reveal animation observer
@@ -51,7 +51,7 @@ const AboutPage: FC = () => {
         <TeamSection />
         <ContactSection />
       </div>
-      <AboutFooter />
+      <FooterSection />
     </main>
   );
 };
