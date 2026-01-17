@@ -93,37 +93,72 @@ const FooterSection: FC = () => {
             <h3 className="text-lg font-semibold">Legal</h3>
             <ul className="space-y-2 text-sm text-text-secondary list-none p-0 m-0">
               <li>
-                <Link href="/privacy" className="transition hover:text-text-primary focus-visible-ring rounded">
+                <Link
+                  href="/privacy"
+                  className="transition hover:text-text-primary focus-visible-ring rounded"
+                  target="_blank"
+                  rel="noreferrer noopener"
+                >
                   Privacy Policy
                 </Link>
               </li>
               <li>
-                <Link href="/cookies" className="transition hover:text-text-primary focus-visible-ring rounded">
+                <Link
+                  href="/cookies"
+                  className="transition hover:text-text-primary focus-visible-ring rounded"
+                  target="_blank"
+                  rel="noreferrer noopener"
+                >
                   Cookie Policy
                 </Link>
               </li>
               <li>
-                <Link href="/imprint" className="transition hover:text-text-primary focus-visible-ring rounded">
+                <Link
+                  href="/imprint"
+                  className="transition hover:text-text-primary focus-visible-ring rounded"
+                  target="_blank"
+                  rel="noreferrer noopener"
+                >
                   Imprint
                 </Link>
               </li>
               <li>
-                <Link href="/terms-and-conditions" className="transition hover:text-text-primary focus-visible-ring rounded">
+                <Link
+                  href="/terms-and-conditions"
+                  className="transition hover:text-text-primary focus-visible-ring rounded"
+                  target="_blank"
+                  rel="noreferrer noopener"
+                >
                   Terms & Conditions
                 </Link>
               </li>
               <li>
-                <Link href="/terms-of-use" className="transition hover:text-text-primary focus-visible-ring rounded">
+                <Link
+                  href="/terms-of-use"
+                  className="transition hover:text-text-primary focus-visible-ring rounded"
+                  target="_blank"
+                  rel="noreferrer noopener"
+                >
                   Terms of Use
                 </Link>
               </li>
               <li>
-                <Link href="/digital-content-terms" className="transition hover:text-text-primary focus-visible-ring rounded">
+                <Link
+                  href="/digital-content-terms"
+                  className="transition hover:text-text-primary focus-visible-ring rounded"
+                  target="_blank"
+                  rel="noreferrer noopener"
+                >
                   Digital Content & Subscription Terms
                 </Link>
               </li>
               <li>
-                <Link href="/medical-disclaimer" className="transition hover:text-text-primary focus-visible-ring rounded">
+                <Link
+                  href="/medical-disclaimer"
+                  className="transition hover:text-text-primary focus-visible-ring rounded"
+                  target="_blank"
+                  rel="noreferrer noopener"
+                >
                   Medical & Psychological Disclaimer
                 </Link>
               </li>

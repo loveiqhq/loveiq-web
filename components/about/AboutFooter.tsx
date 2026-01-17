@@ -72,13 +72,13 @@ const AboutFooter: FC = () => (
         <div className="flex flex-col gap-4 border-t border-white/5 pt-8 text-xs text-[#4B5563] sm:flex-row sm:items-center sm:justify-between">
           <span>&copy; 2025 LoveIQ. All rights reserved.</span>
           <div className="flex flex-wrap gap-x-6 gap-y-2">
-            <Link href="/privacy" className="transition hover:text-white">Privacy Policy</Link>
-            <Link href="/cookies" className="transition hover:text-white">Cookie Policy</Link>
-            <Link href="/imprint" className="transition hover:text-white">Imprint</Link>
-            <Link href="/terms-and-conditions" className="transition hover:text-white">Terms & Conditions</Link>
-            <Link href="/terms-of-use" className="transition hover:text-white">Terms of Use</Link>
-            <Link href="/digital-content-terms" className="transition hover:text-white">Digital Content & Subscription Terms</Link>
-            <Link href="/medical-disclaimer" className="transition hover:text-white">Medical & Psychological Disclaimer</Link>
+            <Link href="/privacy" className="transition hover:text-white" target="_blank" rel="noreferrer noopener">Privacy Policy</Link>
+            <Link href="/cookies" className="transition hover:text-white" target="_blank" rel="noreferrer noopener">Cookie Policy</Link>
+            <Link href="/imprint" className="transition hover:text-white" target="_blank" rel="noreferrer noopener">Imprint</Link>
+            <Link href="/terms-and-conditions" className="transition hover:text-white" target="_blank" rel="noreferrer noopener">Terms & Conditions</Link>
+            <Link href="/terms-of-use" className="transition hover:text-white" target="_blank" rel="noreferrer noopener">Terms of Use</Link>
+            <Link href="/digital-content-terms" className="transition hover:text-white" target="_blank" rel="noreferrer noopener">Digital Content & Subscription Terms</Link>
+            <Link href="/medical-disclaimer" className="transition hover:text-white" target="_blank" rel="noreferrer noopener">Medical & Psychological Disclaimer</Link>
           </div>
         </div>
       </div>
