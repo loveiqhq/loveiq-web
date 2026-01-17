@@ -116,7 +116,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
   return (
     <html lang="en" className={`scroll-smooth ${manrope.variable} ${lora.variable}`}>
       <head>
-        {/* CookieYes banner - must be first script in head */}
+        {/* eslint-disable-next-line @next/next/no-sync-scripts */}
         <script
           id="cookieyes"
           type="text/javascript"
