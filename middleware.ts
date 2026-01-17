@@ -17,7 +17,7 @@ export function middleware(request: NextRequest) {
   // Build CSP header with nonce
   const cspHeader = [
     "default-src 'self'",
-    `script-src 'self' 'nonce-${nonce}' https://www.googletagmanager.com https://www.google-analytics.com https://www.google.com/recaptcha/ https://www.gstatic.com/recaptcha/ https://cdn-cookieyes.com https://cookieyes.com`,
+    `script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com https://www.google.com/recaptcha/ https://www.gstatic.com/recaptcha/ https://cdn-cookieyes.com https://cookieyes.com`,
     "style-src 'self' 'unsafe-inline'", // Tailwind requires unsafe-inline for styles
     "img-src 'self' data: blob: https://images.unsplash.com https://www.google-analytics.com https://www.googletagmanager.com https://www.figma.com https://cdn-cookieyes.com",
     "media-src 'self'",
