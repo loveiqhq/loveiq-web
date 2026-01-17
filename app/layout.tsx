@@ -116,11 +116,11 @@ export default async function RootLayout({ children }: { children: React.ReactNo
   return (
     <html lang="en" className={`scroll-smooth ${manrope.variable} ${lora.variable}`}>
       <head>
-        <Script
+        {/* CookieYes banner - must be first script in head */}
+        <script
           id="cookieyes"
+          type="text/javascript"
           src="https://cdn-cookieyes.com/client_data/761bc9303937f7b41b200de8ed556d45/script.js"
-          strategy="beforeInteractive"
-          nonce={nonce}
         />
         <Script
           src="https://www.googletagmanager.com/gtag/js?id=G-QTYY69L46N"
