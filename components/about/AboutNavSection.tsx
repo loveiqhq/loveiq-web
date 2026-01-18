@@ -119,7 +119,7 @@ const AboutNavSection: FC = () => {
 
   const closeMenu = () => setMenuOpen(false);
 
-  // Only apply hide transform on mobile
+  // only apply hide transform on mobile
   const shouldHide = isHidden && isMobile;
 
   return (
