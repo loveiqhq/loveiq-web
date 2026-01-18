@@ -15,13 +15,23 @@ const MOBILE_BREAKPOINT = 640;
 const NavSection: FC = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [isHidden, setIsHidden] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
   const lastScrollY = useRef(0);
   const ticking = useRef(false);
 
+  // Initialize on mount
+  useEffect(() => {
+    lastScrollY.current = window.scrollY;
+    setIsMobile(window.innerWidth < MOBILE_BREAKPOINT);
+  }, []);
+
   // Handle scroll direction detection for mobile
   const handleScroll = useCallback(() => {
+    const mobile = window.innerWidth < MOBILE_BREAKPOINT;
+    setIsMobile(mobile);
+
     // Only apply on mobile screens
-    if (window.innerWidth >= MOBILE_BREAKPOINT) {
+    if (!mobile) {
       setIsHidden(false);
       ticking.current = false;
       return;
@@ -69,7 +79,9 @@ const NavSection: FC = () => {
 
     // Handle resize to reset visibility on desktop
     const onResize = () => {
-      if (window.innerWidth >= MOBILE_BREAKPOINT) {
+      const mobile = window.innerWidth < MOBILE_BREAKPOINT;
+      setIsMobile(mobile);
+      if (!mobile) {
         setIsHidden(false);
       }
     };
@@ -94,11 +106,16 @@ const NavSection: FC = () => {
 
   const closeMenu = () => setMenuOpen(false);
 
+  // Only apply hide transform on mobile
+  const shouldHide = isHidden && isMobile;
+
   return (
     <header
-      className={`pointer-events-none fixed inset-x-0 top-0 z-40 px-4 sm:top-3 [-webkit-backface-visibility:hidden] transition-transform duration-300 ease-in-out ${
-        isHidden ? "-translate-y-full sm:translate-y-0" : "translate-y-0"
-      }`}
+      className="pointer-events-none fixed inset-x-0 top-0 z-40 px-4 sm:top-3 [-webkit-backface-visibility:hidden]"
+      style={{
+        transform: shouldHide ? "translateY(-100%)" : "translateY(0)",
+        transition: "transform 300ms ease-in-out",
+      }}
     >
       <div className="content-shell">
         <div className="relative pointer-events-auto">
