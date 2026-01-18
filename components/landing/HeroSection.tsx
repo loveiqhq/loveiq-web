@@ -44,7 +44,6 @@ const HeroSection: FC = () => {
           loop
           playsInline
           preload="none"
-          poster="/762ab2dcc4e38a7a2824b7a4f5174f2627a7eaae.webp"
           aria-hidden
           style={{
             opacity: videoReady ? 0.8 : 0,
