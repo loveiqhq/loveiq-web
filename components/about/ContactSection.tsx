@@ -220,11 +220,11 @@ const ContactSection: FC = () => {
               </div>
 
               <div className="flex w-full flex-col items-center gap-4 md:flex-row md:items-center md:justify-start md:gap-6">
-                <div>
+                <div className="flex justify-center md:justify-start">
                   <div
                     ref={recaptchaContainerRef}
                     className="g-recaptcha min-h-[78px]"
-                    style={{ transform: "scale(0.85)", transformOrigin: "0 0" }}
+                    style={{ transform: "scale(0.85)", transformOrigin: "center top" }}
                     aria-label="reCAPTCHA"
                     data-theme="light"
                     data-sitekey={siteKey}
@@ -237,7 +237,7 @@ const ContactSection: FC = () => {
                 </div>
                 <button
                   type="submit"
-                  className="flex w-full items-center justify-center gap-2 rounded-full border border-white/20 px-6 py-3 text-sm font-bold text-white transition hover:-translate-y-[2px] hover:border-white/35 focus-visible-ring disabled:cursor-not-allowed disabled:opacity-60 md:inline-flex md:w-fit md:px-8"
+                  className="flex w-full max-w-[280px] items-center justify-center gap-2 rounded-full border border-white/20 px-6 py-3 text-sm font-bold text-white transition hover:-translate-y-[2px] hover:border-white/35 focus-visible-ring disabled:cursor-not-allowed disabled:opacity-60 md:inline-flex md:w-fit md:max-w-none md:px-8"
                   disabled={submitting}
                 >
                   {submitting ? "Sending..." : "Submit"}
