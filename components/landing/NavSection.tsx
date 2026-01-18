@@ -1,14 +1,87 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef, useCallback } from "react";
 import type { FC } from "react";
 import Link from "next/link";
 import { trackStartSurvey } from "../../lib/analytics";
 
 const navLinks = [{ label: "About Us", href: "/about" }];
 
+// Scroll threshold in pixels to prevent flickering on small scroll movements
+const SCROLL_THRESHOLD = 10;
+// Mobile breakpoint matching Tailwind's sm: (640px)
+const MOBILE_BREAKPOINT = 640;
+
 const NavSection: FC = () => {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [isHidden, setIsHidden] = useState(false);
+  const lastScrollY = useRef(0);
+  const ticking = useRef(false);
+
+  // Handle scroll direction detection for mobile
+  const handleScroll = useCallback(() => {
+    // Only apply on mobile screens
+    if (window.innerWidth >= MOBILE_BREAKPOINT) {
+      setIsHidden(false);
+      ticking.current = false;
+      return;
+    }
+
+    const currentScrollY = window.scrollY;
+    const scrollDelta = currentScrollY - lastScrollY.current;
+
+    // Always show navbar at the top of the page
+    if (currentScrollY <= 0) {
+      setIsHidden(false);
+      lastScrollY.current = currentScrollY;
+      ticking.current = false;
+      return;
+    }
+
+    // Apply threshold to prevent flickering
+    if (Math.abs(scrollDelta) < SCROLL_THRESHOLD) {
+      ticking.current = false;
+      return;
+    }
+
+    // Scrolling down - hide navbar and close menu
+    if (scrollDelta > 0) {
+      setIsHidden(true);
+      setMenuOpen(false);
+    }
+    // Scrolling up - show navbar
+    else if (scrollDelta < 0) {
+      setIsHidden(false);
+    }
+
+    lastScrollY.current = currentScrollY;
+    ticking.current = false;
+  }, []);
+
+  useEffect(() => {
+    const onScroll = () => {
+      // Use requestAnimationFrame for performance
+      if (!ticking.current) {
+        window.requestAnimationFrame(handleScroll);
+        ticking.current = true;
+      }
+    };
+
+    // Handle resize to reset visibility on desktop
+    const onResize = () => {
+      if (window.innerWidth >= MOBILE_BREAKPOINT) {
+        setIsHidden(false);
+      }
+    };
+
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onResize, { passive: true });
+
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", onResize);
+    };
+  }, [handleScroll]);
 
   useEffect(() => {
     if (!menuOpen) return;
@@ -22,7 +95,11 @@ const NavSection: FC = () => {
   const closeMenu = () => setMenuOpen(false);
 
   return (
-    <header className="pointer-events-none fixed inset-x-0 top-0 z-40 px-4 sm:top-3 [transform:translate3d(0,0,0)] [-webkit-backface-visibility:hidden]">
+    <header
+      className={`pointer-events-none fixed inset-x-0 top-0 z-40 px-4 sm:top-3 [-webkit-backface-visibility:hidden] transition-transform duration-300 ease-in-out ${
+        isHidden ? "-translate-y-full sm:translate-y-0" : "translate-y-0"
+      }`}
+    >
       <div className="content-shell">
         <div className="relative pointer-events-auto">
           <div className="pointer-events-none absolute inset-[-10px] rounded-[999px] bg-[radial-gradient(80%_120%_at_50%_50%,rgba(0,0,0,0.55),transparent_65%)] blur-3xl" />
