@@ -34,11 +34,11 @@ const publications = [
 const PublicationsSection: FC = () => {
   return (
     <section id="publications" className="border-t border-white/5 bg-[#0A0510] px-6 py-16 md:py-24">
-      <div className="mx-auto max-w-4xl px-6">
-        <div className="reveal-on-scroll mb-12 flex items-center gap-4">
-          <div className="h-px flex-1 bg-white/10" aria-hidden />
-          <h2 className="whitespace-nowrap font-serif text-2xl font-normal text-white">Latest Science &amp; Publications</h2>
-          <div className="h-px flex-1 bg-white/10" aria-hidden />
+      <div className="mx-auto max-w-4xl">
+        <div className="reveal-on-scroll mb-12 flex items-center justify-center gap-4">
+          <div className="hidden h-px flex-1 bg-white/10 sm:block" aria-hidden />
+          <h2 className="text-center font-serif text-2xl font-normal text-white sm:whitespace-nowrap">Latest Science &amp; Publications</h2>
+          <div className="hidden h-px flex-1 bg-white/10 sm:block" aria-hidden />
         </div>
 
         <div className="flex flex-col gap-6">
