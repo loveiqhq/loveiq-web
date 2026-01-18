@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useRef, useCallback } from "react";
+import { useState, useEffect, useRef } from "react";
 import type { FC } from "react";
 import Link from "next/link";
 import { trackStartSurvey } from "../../lib/analytics";
@@ -8,77 +8,19 @@ import { trackStartSurvey } from "../../lib/analytics";
 const navLinks = [{ label: "About Us", href: "/about" }];
 
 // Scroll threshold in pixels to prevent flickering on small scroll movements
-const SCROLL_THRESHOLD = 10;
+const SCROLL_THRESHOLD = 15;
 // Mobile breakpoint matching Tailwind's sm: (640px)
 const MOBILE_BREAKPOINT = 640;
 
-const NavSection: FC = () => {
-  const [menuOpen, setMenuOpen] = useState(false);
+function useScrollDirection() {
   const [isHidden, setIsHidden] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
   const lastScrollY = useRef(0);
-  const ticking = useRef(false);
-
-  // Initialize on mount
-  useEffect(() => {
-    lastScrollY.current = window.scrollY;
-    setIsMobile(window.innerWidth < MOBILE_BREAKPOINT);
-  }, []);
-
-  // Handle scroll direction detection for mobile
-  const handleScroll = useCallback(() => {
-    const mobile = window.innerWidth < MOBILE_BREAKPOINT;
-    setIsMobile(mobile);
-
-    // Only apply on mobile screens
-    if (!mobile) {
-      setIsHidden(false);
-      ticking.current = false;
-      return;
-    }
-
-    const currentScrollY = window.scrollY;
-    const scrollDelta = currentScrollY - lastScrollY.current;
-
-    // Always show navbar at the top of the page
-    if (currentScrollY <= 0) {
-      setIsHidden(false);
-      lastScrollY.current = currentScrollY;
-      ticking.current = false;
-      return;
-    }
-
-    // Apply threshold to prevent flickering
-    if (Math.abs(scrollDelta) < SCROLL_THRESHOLD) {
-      ticking.current = false;
-      return;
-    }
-
-    // Scrolling down - hide navbar and close menu
-    if (scrollDelta > 0) {
-      setIsHidden(true);
-      setMenuOpen(false);
-    }
-    // Scrolling up - show navbar
-    else if (scrollDelta < 0) {
-      setIsHidden(false);
-    }
-
-    lastScrollY.current = currentScrollY;
-    ticking.current = false;
-  }, []);
+  const lastDirection = useRef<"up" | "down" | null>(null);
 
   useEffect(() => {
-    const onScroll = () => {
-      // Use requestAnimationFrame for performance
-      if (!ticking.current) {
-        window.requestAnimationFrame(handleScroll);
-        ticking.current = true;
-      }
-    };
-
-    // Handle resize to reset visibility on desktop
-    const onResize = () => {
+    // Check if mobile on mount and resize
+    const checkMobile = () => {
       const mobile = window.innerWidth < MOBILE_BREAKPOINT;
       setIsMobile(mobile);
       if (!mobile) {
@@ -86,14 +28,85 @@ const NavSection: FC = () => {
       }
     };
 
+    // Get scroll position - body is the scroll container due to html overflow:hidden
+    const getScrollY = () => {
+      return document.body.scrollTop || window.pageYOffset || document.documentElement.scrollTop;
+    };
+
+    checkMobile();
+    lastScrollY.current = getScrollY();
+
+    let ticking = false;
+
+    const updateScrollDirection = () => {
+      const scrollY = getScrollY();
+      const mobile = window.innerWidth < MOBILE_BREAKPOINT;
+
+      if (!mobile) {
+        setIsHidden(false);
+        lastScrollY.current = scrollY;
+        ticking = false;
+        return;
+      }
+
+      // Always show at top
+      if (scrollY <= 0) {
+        setIsHidden(false);
+        lastScrollY.current = scrollY;
+        ticking = false;
+        return;
+      }
+
+      const diff = scrollY - lastScrollY.current;
+
+      // Only update if we've scrolled past threshold
+      if (Math.abs(diff) >= SCROLL_THRESHOLD) {
+        const direction = diff > 0 ? "down" : "up";
+
+        // Only update state if direction actually changed
+        if (direction !== lastDirection.current) {
+          lastDirection.current = direction;
+          setIsHidden(direction === "down");
+        }
+
+        lastScrollY.current = scrollY;
+      }
+
+      ticking = false;
+    };
+
+    const onScroll = () => {
+      if (!ticking) {
+        requestAnimationFrame(updateScrollDirection);
+        ticking = true;
+      }
+    };
+
+    // Listen on both window and body since body is the scroll container
     window.addEventListener("scroll", onScroll, { passive: true });
-    window.addEventListener("resize", onResize, { passive: true });
+    document.body.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", checkMobile, { passive: true });
 
     return () => {
       window.removeEventListener("scroll", onScroll);
-      window.removeEventListener("resize", onResize);
+      document.body.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", checkMobile);
     };
-  }, [handleScroll]);
+  }, []);
+
+  return { isHidden, isMobile };
+}
+
+const NavSection: FC = () => {
+  const [menuOpen, setMenuOpen] = useState(false);
+  const { isHidden, isMobile } = useScrollDirection();
+
+  // Close menu when hiding navbar
+  useEffect(() => {
+    if (isHidden && menuOpen) {
+      setMenuOpen(false);
+    }
+  }, [isHidden, menuOpen]);
 
   useEffect(() => {
     if (!menuOpen) return;
@@ -111,11 +124,7 @@ const NavSection: FC = () => {
 
   return (
     <header
-      className="pointer-events-none fixed inset-x-0 top-0 z-40 px-4 sm:top-3 [-webkit-backface-visibility:hidden]"
-      style={{
-        transform: shouldHide ? "translateY(-100%)" : "translateY(0)",
-        transition: "transform 300ms ease-in-out",
-      }}
+      className={`pointer-events-none fixed inset-x-0 top-0 z-40 px-4 sm:top-3 nav-header ${shouldHide ? "nav-hidden" : ""}`}
     >
       <div className="content-shell">
         <div className="relative pointer-events-auto">
