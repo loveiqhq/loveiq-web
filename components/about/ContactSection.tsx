@@ -199,8 +199,8 @@ const ContactSection: FC = () => {
             </div>
 
             {/* Message and bottom row in 2-column layout on desktop */}
-            <div className="grid w-full justify-items-stretch gap-6 md:grid-cols-2 md:gap-x-12 md:items-end">
-              <div className="flex w-full flex-col gap-2">
+            <div className="flex w-full flex-col items-center gap-6 md:grid md:grid-cols-2 md:items-end md:gap-x-12">
+              <div className="flex w-full max-w-[400px] flex-col gap-2 md:max-w-none">
                 <label htmlFor="message" className="text-sm font-medium text-[#9CA3AF]">
                   How can we help you?*
                 </label>
@@ -219,7 +219,7 @@ const ContactSection: FC = () => {
                 <div className="text-right text-xs text-[#4B5563]">1000 character limit</div>
               </div>
 
-              <div className="flex w-full flex-col items-center gap-4 md:flex-row md:items-center md:justify-start md:gap-6">
+              <div className="flex w-full max-w-[400px] flex-col items-center gap-4 md:max-w-none md:flex-row md:items-center md:justify-start md:gap-6">
                 <div className="flex justify-center md:justify-start">
                   <div
                     ref={recaptchaContainerRef}
@@ -237,7 +237,7 @@ const ContactSection: FC = () => {
                 </div>
                 <button
                   type="submit"
-                  className="flex w-full max-w-[280px] items-center justify-center gap-2 rounded-full border border-white/20 px-6 py-3 text-sm font-bold text-white transition hover:-translate-y-[2px] hover:border-white/35 focus-visible-ring disabled:cursor-not-allowed disabled:opacity-60 md:inline-flex md:w-fit md:max-w-none md:px-8"
+                  className="flex w-full items-center justify-center gap-2 rounded-full border border-white/20 px-6 py-3 text-sm font-bold text-white transition hover:-translate-y-[2px] hover:border-white/35 focus-visible-ring disabled:cursor-not-allowed disabled:opacity-60 md:inline-flex md:w-fit md:px-8"
                   disabled={submitting}
                 >
                   {submitting ? "Sending..." : "Submit"}
