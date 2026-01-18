@@ -41,7 +41,7 @@ const HeroSection: FC = () => {
         <div className="pointer-events-none absolute left-1/2 top-1/2 -z-10 h-[500px] w-[600px] -translate-x-1/2 -translate-y-1/2 animate-pulse rounded-full bg-[#5b21b6] blur-[120px] mix-blend-screen" style={{ animationDuration: "8s" }} />
 
         {/* Heading */}
-        <h1 className="mb-20 flex flex-col items-center gap-2 font-serif text-4xl font-medium leading-[1.1] tracking-tight text-white sm:text-5xl md:gap-4 md:text-6xl lg:text-[80px]">
+        <h1 className="mb-12 flex flex-col items-center gap-2 font-serif text-4xl font-medium leading-[1.1] tracking-tight text-white sm:text-5xl md:mb-32 md:gap-4 md:text-6xl lg:text-[80px]">
           {/* Line 1: "We exist to help" */}
           <div className="flex flex-wrap justify-center gap-[0.25em]">
             <AnimatedText text="We exist to help" baseDelay={50} />
@@ -59,10 +59,10 @@ const HeroSection: FC = () => {
         </h1>
 
         {/* Subtext */}
-        <p className="sensual-anim mx-auto max-w-4xl text-[20px] font-light leading-relaxed text-gray-400" style={{ animationDelay: "2.8s" }}>
-          We are a <strong className="font-bold text-white">science-led psychometric research and insights platform</strong> dedicated to reducing<br />
-          human suffering and supporting lasting happiness. We combine established scientific<br />
-          disciplines, practical wisdom, and modern technology to provide tools for transforming<br />
+        <p className="sensual-anim mx-auto max-w-4xl text-base font-light leading-relaxed text-gray-400 md:text-[20px]" style={{ animationDelay: "2.8s" }}>
+          We are a <strong className="font-bold text-white">science-led psychometric research and insights platform</strong> dedicated to reducing<br className="hidden md:inline" />
+          human suffering and supporting lasting happiness. We combine established scientific<br className="hidden md:inline" />
+          disciplines, practical wisdom, and modern technology to provide tools for transforming<br className="hidden md:inline" />
           <strong className="font-extrabold text-white">self-understanding into personal growth.</strong>
         </p>
       </div>
