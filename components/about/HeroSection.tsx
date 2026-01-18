@@ -59,10 +59,10 @@ const HeroSection: FC = () => {
         </h1>
 
         {/* Subtext */}
-        <p className="sensual-anim mx-auto max-w-4xl text-base font-light leading-relaxed text-gray-400 md:text-[20px]" style={{ animationDelay: "2.8s" }}>
+        <p className="sensual-anim mx-auto max-w-4xl font-sans text-base font-light leading-relaxed text-gray-400 md:text-[20px]" style={{ animationDelay: "2.8s" }}>
           We are a <strong className="font-bold text-white">science-led psychometric research and insights platform</strong> dedicated to reducing<br className="hidden md:inline" />
           human suffering and supporting lasting happiness. We combine established scientific<br className="hidden md:inline" />
-          disciplines, practical wisdom, and modern technology to provide tools for transforming<br className="hidden md:inline" />
+          disciplines, practical wisdom, and modern technology to provide tools for transforming<br className="hidden md:inline" />{" "}
           <strong className="font-extrabold text-white">self-understanding into personal growth.</strong>
         </p>
       </div>
