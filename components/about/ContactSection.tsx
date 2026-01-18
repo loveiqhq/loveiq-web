@@ -216,7 +216,7 @@ const ContactSection: FC = () => {
                   required
                   disabled={submitting}
                 />
-                <div className="text-right text-xs text-[#4B5563]">1000 character limit</div>
+                <div className="text-right text-xs text-[#4B5563]">{1000 - form.message.length} characters remaining</div>
               </div>
 
               <div className="flex w-full max-w-[400px] flex-col items-center gap-4 md:max-w-none md:flex-row md:items-center md:justify-start md:gap-6">
