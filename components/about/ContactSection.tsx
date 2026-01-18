@@ -199,7 +199,7 @@ const ContactSection: FC = () => {
             </div>
 
             {/* Message and bottom row in 2-column layout on desktop */}
-            <div className="grid gap-6 md:grid-cols-2 md:gap-x-12 md:items-end">
+            <div className="grid w-full gap-6 md:grid-cols-2 md:gap-x-12 md:items-end">
               <div className="flex w-full flex-col gap-2">
                 <label htmlFor="message" className="text-sm font-medium text-[#9CA3AF]">
                   How can we help you?*
@@ -216,10 +216,10 @@ const ContactSection: FC = () => {
                   required
                   disabled={submitting}
                 />
-                <div className="text-center text-xs text-[#4B5563] md:text-right">1000 character limit</div>
+                <div className="text-right text-xs text-[#4B5563]">1000 character limit</div>
               </div>
 
-              <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-start md:gap-6">
+              <div className="flex flex-col items-center gap-4 md:flex-row md:items-center md:justify-start md:gap-6">
                 <div>
                   <div
                     ref={recaptchaContainerRef}
