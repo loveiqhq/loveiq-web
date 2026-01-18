@@ -31,21 +31,23 @@ const LegalNavSection: FC = () => {
           <div className="pointer-events-none absolute inset-[-10px] rounded-[999px] bg-[radial-gradient(80%_120%_at_50%_50%,rgba(0,0,0,0.55),transparent_65%)] blur-3xl" />
           <nav className="relative mx-auto flex w-full max-w-[340px] items-center justify-between gap-3 rounded-[999px] bg-gradient-to-r from-[#1b0f2a] via-[#120a20] to-[#1b0f2a] px-3 py-2 shadow-[0_25px_80px_rgba(0,0,0,0.55)] backdrop-blur sm:max-w-[1200px] sm:gap-5 sm:pl-6 sm:pr-2 sm:py-[6px]">
             <div className="flex flex-1 items-center gap-2">
-              <div className="relative flex h-7 w-7 items-center justify-center overflow-hidden rounded-2xl bg-gradient-to-br from-[#ff9450] via-[#fe6839] to-[#c36ddf] shadow-[0_8px_18px_rgba(0,0,0,0.28)] focus-visible-ring">
-                <svg
-                  aria-hidden
-                  viewBox="0 0 24 24"
-                  className="relative h-3.5 w-3.5 text-white"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                >
-                  <path d="M12 19s-7-4-7-9a4 4 0 0 1 7-2.5A4 4 0 0 1 19 10c0 5-7 9-7 9Z" />
-                </svg>
-              </div>
-              <span className="font-serif text-xl font-semibold text-white">LoveIQ</span>
+              <Link href="/" className="flex items-center gap-2 focus-visible-ring" onClick={closeMenu}>
+                <div className="relative flex h-7 w-7 items-center justify-center overflow-hidden rounded-2xl bg-gradient-to-br from-[#ff9450] via-[#fe6839] to-[#c36ddf] shadow-[0_8px_18px_rgba(0,0,0,0.28)]">
+                  <svg
+                    aria-hidden
+                    viewBox="0 0 24 24"
+                    className="relative h-3.5 w-3.5 text-white"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  >
+                    <path d="M12 19s-7-4-7-9a4 4 0 0 1 7-2.5A4 4 0 0 1 19 10c0 5-7 9-7 9Z" />
+                  </svg>
+                </div>
+                <span className="font-serif text-xl font-semibold text-white">LoveIQ</span>
+              </Link>
             </div>
 
             <div className="hidden flex-1 items-center justify-center gap-6 lg:flex">
