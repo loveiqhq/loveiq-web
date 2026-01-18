@@ -189,7 +189,7 @@ const ContactSection: FC = () => {
             onLoad={() => setScriptLoaded(true)}
             onError={() => setStatus({ type: "error", message: "Captcha failed to load. Please reload and try again." })}
           />
-          <form className="space-y-6 md:space-y-8" onSubmit={handleSubmit}>
+          <form className="w-full space-y-6 md:space-y-8" onSubmit={handleSubmit}>
             {/* 2-column grid for form fields on desktop */}
             <div className="grid gap-6 md:grid-cols-2 md:gap-x-12 md:gap-y-8">
               <FormField label="First name*" id="firstName" type="text" value={form.firstName} onChange={handleChange} disabled={submitting} />
@@ -199,7 +199,7 @@ const ContactSection: FC = () => {
             </div>
 
             {/* Message and bottom row in 2-column layout on desktop */}
-            <div className="grid w-full gap-6 md:grid-cols-2 md:gap-x-12 md:items-end">
+            <div className="grid w-full justify-items-stretch gap-6 md:grid-cols-2 md:gap-x-12 md:items-end">
               <div className="flex w-full flex-col gap-2">
                 <label htmlFor="message" className="text-sm font-medium text-[#9CA3AF]">
                   How can we help you?*
@@ -219,7 +219,7 @@ const ContactSection: FC = () => {
                 <div className="text-right text-xs text-[#4B5563]">1000 character limit</div>
               </div>
 
-              <div className="flex flex-col items-center gap-4 md:flex-row md:items-center md:justify-start md:gap-6">
+              <div className="flex w-full flex-col items-center gap-4 md:flex-row md:items-center md:justify-start md:gap-6">
                 <div>
                   <div
                     ref={recaptchaContainerRef}
@@ -237,7 +237,7 @@ const ContactSection: FC = () => {
                 </div>
                 <button
                   type="submit"
-                  className="inline-flex w-full items-center justify-center gap-2 rounded-full border border-white/20 px-6 py-3 text-sm font-bold text-white transition hover:-translate-y-[2px] hover:border-white/35 focus-visible-ring disabled:cursor-not-allowed disabled:opacity-60 md:w-fit md:px-8"
+                  className="flex w-full items-center justify-center gap-2 rounded-full border border-white/20 px-6 py-3 text-sm font-bold text-white transition hover:-translate-y-[2px] hover:border-white/35 focus-visible-ring disabled:cursor-not-allowed disabled:opacity-60 md:inline-flex md:w-fit md:px-8"
                   disabled={submitting}
                 >
                   {submitting ? "Sending..." : "Submit"}
