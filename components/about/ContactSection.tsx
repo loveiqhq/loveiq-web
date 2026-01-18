@@ -163,7 +163,7 @@ const ContactSection: FC = () => {
   };
 
   return (
-    <section id="contact" className="bg-[#0A0510] px-4 py-16 md:px-6 md:py-24">
+    <section id="contact" className="overflow-hidden bg-[#0A0510] px-4 py-16 md:px-6 md:py-24">
       <div className="content-shell mx-auto grid max-w-[1100px] gap-6 lg:grid-cols-2">
         <div className="reveal-on-scroll relative overflow-hidden rounded-[24px] border border-white/10 bg-[#120B1C] p-8 md:rounded-[32px] md:p-16">
           <div className="pointer-events-none absolute -left-64 -top-64 h-[500px] w-[500px] rounded-full bg-[#2e0147] blur-[200px]" />
