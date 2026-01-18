@@ -164,9 +164,10 @@ const ContactSection: FC = () => {
 
   return (
     <section id="contact" className="overflow-hidden bg-[#0A0510] px-4 py-16 md:px-6 md:py-24">
-      <div className="content-shell mx-auto grid max-w-[1100px] gap-6 lg:grid-cols-2">
-        <div className="reveal-on-scroll relative rounded-[24px] border border-white/10 bg-[#120B1C] p-8 md:rounded-[32px] md:p-16">
-          <div className="pointer-events-none absolute inset-0 isolate overflow-hidden rounded-[24px] md:rounded-[32px]" style={{ clipPath: 'inset(0 round 24px)' }}>
+      <div className="content-shell mx-auto max-w-[1100px]">
+        {/* Header card with gradient background */}
+        <div className="reveal-on-scroll relative rounded-t-[24px] border border-b-0 border-white/10 bg-[#120B1C] p-8 md:rounded-t-[32px] md:p-16">
+          <div className="pointer-events-none absolute inset-0 isolate overflow-hidden rounded-t-[24px] md:rounded-t-[32px]" style={{ clipPath: 'inset(0 round 24px 24px 0 0)' }}>
             <div className="absolute -left-16 -top-16 h-[200px] w-[200px] rounded-full bg-[#2e0147] blur-[80px] md:-left-64 md:-top-64 md:h-[500px] md:w-[500px] md:blur-[200px]" />
             <div className="absolute -bottom-12 -right-10 h-[120px] w-[120px] rounded-full bg-[#fe6839] blur-[80px] md:-bottom-52 md:-right-40 md:h-[300px] md:w-[300px] md:blur-[200px]" />
           </div>
@@ -179,7 +180,8 @@ const ContactSection: FC = () => {
           </div>
         </div>
 
-        <div className="reveal-on-scroll stagger-1 rounded-[24px] border border-white/10 bg-[#120B1C] p-6 md:rounded-[32px] md:p-12">
+        {/* Form card */}
+        <div className="reveal-on-scroll stagger-1 rounded-b-[24px] border border-white/10 bg-[#120B1C] p-6 md:rounded-b-[32px] md:p-12">
           <Script
             src="https://www.google.com/recaptcha/api.js?render=explicit"
             strategy="afterInteractive"
@@ -188,59 +190,63 @@ const ContactSection: FC = () => {
             onError={() => setStatus({ type: "error", message: "Captcha failed to load. Please reload and try again." })}
           />
           <form className="space-y-6 md:space-y-8" onSubmit={handleSubmit}>
-            <div className="flex flex-col gap-6 md:gap-8">
+            {/* 2-column grid for form fields on desktop */}
+            <div className="grid gap-6 md:grid-cols-2 md:gap-x-12 md:gap-y-8">
               <FormField label="First name*" id="firstName" type="text" value={form.firstName} onChange={handleChange} disabled={submitting} />
-              <FormField label="Last name*" id="lastName" type="text" value={form.lastName} onChange={handleChange} disabled={submitting} />
               <FormField label="Phone*" id="phone" type="tel" value={form.phone} onChange={handleChange} disabled={submitting} />
+              <FormField label="Last Name*" id="lastName" type="text" value={form.lastName} onChange={handleChange} disabled={submitting} />
               <FormField label="Email*" id="email" type="email" value={form.email} onChange={handleChange} disabled={submitting} />
             </div>
 
-            <div className="flex flex-col gap-2">
-              <label htmlFor="message" className="text-sm font-medium text-[#9CA3AF]">
-                How can we help you?*
-              </label>
-              <textarea
-                id="message"
-                name="message"
-                rows={4}
-                className="w-full rounded-xl border border-white/10 bg-[#0a0510]/50 px-4 py-4 text-sm font-light text-white placeholder:text-[#4B5563] focus:border-white/30 focus:outline-none disabled:opacity-60"
-                placeholder="Tell us a bit about yourself and your project goals"
-                value={form.message}
-                onChange={handleChange}
-                maxLength={1000}
-                required
-                disabled={submitting}
-              />
-              <div className="text-right text-xs text-[#4B5563]">1000 character limit</div>
-            </div>
-
-            <div className="flex flex-col gap-6 md:gap-8">
-              <div>
-                <div
-                  ref={recaptchaContainerRef}
-                  className="g-recaptcha min-h-[78px]"
-                  style={{ transform: "scale(0.85)", transformOrigin: "0 0" }}
-                  aria-label="reCAPTCHA"
-                  data-theme="light"
-                  data-sitekey={siteKey}
+            {/* Message and bottom row in 2-column layout on desktop */}
+            <div className="grid gap-6 md:grid-cols-2 md:gap-x-12 md:items-end">
+              <div className="flex flex-col gap-2">
+                <label htmlFor="message" className="text-sm font-medium text-[#9CA3AF]">
+                  How can we help you?*
+                </label>
+                <textarea
+                  id="message"
+                  name="message"
+                  rows={4}
+                  className="w-full rounded-xl border border-white/10 bg-[#0a0510]/50 px-4 py-4 text-sm font-light text-white placeholder:text-[#4B5563] focus:border-white/30 focus:outline-none disabled:opacity-60"
+                  placeholder="Tell us a bit about yourself and your project goals"
+                  value={form.message}
+                  onChange={handleChange}
+                  maxLength={1000}
+                  required
+                  disabled={submitting}
                 />
-                {!captchaReady && (
-                  <div className="mt-2 text-xs font-medium text-[#4B5563]">
-                    Captcha loading... If it does not appear, disable blockers and reload.
-                  </div>
-                )}
+                <div className="text-right text-xs text-[#4B5563]">1000 character limit</div>
               </div>
-              <button
-                type="submit"
-                className="inline-flex w-full items-center justify-center gap-2 rounded-full border border-white/20 px-6 py-3 text-sm font-bold text-white transition hover:-translate-y-[2px] hover:border-white/35 focus-visible-ring disabled:cursor-not-allowed disabled:opacity-60 md:w-fit md:px-8"
-                disabled={submitting}
-              >
-                {submitting ? "Sending..." : "Submit"}
-                <svg aria-hidden viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="2">
-                  <path d="M5 12h14" />
-                  <path d="m12 5 7 7-7 7" />
-                </svg>
-              </button>
+
+              <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-start md:gap-6">
+                <div>
+                  <div
+                    ref={recaptchaContainerRef}
+                    className="g-recaptcha min-h-[78px]"
+                    style={{ transform: "scale(0.85)", transformOrigin: "0 0" }}
+                    aria-label="reCAPTCHA"
+                    data-theme="light"
+                    data-sitekey={siteKey}
+                  />
+                  {!captchaReady && (
+                    <div className="mt-2 text-xs font-medium text-[#4B5563]">
+                      Captcha loading... If it does not appear, disable blockers and reload.
+                    </div>
+                  )}
+                </div>
+                <button
+                  type="submit"
+                  className="inline-flex w-full items-center justify-center gap-2 rounded-full border border-white/20 px-6 py-3 text-sm font-bold text-white transition hover:-translate-y-[2px] hover:border-white/35 focus-visible-ring disabled:cursor-not-allowed disabled:opacity-60 md:w-fit md:px-8"
+                  disabled={submitting}
+                >
+                  {submitting ? "Sending..." : "Submit"}
+                  <svg aria-hidden viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="2">
+                    <path d="M5 12h14" />
+                    <path d="m12 5 7 7-7 7" />
+                  </svg>
+                </button>
+              </div>
             </div>
 
             {status.type === "error" && (
