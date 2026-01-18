@@ -182,7 +182,7 @@ const SolutionSection: FC = () => {
     <section id="solution" className="border-t border-white/5 bg-[#0A0510] px-6 py-16 md:py-24">
       <div className="content-shell">
         {/* Header - Left aligned */}
-        <div className="reveal-on-scroll mb-20 space-y-6 px-14">
+        <div className="reveal-on-scroll mb-20 space-y-6 px-0 sm:px-14">
           <h2 className="font-serif text-3xl font-normal leading-[1] tracking-tight text-white md:text-5xl">
             Our Solution
           </h2>
