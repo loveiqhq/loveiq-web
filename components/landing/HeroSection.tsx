@@ -141,7 +141,7 @@ const HeroSection: FC = () => {
           </Link>
         </div>
 
-        <p className="animate-on-scroll mt-16 text-center text-base leading-7 text-white">
+        <p className="animate-on-scroll mt-12 text-center text-base leading-7 text-white">
           <span className="font-light">Your </span>
           <span className="font-extrabold">privacy &amp; anonymity</span>
           <span className="font-light"> comes first. Click on </span>
