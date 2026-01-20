@@ -183,7 +183,7 @@ const HonestySection = () => (
         </p>
       </div>
 
-      <div className="flex flex-col sm:flex-row w-full max-w-[488px] gap-6 lg:mt-12">
+      <div className="flex flex-col sm:flex-row w-full max-w-[280px] sm:max-w-[488px] gap-6 lg:mt-12">
         <div className="reveal-on-scroll group relative flex flex-1 flex-col items-center justify-center gap-5 overflow-hidden rounded-2xl border border-white/10 bg-[#0F0816] px-6 py-8 transition-all duration-500 ease-out transform-gpu hover:-translate-y-2 hover:shadow-[0_25px_60px_-12px_rgba(255,104,57,0.3)]">
           <div
             aria-hidden
@@ -221,7 +221,7 @@ const HonestySection = () => (
 
 const SecuritySection = () => (
   <section className="relative px-4 py-24 md:py-[120px]">
-    <div className="content-shell flex flex-col items-center gap-24 lg:flex-row lg:items-center lg:justify-center">
+    <div className="content-shell flex flex-col-reverse items-center gap-12 lg:gap-24 lg:flex-row lg:items-center lg:justify-center">
       {/* Code Card */}
       <div className="reveal-on-scroll w-full max-w-[448px] overflow-hidden rounded-2xl border border-white/10 bg-[#120819] p-[33px] shadow-[0_25px_50px_-12px_rgba(0,0,0,0.25)]">
         <div className="mb-6 space-y-2 font-mono text-[10px] leading-[15px] text-[#4b5563]">
@@ -247,7 +247,7 @@ const SecuritySection = () => (
           <IconShieldCheck />
           Security
         </span>
-        <h3 className="reveal-on-scroll stagger-1 whitespace-nowrap font-serif text-3xl font-normal leading-[40px] text-white md:text-[36px]">
+        <h3 className="reveal-on-scroll stagger-1 font-serif text-[26px] md:text-[36px] font-normal leading-[32px] md:leading-[40px] text-white">
           Hardened technical security
         </h3>
         <p className="reveal-on-scroll stagger-2 text-lg leading-[29.25px] md:text-[18px]">
@@ -387,7 +387,7 @@ const BoundariesSection = () => (
 
 const UnderstandingSection = () => (
   <section className="relative px-6 py-24 md:py-[128px]">
-    <div className="content-shell flex flex-col items-center gap-10 lg:flex-row lg:justify-center lg:gap-20">
+    <div className="content-shell flex flex-col-reverse items-center gap-10 lg:flex-row lg:justify-center lg:gap-20">
       {/* Image with Overlay Card */}
       <div className="reveal-on-scroll relative aspect-square w-full max-w-[484px] overflow-hidden rounded-2xl">
         <Image src="/privacy/privacy-portrait.png" alt="Calm reflective portrait" fill className="object-cover" sizes="(min-width: 1024px) 484px, 100vw" />
