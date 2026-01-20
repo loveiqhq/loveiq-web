@@ -177,7 +177,7 @@ const HonestySection = () => (
         </p>
       </div>
 
-      <div className="flex w-full max-w-[488px] gap-6">
+      <div className="flex w-full max-w-[488px] gap-6 lg:mt-12">
         <div className="reveal-on-scroll group relative flex flex-1 flex-col items-center justify-center gap-5 overflow-hidden rounded-2xl border border-white/10 bg-[#0F0816] px-6 py-8 transition-all duration-500 ease-out transform-gpu hover:-translate-y-2 hover:shadow-[0_25px_60px_-12px_rgba(255,104,57,0.3)]">
           <div
             aria-hidden
@@ -453,6 +453,27 @@ const IconHeart = () => (
 const ResearchSection = () => (
   <section className="relative px-6 py-24 md:py-[96px]">
     <div className="content-shell flex flex-col items-center gap-10 lg:flex-row lg:justify-center lg:gap-24">
+      {/* Text Content */}
+      <div className="max-w-[468px] space-y-6">
+        <span className="reveal-on-scroll inline-flex items-center gap-2 rounded-xl border border-white/10 bg-[#1e102e] px-[17px] py-[5px] text-xs font-semibold uppercase tracking-[0.6px] text-[#fe6839] shadow-lg">
+          <IconHeart />
+          Impact
+        </span>
+        <h3 className="reveal-on-scroll stagger-1 font-serif text-[36px] leading-[40px] text-white">
+          Scientific &amp; societal progress
+        </h3>
+        <p className="reveal-on-scroll stagger-2 text-[18px] leading-[29.25px]">
+          <span className="font-light text-[#9CA3AF]">For scientific progress, </span>
+          <span className="font-bold text-[#ededed]">we may use fully anonymized, non-personal, and non-reidentifiable data </span>
+          <span className="font-light text-[#9CA3AF]">for research purposes.</span>
+        </p>
+        <p className="reveal-on-scroll stagger-3 text-[18px] leading-[29.25px]">
+          <span className="font-light text-[#9CA3AF]">This </span>
+          <span className="font-bold text-[#ededed]">data cannot be traced back to individuals </span>
+          <span className="font-light text-[#9CA3AF]">and is used exclusively to advance understanding in areas such as sexuality, attachment, well-being, and human flourishing — always in service of reducing suffering and increasing human happiness.</span>
+        </p>
+      </div>
+
       {/* Image Card */}
       <div className="reveal-on-scroll relative h-[576px] w-full max-w-[448px] overflow-hidden rounded-3xl border border-white/10">
         <Image src="/privacy/privacy-research.png" alt="Scientific research abstract" fill className="object-cover" sizes="(min-width: 1024px) 448px, 100vw" />
@@ -473,27 +494,6 @@ const ResearchSection = () => (
             <span>Processing Data</span>
           </div>
         </div>
-      </div>
-
-      {/* Text Content */}
-      <div className="max-w-[468px] space-y-6">
-        <span className="reveal-on-scroll inline-flex items-center gap-2 rounded-xl border border-white/10 bg-[#1e102e] px-[17px] py-[5px] text-xs font-semibold uppercase tracking-[0.6px] text-[#fe6839] shadow-lg">
-          <IconHeart />
-          Impact
-        </span>
-        <h3 className="reveal-on-scroll stagger-1 font-serif text-[36px] leading-[40px] text-white">
-          Scientific &amp; societal progress
-        </h3>
-        <p className="reveal-on-scroll stagger-2 text-[18px] leading-[29.25px]">
-          <span className="font-light text-[#9CA3AF]">For scientific progress, </span>
-          <span className="font-bold text-[#ededed]">we may use fully anonymized, non-personal, and non-reidentifiable data </span>
-          <span className="font-light text-[#9CA3AF]">for research purposes.</span>
-        </p>
-        <p className="reveal-on-scroll stagger-3 text-[18px] leading-[29.25px]">
-          <span className="font-light text-[#9CA3AF]">This </span>
-          <span className="font-bold text-[#ededed]">data cannot be traced back to individuals </span>
-          <span className="font-light text-[#9CA3AF]">and is used exclusively to advance understanding in areas such as sexuality, attachment, well-being, and human flourishing — always in service of reducing suffering and increasing human happiness.</span>
-        </p>
       </div>
     </div>
   </section>
