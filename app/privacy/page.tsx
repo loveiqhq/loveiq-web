@@ -412,7 +412,7 @@ const UnderstandingSection = () => (
 
       {/* Text Content */}
       <div className="flex max-w-[484px] flex-col gap-6">
-        <span className="reveal-on-scroll inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[1.2px] text-[#fe6839]">
+        <span className="reveal-on-scroll inline-flex items-center gap-2 rounded-full border border-white/10 bg-[#1E102E] px-[13px] py-[5px] text-xs font-semibold uppercase tracking-[0.05em] text-[#fe6839]">
           <IconHeartHand />
           Unconditional Regard
         </span>

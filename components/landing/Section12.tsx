@@ -34,7 +34,7 @@ const Section12: FC = () => {
             </span>
           </h3>
           <p className="text-lg leading-relaxed text-white/85">
-            Join 30,000+ others who have unlocked better relationships,
+            Join thousands of others who have unlocked better relationships,
             <br />
             clearer communication, and deeper confidence.
           </p>
