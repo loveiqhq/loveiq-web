@@ -94,7 +94,7 @@ const FooterSection: FC = () => {
             <ul className="space-y-2 text-sm text-text-secondary list-none p-0 m-0">
               <li>
                 <Link
-                  href="/privacy"
+                  href="/privacy-policy"
                   className="transition hover:text-text-primary focus-visible-ring rounded"
                   target="_blank"
                   rel="noreferrer noopener"

@@ -11,7 +11,11 @@
       "Bash(npm run lint:*)",
       "Bash(git add:*)",
       "Bash(git commit:*)",
-      "Bash(git push:*)"
+      "Bash(git push:*)",
+      "WebFetch(domain:www.figma.com)",
+      "mcp__figma__get_design_context",
+      "mcp__figma__get_screenshot",
+      "mcp__figma__get_metadata"
     ]
   }
 }

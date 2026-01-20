@@ -5,7 +5,11 @@ import type { FC } from "react";
 import Link from "next/link";
 import { trackStartSurvey } from "../../lib/analytics";
 
-const navLinks = [{ label: "Home", href: "/" }];
+const navLinks = [
+  { label: "Home", href: "/" },
+  { label: "About Us", href: "/about" },
+  { label: "Privacy", href: "/privacy" },
+];
 
 // Scroll threshold in pixels to prevent flickering on small scroll movements
 const SCROLL_THRESHOLD = 15;
@@ -168,6 +172,18 @@ const AboutNavSection: FC = () => {
                 Home
               </Link>
               <Link
+                href="/about"
+                className="hidden shrink-0 items-center justify-center gap-2 whitespace-nowrap rounded-full border border-white/15 bg-white/5 px-4 py-2 text-xs font-semibold text-white/85 shadow-[0_15px_40px_rgba(0,0,0,0.35)] transition hover:-translate-y-[2px] hover:border-white/25 hover:text-white focus-visible-ring sm:inline-flex lg:hidden"
+              >
+                About Us
+              </Link>
+              <Link
+                href="/privacy"
+                className="hidden shrink-0 items-center justify-center gap-2 whitespace-nowrap rounded-full border border-white/15 bg-white/5 px-4 py-2 text-xs font-semibold text-white/85 shadow-[0_15px_40px_rgba(0,0,0,0.35)] transition hover:-translate-y-[2px] hover:border-white/25 hover:text-white focus-visible-ring sm:inline-flex lg:hidden"
+              >
+                Privacy
+              </Link>
+              <Link
                 href="/waitlist"
                 className="group relative hidden shrink-0 items-center justify-center gap-2 overflow-hidden whitespace-nowrap rounded-full bg-gradient-brand px-3.5 py-2 text-[13px] font-semibold text-white shadow-pill transition hover:translate-y-[-2px] focus-visible-ring sm:inline-flex sm:px-6 sm:py-3 sm:text-sm"
                 onClick={() => trackStartSurvey("nav")}
@@ -240,13 +256,16 @@ const AboutNavSection: FC = () => {
           {menuOpen && (
             <div className="pointer-events-auto absolute left-0 right-0 top-[72px] mx-auto w-full max-w-[332px] rounded-[24px] border border-white/10 bg-[rgba(21,10,34,0.5)] px-2.5 py-7 shadow-[0_25px_50px_-12px_rgba(0,0,0,0.5)] backdrop-blur-xl sm:hidden animate-menu-slide-down">
               <div className="flex flex-col items-center gap-10">
-                <Link
-                  href="/"
-                  className="text-base font-semibold text-white hover:text-white/80 focus-visible-ring"
-                  onClick={closeMenu}
-                >
-                  Home
-                </Link>
+                {navLinks.map((item) => (
+                  <Link
+                    key={item.href}
+                    href={item.href}
+                    className="text-base font-semibold text-white hover:text-white/80 focus-visible-ring"
+                    onClick={closeMenu}
+                  >
+                    {item.label}
+                  </Link>
+                ))}
                 <Link
                   href="/waitlist"
                   className="group relative inline-flex items-center justify-center gap-2 overflow-hidden rounded-full bg-gradient-brand px-5 py-3 text-sm font-semibold text-white shadow-pill transition hover:translate-y-[-2px] focus-visible-ring"

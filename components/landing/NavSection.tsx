@@ -5,7 +5,11 @@ import type { FC } from "react";
 import Link from "next/link";
 import { trackStartSurvey } from "../../lib/analytics";
 
-const navLinks = [{ label: "About Us", href: "/about" }];
+const navLinks = [
+  { label: "Home", href: "/" },
+  { label: "About Us", href: "/about" },
+  { label: "Privacy", href: "/privacy" },
+];
 
 // Scroll threshold in pixels to prevent flickering on small scroll movements
 const SCROLL_THRESHOLD = 15;
@@ -164,10 +168,22 @@ const NavSection: FC = () => {
 
             <div className="flex flex-1 items-center justify-end gap-2 sm:gap-3">
               <Link
+                href="/"
+                className="hidden shrink-0 items-center justify-center gap-2 whitespace-nowrap rounded-full border border-white/15 bg-white/5 px-4 py-2 text-xs font-semibold text-white/85 shadow-[0_15px_40px_rgba(0,0,0,0.35)] transition hover:-translate-y-[2px] hover:border-white/25 hover:text-white focus-visible-ring sm:inline-flex lg:hidden"
+              >
+                Home
+              </Link>
+              <Link
                 href="/about"
                 className="hidden shrink-0 items-center justify-center gap-2 whitespace-nowrap rounded-full border border-white/15 bg-white/5 px-4 py-2 text-xs font-semibold text-white/85 shadow-[0_15px_40px_rgba(0,0,0,0.35)] transition hover:-translate-y-[2px] hover:border-white/25 hover:text-white focus-visible-ring sm:inline-flex lg:hidden"
               >
                 About Us
+              </Link>
+              <Link
+                href="/privacy"
+                className="hidden shrink-0 items-center justify-center gap-2 whitespace-nowrap rounded-full border border-white/15 bg-white/5 px-4 py-2 text-xs font-semibold text-white/85 shadow-[0_15px_40px_rgba(0,0,0,0.35)] transition hover:-translate-y-[2px] hover:border-white/25 hover:text-white focus-visible-ring sm:inline-flex lg:hidden"
+              >
+                Privacy
               </Link>
               <Link
                 href="/waitlist"
