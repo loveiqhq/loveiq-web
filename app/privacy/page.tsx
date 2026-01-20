@@ -183,7 +183,7 @@ const HonestySection = () => (
         </p>
       </div>
 
-      <div className="flex w-full max-w-[488px] gap-6 lg:mt-12">
+      <div className="flex flex-col sm:flex-row w-full max-w-[488px] gap-6 lg:mt-12">
         <div className="reveal-on-scroll group relative flex flex-1 flex-col items-center justify-center gap-5 overflow-hidden rounded-2xl border border-white/10 bg-[#0F0816] px-6 py-8 transition-all duration-500 ease-out transform-gpu hover:-translate-y-2 hover:shadow-[0_25px_60px_-12px_rgba(255,104,57,0.3)]">
           <div
             aria-hidden
