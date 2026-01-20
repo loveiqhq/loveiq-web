@@ -123,6 +123,12 @@ const IconScale = () => (
   </svg>
 );
 
+const IconHeartHand = () => (
+  <svg aria-hidden viewBox="0 0 12 12" className="h-3 w-3" fill="none" stroke="#FE6839" strokeWidth="0.75" strokeLinecap="round" strokeLinejoin="round">
+    <path d="M9.707 7.20706C10.5 6.41406 11 5.75006 11 4.75006C11 3.61104 10.2978 2.58991 9.2342 2.18226C8.17061 1.77462 6.96581 2.06484 6.2045 2.91206C6.08942 3.01954 5.91084 3.01976 5.7955 2.91256C5.03426 2.0654 3.82957 1.77516 2.76604 2.18267C1.7025 2.59019 1.00023 3.61113 1 4.75006C1 5.90006 1.75 6.75006 2.5 7.50006L5.2675 10.1811C5.45241 10.3799 5.71024 10.495 5.98173 10.4999C6.25322 10.5048 6.51503 10.3991 6.707 10.2071C6.90581 10.008 7.01731 9.73801 7.01693 9.45665C7.01656 9.17529 6.90434 8.90563 6.705 8.70706C6.96802 8.99793 7.36992 9.12019 7.75036 9.02505C8.1308 8.92991 8.42784 8.63286 8.52298 8.25242C8.61812 7.87199 8.49587 7.47008 8.205 7.20706C8.40417 7.40626 8.67431 7.51817 8.956 7.51817C9.23769 7.51817 9.50783 7.40626 9.707 7.20706C10.0974 6.81656 10.0974 6.18356 9.707 5.79306L8.7665 4.85206C8.5405 4.62597 8.23393 4.49894 7.91425 4.49894C7.59457 4.49894 7.288 4.62597 7.062 4.85206L6.207 5.70706C5.8165 6.09745 5.1835 6.09745 4.793 5.70706C4.40262 5.31656 4.40262 4.68356 4.793 4.29306L6.2045 2.91206" />
+  </svg>
+);
+
 const IconHeartHandshake = () => (
   <svg aria-hidden viewBox="0 0 31 31" className="h-6 w-6" fill="none">
     <path
@@ -406,7 +412,8 @@ const UnderstandingSection = () => (
 
       {/* Text Content */}
       <div className="flex max-w-[484px] flex-col gap-6">
-        <span className="reveal-on-scroll text-xs font-semibold uppercase tracking-[1.2px] text-[#fe6839]">
+        <span className="reveal-on-scroll inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[1.2px] text-[#fe6839]">
+          <IconHeartHand />
           Unconditional Regard
         </span>
         <h3 className="reveal-on-scroll stagger-1 font-serif text-4xl leading-[48px] tracking-[-1.2px] text-white md:text-[48px]">
@@ -604,10 +611,10 @@ const QuoteSection = () => (
 
 const EthicalPledgeSection = () => (
   <section className="relative px-4 py-24">
-    <div className="content-shell">
-      <div className="reveal-on-scroll relative overflow-hidden rounded-[32px] border border-white/10 bg-[#13081A] shadow-[0_25px_50px_-12px_rgba(0,0,0,0.25)]">
+    <div className="content-shell flex justify-center">
+      <div className="reveal-on-scroll relative w-full max-w-[996px] overflow-hidden rounded-[32px] border border-white/10 bg-[#13081A] shadow-[0_25px_50px_-12px_rgba(0,0,0,0.25)]">
         <div className="pointer-events-none absolute right-10 top-0 h-64 w-64 rounded-full bg-[#2E0147]/25 blur-[160px] animate-pulse-glow" />
-        <div className="grid overflow-hidden lg:grid-cols-[1.05fr_0.95fr]">
+        <div className="grid overflow-hidden lg:grid-cols-[1.1fr_0.9fr]">
           <div className="relative flex flex-col justify-center gap-6 px-8 py-12 md:px-12">
             <Pill className="reveal-on-scroll w-fit">
               <IconSparkle />
@@ -637,7 +644,7 @@ const EthicalPledgeSection = () => (
           </div>
 
           <div className="relative h-[360px] w-full overflow-hidden md:h-[520px]">
-            <Image src="/privacy/privacy-calm-reflection.png" alt="Calm reflection" fill className="object-cover" sizes="(min-width: 1024px) 500px, 100vw" />
+            <Image src="/privacy/privacy-calm-reflection.png" alt="Calm reflection" fill className="object-cover object-center" sizes="(min-width: 1024px) 450px, 100vw" style={{ objectPosition: '50% 30%' }} />
             <div className="absolute inset-0 bg-gradient-to-t from-[#13081A] via-transparent to-transparent" />
           </div>
         </div>
