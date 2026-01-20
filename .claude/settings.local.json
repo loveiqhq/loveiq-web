@@ -17,7 +17,8 @@
       "mcp__figma__get_screenshot",
       "mcp__figma__get_metadata",
       "Bash(powershell -Command:*)",
-      "Bash(grep:*)"
+      "Bash(grep:*)",
+      "Bash(findstr:*)"
     ]
   }
 }
