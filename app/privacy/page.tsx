@@ -390,9 +390,20 @@ const SafeHavenSection = () => (
     <div className="content-shell mx-auto max-w-[896px]">
       <div className="flex flex-col items-center gap-16 md:gap-20 px-6">
         <h2 className="reveal-on-scroll text-center font-serif text-[32px] leading-[40px] text-white md:text-[48px] md:leading-[48px]">
-          Delivering a safe haven for
-          <br />
-          your most intimate reflections
+          {/* Mobile line breaks */}
+          <span className="md:hidden">
+            Delivering a safe
+            <br />
+            haven for your
+            <br />
+            most intimate reflections
+          </span>
+          {/* Desktop line breaks */}
+          <span className="hidden md:inline">
+            Delivering a safe haven for
+            <br />
+            your most intimate reflections
+          </span>
         </h2>
         <p className="reveal-on-scroll stagger-1 max-w-[908px] text-center text-lg leading-[28px] md:text-[20px]">
           <span className="font-light text-[#9CA3AF]">We understand that </span>
