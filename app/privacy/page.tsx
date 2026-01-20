@@ -550,20 +550,19 @@ const IconSafeZone = () => (
 
 const QuoteSection = () => (
   <section className="relative bg-white/[0.02] px-4 pt-[37px] pb-24">
-    {/* Purple blur background - more visible with layered glows and animation */}
-    <div className="pointer-events-none absolute inset-0 overflow-hidden">
-      {/* Main purple glow - larger and centered */}
-      <div className="absolute left-1/2 top-1/2 h-[800px] w-[800px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#4a0d6e] blur-[120px] opacity-80 animate-pulse-glow" />
-      {/* Inner concentrated glow for intensity */}
-      <div className="absolute left-1/2 top-1/2 h-[500px] w-[500px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#6b21a8] blur-[80px] opacity-70 animate-pulse-glow" style={{ animationDelay: '1s' }} />
-    </div>
-
-    <div className="content-shell relative z-10 flex flex-col items-center gap-5 py-8 text-center">
-      <p className="reveal-on-scroll mx-auto max-w-[900px] font-serif text-[48px] leading-[56px] tracking-[-1.2px] text-white">
+    <div className="content-shell relative flex flex-col items-center gap-5 py-8 text-center">
+      {/* Purple blur background - centered behind content */}
+      <div className="pointer-events-none absolute inset-0 flex items-center justify-center overflow-visible">
+        {/* Main purple glow - larger and centered */}
+        <div className="absolute h-[800px] w-[800px] rounded-full bg-[#4a0d6e] blur-[120px] opacity-80 animate-pulse-glow" />
+        {/* Inner concentrated glow for intensity */}
+        <div className="absolute h-[500px] w-[500px] rounded-full bg-[#6b21a8] blur-[80px] opacity-70 animate-pulse-glow" style={{ animationDelay: '1s' }} />
+      </div>
+      <p className="reveal-on-scroll relative z-10 mx-auto max-w-[900px] font-serif text-[48px] leading-[56px] tracking-[-1.2px] text-white">
         &quot;This is a space where you shall be able to be honest — even about things you have never said out loud before.&quot;
       </p>
 
-      <div className="flex flex-col items-center gap-6 pt-6">
+      <div className="relative z-10 flex flex-col items-center gap-6 pt-6">
         <Link
           href="/waitlist"
           className="reveal-on-scroll stagger-1 group relative inline-flex items-center justify-center gap-2 overflow-hidden rounded-full bg-gradient-brand px-6 py-3 text-[16px] font-semibold leading-6 text-white shadow-pill transition hover:-translate-y-[2px] focus-visible-ring"
