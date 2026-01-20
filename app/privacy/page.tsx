@@ -385,6 +385,24 @@ const BoundariesSection = () => (
   </section>
 );
 
+const SafeHavenSection = () => (
+  <section className="relative border-y border-white/5 bg-white/[0.02] px-4 py-24 md:px-[192px] md:py-[97px]">
+    <div className="content-shell mx-auto max-w-[896px]">
+      <div className="flex flex-col items-center gap-8 px-6">
+        <h2 className="reveal-on-scroll text-center font-serif text-[32px] leading-[40px] text-white md:text-[48px] md:leading-[48px]">
+          Delivering a safe haven for
+          <br />
+          your most intimate reflections
+        </h2>
+        <p className="reveal-on-scroll stagger-1 max-w-[908px] text-center text-lg leading-[28px] md:text-[20px]">
+          <span className="font-light text-[#9CA3AF]">We understand that </span>
+          <span className="font-bold text-[#ededed]">reflecting on intimacy and identity requires a level of safety that goes beyond standard digital products.</span>
+        </p>
+      </div>
+    </div>
+  </section>
+);
+
 const UnderstandingSection = () => (
   <section className="relative px-6 py-24 md:py-[128px]">
     <div className="content-shell flex flex-col-reverse items-center gap-10 lg:flex-row lg:justify-center lg:gap-20">
@@ -684,13 +702,14 @@ export default function PrivacyPage() {
       <LegalNavSection />
       <main className="relative bg-[#0A0510] text-white">
         <HeroSection />
+        <HonestySection />
+        <SecuritySection />
+        <IdentitySection />
+        <BoundariesSection />
+        <SafeHavenSection />
         <UnderstandingSection />
         <EthicalPledgeSection />
         <ResearchSection />
-        <BoundariesSection />
-        <HonestySection />
-        <IdentitySection />
-        <SecuritySection />
         <QuoteSection />
         <FooterSection />
       </main>
