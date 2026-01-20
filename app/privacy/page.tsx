@@ -386,9 +386,9 @@ const BoundariesSection = () => (
 );
 
 const SafeHavenSection = () => (
-  <section className="relative border-y border-white/5 bg-white/[0.02] px-4 py-24 md:px-[192px] md:py-[97px]">
+  <section className="relative px-4 py-24 md:py-[97px]">
     <div className="content-shell mx-auto max-w-[896px]">
-      <div className="flex flex-col items-center gap-8 px-6">
+      <div className="flex flex-col items-center gap-16 md:gap-20 px-6">
         <h2 className="reveal-on-scroll text-center font-serif text-[32px] leading-[40px] text-white md:text-[48px] md:leading-[48px]">
           Delivering a safe haven for
           <br />
