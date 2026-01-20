@@ -388,7 +388,7 @@ const UnderstandingSection = () => (
         <div className="absolute inset-0 bg-gradient-to-t from-[#0A0510] via-[#2E0147]/50 to-transparent opacity-80" />
 
         {/* Overlay Card */}
-        <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 flex w-[320px] flex-col items-center gap-2 rounded-2xl border border-white/10 bg-white/5 px-10 py-8 backdrop-blur-xl">
+        <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 flex w-[320px] flex-col items-center gap-2 rounded-[16px] border border-white/10 bg-[#1A0B25]/80 px-10 py-8 shadow-[0_25px_50px_-12px_rgba(0,0,0,0.25)] backdrop-blur-[6px]">
           <div className="mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-[#FE6839]/10">
             <IconHeartHandshake />
           </div>
