@@ -466,7 +466,7 @@ const ResearchSection = () => (
           <IconHeart />
           Impact
         </span>
-        <h3 className="reveal-on-scroll stagger-1 font-serif text-[36px] leading-[40px] text-white">
+        <h3 className="reveal-on-scroll stagger-1 whitespace-nowrap font-serif text-[36px] leading-[40px] text-white">
           Scientific &amp; societal progress
         </h3>
         <p className="reveal-on-scroll stagger-2 text-[18px] leading-[29.25px]">
