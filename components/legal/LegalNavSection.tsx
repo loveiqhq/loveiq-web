@@ -8,7 +8,7 @@ import { trackStartSurvey } from "../../lib/analytics";
 const navLinks = [
   { label: "Home", href: "/" },
   { label: "About Us", href: "/about" },
-  { label: "Privacy", href: "/privacy" },
+  { label: "Trust Center", href: "/privacy" },
 ];
 
 // Scroll threshold in pixels to prevent flickering on small scroll movements
@@ -181,7 +181,7 @@ const LegalNavSection: FC = () => {
                 href="/privacy"
                 className="hidden shrink-0 items-center justify-center gap-2 whitespace-nowrap rounded-full border border-white/15 bg-white/5 px-3 py-2 text-xs font-semibold text-white/85 shadow-[0_15px_40px_rgba(0,0,0,0.35)] transition hover:-translate-y-[2px] hover:border-white/25 hover:text-white focus-visible-ring sm:inline-flex lg:hidden"
               >
-                Privacy
+                Trust Center
               </Link>
               <Link
                 href="/waitlist"
