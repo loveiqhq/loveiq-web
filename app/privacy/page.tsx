@@ -552,9 +552,9 @@ const QuoteSection = () => (
       {/* Purple blur background - centered behind content */}
       <div className="pointer-events-none absolute inset-0 flex items-center justify-center">
         {/* Main purple glow - centered */}
-        <div className="absolute h-[600px] w-[600px] rounded-full bg-[#4a0d6e] blur-[150px] opacity-50 animate-pulse-glow" />
+        <div className="absolute h-[250px] w-[250px] md:h-[600px] md:w-[600px] rounded-full bg-[#4a0d6e] blur-[80px] md:blur-[150px] opacity-30 md:opacity-50 animate-pulse-glow" />
         {/* Inner concentrated glow for intensity */}
-        <div className="absolute h-[400px] w-[400px] rounded-full bg-[#6b21a8] blur-[100px] opacity-40 animate-pulse-glow" style={{ animationDelay: '1s' }} />
+        <div className="absolute h-[150px] w-[150px] md:h-[400px] md:w-[400px] rounded-full bg-[#6b21a8] blur-[60px] md:blur-[100px] opacity-25 md:opacity-40 animate-pulse-glow" style={{ animationDelay: '1s' }} />
       </div>
       <p className="reveal-on-scroll relative z-10 mx-auto max-w-[900px] font-serif text-[28px] leading-[36px] md:text-[48px] md:leading-[56px] tracking-[-1.2px] text-white">
         &quot;This is a space where you shall be able to be honest — even about things you have never said out loud before.&quot;
