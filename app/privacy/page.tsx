@@ -456,7 +456,7 @@ const IconHeart = () => (
 );
 
 const ResearchSection = () => (
-  <section className="relative px-6 py-24 md:py-[96px]">
+  <section className="relative px-4 md:px-6 py-24 md:py-[96px]">
     <div className="content-shell flex flex-col items-center gap-10 lg:flex-row lg:justify-center lg:gap-24">
       {/* Text Content */}
       <div className="max-w-[468px] space-y-6">
@@ -464,15 +464,15 @@ const ResearchSection = () => (
           <IconHeart />
           Impact
         </span>
-        <h3 className="reveal-on-scroll stagger-1 whitespace-nowrap font-serif text-[36px] leading-[40px] text-white">
+        <h3 className="reveal-on-scroll stagger-1 font-serif text-[28px] md:text-[36px] leading-[34px] md:leading-[40px] text-white">
           Scientific &amp; societal progress
         </h3>
-        <p className="reveal-on-scroll stagger-2 text-[18px] leading-[29.25px]">
+        <p className="reveal-on-scroll stagger-2 text-base md:text-[18px] leading-[26px] md:leading-[29.25px]">
           <span className="font-light text-[#9CA3AF]">For scientific progress, </span>
           <span className="font-bold text-[#ededed]">we may use fully anonymized, non-personal, and non-reidentifiable data </span>
           <span className="font-light text-[#9CA3AF]">for research purposes.</span>
         </p>
-        <p className="reveal-on-scroll stagger-3 text-[18px] leading-[29.25px]">
+        <p className="reveal-on-scroll stagger-3 text-base md:text-[18px] leading-[26px] md:leading-[29.25px]">
           <span className="font-light text-[#9CA3AF]">This </span>
           <span className="font-bold text-[#ededed]">data cannot be traced back to individuals </span>
           <span className="font-light text-[#9CA3AF]">and is used exclusively to advance understanding in areas such as sexuality, attachment, well-being, and human flourishing — always in service of reducing suffering and increasing human happiness.</span>
@@ -480,7 +480,7 @@ const ResearchSection = () => (
       </div>
 
       {/* Image Card */}
-      <div className="reveal-on-scroll relative h-[576px] w-full max-w-[448px] overflow-hidden rounded-3xl border border-white/10">
+      <div className="reveal-on-scroll relative h-[380px] md:h-[576px] w-full max-w-[448px] overflow-hidden rounded-3xl border border-white/10">
         <Image src="/privacy/privacy-research.png" alt="Scientific research abstract" fill className="object-cover" sizes="(min-width: 1024px) 448px, 100vw" />
         <div className="absolute inset-0 bg-gradient-to-tr from-[#0A0510] via-[#2E0147]/50 to-transparent" />
 
