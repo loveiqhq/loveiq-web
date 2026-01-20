@@ -157,26 +157,6 @@ const HeroSection = () => (
   </section>
 );
 
-const SafeHavenSection = () => (
-  <section className="relative px-4">
-    <div className="content-shell flex flex-col items-center py-24 text-center md:py-[97px]">
-      <h2 className="reveal-on-scroll mx-auto max-w-3xl font-serif text-3xl font-normal leading-[48px] text-white md:text-[48px]">
-        Delivering a safe haven for
-        <br />
-        your most intimate reflections
-      </h2>
-      <p className="reveal-on-scroll stagger-1 mx-auto mt-12 max-w-4xl text-lg leading-[28px] text-[#9CA3AF] md:mt-16 md:text-xl">
-        <span className="font-light">We understand that </span>
-        <span className="font-bold text-[#ededed]">
-          reflecting on intimacy and identity requires a
-          <br className="hidden md:inline" />
-          {" "}level of safety that goes beyond standard digital products.
-        </span>
-      </p>
-    </div>
-  </section>
-);
-
 const HonestySection = () => (
   <section className="relative px-4 py-24 md:py-[97px]">
     <div className="content-shell flex flex-col items-center gap-24 lg:flex-row lg:items-start lg:justify-center">
@@ -408,17 +388,17 @@ const UnderstandingSection = () => (
         <div className="absolute inset-0 bg-gradient-to-t from-[#0A0510] via-[#2E0147]/50 to-transparent opacity-80" />
 
         {/* Overlay Card */}
-        <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 flex flex-col items-center gap-2 rounded-2xl border border-white/20 bg-[#1A0B25]/90 p-8 shadow-[0_25px_50px_-12px_rgba(0,0,0,0.4)] backdrop-blur-lg">
-          <div className="mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-[#FE6839]/15">
+        <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 flex w-[320px] flex-col items-center gap-2 rounded-2xl border border-white/10 bg-white/5 px-10 py-8 backdrop-blur-xl">
+          <div className="mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-[#FE6839]/10">
             <IconHeartHandshake />
           </div>
           <h4 className="font-serif text-2xl leading-[32px] text-white">We are here for you.</h4>
-          <p className="mb-4 text-center text-sm leading-[20px] text-[#e5e7eb]">
+          <p className="mb-4 text-center text-sm leading-[20px] text-white/70">
             No judgment. Just a safe space to process your
             <br />
             world.
           </p>
-          <span className="rounded-full bg-[#FE6839]/15 px-3 py-1 text-xs font-medium text-[#fe6839]">
+          <span className="rounded-full bg-[#FE6839]/10 px-3 py-1 text-xs font-medium text-[#fe6839]">
             Emotionally Safe Zone
           </span>
         </div>
@@ -646,7 +626,7 @@ const EthicalPledgeSection = () => (
             </p>
             <Link
               href="/privacy-policy"
-              className="reveal-on-scroll stagger-4 inline-flex w-fit items-center justify-center gap-2 rounded-full border border-[#FE6839]/40 px-6 py-3 text-sm font-semibold text-[#FE6839] transition-all duration-150 hover:-translate-y-[2px] hover:border-[#FE6839]/70 hover:text-white"
+              className="reveal-on-scroll stagger-4 inline-flex w-fit items-center justify-center gap-2 rounded-full border border-[#FE6839]/40 px-6 py-3 text-sm font-semibold text-[#FE6839] transition-all duration-75 hover:-translate-y-[2px] hover:border-[#FE6839]/70 hover:text-white"
             >
               Read our Privacy Policy
               <svg aria-hidden viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="2">
@@ -707,7 +687,6 @@ export default function PrivacyPage() {
         <HonestySection />
         <IdentitySection />
         <SecuritySection />
-        <SafeHavenSection />
         <QuoteSection />
         <FooterSection />
       </main>
