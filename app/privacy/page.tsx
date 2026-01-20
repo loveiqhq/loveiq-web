@@ -167,7 +167,7 @@ const HonestySection = () => (
   <section className="relative px-4 py-24 md:py-[97px]">
     <div className="content-shell flex flex-col items-center gap-24 lg:flex-row lg:items-start lg:justify-center">
       <div className="max-w-[513px] space-y-6">
-        <span className="reveal-on-scroll inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-[13px] py-[5px] text-xs font-semibold uppercase tracking-[0.05em] text-[#fe6839]">
+        <span className="reveal-on-scroll inline-flex items-center gap-2 rounded-full border border-white/10 bg-[#1E102E] px-[13px] py-[5px] text-xs font-semibold uppercase tracking-[0.05em] text-[#fe6839]">
           <IconScale />
           Transparency
         </span>
@@ -226,7 +226,7 @@ const SecuritySection = () => (
       <div className="reveal-on-scroll w-full max-w-[448px] overflow-hidden rounded-2xl border border-white/10 bg-[#120819] p-[33px] shadow-[0_25px_50px_-12px_rgba(0,0,0,0.25)]">
         <div className="mb-6 space-y-2 font-mono text-[10px] leading-[15px] text-[#4b5563]">
           <p><span>01 </span><span className="text-[#c084fc]">const</span> <span className="text-[#60a5fa]">encrypt</span> = (data) =&gt; {"{"}</p>
-          <p><span>02   </span><span className="text-[#c084fc]">return</span> AES.GCM(data, key);</p>
+          <p><span>02    </span><span className="text-[#c084fc]">return</span> AES.GCM(data, key);</p>
           <p>03 {"}"}</p>
           <p><span>04 </span><span className="text-[#4ade80]">{" // Data secured at rest"}</span></p>
         </div>
@@ -247,7 +247,7 @@ const SecuritySection = () => (
           <IconShieldCheck />
           Security
         </span>
-        <h3 className="reveal-on-scroll stagger-1 font-serif text-3xl font-normal leading-[40px] text-white md:text-[36px]">
+        <h3 className="reveal-on-scroll stagger-1 whitespace-nowrap font-serif text-3xl font-normal leading-[40px] text-white md:text-[36px]">
           Hardened technical security
         </h3>
         <p className="reveal-on-scroll stagger-2 text-lg leading-[29.25px] md:text-[18px]">
