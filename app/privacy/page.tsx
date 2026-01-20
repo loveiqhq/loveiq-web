@@ -556,7 +556,7 @@ const QuoteSection = () => (
         {/* Inner concentrated glow for intensity */}
         <div className="absolute h-[400px] w-[400px] rounded-full bg-[#6b21a8] blur-[100px] opacity-40 animate-pulse-glow" style={{ animationDelay: '1s' }} />
       </div>
-      <p className="reveal-on-scroll relative z-10 mx-auto max-w-[900px] font-serif text-[48px] leading-[56px] tracking-[-1.2px] text-white">
+      <p className="reveal-on-scroll relative z-10 mx-auto max-w-[900px] font-serif text-[28px] leading-[36px] md:text-[48px] md:leading-[56px] tracking-[-1.2px] text-white">
         &quot;This is a space where you shall be able to be honest — even about things you have never said out loud before.&quot;
       </p>
 
@@ -585,18 +585,18 @@ const QuoteSection = () => (
           </svg>
         </Link>
 
-        <div className="reveal-on-scroll stagger-2 flex items-center gap-2 text-sm font-bold uppercase tracking-[1px] text-white/40">
-          <span className="flex items-center gap-1">
+        <div className="reveal-on-scroll stagger-2 flex items-center gap-2 text-[10px] sm:text-sm font-bold uppercase tracking-[1px] text-white/40">
+          <span className="flex items-center gap-1 whitespace-nowrap">
             <IconEncrypted />
             Encrypted
           </span>
           <span className="h-1 w-1 rounded-full bg-white/40" />
-          <span className="flex items-center gap-1">
+          <span className="flex items-center gap-1 whitespace-nowrap">
             <IconAnonymous />
             Anonymous
           </span>
           <span className="h-1 w-1 rounded-full bg-white/40" />
-          <span className="flex items-center gap-1">
+          <span className="flex items-center gap-1 whitespace-nowrap">
             <IconSafeZone />
             Safe Zone
           </span>
@@ -618,9 +618,9 @@ const EthicalPledgeSection = () => (
               Our Ethical Pledge
             </Pill>
             <h3 className="reveal-on-scroll stagger-1 font-serif text-3xl leading-[1.1] text-white md:text-4xl">
-              Built by humans, for
+              Built by humans,
               <br />
-              humans.
+              for humans.
             </h3>
             <p className="reveal-on-scroll stagger-2 text-base leading-[1.7] text-[#9CA3AF]">
               We believe that emotional data is sacred. It is not just &quot;content&quot; - it is the fabric of your life.
