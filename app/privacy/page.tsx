@@ -381,11 +381,7 @@ const BoundariesSection = () => (
 
 const UnderstandingSection = () => (
   <section className="relative px-6 py-24 md:py-[128px]">
-    {/* Purple blob background */}
-    <div className="pointer-events-none absolute inset-0 overflow-hidden">
-      <div className="absolute left-1/2 top-1/2 h-[600px] w-[800px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#2E0147] blur-[200px] opacity-60" />
-    </div>
-    <div className="content-shell relative z-10 flex flex-col items-center gap-10 lg:flex-row lg:justify-center lg:gap-20">
+    <div className="content-shell flex flex-col items-center gap-10 lg:flex-row lg:justify-center lg:gap-20">
       {/* Image with Overlay Card */}
       <div className="reveal-on-scroll relative aspect-square w-full max-w-[484px] overflow-hidden rounded-2xl">
         <Image src="/privacy/privacy-portrait.png" alt="Calm reflective portrait" fill className="object-cover" sizes="(min-width: 1024px) 484px, 100vw" />
@@ -398,7 +394,7 @@ const UnderstandingSection = () => (
           </div>
           <h4 className="font-serif text-2xl leading-[32px] text-white">We are here for you.</h4>
           <p className="mb-4 text-center text-sm leading-[20px] text-white/70">
-            No judgment. Just a safe space to process your
+            <span className="whitespace-nowrap">No judgment. Just a safe space to process your</span>
             <br />
             world.
           </p>
