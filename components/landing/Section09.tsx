@@ -12,7 +12,7 @@ const personas = [
   },
   {
     title: "People in Relationships",
-    description: "Decode each other’s needs and create more intimacy, ease, and connection.",
+    description: "Decode each other's needs and create more intimacy, ease, and connection.",
     image: "/images/carouselRelationships.png",
     overlay: "from-[#1a0b2a]/85 via-[#0a0510]/35 to-transparent",
   },
@@ -37,9 +37,23 @@ const personas = [
   },
 ];
 
+// Arrow icons as inline SVG components
+const ChevronLeft = () => (
+  <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M10 12L6 8L10 4" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+  </svg>
+);
+
+const ChevronRight = () => (
+  <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M6 12L10 8L6 4" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+  </svg>
+);
+
 const Section09: FC = () => {
   const carouselRef = useRef<HTMLDivElement>(null);
   const [isPaused, setIsPaused] = useState(false);
+  const [activeIndex, setActiveIndex] = useState(0);
   const isDraggingRef = useRef(false);
   const startXRef = useRef(0);
   const currentTranslateRef = useRef(0);
@@ -48,6 +62,13 @@ const Section09: FC = () => {
   const lastTimeRef = useRef<number>(0);
   const cardWidth = 366; // card width + margin
   const totalWidth = cardWidth * personas.length;
+
+  // Calculate active index based on current translate position
+  const updateActiveIndex = useCallback(() => {
+    const position = Math.abs(currentTranslateRef.current);
+    const index = Math.round(position / cardWidth) % personas.length;
+    setActiveIndex(index);
+  }, [cardWidth]);
 
   const animate = useCallback((timestamp: number) => {
     if (!lastTimeRef.current) lastTimeRef.current = timestamp;
@@ -65,10 +86,13 @@ const Section09: FC = () => {
       if (carouselRef.current) {
         carouselRef.current.style.transform = `translateX(${currentTranslateRef.current}px)`;
       }
+
+      // Update active index for dot indicators
+      updateActiveIndex();
     }
 
     animationRef.current = requestAnimationFrame(animate);
-  }, [isPaused, totalWidth]);
+  }, [isPaused, totalWidth, updateActiveIndex]);
 
   useEffect(() => {
     animationRef.current = requestAnimationFrame(animate);
@@ -103,7 +127,43 @@ const Section09: FC = () => {
   const handleDragEnd = () => {
     isDraggingRef.current = false;
     lastTimeRef.current = 0; // Reset to avoid jump
+    updateActiveIndex();
   };
+
+  // Navigate to a specific slide index
+  const navigateToSlide = useCallback((index: number) => {
+    const targetPosition = -(index * cardWidth);
+    currentTranslateRef.current = targetPosition;
+    if (carouselRef.current) {
+      carouselRef.current.style.transition = 'transform 0.4s ease-out';
+      carouselRef.current.style.transform = `translateX(${targetPosition}px)`;
+      // Remove transition after animation completes
+      setTimeout(() => {
+        if (carouselRef.current) {
+          carouselRef.current.style.transition = '';
+        }
+      }, 400);
+    }
+    setActiveIndex(index);
+    lastTimeRef.current = 0;
+  }, [cardWidth]);
+
+  // Navigate left (previous slide)
+  const handlePrevious = useCallback(() => {
+    const newIndex = activeIndex <= 0 ? personas.length - 1 : activeIndex - 1;
+    navigateToSlide(newIndex);
+  }, [activeIndex, navigateToSlide]);
+
+  // Navigate right (next slide)
+  const handleNext = useCallback(() => {
+    const newIndex = activeIndex >= personas.length - 1 ? 0 : activeIndex + 1;
+    navigateToSlide(newIndex);
+  }, [activeIndex, navigateToSlide]);
+
+  // Handle dot click
+  const handleDotClick = useCallback((index: number) => {
+    navigateToSlide(index);
+  }, [navigateToSlide]);
 
   return (
     <section className="section-shell relative overflow-hidden bg-[#0A0510] px-4 text-text-primary" aria-labelledby="audience-heading">
@@ -130,7 +190,7 @@ const Section09: FC = () => {
         </div>
       </div>
 
-      <div className="relative w-screen max-w-none left-1/2 -translate-x-1/2 overflow-hidden pb-12 mt-8 sm:mt-10">
+      <div className="relative w-screen max-w-none left-1/2 -translate-x-1/2 overflow-hidden pb-4 mt-8 sm:mt-10">
         <div className="pointer-events-none absolute inset-y-0 left-0 w-16 sm:w-24 bg-gradient-to-r from-[#0a0510] to-transparent z-10" aria-hidden />
         <div className="pointer-events-none absolute inset-y-0 right-0 w-16 sm:w-24 bg-gradient-to-l from-[#0a0510] to-transparent z-10" aria-hidden />
 
@@ -192,6 +252,44 @@ const Section09: FC = () => {
             </div>
           ))}
         </div>
+      </div>
+
+      {/* Slider Controls */}
+      <div className="flex items-center justify-center gap-6 mt-4 pb-8">
+        {/* Previous Button */}
+        <button
+          onClick={handlePrevious}
+          className="flex items-center justify-center w-12 h-12 rounded-2xl bg-[#1e102e] border border-white/10 shadow-sm transition-all duration-200 hover:bg-[#2a1840] hover:border-white/20 active:scale-95"
+          aria-label="Previous slide"
+        >
+          <ChevronLeft />
+        </button>
+
+        {/* Dot Indicators */}
+        <div className="flex items-center gap-2">
+          {personas.map((_, index) => (
+            <button
+              key={index}
+              onClick={() => handleDotClick(index)}
+              className={`w-2 h-2 rounded-full transition-all duration-300 ${
+                index === activeIndex
+                  ? "bg-[#fe6839]"
+                  : "bg-white/20 hover:bg-white/40"
+              }`}
+              aria-label={`Go to slide ${index + 1}`}
+              aria-current={index === activeIndex ? "true" : undefined}
+            />
+          ))}
+        </div>
+
+        {/* Next Button */}
+        <button
+          onClick={handleNext}
+          className="flex items-center justify-center w-12 h-12 rounded-2xl bg-[#1e102e] border border-white/10 shadow-sm transition-all duration-200 hover:bg-[#2a1840] hover:border-white/20 active:scale-95"
+          aria-label="Next slide"
+        >
+          <ChevronRight />
+        </button>
       </div>
     </section>
   );
