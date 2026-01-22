@@ -1,4 +1,6 @@
-import type { FC } from "react";
+"use client";
+
+import { useState, type FC } from "react";
 
 const faqs = [
   {
@@ -67,6 +69,47 @@ const faqs = [
   },
 ];
 
+interface FAQItemProps {
+  question: string;
+  answer: string;
+}
+
+const FAQItem: FC<FAQItemProps> = ({ question, answer }) => {
+  const [isOpen, setIsOpen] = useState(false);
+
+  return (
+    <div
+      className={`overflow-hidden rounded-2xl border border-white/5 bg-white/5 transition-all duration-300 hover:bg-white/10 ${isOpen ? "bg-white/10" : ""}`}
+    >
+      <button
+        type="button"
+        onClick={() => setIsOpen(!isOpen)}
+        className="flex w-full cursor-pointer select-none items-center justify-between px-5 py-4 sm:px-6 sm:py-5 text-left"
+        aria-expanded={isOpen}
+      >
+        <span className="text-sm font-semibold text-white sm:text-base">{question}</span>
+        <span className={`text-white/50 transition-transform duration-300 ${isOpen ? "rotate-45" : ""}`}>
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <path d="M5 12h14" />
+            <path d="M12 5v14" />
+          </svg>
+        </span>
+      </button>
+      <div
+        className={`grid transition-[grid-template-rows] duration-300 ease-out ${isOpen ? "grid-rows-[1fr]" : "grid-rows-[0fr]"}`}
+      >
+        <div className="overflow-hidden">
+          <div
+            className={`px-5 pb-4 pt-0 text-sm leading-relaxed text-gray-300 sm:px-6 transition-all duration-300 ease-out ${isOpen ? "opacity-100 translate-y-0" : "opacity-0 translate-y-[-8px]"}`}
+          >
+            {answer}
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
 const Section11: FC = () => {
   return (
     <section className="section-shell relative overflow-hidden bg-[#0A0510] px-4 text-text-primary" aria-labelledby="faq-heading">
@@ -83,21 +126,7 @@ const Section11: FC = () => {
 
         <div className="flex w-full flex-col gap-3">
           {faqs.map((item) => (
-            <details
-              key={item.question}
-              className="group overflow-hidden rounded-2xl border border-white/5 bg-white/5 transition-all duration-300 hover:bg-white/10 open:bg-white/10"
-            >
-              <summary className="flex cursor-pointer select-none items-center justify-between px-5 py-4 sm:px-6 sm:py-5">
-                <span className="text-sm font-semibold text-white sm:text-base">{item.question}</span>
-                <span className="text-white/50 transition-transform duration-300 group-open:rotate-45">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                    <path d="M5 12h14" />
-                    <path d="M12 5v14" />
-                  </svg>
-                </span>
-              </summary>
-              <div className="px-5 pb-4 pt-0 text-sm leading-relaxed text-gray-300 sm:px-6">{item.answer}</div>
-            </details>
+            <FAQItem key={item.question} question={item.question} answer={item.answer} />
           ))}
         </div>
       </div>
