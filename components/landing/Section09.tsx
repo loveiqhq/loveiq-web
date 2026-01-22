@@ -7,32 +7,33 @@ const personas = [
   {
     title: "Singles",
     description: "Gain self-awareness, attract healthier partners, and stop repeating old patterns.",
-    image: "/images/carousel1.jpg",
+    image: "/carousel/singles.png",
     overlay: "from-[#1a0b2a]/85 via-[#0a0510]/35 to-transparent",
   },
   {
     title: "People in Relationships",
     description: "Decode each other's needs and create more intimacy, ease, and connection.",
-    image: "/images/carouselRelationships.png",
+    image: "/carousel/relationships.png",
     overlay: "from-[#1a0b2a]/85 via-[#0a0510]/35 to-transparent",
   },
   {
     title: "Couples Exploring Growth",
     description: "Strengthen communication, sexual alignment, and long-term compatibility.",
-    image: "/images/CarouselCouple.png",
+    image: "/carousel/couplesGrowth.png",
     overlay: "from-[#1a0b2a]/85 via-[#0a0510]/35 to-transparent",
+    featured: true,
   },
   {
     title: "Self-Development Lovers",
     description: "Anyone obsessed with understanding their psychology, attachment style, and desire patterns.",
-    image: "/images/carouselGrowth.png",
+    image: "/carousel/selfDevelopers.png",
     overlay: "from-[#1a0b2a]/85 via-[#0a0510]/75 to-transparent",
     smallText: true,
   },
   {
     title: "Therapists & Coaches",
     description: "Use a structured psychometric tool to help clients articulate their emotional and sexual identity.",
-    image: "/images/carouselTherapist.png",
+    image: "/carousel/therapists.png",
     smallText: true,
   },
 ];
@@ -222,7 +223,7 @@ const Section09: FC = () => {
                 alt={item.title}
                 fill
                 sizes="(min-width: 640px) 360px, 90vw"
-                className={`object-cover transition-transform duration-700 ${item.image === "/images/CarouselCouple.png" ? "scale-[1.05] group-hover:scale-[1.1]" : "group-hover:scale-[1.04]"
+                className={`object-cover transition-transform duration-700 ${item.featured ? "scale-[1.05] group-hover:scale-[1.1]" : "group-hover:scale-[1.04]"
                   }`}
                 priority={idx === 0}
               />
