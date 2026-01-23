@@ -145,7 +145,7 @@ const HeroSection: FC = () => {
           <span className="font-light">Your </span>
           <span className="font-extrabold">privacy &amp; anonymity</span>
           <span className="font-light"> comes first. Click on </span>
-          <Link href="/privacy" className="font-bold hover:underline">Trust Center</Link>
+          <Link href="/trust-zone" className="font-bold hover:underline">Trust Zone</Link>
           <span className="font-light"> to learn more.</span>
         </p>
       </div>
