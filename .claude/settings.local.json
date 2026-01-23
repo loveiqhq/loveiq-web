@@ -18,7 +18,8 @@
       "mcp__figma__get_metadata",
       "Bash(powershell -Command:*)",
       "Bash(grep:*)",
-      "Bash(findstr:*)"
+      "Bash(findstr:*)",
+      "Bash(curl:*)"
     ]
   }
 }
