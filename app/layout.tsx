@@ -117,6 +117,8 @@ export default async function RootLayout({ children }: { children: React.ReactNo
   return (
     <html lang="en" className={`${manrope.variable} ${lora.variable}`}>
       <head>
+        <link rel="preconnect" href="https://cdn-cookieyes.com" />
+        <link rel="preconnect" href="https://www.googletagmanager.com" />
         {/* eslint-disable-next-line @next/next/no-sync-scripts */}
         <script
           id="cookieyes"

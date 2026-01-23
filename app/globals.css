@@ -124,16 +124,6 @@ h3,
   }
 }
 
-@keyframes float-reverse {
-  0%,
-  100% {
-    transform: translateY(0) rotate(0deg);
-  }
-  50% {
-    transform: translateY(14px) rotate(-2deg);
-  }
-}
-
 @keyframes spin-slow {
   from {
     transform: rotate(0deg);
@@ -153,39 +143,6 @@ h3,
   50% {
     opacity: 0.8;
     transform: scale(1.05);
-  }
-}
-
-@keyframes orbit-slide-left {
-  0% {
-    opacity: 0;
-    transform: translateX(-120%) rotate(-45deg);
-  }
-  100% {
-    opacity: 1;
-    transform: translateX(-85%) rotate(0deg);
-  }
-}
-
-@keyframes orbit-slide-right {
-  0% {
-    opacity: 0;
-    transform: translateX(120%) rotate(45deg);
-  }
-  100% {
-    opacity: 1;
-    transform: translateX(85%) rotate(0deg);
-  }
-}
-
-@keyframes slide-in-left {
-  0% {
-    opacity: 0;
-    transform: translateX(-100%);
-  }
-  100% {
-    opacity: 1;
-    transform: translateX(0);
   }
 }
 
@@ -253,14 +210,8 @@ h3,
   animation-play-state: running;
 }
 
-.animate-float {
-  animation: float 6s ease-in-out infinite;
-}
 .animate-float-delayed {
   animation: float 7s ease-in-out infinite 1.4s;
-}
-.animate-float-reverse {
-  animation: float-reverse 8s ease-in-out infinite;
 }
 .animate-spin-slow {
   animation: spin-slow 60s linear infinite;
@@ -285,15 +236,6 @@ h3,
 }
 .animate-pulse-glow {
   animation: pulse-glow 4s ease-in-out infinite;
-}
-.animate-orbit-left {
-  animation: orbit-slide-left 1.5s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
-}
-.animate-orbit-right {
-  animation: orbit-slide-right 1.5s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
-}
-.animate-slide-in-left {
-  animation: slide-in-left 1.2s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
 }
 .animate-scroll {
   animation: scroll 40s linear infinite;
