@@ -19,7 +19,8 @@
       "Bash(powershell -Command:*)",
       "Bash(grep:*)",
       "Bash(findstr:*)",
-      "Bash(curl:*)"
+      "Bash(curl:*)",
+      "Bash(npm install:*)"
     ]
   }
 }

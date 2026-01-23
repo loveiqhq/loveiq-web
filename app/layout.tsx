@@ -3,6 +3,7 @@ import Script from "next/script";
 import type { Metadata } from "next";
 import { Lora, Manrope } from "next/font/google";
 import { headers } from "next/headers";
+import SmoothScroll from "../components/SmoothScroll";
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://loveiq.org";
 
@@ -114,7 +115,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
   const nonce = headersList.get("x-nonce") || "";
 
   return (
-    <html lang="en" className={`scroll-smooth ${manrope.variable} ${lora.variable}`}>
+    <html lang="en" className={`${manrope.variable} ${lora.variable}`}>
       <head>
         {/* eslint-disable-next-line @next/next/no-sync-scripts */}
         <script
@@ -148,7 +149,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
         </Script>
       </head>
       <body className="bg-white dark:bg-[#050208]">
-        {children}
+        <SmoothScroll>{children}</SmoothScroll>
       </body>
     </html>
   );

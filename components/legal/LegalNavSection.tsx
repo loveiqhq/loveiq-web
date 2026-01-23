@@ -32,9 +32,9 @@ function useScrollDirection() {
       }
     };
 
-    // Get scroll position - body is the scroll container due to html overflow:hidden
+    // Get scroll position - Lenis uses documentElement as scroll container
     const getScrollY = () => {
-      return document.body.scrollTop || window.pageYOffset || document.documentElement.scrollTop;
+      return window.scrollY || document.documentElement.scrollTop;
     };
 
     checkMobile();
@@ -86,14 +86,12 @@ function useScrollDirection() {
       }
     };
 
-    // Listen on both window and body since body is the scroll container
+    // Listen on window for scroll events (Lenis uses documentElement)
     window.addEventListener("scroll", onScroll, { passive: true });
-    document.body.addEventListener("scroll", onScroll, { passive: true });
     window.addEventListener("resize", checkMobile, { passive: true });
 
     return () => {
       window.removeEventListener("scroll", onScroll);
-      document.body.removeEventListener("scroll", onScroll);
       window.removeEventListener("resize", checkMobile);
     };
   }, []);
