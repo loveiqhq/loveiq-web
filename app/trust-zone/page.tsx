@@ -144,7 +144,7 @@ const IconHeartHandshake = () => (
 const HeroSection = () => (
   <section className="relative isolate overflow-hidden">
     <div className="absolute inset-0 overflow-hidden opacity-20">
-      <Image src="/privacy/privacy-hero-bg.png" alt="" fill priority className="object-cover" sizes="100vw" style={{ objectPosition: 'center 25%' }} />
+      <Image src="/privacy/privacy-hero-bg.png" alt="" fill priority className="object-cover" sizes="100vw" style={{ objectPosition: 'center 35%' }} />
     </div>
     <div className="absolute bottom-0 left-0 right-0 h-[45%] bg-gradient-to-t from-[#0a0510] via-[#0a0510]/80 to-transparent" />
     <div className="absolute -bottom-[237px] left-1/2 h-[600px] w-[600px] -translate-x-1/2 rounded-full bg-[#2e0147] blur-[250px] animate-pulse-glow" />
