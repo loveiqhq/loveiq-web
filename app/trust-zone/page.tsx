@@ -670,7 +670,7 @@ const EthicalPledgeSection = () => (
           </div>
 
           <div className="relative h-[360px] w-full overflow-hidden md:h-[520px]">
-            <Image src="/privacy/builtByHumans.png" alt="Built by humans, for humans" fill className="object-cover" sizes="(min-width: 1024px) 450px, 100vw" style={{ objectPosition: '45% 15%', transform: 'scale(1.15)' }} />
+            <Image src="/privacy/builtByHumans.png" alt="Built by humans, for humans" fill className="object-cover" sizes="(min-width: 1024px) 450px, 100vw" style={{ objectPosition: '50% 35%', transform: 'scale(1.4)' }} />
             <div className="absolute inset-0 bg-gradient-to-t from-[#13081A] via-transparent to-transparent" />
           </div>
         </div>
