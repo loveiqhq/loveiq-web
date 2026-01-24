@@ -216,7 +216,7 @@ const Section09: FC = () => {
           {[...personas, ...personas].map((item, idx) => (
             <div
               key={`${item.title}-${idx}`}
-              className="group relative isolate m-3 h-[520px] w-[320px] overflow-hidden rounded-[32px] shadow-[0_20px_35px_rgba(0,0,0,0.55)] transition-transform duration-700 ease-out transform-gpu hover:-translate-y-3 hover:shadow-[0_28px_50px_rgba(0,0,0,0.65)] sm:w-[360px]"
+              className="group relative m-3 h-[520px] w-[320px] overflow-hidden rounded-[32px] shadow-[0_20px_35px_rgba(0,0,0,0.55)] transition-transform duration-700 ease-out transform-gpu hover:-translate-y-3 hover:shadow-[0_28px_50px_rgba(0,0,0,0.65)] sm:w-[360px] [clip-path:inset(0_round_32px)]"
             >
               <Image
                 src={item.image}
