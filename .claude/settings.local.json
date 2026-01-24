@@ -22,7 +22,9 @@
       "Bash(curl:*)",
       "Bash(npm install:*)",
       "Bash(dir:*)",
-      "Bash(ls:*)"
+      "Bash(ls:*)",
+      "WebFetch(domain:www.loveiq.org)",
+      "Bash(git ls-files:*)"
     ]
   }
 }

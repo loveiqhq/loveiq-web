@@ -102,13 +102,6 @@ h3,
   padding: var(--space-section) 0;
 }
 
-.surface-card {
-  background: var(--color-card);
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-card);
-  box-shadow: var(--shadow-card);
-}
-
 .focus-visible-ring:focus-visible {
   outline: none;
   box-shadow: 0 0 0 2px var(--color-border-strong), 0 0 0 4px color-mix(in srgb, var(--accent-purple) 40%, transparent);
@@ -146,15 +139,6 @@ h3,
   }
 }
 
-@keyframes scroll {
-  0% {
-    transform: translateX(0);
-  }
-  100% {
-    transform: translateX(-50%);
-  }
-}
-
 @keyframes gradient-move {
   0% {
     background-position: 0% 50%;
@@ -164,21 +148,6 @@ h3,
   }
   100% {
     background-position: 0% 50%;
-  }
-}
-
-@keyframes blob {
-  0% {
-    transform: translate(0px, 0px) scale(1);
-  }
-  33% {
-    transform: translate(30px, -50px) scale(1.05);
-  }
-  66% {
-    transform: translate(-20px, 20px) scale(0.95);
-  }
-  100% {
-    transform: translate(0px, 0px) scale(1);
   }
 }
 
@@ -216,9 +185,6 @@ h3,
 .animate-spin-slow {
   animation: spin-slow 60s linear infinite;
 }
-.animate-spin-slow-reverse {
-  animation: spin-slow 60s linear infinite reverse;
-}
 .spin-on-hover {
   animation: spin-slow 20s linear infinite;
   animation-play-state: paused;
@@ -231,17 +197,8 @@ h3,
 .group:hover .spin-on-hover-reverse {
   animation-play-state: running;
 }
-.animate-blob {
-  animation: blob 12s ease-in-out infinite;
-}
 .animate-pulse-glow {
   animation: pulse-glow 4s ease-in-out infinite;
-}
-.animate-scroll {
-  animation: scroll 40s linear infinite;
-}
-.animate-scroll:hover {
-  animation-play-state: paused;
 }
 .animate-gradient-move {
   background-size: 200% 200%;
@@ -364,11 +321,6 @@ h3,
 
 .animate-icon-float {
   animation: icon-float 3s ease-in-out infinite;
-}
-
-/* Hide scrollbar for carousel swipe */
-.scrollbar-hide::-webkit-scrollbar {
-  display: none;
 }
 
 /* Mobile menu dropdown animation */
