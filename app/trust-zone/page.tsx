@@ -149,7 +149,7 @@ const HeroSection = () => (
     <div className="absolute bottom-0 left-0 right-0 h-[45%] bg-gradient-to-t from-[#0a0510] via-[#0a0510]/80 to-transparent" />
     <div className="absolute -bottom-[237px] left-1/2 h-[600px] w-[600px] -translate-x-1/2 rounded-full bg-[#2e0147] blur-[250px] animate-pulse-glow" />
     <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/20 to-transparent" />
-    <div className="content-shell relative z-10 flex flex-col items-center px-4 pt-32 pb-24 md:pt-[208px] md:pb-[176px]">
+    <div className="content-shell relative z-10 flex flex-col items-center px-4 pt-40 pb-24 md:pt-[208px] md:pb-[176px]">
       <h1 className="sensual-anim text-center font-serif text-4xl font-normal leading-[1.2] tracking-[-2.4px] sm:text-5xl md:text-6xl lg:text-[80px] lg:leading-[96px]" style={{ animationDelay: '0.2s' }}>
         <span className="text-white">Your privacy</span>
         <span className="mt-2 block bg-gradient-to-r from-[#fe6839] via-[#a78bfa] to-[#e9d5ff] bg-clip-text text-transparent md:mt-0">
