@@ -1,4 +1,7 @@
+"use client";
+
 import type { FC } from "react";
+import { useEffect, useRef, useState } from "react";
 
 const bullets = [
   {
@@ -14,8 +17,28 @@ const bullets = [
 ];
 
 const ValueFeaturesSection: FC = () => {
+  const [loadVideo, setLoadVideo] = useState(false);
+  const sectionRef = useRef<HTMLElement | null>(null);
+
+  useEffect(() => {
+    const section = sectionRef.current;
+    if (!section) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries[0].isIntersecting) {
+          setLoadVideo(true);
+          observer.disconnect();
+        }
+      },
+      { rootMargin: "200px" }
+    );
+    observer.observe(section);
+    return () => observer.disconnect();
+  }, []);
+
   return (
-    <section className="section-shell relative overflow-hidden bg-[#0A0510] px-4 text-text-primary" aria-labelledby="value-heading">
+    <section ref={sectionRef} className="section-shell relative overflow-hidden bg-[#0A0510] px-4 text-text-primary" aria-labelledby="value-heading">
       <div className="pointer-events-none absolute inset-0" />
 
       <div className="content-shell relative grid gap-10 lg:grid-cols-[1fr_1.05fr] lg:items-center lg:gap-[0px]">
@@ -30,15 +53,20 @@ const ValueFeaturesSection: FC = () => {
 
         <div className="relative overflow-hidden rounded-[24px] border border-[rgba(255,255,255,0.08)] bg-[#0A0510] shadow-[0_30px_90px_rgba(0,0,0,0.55)] aspect-square lg:aspect-auto lg:h-[640px] order-1 w-full lg:order-1 lg:max-w-[456px]">
           <div className="relative h-full w-full overflow-hidden rounded-[24px]">
-            <video
-              className="absolute inset-0 h-full w-full object-cover lg:object-cover"
-              src="/8060391-uhd_4096_2160_25fps.mp4"
-              autoPlay
-              muted
-              loop
-              playsInline
-              aria-hidden
-            />
+            {loadVideo && (
+              <video
+                className="absolute inset-0 h-full w-full object-cover lg:object-cover"
+                autoPlay
+                muted
+                loop
+                playsInline
+                preload="none"
+                aria-hidden
+              >
+                <source media="(max-width: 640px)" src="/8060391-uhd_4096_2160_25fps-mobile.mp4" type="video/mp4" />
+                <source src="/8060391-uhd_4096_2160_25fps.mp4" type="video/mp4" />
+              </video>
+            )}
           </div>
         </div>
 
