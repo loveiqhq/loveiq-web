@@ -20,7 +20,9 @@
       "Bash(grep:*)",
       "Bash(findstr:*)",
       "Bash(curl:*)",
-      "Bash(npm install:*)"
+      "Bash(npm install:*)",
+      "Bash(dir:*)",
+      "Bash(ls:*)"
     ]
   }
 }
