@@ -216,7 +216,7 @@ const Section09: FC = () => {
           {[...personas, ...personas].map((item, idx) => (
             <div
               key={`${item.title}-${idx}`}
-              className="group relative m-3 h-[520px] w-[320px] overflow-hidden rounded-[32px] shadow-[0_20px_35px_rgba(0,0,0,0.55)] transition-transform duration-700 ease-out transform-gpu hover:-translate-y-3 hover:shadow-[0_28px_50px_rgba(0,0,0,0.65)] sm:w-[360px]"
+              className="group relative isolate m-3 h-[520px] w-[320px] overflow-hidden rounded-[32px] shadow-[0_20px_35px_rgba(0,0,0,0.55)] transition-transform duration-700 ease-out transform-gpu hover:-translate-y-3 hover:shadow-[0_28px_50px_rgba(0,0,0,0.65)] sm:w-[360px]"
             >
               <Image
                 src={item.image}
@@ -243,7 +243,7 @@ const Section09: FC = () => {
                 </div>
                 {item.description && (
                   <div className="relative">
-                    <div className="pointer-events-none absolute inset-x-[-8px] bottom-[-16px] top-auto h-16 rounded-b-2xl bg-[radial-gradient(circle_at_50%_100%,rgba(167,139,250,0.42),transparent_70%)] opacity-0 blur-md transition-opacity duration-400 group-hover:opacity-100" />
+                    <div className="pointer-events-none absolute inset-x-0 bottom-0 h-16 rounded-b-2xl bg-[radial-gradient(circle_at_50%_100%,rgba(167,139,250,0.42),transparent_70%)] opacity-0 blur-md transition-opacity duration-400 group-hover:opacity-100" />
                     <p className={`relative text-white/80 opacity-0 transition-opacity duration-400 group-hover:opacity-100 ${item.smallText ? "text-xs" : "text-sm"}`}>
                       {item.description}
                     </p>
