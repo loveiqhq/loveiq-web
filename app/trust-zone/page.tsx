@@ -142,7 +142,7 @@ const IconHeartHandshake = () => (
 );
 
 const HeroSection = () => (
-  <section className="relative isolate overflow-hidden">
+  <section className="relative isolate flex min-h-screen flex-col overflow-hidden">
     <div className="absolute inset-0 overflow-hidden opacity-20">
       <Image src="/privacy/privacy-hero-bg.png" alt="" fill priority className="object-cover" sizes="100vw" style={{ objectPosition: 'center 35%' }} />
     </div>
