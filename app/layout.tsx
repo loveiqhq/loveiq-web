@@ -126,10 +126,10 @@ export default async function RootLayout({ children }: { children: React.ReactNo
         />
         <Script
           src="https://www.googletagmanager.com/gtag/js?id=G-QTYY69L46N"
-          strategy="afterInteractive"
+          strategy="lazyOnload"
           nonce={nonce}
         />
-        <Script id="ga-init" strategy="afterInteractive" nonce={nonce}>
+        <Script id="ga-init" strategy="lazyOnload" nonce={nonce}>
           {`
             window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}

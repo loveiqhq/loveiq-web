@@ -53,6 +53,8 @@ export function middleware(request: NextRequest) {
     "Strict-Transport-Security",
     "max-age=63072000; includeSubDomains; preload"
   );
+  // Cross-Origin-Opener-Policy for origin isolation
+  response.headers.set("Cross-Origin-Opener-Policy", "same-origin-allow-popups");
 
   // Set CSRF cookie if not present
   const existingCsrf = request.cookies.get(CSRF_COOKIE_NAME);
