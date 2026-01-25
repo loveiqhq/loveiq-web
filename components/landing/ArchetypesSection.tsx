@@ -421,6 +421,11 @@ const ArchetypesSection: FC = () => {
 
       {/* Carousel */}
       <div className="relative w-screen max-w-none left-1/2 -translate-x-1/2 overflow-hidden pb-4 mt-10 sm:mt-0">
+        {/* Purple blob behind cards */}
+        <div
+          className="pointer-events-none absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[500px] sm:w-[800px] sm:h-[600px] lg:w-[1000px] lg:h-[700px] rounded-full bg-[#541475]/25 blur-[120px] sm:blur-[150px]"
+          aria-hidden
+        />
         <div
           className="pointer-events-none absolute inset-y-0 left-0 w-16 sm:w-24 lg:w-32 bg-gradient-to-r from-[#0a0510] to-transparent z-10"
           aria-hidden
