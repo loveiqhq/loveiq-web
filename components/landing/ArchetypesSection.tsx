@@ -274,16 +274,16 @@ const ArchetypesSection: FC = () => {
   const animationRef = useRef<number | null>(null);
   const lastTimeRef = useRef<number>(0);
 
-  // Card dimensions based on screen size (matching the card widths + gap)
+  // Card dimensions based on screen size (matching the card widths + 80px gap)
   const getCardWidth = useCallback(() => {
-    if (typeof window === "undefined") return 416;
-    if (window.innerWidth < 640) return 296; // 280px + 16px gap
-    if (window.innerWidth < 768) return 340; // 320px + 20px gap
-    if (window.innerWidth < 1024) return 384; // 360px + 24px gap
-    return 424; // 400px + 24px gap
+    if (typeof window === "undefined") return 480;
+    if (window.innerWidth < 640) return 360; // 280px + 80px gap
+    if (window.innerWidth < 768) return 400; // 320px + 80px gap
+    if (window.innerWidth < 1024) return 440; // 360px + 80px gap
+    return 480; // 400px + 80px gap
   }, []);
 
-  const [cardWidth, setCardWidth] = useState(424);
+  const [cardWidth, setCardWidth] = useState(480);
   // Use 2x the base width for smoother looping (renders 6x cards = 18 total)
   const totalWidth = cardWidth * archetypes.length * 2;
 
@@ -421,11 +421,12 @@ const ArchetypesSection: FC = () => {
 
       {/* Carousel */}
       <div className="relative w-screen max-w-none left-1/2 -translate-x-1/2 overflow-hidden pb-4 mt-10 sm:mt-0">
-        {/* Purple blob behind cards */}
-        <div
-          className="pointer-events-none absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[500px] sm:w-[800px] sm:h-[600px] lg:w-[1000px] lg:h-[700px] rounded-full bg-[#541475]/25 blur-[120px] sm:blur-[150px]"
-          aria-hidden
-        />
+        {/* Purple blob behind cards - multiple layers for organic look */}
+        <div className="pointer-events-none absolute inset-0" aria-hidden>
+          <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[900px] h-[600px] sm:w-[1200px] sm:h-[700px] lg:w-[1600px] lg:h-[800px] rounded-full bg-[#541475]/15 blur-[180px]" />
+          <div className="absolute left-[40%] top-[45%] -translate-x-1/2 -translate-y-1/2 w-[500px] h-[400px] sm:w-[700px] sm:h-[500px] lg:w-[900px] lg:h-[600px] rounded-full bg-[#7c3aed]/10 blur-[150px]" />
+          <div className="absolute left-[60%] top-[55%] -translate-x-1/2 -translate-y-1/2 w-[400px] h-[350px] sm:w-[600px] sm:h-[450px] lg:w-[800px] lg:h-[550px] rounded-full bg-[#a855f7]/8 blur-[130px]" />
+        </div>
         <div
           className="pointer-events-none absolute inset-y-0 left-0 w-16 sm:w-24 lg:w-32 bg-gradient-to-r from-[#0a0510] to-transparent z-10"
           aria-hidden
@@ -437,7 +438,7 @@ const ArchetypesSection: FC = () => {
 
         <div
           ref={carouselRef}
-          className="flex w-max cursor-grab active:cursor-grabbing select-none gap-4 sm:gap-5 lg:gap-6 px-4"
+          className="flex w-max cursor-grab active:cursor-grabbing select-none gap-[80px] px-4"
           onMouseDown={(e) => {
             e.preventDefault();
             handleDragStart(e.clientX);
