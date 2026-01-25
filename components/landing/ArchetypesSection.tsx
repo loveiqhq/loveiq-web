@@ -72,60 +72,6 @@ const archetypes: Archetype[] = [
     riskOrientation: "Low",
     typicalConfidence: "Medium",
   },
-  {
-    name: "Passionate Explorer",
-    tagline: '"I want to feel everything—with you."',
-    color: "#9c7dff",
-    icon: (
-      <svg viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-[60px] h-[60px]">
-        <circle cx="30" cy="30" r="22" fill="currentColor" opacity="0.3" />
-        <path d="M30 12L35 22L46 24L38 32L40 43L30 38L20 43L22 32L14 24L25 22L30 12Z" fill="currentColor" />
-      </svg>
-    ),
-    coreMotivation: "Experience & intensity",
-    communication: "Expressive",
-    attachment: "Secure",
-    initiation: "Active",
-    powerOrientation: "Dominant",
-    riskOrientation: "High",
-    typicalConfidence: "High",
-  },
-  {
-    name: "Deep Connector",
-    tagline: '"I need to trust before I can surrender."',
-    color: "#a78bfa",
-    icon: (
-      <svg viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-[60px] h-[60px]">
-        <circle cx="30" cy="30" r="20" stroke="currentColor" strokeWidth="4" fill="none" />
-        <circle cx="30" cy="30" r="10" fill="currentColor" />
-      </svg>
-    ),
-    coreMotivation: "Trust & safety",
-    communication: "Thoughtful",
-    attachment: "Anxious/secure",
-    initiation: "Responsive",
-    powerOrientation: "Switch",
-    riskOrientation: "Low",
-    typicalConfidence: "Medium",
-  },
-  {
-    name: "Freedom Lover",
-    tagline: '"Space is my love language."',
-    color: "#60a5fa",
-    icon: (
-      <svg viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-[60px] h-[60px]">
-        <path d="M10 30L30 10L50 30L30 50L10 30Z" fill="currentColor" opacity="0.4" />
-        <path d="M20 30L30 20L40 30L30 40L20 30Z" fill="currentColor" />
-      </svg>
-    ),
-    coreMotivation: "Autonomy & independence",
-    communication: "Direct",
-    attachment: "Avoidant",
-    initiation: "Active",
-    powerOrientation: "Dominant",
-    riskOrientation: "Medium",
-    typicalConfidence: "High",
-  },
 ];
 
 const getRiskLevel = (level: "Low" | "Medium" | "High"): number => {
