@@ -400,10 +400,15 @@ const ArchetypesSection: FC = () => {
 
   return (
     <section className="relative overflow-hidden bg-[#0A0510] py-10 sm:py-16 lg:py-20 text-text-primary" aria-labelledby="archetypes-heading">
-      {/* Background glow */}
-      <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[616px] h-[594px] rounded-full bg-gradient-radial from-[#541475]/20 via-[#541475]/10 to-transparent blur-[100px]" aria-hidden />
-      </div>
+      {/* Background blur */}
+      <div 
+        className="absolute left-1/2 top-[55%] -translate-x-1/2 -translate-y-1/2 w-[616px] h-[594px] rounded-full pointer-events-none"
+        style={{
+          background: 'rgba(84, 20, 117, 0.5)',
+          filter: 'blur(200px)',
+        }}
+        aria-hidden="true"
+      />
 
       {/* Header */}
       <div className="content-shell relative text-center mb-20 sm:mb-14 lg:mb-16 px-4">
