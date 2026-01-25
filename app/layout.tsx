@@ -94,7 +94,7 @@ export const metadata: Metadata = {
     canonical: siteUrl,
   },
   icons: {
-    icon: "/images/LoveiqLogo.svg",
+    icon: "/favicon.svg",
   },
   openGraph: {
     title: "LoveIQ | Science-backed sexual psychology assessment",
