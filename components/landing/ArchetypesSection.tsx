@@ -135,113 +135,112 @@ const ArchetypeCard: FC<{ archetype: Archetype }> = ({ archetype }) => {
 
   return (
     <div
-      className="relative flex-shrink-0 w-[340px] sm:w-[420px] md:w-[520px] lg:w-[594px] bg-[#130b17] border-2 border-white/10 rounded-[24px] overflow-hidden px-6 sm:px-10 lg:px-12 py-10 lg:py-16"
-      style={{ minHeight: "680px" }}
+      className="relative flex-shrink-0 w-[280px] sm:w-[320px] md:w-[360px] lg:w-[400px] bg-[#130b17] border-2 border-white/10 rounded-[20px] overflow-hidden px-5 sm:px-6 lg:px-8 py-6 sm:py-8 lg:py-10"
     >
       {/* Header with icon and name */}
-      <div className="flex items-center gap-4 sm:gap-6 mb-6">
+      <div className="flex items-center gap-3 sm:gap-4 mb-4 sm:mb-5">
         <div
-          className="flex items-center justify-center w-[70px] h-[70px] sm:w-[90px] sm:h-[90px] lg:w-[98px] lg:h-[98px] rounded-2xl"
+          className="flex items-center justify-center w-[56px] h-[56px] sm:w-[64px] sm:h-[64px] lg:w-[72px] lg:h-[72px] rounded-xl"
           style={{ backgroundColor: archetype.color, color: "#0a0510" }}
         >
-          {archetype.icon}
+          <div className="w-[36px] h-[36px] sm:w-[40px] sm:h-[40px] lg:w-[44px] lg:h-[44px]">{archetype.icon}</div>
         </div>
         <div className="flex-1 min-w-0">
-          <h3 className="font-serif text-[24px] sm:text-[32px] lg:text-[39px] leading-tight text-white">{archetype.name}</h3>
-          <p className="font-serif italic text-[16px] sm:text-[20px] lg:text-[25px] leading-relaxed text-[#9ca3af] mt-2 lg:mt-4">
+          <h3 className="font-serif text-[20px] sm:text-[24px] lg:text-[28px] leading-tight text-white">{archetype.name}</h3>
+          <p className="font-serif italic text-[13px] sm:text-[14px] lg:text-[16px] leading-relaxed text-[#9ca3af] mt-1 sm:mt-2">
             {archetype.tagline}
           </p>
         </div>
       </div>
 
       {/* Behavioral Tendencies */}
-      <div className="py-4 sm:py-6">
-        <p className="text-[14px] sm:text-[16px] lg:text-[20px] text-[#9ca3af] mb-4 sm:mb-6 lg:mb-10">Behavioral Tendencies:</p>
+      <div className="py-3 sm:py-4">
+        <p className="text-[12px] sm:text-[13px] lg:text-[14px] text-[#9ca3af] mb-3 sm:mb-4">Behavioral Tendencies:</p>
 
         {/* Core motivation box */}
         <div
-          className="flex items-center gap-3 sm:gap-4 p-4 sm:p-5 lg:p-6 rounded-2xl mb-6 sm:mb-8 lg:mb-10"
+          className="flex items-center gap-2 sm:gap-3 p-3 sm:p-4 rounded-xl mb-4 sm:mb-5"
           style={{ backgroundColor: "#130b17", border: `1px solid ${archetype.color}` }}
         >
           <div
-            className="flex items-center justify-center w-10 h-10 sm:w-12 sm:h-12 lg:w-14 lg:h-14 rounded-full"
+            className="flex items-center justify-center w-8 h-8 sm:w-10 sm:h-10 rounded-full"
             style={{ border: `1px solid ${archetype.color}` }}
           >
             <div
-              className="flex items-center justify-center w-7 h-7 sm:w-8 sm:h-8 lg:w-9 lg:h-9 rounded-full"
+              className="flex items-center justify-center w-5 h-5 sm:w-6 sm:h-6 rounded-full"
               style={{ border: `1px solid ${archetype.color}` }}
             >
-              <div className="w-3 h-3 sm:w-3.5 sm:h-3.5 rounded-full" style={{ backgroundColor: archetype.color }} />
+              <div className="w-2 h-2 sm:w-2.5 sm:h-2.5 rounded-full" style={{ backgroundColor: archetype.color }} />
             </div>
           </div>
           <div>
-            <p className="text-[12px] sm:text-[14px] lg:text-[16px] font-bold" style={{ color: archetype.color }}>
+            <p className="text-[10px] sm:text-[11px] lg:text-[12px] font-bold" style={{ color: archetype.color }}>
               Core motivation:
             </p>
-            <p className="font-serif text-[20px] sm:text-[26px] lg:text-[31px] font-medium text-white">{archetype.coreMotivation}</p>
+            <p className="font-serif text-[16px] sm:text-[18px] lg:text-[20px] font-medium text-white">{archetype.coreMotivation}</p>
           </div>
         </div>
 
         {/* Attributes grid */}
-        <div className="grid grid-cols-2 gap-x-8 sm:gap-x-16 lg:gap-x-[120px] gap-y-4 sm:gap-y-6 lg:gap-y-8">
+        <div className="grid grid-cols-2 gap-x-4 sm:gap-x-6 lg:gap-x-8 gap-y-3 sm:gap-y-4">
           <div>
-            <div className="flex items-center gap-2 mb-1 sm:mb-2">
+            <div className="flex items-center gap-1.5 mb-0.5 sm:mb-1">
               <CommunicationIcon color="#9ca3af" />
-              <span className="text-[12px] sm:text-[14px] lg:text-[16px] text-[#9ca3af]">Communication</span>
+              <span className="text-[10px] sm:text-[11px] lg:text-[12px] text-[#9ca3af]">Communication</span>
             </div>
-            <p className="font-serif text-[18px] sm:text-[22px] lg:text-[25px] font-medium text-white">{archetype.communication}</p>
+            <p className="font-serif text-[14px] sm:text-[16px] lg:text-[18px] font-medium text-white">{archetype.communication}</p>
           </div>
           <div>
-            <div className="flex items-center gap-2 mb-1 sm:mb-2">
+            <div className="flex items-center gap-1.5 mb-0.5 sm:mb-1">
               <InitiationIcon color="#9ca3af" />
-              <span className="text-[12px] sm:text-[14px] lg:text-[16px] text-[#9ca3af]">Initiation</span>
+              <span className="text-[10px] sm:text-[11px] lg:text-[12px] text-[#9ca3af]">Initiation</span>
             </div>
-            <p className="font-serif text-[18px] sm:text-[22px] lg:text-[25px] font-medium text-white">{archetype.initiation}</p>
+            <p className="font-serif text-[14px] sm:text-[16px] lg:text-[18px] font-medium text-white">{archetype.initiation}</p>
           </div>
           <div>
-            <div className="flex items-center gap-2 mb-1 sm:mb-2">
+            <div className="flex items-center gap-1.5 mb-0.5 sm:mb-1">
               <AttachmentIcon color="#9ca3af" />
-              <span className="text-[12px] sm:text-[14px] lg:text-[16px] text-[#9ca3af]">Attachment</span>
+              <span className="text-[10px] sm:text-[11px] lg:text-[12px] text-[#9ca3af]">Attachment</span>
             </div>
-            <p className="font-serif text-[18px] sm:text-[22px] lg:text-[25px] font-medium text-white">{archetype.attachment}</p>
+            <p className="font-serif text-[14px] sm:text-[16px] lg:text-[18px] font-medium text-white">{archetype.attachment}</p>
           </div>
           <div>
-            <div className="flex items-center gap-2 mb-1 sm:mb-2">
+            <div className="flex items-center gap-1.5 mb-0.5 sm:mb-1">
               <PowerIcon color="#9ca3af" />
-              <span className="text-[12px] sm:text-[14px] lg:text-[16px] text-[#9ca3af]">Power orientation</span>
+              <span className="text-[10px] sm:text-[11px] lg:text-[12px] text-[#9ca3af]">Power orientation</span>
             </div>
-            <p className="font-serif text-[18px] sm:text-[22px] lg:text-[25px] font-medium text-white">{archetype.powerOrientation}</p>
+            <p className="font-serif text-[14px] sm:text-[16px] lg:text-[18px] font-medium text-white">{archetype.powerOrientation}</p>
           </div>
         </div>
       </div>
 
       {/* Progress bars */}
-      <div className="space-y-4 sm:space-y-5 lg:space-y-6 mt-4 sm:mt-6 lg:mt-8">
+      <div className="space-y-3 sm:space-y-4 mt-3 sm:mt-4">
         <div>
-          <div className="flex items-center justify-between mb-2 sm:mb-3 lg:mb-6">
-            <span className="text-[14px] sm:text-[16px] lg:text-[20px] text-[#9ca3af]">Risk orientation</span>
-            <span className="font-serif text-[16px] sm:text-[18px] lg:text-[20px] font-medium text-white">{archetype.riskOrientation}</span>
+          <div className="flex items-center justify-between mb-1.5 sm:mb-2">
+            <span className="text-[10px] sm:text-[11px] lg:text-[12px] text-[#9ca3af]">Risk orientation</span>
+            <span className="font-serif text-[12px] sm:text-[13px] lg:text-[14px] font-medium text-white">{archetype.riskOrientation}</span>
           </div>
-          <div className="flex gap-[5px]">
+          <div className="flex gap-[4px]">
             {[1, 2, 3].map((level) => (
               <div
                 key={level}
-                className="flex-1 h-[6px] sm:h-[7px] rounded-full"
+                className="flex-1 h-[5px] sm:h-[6px] rounded-full"
                 style={{ backgroundColor: level <= riskLevel ? archetype.color : "rgba(255,255,255,0.1)" }}
               />
             ))}
           </div>
         </div>
         <div>
-          <div className="flex items-center justify-between mb-2 sm:mb-3 lg:mb-6">
-            <span className="text-[14px] sm:text-[16px] lg:text-[20px] text-[#9ca3af]">Typical confidence</span>
-            <span className="font-serif text-[16px] sm:text-[18px] lg:text-[20px] font-medium text-white">{archetype.typicalConfidence}</span>
+          <div className="flex items-center justify-between mb-1.5 sm:mb-2">
+            <span className="text-[10px] sm:text-[11px] lg:text-[12px] text-[#9ca3af]">Typical confidence</span>
+            <span className="font-serif text-[12px] sm:text-[13px] lg:text-[14px] font-medium text-white">{archetype.typicalConfidence}</span>
           </div>
-          <div className="flex gap-[5px]">
+          <div className="flex gap-[4px]">
             {[1, 2, 3].map((level) => (
               <div
                 key={level}
-                className="flex-1 h-[6px] sm:h-[7px] rounded-full"
+                className="flex-1 h-[5px] sm:h-[6px] rounded-full"
                 style={{ backgroundColor: level <= confidenceLevel ? archetype.color : "rgba(255,255,255,0.1)" }}
               />
             ))}
@@ -263,16 +262,16 @@ const ArchetypesSection: FC = () => {
   const animationRef = useRef<number | null>(null);
   const lastTimeRef = useRef<number>(0);
 
-  // Card dimensions based on screen size
+  // Card dimensions based on screen size (matching the card widths + gap)
   const getCardWidth = useCallback(() => {
-    if (typeof window === "undefined") return 620;
-    if (window.innerWidth < 640) return 360;
-    if (window.innerWidth < 768) return 440;
-    if (window.innerWidth < 1024) return 540;
-    return 620;
+    if (typeof window === "undefined") return 416;
+    if (window.innerWidth < 640) return 296; // 280px + 16px gap
+    if (window.innerWidth < 768) return 340; // 320px + 20px gap
+    if (window.innerWidth < 1024) return 384; // 360px + 24px gap
+    return 424; // 400px + 24px gap
   }, []);
 
-  const [cardWidth, setCardWidth] = useState(620);
+  const [cardWidth, setCardWidth] = useState(424);
   const totalWidth = cardWidth * archetypes.length;
 
   useEffect(() => {
