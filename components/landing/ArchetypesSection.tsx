@@ -406,7 +406,7 @@ const ArchetypesSection: FC = () => {
       </div>
 
       {/* Header */}
-      <div className="content-shell relative text-center mb-14 sm:mb-14 lg:mb-16 px-4">
+      <div className="content-shell relative text-center mb-20 sm:mb-14 lg:mb-16 px-4">
         <h2 id="archetypes-heading" className="font-serif text-[36px] sm:text-[48px] lg:text-[64px] leading-tight text-white tracking-[-0.02em]">
           <span className="font-normal">Explore Our</span>{" "}
           <span className="font-medium italic bg-gradient-to-r from-[#fe6839] via-[#a78bfa] to-[#e9d5ff] bg-clip-text text-transparent">
