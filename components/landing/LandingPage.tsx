@@ -1,5 +1,6 @@
 import type { FC } from "react";
 import ScrollAnimator from "./ScrollAnimator";
+import ArchetypesSection from "./ArchetypesSection";
 import FooterSection from "./FooterSection";
 import HeroSection from "./HeroSection";
 import HowItWorksSection from "./HowItWorksSection";
@@ -28,6 +29,7 @@ const LandingPage: FC = () => {
         <TrustedBySection />
       </div>
       <ValueFeaturesSection />
+      <ArchetypesSection />
       <Section05 />
       <Section06 />
       <Section07 />
