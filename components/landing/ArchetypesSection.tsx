@@ -145,14 +145,14 @@ const ArchetypeCard: FC<{ archetype: Archetype }> = ({ archetype }) => {
       {/* Header with icon and name */}
       <div className="flex items-center gap-3 sm:gap-4 mb-4 sm:mb-5">
         <div
-          className="flex items-center justify-center w-[56px] h-[56px] sm:w-[64px] sm:h-[64px] lg:w-[72px] lg:h-[72px] rounded-xl p-2.5 sm:p-3"
+          className="flex-shrink-0 flex items-center justify-center w-[52px] h-[52px] sm:w-[60px] sm:h-[60px] lg:w-[68px] lg:h-[68px] rounded-xl p-2 sm:p-2.5"
           style={{ backgroundColor: archetype.color, color: "#0a0510" }}
         >
           {archetype.icon}
         </div>
         <div className="flex-1 min-w-0">
-          <h3 className="font-serif text-[20px] sm:text-[24px] lg:text-[28px] leading-tight text-white">{archetype.name}</h3>
-          <p className="font-serif italic text-[13px] sm:text-[14px] lg:text-[16px] leading-relaxed text-[#9ca3af] mt-1 sm:mt-2">
+          <h3 className="font-serif text-[18px] sm:text-[22px] lg:text-[26px] leading-tight text-white whitespace-nowrap">{archetype.name}</h3>
+          <p className="font-serif italic text-[12px] sm:text-[13px] lg:text-[14px] leading-snug text-[#9ca3af] mt-1">
             {archetype.tagline}
           </p>
         </div>
