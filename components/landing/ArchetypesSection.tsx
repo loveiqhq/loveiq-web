@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useState, useEffect, useCallback, type FC } from "react";
+import { useRef, useState, useEffect, useCallback, useId, type FC } from "react";
 
 interface Archetype {
   name: string;
@@ -106,37 +106,44 @@ const ChevronRight = () => (
 // Attribute icon components
 const CommunicationIcon: FC<{ color: string }> = ({ color }) => (
   <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <rect x="1" y="3" width="14" height="10" rx="2" stroke={color} strokeWidth="1.5" fill="none" />
-    <path d="M1 5L8 9L15 5" stroke={color} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+    <path
+      d="M8 1C3.58125 1 0 3.90937 0 7.5C0 9.05 0.66875 10.4688 1.78125 11.5844C1.39062 13.1594 0.084375 14.5625 0.06875 14.5781C0 14.65 -0.01875 14.7562 0.021875 14.85C0.0625 14.9437 0.15 15 0.25 15C2.32188 15 3.875 14.0062 4.64375 13.3937C5.66563 13.7781 6.8 14 8 14C12.4187 14 16 11.0906 16 7.5C16 3.90937 12.4187 1 8 1Z"
+      fill={color}
+    />
   </svg>
 );
 
 const AttachmentIcon: FC<{ color: string }> = ({ color }) => (
   <svg width="16" height="14" viewBox="0 0 16 14" fill="none" xmlns="http://www.w3.org/2000/svg">
     <path
-      d="M8 13C8 13 1 8.5 1 4.5C1 2 3 0.5 5.5 0.5C7 0.5 8 1.5 8 1.5C8 1.5 9 0.5 10.5 0.5C13 0.5 15 2 15 4.5C15 8.5 8 13 8 13Z"
-      stroke={color}
-      strokeWidth="1.5"
-      fill="none"
+      d="M14.447 0.95727C12.7345 -0.502078 10.1877 -0.239583 8.61584 1.38226L8.00023 2.01663L7.38462 1.38226C5.8159 -0.239583 3.26595 -0.502078 1.55348 0.95727C-0.408984 2.63224 -0.512107 5.63843 1.24411 7.45403L7.29087 13.6977C7.68149 14.1008 8.31585 14.1008 8.70647 13.6977L14.7532 7.45403C16.5126 5.63843 16.4094 2.63224 14.447 0.95727Z"
+      fill={color}
     />
   </svg>
 );
 
 const InitiationIcon: FC<{ color: string }> = ({ color }) => (
   <svg width="9" height="14" viewBox="0 0 9 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <path d="M5 0.5L0.5 8H4L4 13.5L8.5 6H5V0.5Z" fill={color} />
+    <path
+      d="M8.3253 4.69995H5.07967L6.2778 1.04933C6.3903 0.621826 6.06686 0.199951 5.6253 0.199951H1.5753C1.2378 0.199951 0.950922 0.450264 0.905923 0.784951L0.0059225 7.53495C-0.047515 7.93995 0.267485 8.29995 0.675297 8.29995H4.01373L2.71717 13.7703C2.61592 14.1978 2.94217 14.6 3.37248 14.6C3.60873 14.6 3.83373 14.4762 3.95748 14.2625L8.90749 5.71245C9.16905 5.26526 8.84561 4.69995 8.3253 4.69995Z"
+      fill={color}
+    />
   </svg>
 );
 
 const PowerIcon: FC<{ color: string }> = ({ color }) => (
-  <svg width="18" height="14" viewBox="0 0 18 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <path d="M1 7H5L7 2L9 12L11 7H17" stroke={color} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+  <svg width="18" height="15" viewBox="0 0 18 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path
+      d="M14.85 12.6H3.15C2.9025 12.6 2.7 12.8025 2.7 13.05V13.95C2.7 14.1975 2.9025 14.4 3.15 14.4H14.85C15.0975 14.4 15.3 14.1975 15.3 13.95V13.05C15.3 12.8025 15.0975 12.6 14.85 12.6ZM16.65 3.6C15.9047 3.6 15.3 4.20469 15.3 4.95C15.3 5.14969 15.345 5.33531 15.4237 5.50688L13.3875 6.7275C12.9544 6.98625 12.3947 6.84 12.1444 6.40125L9.85219 2.39062C10.1531 2.14312 10.35 1.77187 10.35 1.35C10.35 0.604688 9.74531 0 9 0C8.25469 0 7.65 0.604688 7.65 1.35C7.65 1.77187 7.84688 2.14312 8.14781 2.39062L5.85562 6.40125C5.60531 6.84 5.04281 6.98625 4.6125 6.7275L2.57906 5.50688C2.655 5.33812 2.70281 5.14969 2.70281 4.95C2.70281 4.20469 2.09812 3.6 1.35281 3.6C0.6075 3.6 0 4.20469 0 4.95C0 5.69531 0.604688 6.3 1.35 6.3C1.42312 6.3 1.49625 6.28875 1.56656 6.2775L3.6 11.7H14.4L16.4334 6.2775C16.5037 6.28875 16.5769 6.3 16.65 6.3C17.3953 6.3 18 5.69531 18 4.95C18 4.20469 17.3953 3.6 16.65 3.6Z"
+      fill={color}
+    />
   </svg>
 );
 
 const ArchetypeCard: FC<{ archetype: Archetype }> = ({ archetype }) => {
   const riskLevel = getRiskLevel(archetype.riskOrientation);
   const confidenceLevel = getRiskLevel(archetype.typicalConfidence);
+  const attributeColor = archetype.color;
 
   return (
     <div
@@ -190,28 +197,28 @@ const ArchetypeCard: FC<{ archetype: Archetype }> = ({ archetype }) => {
         <div className="grid grid-cols-2 gap-x-4 sm:gap-x-6 lg:gap-x-8 gap-y-3 sm:gap-y-4">
           <div>
             <div className="flex items-center gap-1.5 mb-0.5 sm:mb-1">
-              <CommunicationIcon color="#9ca3af" />
+              <CommunicationIcon color={attributeColor} />
               <span className="text-[10px] sm:text-[11px] lg:text-[12px] text-[#9ca3af]">Communication</span>
             </div>
             <p className="font-serif text-[14px] sm:text-[16px] lg:text-[18px] font-medium text-white">{archetype.communication}</p>
           </div>
           <div>
             <div className="flex items-center gap-1.5 mb-0.5 sm:mb-1">
-              <InitiationIcon color="#9ca3af" />
+              <InitiationIcon color={attributeColor} />
               <span className="text-[10px] sm:text-[11px] lg:text-[12px] text-[#9ca3af]">Initiation</span>
             </div>
             <p className="font-serif text-[14px] sm:text-[16px] lg:text-[18px] font-medium text-white">{archetype.initiation}</p>
           </div>
           <div>
             <div className="flex items-center gap-1.5 mb-0.5 sm:mb-1">
-              <AttachmentIcon color="#9ca3af" />
+              <AttachmentIcon color={attributeColor} />
               <span className="text-[10px] sm:text-[11px] lg:text-[12px] text-[#9ca3af]">Attachment</span>
             </div>
             <p className="font-serif text-[14px] sm:text-[16px] lg:text-[18px] font-medium text-white">{archetype.attachment}</p>
           </div>
           <div>
             <div className="flex items-center gap-1.5 mb-0.5 sm:mb-1">
-              <PowerIcon color="#9ca3af" />
+              <PowerIcon color={attributeColor} />
               <span className="text-[10px] sm:text-[11px] lg:text-[12px] text-[#9ca3af]">Power orientation</span>
             </div>
             <p className="font-serif text-[14px] sm:text-[16px] lg:text-[18px] font-medium text-white">{archetype.powerOrientation}</p>
@@ -277,7 +284,8 @@ const ArchetypesSection: FC = () => {
   }, []);
 
   const [cardWidth, setCardWidth] = useState(424);
-  const totalWidth = cardWidth * archetypes.length;
+  // Use 2x the base width for smoother looping (renders 6x cards = 18 total)
+  const totalWidth = cardWidth * archetypes.length * 2;
 
   useEffect(() => {
     const handleResize = () => {
@@ -440,7 +448,7 @@ const ArchetypesSection: FC = () => {
           onTouchEnd={handleDragEnd}
           onMouseEnter={() => setIsPaused(true)}
         >
-          {[...archetypes, ...archetypes].map((archetype, idx) => (
+          {[...archetypes, ...archetypes, ...archetypes, ...archetypes, ...archetypes, ...archetypes].map((archetype, idx) => (
             <ArchetypeCard key={`${archetype.name}-${idx}`} archetype={archetype} />
           ))}
         </div>
