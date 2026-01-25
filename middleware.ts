@@ -14,20 +14,23 @@ export function middleware(request: NextRequest) {
   // Generate a random nonce for CSP
   const nonce = Buffer.from(crypto.randomUUID()).toString("base64");
 
+  const isDev = process.env.NODE_ENV !== "production";
+
   // Build CSP header with nonce
+  // In development, allow 'unsafe-eval' for Next.js HMR/webpack and ws: for websocket connections
   const cspHeader = [
     "default-src 'self'",
-    `script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com https://www.google.com/recaptcha/ https://www.gstatic.com/recaptcha/ https://cdn-cookieyes.com https://cookieyes.com`,
+    `script-src 'self' 'unsafe-inline'${isDev ? " 'unsafe-eval'" : ""} https://www.googletagmanager.com https://www.google-analytics.com https://www.google.com/recaptcha/ https://www.gstatic.com/recaptcha/ https://cdn-cookieyes.com https://cookieyes.com`,
     "style-src 'self' 'unsafe-inline'", // Tailwind requires unsafe-inline for styles
     "img-src 'self' data: blob: https://images.unsplash.com https://www.google-analytics.com https://www.googletagmanager.com https://www.figma.com https://cdn-cookieyes.com",
     "media-src 'self'",
-    "connect-src 'self' https://www.google-analytics.com https://www.googletagmanager.com https://images.unsplash.com https://www.figma.com https://www.google.com/recaptcha/ https://cdn-cookieyes.com https://log.cookieyes.com https://cookieyes.com",
+    `connect-src 'self'${isDev ? " ws://localhost:* http://localhost:*" : ""} https://www.google-analytics.com https://www.googletagmanager.com https://images.unsplash.com https://www.figma.com https://www.google.com/recaptcha/ https://cdn-cookieyes.com https://log.cookieyes.com https://cookieyes.com`,
     "frame-src 'self' https://www.google.com/recaptcha/ https://recaptcha.google.com/recaptcha/ https://www.gstatic.com/recaptcha/ https://cdn-cookieyes.com",
     "frame-ancestors 'none'",
     "base-uri 'self'",
     "form-action 'self'",
-    "upgrade-insecure-requests",
-  ].join("; ");
+    isDev ? "" : "upgrade-insecure-requests", // Skip upgrade-insecure-requests in dev (localhost is http)
+  ].filter(Boolean).join("; ");
 
   // Clone the request headers and set CSP nonce for use in components
   const requestHeaders = new Headers(request.headers);
