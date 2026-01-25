@@ -420,7 +420,7 @@ const ArchetypesSection: FC = () => {
       </div>
 
       {/* Carousel */}
-      <div className="relative w-screen max-w-none left-1/2 -translate-x-1/2 overflow-hidden pb-4">
+      <div className="relative w-screen max-w-none left-1/2 -translate-x-1/2 overflow-hidden pb-4 mt-10 sm:mt-0">
         <div
           className="pointer-events-none absolute inset-y-0 left-0 w-16 sm:w-24 lg:w-32 bg-gradient-to-r from-[#0a0510] to-transparent z-10"
           aria-hidden
