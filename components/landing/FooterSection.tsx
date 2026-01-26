@@ -1,18 +1,12 @@
 import Link from "next/link";
 import type { FC } from "react";
 
-const socials = [
-  { label: "Newsletter", href: "/waitlist" },
-  { label: "Community", href: "#sextypes" },
-  { label: "Support", href: "mailto:hello@loveiq.org" },
-  { label: "Press", href: "#about" },
-];
-
 const FooterSection: FC = () => {
   return (
     <footer className="relative overflow-hidden bg-[#050208] px-4 pb-10 pt-12 text-text-primary" aria-labelledby="footer-heading">
       <div className="content-shell relative flex flex-col gap-10">
-        <div className="grid gap-8 md:grid-cols-[1.2fr_1fr_1fr]">
+        <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-[1.5fr_1fr_1fr_1fr]">
+          {/* Brand Column */}
           <div className="space-y-4">
             <div className="flex items-center gap-2.5">
               <div className="relative flex h-7 w-7 items-center justify-center overflow-hidden rounded-2xl bg-gradient-to-br from-[#ff9450] via-[#fe6839] to-[#c36ddf] shadow-[0_8px_18px_rgba(0,0,0,0.28)]">
@@ -33,69 +27,51 @@ const FooterSection: FC = () => {
                 LoveIQ
               </h2>
             </div>
-            <p className="max-w-md text-sm leading-relaxed text-text-secondary">
+            <p className="max-w-xs text-sm leading-relaxed text-[#6B7280]">
               Democratizing sexual psychology. We translate complex research into actionable insights for everyday life.
             </p>
-{/* Hidden for now
-            <ul className="grid grid-cols-2 gap-x-3 gap-y-5 text-sm text-text-secondary list-none p-0 m-0 sm:flex sm:flex-wrap sm:items-start sm:gap-3">
-              {socials.map((item) => (
-                <li key={item.label}>
-                  <Link
-                    href={item.href}
-                    className="rounded-full border border-border bg-white/5 px-3 py-2 transition hover:border-white/30 hover:text-text-primary focus-visible-ring"
-                  >
-                    {item.label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-*/}
           </div>
 
-{/* Hidden for now
+          {/* Explore Column */}
           <div className="space-y-4">
-            <h3 className="text-lg font-semibold">Platform</h3>
-            <ul className="space-y-2 text-sm text-text-secondary">
+            <h3 className="text-lg font-semibold text-white">Explore</h3>
+            <ul className="space-y-2 text-sm list-none p-0 m-0">
               <li>
-                <Link href="/waitlist" className="transition hover:text-text-primary focus-visible-ring rounded">
-                  Assessment
+                <Link href="/" className="text-[#6B7280] transition hover:text-white focus-visible-ring rounded">
+                  Home
                 </Link>
               </li>
               <li>
-                <Link href="#about" className="transition hover:text-text-primary focus-visible-ring rounded">
-                  Methodology
+                <Link href="/about" className="text-[#6B7280] transition hover:text-white focus-visible-ring rounded">
+                  About Us
                 </Link>
               </li>
               <li>
-                <Link href="#sextypes" className="transition hover:text-text-primary focus-visible-ring rounded">
-                  Sextypes
-                </Link>
-              </li>
-              <li>
-                <Link href="#pricing" className="transition hover:text-text-primary focus-visible-ring rounded">
-                  Pricing
+                <Link href="/trust-zone" className="text-[#6B7280] transition hover:text-white focus-visible-ring rounded">
+                  Trust Center
                 </Link>
               </li>
             </ul>
           </div>
-*/}
 
+          {/* Company Column */}
           <div className="space-y-4">
-            <h3 className="text-lg font-semibold">Company</h3>
-            <div className="space-y-2 text-sm text-text-secondary">
-              <p>Applied Psychometrics UG</p>
+            <h3 className="text-lg font-semibold text-white">Company</h3>
+            <div className="space-y-2 text-sm text-[#6B7280]">
+              <p className="font-medium">Applied Psychometrics UG</p>
               <p>Hasenheide 62, 10967 Berlin</p>
               <p>hello@loveiq.org</p>
             </div>
           </div>
 
+          {/* Legal Column */}
           <div className="space-y-4">
-            <h3 className="text-lg font-semibold">Legal</h3>
-            <ul className="space-y-2 text-sm text-text-secondary list-none p-0 m-0">
+            <h3 className="text-lg font-semibold text-white">Legal</h3>
+            <ul className="space-y-2 text-sm list-none p-0 m-0">
               <li>
                 <Link
                   href="/privacy-policy"
-                  className="transition hover:text-text-primary focus-visible-ring rounded"
+                  className="text-[#6B7280] transition hover:text-white focus-visible-ring rounded"
                   target="_blank"
                   rel="noreferrer noopener"
                 >
@@ -105,7 +81,7 @@ const FooterSection: FC = () => {
               <li>
                 <Link
                   href="/cookies"
-                  className="transition hover:text-text-primary focus-visible-ring rounded"
+                  className="text-[#6B7280] transition hover:text-white focus-visible-ring rounded"
                   target="_blank"
                   rel="noreferrer noopener"
                 >
@@ -115,7 +91,7 @@ const FooterSection: FC = () => {
               <li>
                 <Link
                   href="/imprint"
-                  className="transition hover:text-text-primary focus-visible-ring rounded"
+                  className="text-[#6B7280] transition hover:text-white focus-visible-ring rounded"
                   target="_blank"
                   rel="noreferrer noopener"
                 >
@@ -125,7 +101,7 @@ const FooterSection: FC = () => {
               <li>
                 <Link
                   href="/terms-and-conditions"
-                  className="transition hover:text-text-primary focus-visible-ring rounded"
+                  className="text-[#6B7280] transition hover:text-white focus-visible-ring rounded"
                   target="_blank"
                   rel="noreferrer noopener"
                 >
@@ -135,7 +111,7 @@ const FooterSection: FC = () => {
               <li>
                 <Link
                   href="/terms-of-use"
-                  className="transition hover:text-text-primary focus-visible-ring rounded"
+                  className="text-[#6B7280] transition hover:text-white focus-visible-ring rounded"
                   target="_blank"
                   rel="noreferrer noopener"
                 >
@@ -145,7 +121,7 @@ const FooterSection: FC = () => {
               <li>
                 <Link
                   href="/digital-content-terms"
-                  className="transition hover:text-text-primary focus-visible-ring rounded"
+                  className="text-[#6B7280] transition hover:text-white focus-visible-ring rounded"
                   target="_blank"
                   rel="noreferrer noopener"
                 >
@@ -155,7 +131,7 @@ const FooterSection: FC = () => {
               <li>
                 <Link
                   href="/medical-disclaimer"
-                  className="transition hover:text-text-primary focus-visible-ring rounded"
+                  className="text-[#6B7280] transition hover:text-white focus-visible-ring rounded"
                   target="_blank"
                   rel="noreferrer noopener"
                 >
