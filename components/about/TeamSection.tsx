@@ -38,7 +38,7 @@ const TeamSection: FC = () => {
     {
       name: "Ema Djedović",
       role: "Product Lead",
-      image: "/about/team-ema-djedovic.png",
+      image: "/about/team-ema-djedovic-new.jpeg",
       linkedinUrl: "https://www.linkedin.com/in/ema-djedovic/",
       socials: ["linkedin"],
       hoverColor: "purple",
