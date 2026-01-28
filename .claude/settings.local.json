@@ -33,7 +33,8 @@
       "Bash(node scripts/parse-glossary.js:*)",
       "Bash(more:*)",
       "Bash(node -e:*)",
-      "Bash(npx tsc:*)"
+      "Bash(npx tsc:*)",
+      "Bash(npx eslint:*)"
     ]
   }
 }

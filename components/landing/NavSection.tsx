@@ -107,6 +107,7 @@ const NavSection: FC = () => {
   // Close menu when hiding navbar
   useEffect(() => {
     if (isHidden && menuOpen) {
+      // eslint-disable-next-line react-hooks/set-state-in-effect -- intentional: sync menu state with scroll visibility
       setMenuOpen(false);
     }
   }, [isHidden, menuOpen]);

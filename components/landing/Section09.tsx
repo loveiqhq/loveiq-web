@@ -61,6 +61,7 @@ const Section09: FC = () => {
   const startTranslateRef = useRef(0);
   const animationRef = useRef<number | null>(null);
   const lastTimeRef = useRef<number>(0);
+  const animateFnRef = useRef<((timestamp: number) => void) | null>(null);
   const cardWidth = 366; // card width + margin
   const totalWidth = cardWidth * personas.length;
 
@@ -92,15 +93,24 @@ const Section09: FC = () => {
       updateActiveIndex();
     }
 
-    animationRef.current = requestAnimationFrame(animate);
+    if (animateFnRef.current) {
+      animationRef.current = requestAnimationFrame(animateFnRef.current);
+    }
   }, [isPaused, totalWidth, updateActiveIndex]);
 
   useEffect(() => {
-    animationRef.current = requestAnimationFrame(animate);
+    animateFnRef.current = animate;
+  }, [animate]);
+
+  useEffect(() => {
+    const startAnimation = (timestamp: number) => {
+      if (animateFnRef.current) animateFnRef.current(timestamp);
+    };
+    animationRef.current = requestAnimationFrame(startAnimation);
     return () => {
       if (animationRef.current) cancelAnimationFrame(animationRef.current);
     };
-  }, [animate]);
+  }, []);
 
   const handleDragStart = (clientX: number) => {
     isDraggingRef.current = true;
