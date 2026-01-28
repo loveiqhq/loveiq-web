@@ -31,7 +31,9 @@
       "Bash(timeout:*)",
       "Bash(ping:*)",
       "Bash(node scripts/parse-glossary.js:*)",
-      "Bash(more:*)"
+      "Bash(more:*)",
+      "Bash(node -e:*)",
+      "Bash(npx tsc:*)"
     ]
   }
 }
