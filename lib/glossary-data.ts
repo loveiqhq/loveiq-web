@@ -11319,8 +11319,8 @@ export const glossaryTerms: GlossaryTerm[] = [
 },
 {
   "id": 318,
-  "term": "Subjective",
-  "slug": "subjective",
+  "term": "Subjective Arousal",
+  "slug": "subjective-arousal",
   "type": "Signal & Cue",
   "category": "frameworks",
   "definition": "The felt, mental-emotional experience of arousal (interest, desire, excitement, safety, and “I want this”), which may or may not match genital response.",
