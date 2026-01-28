@@ -29,7 +29,9 @@
       "Bash(Select-Object -First 10)",
       "Bash(npm run dev:*)",
       "Bash(timeout:*)",
-      "Bash(ping:*)"
+      "Bash(ping:*)",
+      "Bash(node scripts/parse-glossary.js:*)",
+      "Bash(more:*)"
     ]
   }
 }

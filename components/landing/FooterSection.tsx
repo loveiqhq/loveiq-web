@@ -47,6 +47,11 @@ const FooterSection: FC = () => {
                 </Link>
               </li>
               <li>
+                <Link href="/glossary" className="text-[#6B7280] transition hover:text-white focus-visible-ring rounded">
+                  Glossary
+                </Link>
+              </li>
+              <li>
                 <Link href="/trust-zone" className="text-[#6B7280] transition hover:text-white focus-visible-ring rounded">
                   Trust Center
                 </Link>

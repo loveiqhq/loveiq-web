@@ -12,9 +12,7 @@ const navLinks = [
   { label: "Trust Zone", href: "/trust-zone" },
 ];
 
-// Scroll threshold in pixels to prevent flickering on small scroll movements
 const SCROLL_THRESHOLD = 15;
-// Mobile breakpoint matching Tailwind's sm: (640px)
 const MOBILE_BREAKPOINT = 640;
 
 function useScrollDirection() {
@@ -24,7 +22,6 @@ function useScrollDirection() {
   const lastDirection = useRef<"up" | "down" | null>(null);
 
   useEffect(() => {
-    // Check if mobile on mount and resize
     const checkMobile = () => {
       const mobile = window.innerWidth < MOBILE_BREAKPOINT;
       setIsMobile(mobile);
@@ -33,7 +30,6 @@ function useScrollDirection() {
       }
     };
 
-    // Get scroll position - Lenis uses documentElement as scroll container
     const getScrollY = () => {
       return window.scrollY || document.documentElement.scrollTop;
     };
@@ -54,7 +50,6 @@ function useScrollDirection() {
         return;
       }
 
-      // Always show at top
       if (scrollY <= 0) {
         setIsHidden(false);
         lastScrollY.current = scrollY;
@@ -64,11 +59,9 @@ function useScrollDirection() {
 
       const diff = scrollY - lastScrollY.current;
 
-      // Only update if we've scrolled past threshold
       if (Math.abs(diff) >= SCROLL_THRESHOLD) {
         const direction = diff > 0 ? "down" : "up";
 
-        // Only update state if direction actually changed
         if (direction !== lastDirection.current) {
           lastDirection.current = direction;
           setIsHidden(direction === "down");
@@ -87,7 +80,6 @@ function useScrollDirection() {
       }
     };
 
-    // Listen on window for scroll events (Lenis uses documentElement)
     window.addEventListener("scroll", onScroll, { passive: true });
     window.addEventListener("resize", checkMobile, { passive: true });
 
@@ -100,11 +92,10 @@ function useScrollDirection() {
   return { isHidden, isMobile };
 }
 
-const NavSection: FC = () => {
+const GlossaryNavSection: FC = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const { isHidden, isMobile } = useScrollDirection();
 
-  // Close menu when hiding navbar
   useEffect(() => {
     if (isHidden && menuOpen) {
       setMenuOpen(false);
@@ -122,20 +113,17 @@ const NavSection: FC = () => {
 
   const closeMenu = () => setMenuOpen(false);
 
-  // Only apply hide transform on mobile
   const shouldHide = isHidden && isMobile;
 
   return (
-    <header
-      className={`pointer-events-none fixed inset-x-0 top-0 z-40 px-4 sm:top-3 nav-header ${shouldHide ? "nav-hidden" : ""}`}
-    >
+    <header className={`pointer-events-none fixed inset-x-0 top-0 z-[120] px-4 sm:top-3 sm:z-40 nav-header ${shouldHide ? "nav-hidden" : ""}`}>
       <div className="content-shell">
         <div className="relative pointer-events-auto">
           <div className="pointer-events-none absolute inset-[-10px] rounded-[999px] bg-[radial-gradient(80%_120%_at_50%_50%,rgba(0,0,0,0.55),transparent_65%)] blur-3xl" />
           <nav className="relative mx-auto flex w-full max-w-[340px] items-center justify-between gap-3 rounded-[999px] bg-gradient-to-r from-[#1b0f2a] via-[#120a20] to-[#1b0f2a] px-3 py-2 shadow-[0_25px_80px_rgba(0,0,0,0.55)] backdrop-blur sm:max-w-[1200px] sm:gap-5 sm:pl-6 sm:pr-2 sm:py-[6px]">
             <div className="flex flex-1 items-center gap-2">
-              <Link href="/" className="flex items-center gap-2 focus-visible-ring">
-                <div className="relative flex h-7 w-7 items-center justify-center overflow-hidden rounded-2xl bg-gradient-to-br from-[#ff9450] via-[#fe6839] to-[#c36ddf] shadow-[0_8px_18px_rgba(0,0,0,0.28)]">
+              <Link href="/" className="flex items-center gap-2">
+                <div className="relative flex h-7 w-7 items-center justify-center overflow-hidden rounded-2xl bg-gradient-to-br from-[#ff9450] via-[#fe6839] to-[#c36ddf] shadow-[0_8px_18px_rgba(0,0,0,0.28)] focus-visible-ring">
                   <svg
                     aria-hidden
                     viewBox="0 0 24 24"
@@ -300,4 +288,4 @@ const NavSection: FC = () => {
   );
 };
 
-export default NavSection;
+export default GlossaryNavSection;

@@ -416,6 +416,119 @@ h3,
   animation: float4 18s ease-in-out infinite;
 }
 
+/* Glossary term page orb animations - center stays centered, only vertical movement */
+@keyframes glossary-orb-center {
+  0%, 100% {
+    transform: translateX(-50%) translateY(0) scale(1);
+    opacity: 1;
+  }
+  33% {
+    transform: translateX(-50%) translateY(-40px) scale(1.08);
+    opacity: 0.7;
+  }
+  66% {
+    transform: translateX(-50%) translateY(30px) scale(0.95);
+    opacity: 0.85;
+  }
+}
+
+@keyframes glossary-orb-left {
+  0%, 100% {
+    transform: translateX(-50%) translate(0, 0) scale(1);
+    opacity: 1;
+  }
+  25% {
+    transform: translateX(-50%) translate(60px, -40px) scale(1.1);
+    opacity: 0.75;
+  }
+  50% {
+    transform: translateX(-50%) translate(-40px, -70px) scale(0.92);
+    opacity: 1;
+  }
+  75% {
+    transform: translateX(-50%) translate(-60px, -20px) scale(1.05);
+    opacity: 0.8;
+  }
+}
+
+@keyframes glossary-orb-right {
+  0%, 100% {
+    transform: translateX(-50%) translate(0, 0) scale(1);
+    opacity: 1;
+  }
+  25% {
+    transform: translateX(-50%) translate(-50px, 50px) scale(0.92);
+    opacity: 0.8;
+  }
+  50% {
+    transform: translateX(-50%) translate(40px, 80px) scale(1.12);
+    opacity: 0.7;
+  }
+  75% {
+    transform: translateX(-50%) translate(50px, 25px) scale(0.97);
+    opacity: 1;
+  }
+}
+
+.animate-glossary-orb-center {
+  animation: glossary-orb-center 15s ease-in-out infinite;
+}
+
+.animate-glossary-orb-left {
+  animation: glossary-orb-left 18s ease-in-out infinite;
+}
+
+.animate-glossary-orb-right {
+  animation: glossary-orb-right 20s ease-in-out infinite;
+}
+
+/* CTA orb floating animations */
+@keyframes cta-orb-left {
+  0%, 100% {
+    transform: translate(0, 0) scale(1);
+    opacity: 1;
+  }
+  25% {
+    transform: translate(15px, -20px) scale(1.08);
+    opacity: 0.85;
+  }
+  50% {
+    transform: translate(-10px, -30px) scale(0.95);
+    opacity: 1;
+  }
+  75% {
+    transform: translate(-20px, -10px) scale(1.05);
+    opacity: 0.9;
+  }
+}
+
+@keyframes cta-orb-right {
+  0%, 100% {
+    transform: translate(0, 0) scale(1);
+    opacity: 1;
+  }
+  25% {
+    transform: translate(-20px, 15px) scale(0.92);
+    opacity: 0.9;
+  }
+  50% {
+    transform: translate(10px, 25px) scale(1.1);
+    opacity: 0.85;
+  }
+  75% {
+    transform: translate(15px, 5px) scale(0.98);
+    opacity: 1;
+  }
+}
+
+.animate-cta-orb-left {
+  animation: cta-orb-left 15s ease-in-out infinite;
+}
+
+.animate-cta-orb-right {
+  animation: cta-orb-right 18s ease-in-out infinite;
+}
+
 /* Simple up/down float animations for waitlist */
 @keyframes float-up-down {
   0%, 100% {
@@ -454,5 +567,31 @@ h3,
 
 .nav-header.nav-hidden {
   transform: translate3d(0, -100%, 0);
+}
+
+/* Fade in animation for glossary hover */
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    transform: translateX(-4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.animate-fade-in {
+  animation: fade-in 0.2s ease-out forwards;
+}
+
+/* Hide scrollbar for alphabet nav */
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
 }
 

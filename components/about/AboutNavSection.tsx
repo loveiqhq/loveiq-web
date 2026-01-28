@@ -8,6 +8,7 @@ import { trackStartSurvey } from "../../lib/analytics";
 const navLinks = [
   { label: "Home", href: "/" },
   { label: "About Us", href: "/about" },
+  { label: "Glossary", href: "/glossary" },
   { label: "Trust Zone", href: "/trust-zone" },
 ];
 
@@ -150,37 +151,28 @@ const AboutNavSection: FC = () => {
               </Link>
             </div>
 
-            <div className="hidden flex-1 items-center justify-center gap-6 lg:flex">
+            <div className="hidden flex-1 items-center justify-center gap-3 lg:flex">
               {navLinks.map((item) => (
                 <Link
                   key={item.href}
                   href={item.href}
-                  className="rounded-full px-4 py-2 text-sm font-semibold text-white/80 transition hover:bg-white/10 hover:text-white focus-visible-ring"
+                  className="rounded-full px-3 py-2 text-sm font-semibold text-white/80 transition hover:bg-white/10 hover:text-white focus-visible-ring"
                 >
                   {item.label}
                 </Link>
               ))}
             </div>
 
-            <div className="flex flex-1 items-center justify-end gap-2 sm:gap-3">
-              <Link
-                href="/"
-                className="hidden shrink-0 items-center justify-center gap-2 whitespace-nowrap rounded-full border border-white/15 bg-white/5 px-4 py-2 text-xs font-semibold text-white/85 shadow-[0_15px_40px_rgba(0,0,0,0.35)] transition hover:-translate-y-[2px] hover:border-white/25 hover:text-white focus-visible-ring sm:inline-flex lg:hidden"
-              >
-                Home
-              </Link>
-              <Link
-                href="/about"
-                className="hidden shrink-0 items-center justify-center gap-2 whitespace-nowrap rounded-full border border-white/15 bg-white/5 px-4 py-2 text-xs font-semibold text-white/85 shadow-[0_15px_40px_rgba(0,0,0,0.35)] transition hover:-translate-y-[2px] hover:border-white/25 hover:text-white focus-visible-ring sm:inline-flex lg:hidden"
-              >
-                About Us
-              </Link>
-              <Link
-                href="/trust-zone"
-                className="hidden shrink-0 items-center justify-center gap-2 whitespace-nowrap rounded-full border border-white/15 bg-white/5 px-4 py-2 text-xs font-semibold text-white/85 shadow-[0_15px_40px_rgba(0,0,0,0.35)] transition hover:-translate-y-[2px] hover:border-white/25 hover:text-white focus-visible-ring sm:inline-flex lg:hidden"
-              >
-                Trust Zone
-              </Link>
+            <div className="flex flex-1 items-center justify-end gap-2 sm:gap-2">
+              {navLinks.slice(0, 3).map((item) => (
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  className="hidden shrink-0 items-center justify-center gap-2 whitespace-nowrap rounded-full border border-white/15 bg-white/5 px-3 py-2 text-xs font-semibold text-white/85 shadow-[0_15px_40px_rgba(0,0,0,0.35)] transition hover:-translate-y-[2px] hover:border-white/25 hover:text-white focus-visible-ring sm:inline-flex lg:hidden"
+                >
+                  {item.label}
+                </Link>
+              ))}
               <Link
                 href="/waitlist"
                 className="group relative hidden shrink-0 items-center justify-center gap-2 overflow-hidden whitespace-nowrap rounded-full bg-gradient-brand px-3.5 py-2 text-[13px] font-semibold text-white shadow-pill transition hover:translate-y-[-2px] focus-visible-ring sm:inline-flex sm:px-6 sm:py-3 sm:text-sm"
