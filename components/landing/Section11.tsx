@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, type FC } from "react";
+import { useState, useRef, useLayoutEffect, type FC } from "react";
 
 const faqs = [
   {
@@ -76,33 +76,58 @@ interface FAQItemProps {
 
 const FAQItem: FC<FAQItemProps> = ({ question, answer }) => {
   const [isOpen, setIsOpen] = useState(false);
+  const [contentHeight, setContentHeight] = useState(0);
+  const contentRef = useRef<HTMLDivElement>(null);
+
+  useLayoutEffect(() => {
+    const updateHeight = () => {
+      if (contentRef.current) {
+        setContentHeight(contentRef.current.scrollHeight);
+      }
+    };
+
+    updateHeight();
+    window.addEventListener("resize", updateHeight);
+    return () => window.removeEventListener("resize", updateHeight);
+  }, [answer]);
 
   return (
-    <div
-      className={`overflow-hidden rounded-2xl border border-white/5 bg-white/5 transition-all duration-300 hover:bg-white/10 ${isOpen ? "bg-white/10" : ""}`}
-    >
+    <div className="flex w-full flex-col">
+      {/* Question Bar */}
       <button
         type="button"
         onClick={() => setIsOpen(!isOpen)}
-        className="flex w-full cursor-pointer select-none items-center justify-between px-5 py-4 sm:px-6 sm:py-5 text-left"
+        className="flex w-full cursor-pointer select-none items-center justify-between gap-3 rounded-xl border border-white/5 bg-[#120b1c] px-4 py-3.5 text-left transition-all duration-300 hover:border-white/10 sm:gap-4 sm:px-6 sm:py-4"
         aria-expanded={isOpen}
       >
-        <span className="text-sm font-semibold text-white sm:text-base">{question}</span>
-        <span className={`text-white/50 transition-transform duration-300 ${isOpen ? "rotate-45" : ""}`}>
-          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-            <path d="M5 12h14" />
-            <path d="M12 5v14" />
-          </svg>
+        <span className="text-sm font-medium leading-snug text-white/90 sm:text-base md:text-lg">{question}</span>
+        <span className="flex-shrink-0 text-white/50">
+          {isOpen ? (
+            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="2" viewBox="0 0 14 2" fill="none">
+              <path d="M1 1h12" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+            </svg>
+          ) : (
+            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 14 14" fill="none">
+              <path d="M7 1v12M1 7h12" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+            </svg>
+          )}
         </span>
       </button>
+
+      {/* Answer Panel */}
       <div
-        className={`grid transition-[grid-template-rows] duration-300 ease-out ${isOpen ? "grid-rows-[1fr]" : "grid-rows-[0fr]"}`}
+        className="w-full overflow-hidden transition-all duration-500 ease-out"
+        style={{
+          maxHeight: isOpen ? contentHeight + 40 : 0,
+          opacity: isOpen ? 1 : 0,
+        }}
       >
-        <div className="overflow-hidden">
-          <div
-            className={`px-5 pb-4 pt-0 text-sm leading-relaxed text-gray-300 sm:px-6 transition-all duration-300 ease-out ${isOpen ? "opacity-100 translate-y-0" : "opacity-0 translate-y-[-8px]"}`}
-          >
-            {answer}
+        <div ref={contentRef} className="pt-3">
+          {/* Answer Content Box */}
+          <div className="rounded-xl border border-[rgba(84,20,117,0.3)] bg-[rgba(84,20,117,0.2)] px-4 py-4 sm:rounded-2xl sm:px-6 sm:py-5">
+            <p className="text-sm leading-relaxed text-gray-300 sm:text-base">
+              {answer}
+            </p>
           </div>
         </div>
       </div>
@@ -124,7 +149,7 @@ const Section11: FC = () => {
           </h2>
         </div>
 
-        <div className="flex w-full flex-col gap-3">
+        <div className="flex w-full flex-col gap-3 sm:gap-4">
           {faqs.map((item) => (
             <FAQItem key={item.question} question={item.question} answer={item.answer} />
           ))}

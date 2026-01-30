@@ -34,7 +34,10 @@
       "Bash(more:*)",
       "Bash(node -e:*)",
       "Bash(npx tsc:*)",
-      "Bash(npx eslint:*)"
+      "Bash(npx eslint:*)",
+      "Bash(taskkill:*)",
+      "WebSearch",
+      "Bash(del \"C:\\\\Users\\\\cicku\\\\loveiq-web\\\\middleware.ts\")"
     ]
   }
 }

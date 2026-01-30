@@ -10,7 +10,7 @@ function generateCsrfToken(): string {
   return Array.from(array, (byte) => byte.toString(16).padStart(2, "0")).join("");
 }
 
-export function middleware(request: NextRequest) {
+export function proxy(request: NextRequest) {
   // Generate a random nonce for CSP
   const nonce = Buffer.from(crypto.randomUUID()).toString("base64");
 

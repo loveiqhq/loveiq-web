@@ -21,7 +21,7 @@ const nextConfig = {
     // Remove console.log in production
     removeConsole: process.env.NODE_ENV === "production" ? { exclude: ["error", "warn"] } : false,
   },
-  // Security headers are now set in middleware.ts with nonce-based CSP
+  // Security headers are now set in proxy.ts with nonce-based CSP
 };
 
 module.exports = nextConfig;
