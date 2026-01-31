@@ -1,43 +1,43 @@
 import type { FC } from "react";
 import ScrollAnimator from "./ScrollAnimator";
-import ArchetypesSection from "./ArchetypesSection";
-import FooterSection from "./FooterSection";
-import HeroSection from "./HeroSection";
-import HowItWorksSection from "./HowItWorksSection";
 import NavSection from "./NavSection";
-import Section05 from "./Section05";
-import Section06 from "./Section06";
-import Section07 from "./Section07";
-import Section08 from "./Section08";
-import Section09 from "./Section09";
-import Section10 from "./Section10";
-import Section11 from "./Section11";
-import Section12 from "./Section12";
-import TrustedBySection from "./TrustedBySection";
-import ValueFeaturesSection from "./ValueFeaturesSection";
+import S01Hero from "./S01Hero";
+import S02HowItWorks from "./S02HowItWorks";
+import S03TrustedBy from "./S03TrustedBy";
+import S04ValueFeatures from "./S04ValueFeatures";
+import S05Archetypes from "./S05Archetypes";
+import S06SampleProfile from "./S06SampleProfile";
+import S07Report from "./S07Report";
+import S08Pillars from "./S08Pillars";
+import S09Testimonials from "./S09Testimonials";
+import S10PerfectFor from "./S10PerfectFor";
+import S11WhyWeCreated from "./S11WhyWeCreated";
+import S12FAQ from "./S12FAQ";
+import S13CTA from "./S13CTA";
+import FooterSection from "./FooterSection";
 
 const LandingPage: FC = () => {
   return (
     <main className="relative bg-page text-text-primary">
       <ScrollAnimator />
       <NavSection />
-      <HeroSection />
+      <S01Hero />
       <div id="about">
-        <HowItWorksSection />
+        <S02HowItWorks />
       </div>
       <div id="glossary">
-        <TrustedBySection />
+        <S03TrustedBy />
       </div>
-      <ValueFeaturesSection />
-      <ArchetypesSection />
-      <Section05 />
-      <Section06 />
-      <Section07 />
-      <Section08 />
-      <Section09 />
-      <Section10 />
-      <Section11 />
-      <Section12 />
+      <S04ValueFeatures />
+      <S05Archetypes />
+      <S06SampleProfile />
+      <S07Report />
+      <S08Pillars />
+      <S09Testimonials />
+      <S10PerfectFor />
+      <S11WhyWeCreated />
+      <S12FAQ />
+      <S13CTA />
       <FooterSection />
     </main>
   );

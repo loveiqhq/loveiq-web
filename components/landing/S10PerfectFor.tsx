@@ -51,7 +51,7 @@ const ChevronRight = () => (
   </svg>
 );
 
-const Section09: FC = () => {
+const S10PerfectFor: FC = () => {
   const carouselRef = useRef<HTMLDivElement>(null);
   const [isPaused, setIsPaused] = useState(false);
   const [activeIndex, setActiveIndex] = useState(0);
@@ -306,4 +306,4 @@ const Section09: FC = () => {
   );
 };
 
-export default Section09;
+export default S10PerfectFor;

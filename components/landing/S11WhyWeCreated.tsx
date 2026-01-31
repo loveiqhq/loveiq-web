@@ -1,6 +1,6 @@
 import type { FC } from "react";
 
-const Section10: FC = () => {
+const S11WhyWeCreated: FC = () => {
   return (
     <section className="section-shell relative overflow-hidden bg-[#0A0510] px-4 text-text-primary" aria-labelledby="why-heading">
       <div className="pointer-events-none absolute inset-0">
@@ -258,6 +258,6 @@ const Section10: FC = () => {
   );
 };
 
-export default Section10;
+export default S11WhyWeCreated;
 
 

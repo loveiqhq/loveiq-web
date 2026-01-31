@@ -16,7 +16,7 @@ const bullets = [
   },
 ];
 
-const ValueFeaturesSection: FC = () => {
+const S04ValueFeatures: FC = () => {
   const [loadVideo, setLoadVideo] = useState(false);
   const sectionRef = useRef<HTMLElement | null>(null);
 
@@ -112,4 +112,4 @@ const ValueFeaturesSection: FC = () => {
   );
 };
 
-export default ValueFeaturesSection;
+export default S04ValueFeatures;
