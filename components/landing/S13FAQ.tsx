@@ -124,7 +124,7 @@ const FAQItem: FC<FAQItemProps> = ({ question, answer }) => {
       >
         <div ref={contentRef} className="pt-3">
           {/* Answer Content Box */}
-          <div className="rounded-xl border border-[rgba(84,20,117,0.3)] bg-[rgba(84,20,117,0.2)] px-4 py-4 sm:rounded-2xl sm:px-6 sm:py-5">
+          <div className="rounded-xl border border-white/5 bg-[#120B1C] px-4 py-4 sm:rounded-2xl sm:px-6 sm:py-5">
             <p className="text-sm leading-relaxed text-gray-300 sm:text-base">
               {answer}
             </p>

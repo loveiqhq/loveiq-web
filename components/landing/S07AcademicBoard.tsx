@@ -150,7 +150,7 @@ const S07AcademicBoard: FC = () => {
 
         <a
           href="/about"
-          className="inline-flex items-center justify-center rounded-full border border-[#fe6839] bg-transparent px-8 py-4 text-base font-bold text-[#fe6839] transition-colors duration-300 hover:bg-[#fe6839] hover:text-white"
+          className="hidden inline-flex items-center justify-center rounded-full border border-[#fe6839] bg-transparent px-8 py-4 text-base font-bold text-[#fe6839] transition-colors duration-300 hover:bg-[#fe6839] hover:text-white"
         >
           Learn more about our experts
         </a>

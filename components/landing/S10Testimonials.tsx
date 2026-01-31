@@ -13,8 +13,8 @@ const testimonials: Testimonial[] = [
     quote: (
       <>
         <span>The results were </span>
-        <span className="font-bold text-white">more insightful than I expected</span>
-        <span className="text-white">.</span>
+        <span className="font-bold">more insightful than I expected</span>
+        <span>.</span>
         <span> It connected dots between emotional triggers and communication styles I hadn’t noticed before. Solid UX, too.</span>
       </>
     ),
@@ -26,8 +26,8 @@ const testimonials: Testimonial[] = [
     quote: (
       <>
         <span>The report was </span>
-        <span className="font-bold text-white">shockingly accurate</span>
-        <span className="text-white">.</span>
+        <span className="font-bold">shockingly accurate</span>
+        <span>.</span>
         <span> And the science behind it? Legit. I liked seeing the blend of emotional intelligence and cognitive behavior models.</span>
       </>
     ),
@@ -39,8 +39,7 @@ const testimonials: Testimonial[] = [
     quote: (
       <>
         <span>We took the quiz together and compared our results—it </span>
-        <span className="font-bold text-white">sparked one of the best conversations we’ve ever had</span>
-        <span className="text-white">.</span>
+        <span className="font-bold">sparked one of the best conversations we've ever had.</span>
         <span> It helped us understand our emotional rhythm better.</span>
       </>
     ),
@@ -52,7 +51,7 @@ const testimonials: Testimonial[] = [
     quote: (
       <>
         <span>We thought it’d be just fun. Turns out, it </span>
-        <span className="font-bold text-white">opened a new level of communication</span>
+        <span className="font-bold">opened a new level of communication</span>
         <span> in our relationship. Every couple should try this.</span>
       </>
     ),
@@ -115,7 +114,7 @@ const S10Testimonials: FC = () => {
                     </svg>
                   ))}
                 </div>
-                <p className="font-serif text-[18px] leading-[28px] italic text-[#d1d5db] [&_span]:font-serif [&_span]:text-[18px] [&_span]:leading-[28px] [&_span]:italic [&_span]:text-[#d1d5db]">
+                <p className="font-serif text-[20px] leading-[32.5px] italic text-[#D1D5DB] [&_span]:font-serif [&_span]:text-[20px] [&_span]:leading-[32.5px] [&_span]:italic [&_span]:text-[#D1D5DB]">
                   &ldquo;{item.quote}&rdquo;
                 </p>
               </div>

@@ -5952,7 +5952,7 @@ export const glossaryTerms: GlossaryTerm[] = [
 {
   "id": 169,
   "term": "Performance Anxiety",
-  "slug": "performance-anxiety",
+  "slug": "performance-anxiety-alt",
   "type": "State & Experience",
   "category": "desire",
   "definition": "Anxiety about being evaluated or \"doing it right\" in sexual situations, which can activate inhibition and reduce pleasure, arousal, or connection.",
@@ -7890,7 +7890,7 @@ export const glossaryTerms: GlossaryTerm[] = [
 {
   "id": 222,
   "term": "Arousal Style",
-  "slug": "arousal-style",
+  "slug": "arousal-style-metric",
   "type": "Metric & Measurement",
   "category": "desire",
   "definition": "A report dimension describing how sexual arousal typically starts, builds, and stays present for a person across contexts.",
@@ -8468,7 +8468,7 @@ export const glossaryTerms: GlossaryTerm[] = [
 {
   "id": 238,
   "term": "Core Insecurities",
-  "slug": "core-insecurities",
+  "slug": "core-insecurities-alt",
   "type": "Trait & Disposition",
   "category": "pattern",
   "definition": "Deep fears about adequacy, desirability, or safety that shape how someone approaches closeness, sex, and conflict.",
@@ -8933,7 +8933,7 @@ export const glossaryTerms: GlossaryTerm[] = [
 {
   "id": 251,
   "term": "Energy Level",
-  "slug": "energy-level",
+  "slug": "energy-level-metric",
   "type": "Metric & Measurement",
   "category": "frameworks",
   "definition": "A report dimension describing how much physical and emotional bandwidth someone typically has for intimacy, affecting timing, pacing, and frequency preferences.",
@@ -9540,7 +9540,7 @@ export const glossaryTerms: GlossaryTerm[] = [
 {
   "id": 268,
   "term": "Importance of Sexuality",
-  "slug": "importance-of-sexuality",
+  "slug": "importance-of-sexuality-alt",
   "type": "Trait & Disposition",
   "category": "pattern",
   "definition": "A report dimension describing how central sexual connection is to someone’s relationship satisfaction and wellbeing.",
@@ -10396,7 +10396,7 @@ export const glossaryTerms: GlossaryTerm[] = [
 {
   "id": 292,
   "term": "Power Orientation",
-  "slug": "power-orientation",
+  "slug": "power-orientation-metric",
   "type": "Metric & Measurement",
   "category": "sensitive",
   "definition": "A report dimension describing a person’s preferred power dynamic in intimacy (leading, yielding, switching, or egalitarian), expressed consensually.",
@@ -10682,7 +10682,7 @@ export const glossaryTerms: GlossaryTerm[] = [
 {
   "id": 300,
   "term": "Relationship Form Preference",
-  "slug": "relationship-form-preference",
+  "slug": "relationship-form-preference-metric",
   "type": "Metric & Measurement",
   "category": "frameworks",
   "definition": "A report dimension describing preferred relationship structure (e.g., monogamy, consensual non-monogamy, flexible agreements) as a compatibility factor.",
@@ -10823,7 +10823,7 @@ export const glossaryTerms: GlossaryTerm[] = [
 {
   "id": 304,
   "term": "Risk Orientation",
-  "slug": "risk-orientation",
+  "slug": "risk-orientation-metric",
   "type": "Metric & Measurement",
   "category": "frameworks",
   "definition": "A report dimension describing someone’s comfort with uncertainty and intensity in dating, intimacy pacing, and sexual exploration.",

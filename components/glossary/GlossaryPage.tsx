@@ -244,9 +244,9 @@ const GlossaryPage: FC = () => {
 
                 {/* Terms List */}
                 <div className="flex flex-col gap-4">
-                  {terms.map((item) => (
+                  {terms.map((item, idx) => (
                     <Link
-                      key={item.slug}
+                      key={`${item.slug}-${idx}`}
                       href={`/glossary/${item.slug}`}
                       className="group flex items-center gap-2"
                     >

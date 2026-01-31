@@ -39,11 +39,14 @@ const ContactSection: FC = () => {
   const recaptchaContainerRef = useRef<HTMLDivElement | null>(null);
   const widgetIdRef = useRef<number | null>(null);
   const siteKey = process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY;
-  const getGrecaptcha = () =>
-    typeof window === "undefined"
-      ? undefined
-      : (window as unknown as { grecaptcha?: { render: Function; reset: (id?: number) => void; getResponse: (id?: number) => string } })
-          .grecaptcha;
+  const getGrecaptcha = () => {
+    if (typeof window === "undefined") return undefined;
+    const g = (window as unknown as { grecaptcha?: { render?: Function; reset?: (id?: number) => void; getResponse?: (id?: number) => string } })
+      .grecaptcha;
+    // Only return grecaptcha if render is available (API fully loaded)
+    if (g && typeof g.render === "function") return g as { render: Function; reset: (id?: number) => void; getResponse: (id?: number) => string };
+    return undefined;
+  };
 
   const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setForm((prev) => ({ ...prev, [e.target.name]: e.target.value }));
