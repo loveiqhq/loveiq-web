@@ -97,7 +97,8 @@ const S07AcademicBoard: FC = () => {
                       src={expert.photo}
                       alt=""
                       fill
-                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 340px"
+                      quality={85}
+                      sizes="(max-width: 640px) 280vw, 1000px"
                       className="max-w-none object-cover"
                     />
                   </div>

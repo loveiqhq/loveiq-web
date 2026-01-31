@@ -7,9 +7,9 @@ import Link from "next/link";
 // Social icons
 const LinkedInIcon: FC = () => (
   <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <path d="M12 6C14.4836 6 16.5 8.01638 16.5 10.5V15.75H13.5V10.5C13.5 9.67213 12.8279 9 12 9C11.1721 9 10.5 9.67213 10.5 10.5V15.75H7.5V10.5C7.5 8.01638 9.51638 6 12 6V6" stroke="#6B7280" stroke-width="1.125" stroke-linecap="round" stroke-linejoin="round" />
-    <path d="M1.5 6.75H4.5V6.75V15.75V15.75H1.5V15.75V6.75V6.75V6.75" stroke="#6B7280" stroke-width="1.125" stroke-linecap="round" stroke-linejoin="round" />
-    <path d="M1.5 3C1.5 3.82787 2.17213 4.5 3 4.5C3.82787 4.5 4.5 3.82787 4.5 3C4.5 2.17213 3.82787 1.5 3 1.5C2.17213 1.5 1.5 2.17213 1.5 3H1.5" stroke="#6B7280" stroke-width="1.125" stroke-linecap="round" stroke-linejoin="round" />
+    <path d="M12 6C14.4836 6 16.5 8.01638 16.5 10.5V15.75H13.5V10.5C13.5 9.67213 12.8279 9 12 9C11.1721 9 10.5 9.67213 10.5 10.5V15.75H7.5V10.5C7.5 8.01638 9.51638 6 12 6V6" stroke="#6B7280" strokeWidth="1.125" strokeLinecap="round" strokeLinejoin="round" />
+    <path d="M1.5 6.75H4.5V6.75V15.75V15.75H1.5V15.75V6.75V6.75V6.75" stroke="#6B7280" strokeWidth="1.125" strokeLinecap="round" strokeLinejoin="round" />
+    <path d="M1.5 3C1.5 3.82787 2.17213 4.5 3 4.5C3.82787 4.5 4.5 3.82787 4.5 3C4.5 2.17213 3.82787 1.5 3 1.5C2.17213 1.5 1.5 2.17213 1.5 3H1.5" stroke="#6B7280" strokeWidth="1.125" strokeLinecap="round" strokeLinejoin="round" />
   </svg>
 );
 
@@ -140,7 +140,8 @@ const TeamSection: FC = () => {
                     src={member.image}
                     alt={member.name}
                     fill
-                    sizes="256px"
+                    quality={85}
+                    sizes="580px"
                     className="object-cover opacity-90 grayscale-[20%] transition-all duration-700 ease-out group-hover:scale-110 group-hover:opacity-100 group-hover:grayscale-0"
                   />
                 </div>

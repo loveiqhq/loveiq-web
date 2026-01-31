@@ -32,9 +32,9 @@ const FileCheckIcon: FC<{ className?: string }> = ({ className = "w-8 h-8" }) =>
 
 const ChartIcon: FC<{ className?: string }> = ({ className = "w-8 h-8" }) => (
   <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <path d="M4 4V25.3333C4 26.0406 4.28095 26.7189 4.78105 27.219C5.28115 27.719 5.95942 28 6.66667 28H28" stroke="#A78BFA" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" />
-    <path d="M24 6.66663H21.3333C20.597 6.66663 20 7.26358 20 7.99996V21.3333C20 22.0697 20.597 22.6666 21.3333 22.6666H24C24.7364 22.6666 25.3333 22.0697 25.3333 21.3333V7.99996C25.3333 7.26358 24.7364 6.66663 24 6.66663Z" stroke="#A78BFA" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" />
-    <path d="M13.3335 10.6666H10.6668C9.93045 10.6666 9.3335 11.2636 9.3335 12V21.3333C9.3335 22.0697 9.93045 22.6666 10.6668 22.6666H13.3335C14.0699 22.6666 14.6668 22.0697 14.6668 21.3333V12C14.6668 11.2636 14.0699 10.6666 13.3335 10.6666Z" stroke="#A78BFA" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" />
+    <path d="M4 4V25.3333C4 26.0406 4.28095 26.7189 4.78105 27.219C5.28115 27.719 5.95942 28 6.66667 28H28" stroke="#A78BFA" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
+    <path d="M24 6.66663H21.3333C20.597 6.66663 20 7.26358 20 7.99996V21.3333C20 22.0697 20.597 22.6666 21.3333 22.6666H24C24.7364 22.6666 25.3333 22.0697 25.3333 21.3333V7.99996C25.3333 7.26358 24.7364 6.66663 24 6.66663Z" stroke="#A78BFA" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
+    <path d="M13.3335 10.6666H10.6668C9.93045 10.6666 9.3335 11.2636 9.3335 12V21.3333C9.3335 22.0697 9.93045 22.6666 10.6668 22.6666H13.3335C14.0699 22.6666 14.6668 22.0697 14.6668 21.3333V12C14.6668 11.2636 14.0699 10.6666 13.3335 10.6666Z" stroke="#A78BFA" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
   </svg>
 );
 
