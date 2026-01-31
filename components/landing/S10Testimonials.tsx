@@ -39,7 +39,7 @@ const testimonials: Testimonial[] = [
     quote: (
       <>
         <span>We took the quiz together and compared our results—it </span>
-        <span className="font-bold">sparked one of the best conversations we've ever had.</span>
+        <span className="font-bold">sparked one of the best conversations we&apos;ve ever had.</span>
         <span> It helped us understand our emotional rhythm better.</span>
       </>
     ),
