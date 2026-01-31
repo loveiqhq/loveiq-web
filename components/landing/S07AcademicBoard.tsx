@@ -78,7 +78,7 @@ const S07AcademicBoard: FC = () => {
       <div className="content-shell flex flex-col items-center gap-10">
         <h2
           id="academic-board-heading"
-          className="max-w-[889px] text-center font-serif text-3xl font-semibold leading-tight tracking-[-0.02em] sm:text-4xl md:text-5xl lg:text-[64px] lg:leading-[1]"
+          className="max-w-[889px] text-center font-serif text-3xl font-semibold leading-tight tracking-[-0.02em] text-white sm:text-4xl md:text-5xl lg:text-[64px] lg:leading-[64px] lg:tracking-[-1.2px]"
         >
           Supported by academic multidisciplinary expertise
         </h2>
@@ -110,10 +110,10 @@ const S07AcademicBoard: FC = () => {
                 <div className="absolute inset-0 bg-gradient-to-t from-[#0a0510] from-[1.31%] via-[rgba(10,5,16,0.2)] via-[36.572%] to-[rgba(10,5,16,0)] to-[71.834%]" />
 
                 {/* Purple gradient overlay — hover */}
-                <div className="absolute inset-0 bg-gradient-to-t from-[#a78bfa] from-[1.31%] via-[rgba(167,139,250,0.2)] via-[36.572%] to-[rgba(167,139,250,0)] to-[71.834%] opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#a78bfa] from-[1.31%] via-[rgba(167,139,250,0.2)] via-[36.572%] to-[rgba(167,139,250,0)] to-[71.834%] opacity-0 transition-opacity duration-700 group-hover:opacity-100" />
 
                 {/* Bottom info */}
-                <div className="absolute inset-x-0 bottom-[-8px] flex h-[76px] flex-col justify-end overflow-hidden px-6 pb-4 transition-all duration-300 group-hover:h-[147px]">
+                <div className="absolute inset-x-0 bottom-[-8px] flex h-[76px] flex-col justify-end overflow-hidden px-6 pb-4 transition-all duration-700 group-hover:h-[147px]">
                   {/* Name row */}
                   <div className="flex w-full items-center gap-2">
                     <span className="font-serif text-xl font-semibold leading-tight tracking-[-0.02em] text-white sm:text-[25px]">
@@ -121,7 +121,7 @@ const S07AcademicBoard: FC = () => {
                     </span>
                     <BadgeCheck />
                   </div>
-                  <div className="mt-2 max-h-0 translate-y-2 overflow-hidden opacity-0 transition-all duration-300 group-hover:max-h-[120px] group-hover:translate-y-0 group-hover:opacity-100">
+                  <div className="mt-2 max-h-0 translate-y-2 overflow-hidden opacity-0 transition-all duration-700 group-hover:max-h-[120px] group-hover:translate-y-0 group-hover:opacity-100">
                     {/* Subtitle — revealed on hover */}
                     <div className="border-t border-white/10 pt-[9px]">
                       <span className="font-sans text-[13px] font-bold uppercase tracking-[1.1px] text-white">
