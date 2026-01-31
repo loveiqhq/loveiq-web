@@ -1,6 +1,6 @@
 import type { FC } from "react";
 
-const S11WhyWeCreated: FC = () => {
+const S12WhyWeCreated: FC = () => {
   return (
     <section className="section-shell relative overflow-hidden bg-[#0A0510] px-4 text-text-primary" aria-labelledby="why-heading">
       <div className="pointer-events-none absolute inset-0">
@@ -258,6 +258,6 @@ const S11WhyWeCreated: FC = () => {
   );
 };
 
-export default S11WhyWeCreated;
+export default S12WhyWeCreated;
 
 

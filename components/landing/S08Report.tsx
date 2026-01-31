@@ -23,7 +23,7 @@ const features = [
   },
 ];
 
-const S07Report: FC = () => {
+const S08Report: FC = () => {
   return (
     <section className="section-shell relative overflow-hidden bg-[#0A0510] px-4 text-text-primary" aria-labelledby="report-heading">
       <div className="content-shell relative grid gap-12 lg:grid-cols-[1.05fr_0.95fr] lg:items-center">
@@ -251,4 +251,4 @@ const S07Report: FC = () => {
   );
 };
 
-export default S07Report;
+export default S08Report;

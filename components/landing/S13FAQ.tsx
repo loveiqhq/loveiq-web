@@ -135,7 +135,7 @@ const FAQItem: FC<FAQItemProps> = ({ question, answer }) => {
   );
 };
 
-const S12FAQ: FC = () => {
+const S13FAQ: FC = () => {
   return (
     <section className="section-shell relative overflow-hidden bg-[#0A0510] px-4 text-text-primary" aria-labelledby="faq-heading">
       <div className="content-shell relative flex max-w-4xl flex-col items-center gap-8 animate-on-scroll">
@@ -159,4 +159,4 @@ const S12FAQ: FC = () => {
   );
 };
 
-export default S12FAQ;
+export default S13FAQ;
