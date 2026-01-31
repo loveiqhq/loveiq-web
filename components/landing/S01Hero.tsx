@@ -5,7 +5,7 @@ import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { trackLearnMore, trackStartSurvey } from "../../lib/analytics";
 
-const HeroSection: FC = () => {
+const S01Hero: FC = () => {
   const [loadVideo, setLoadVideo] = useState(false);
   const [videoReady, setVideoReady] = useState(false);
   const videoRef = useRef<HTMLVideoElement | null>(null);
@@ -153,4 +153,4 @@ const HeroSection: FC = () => {
   );
 };
 
-export default HeroSection;
+export default S01Hero;

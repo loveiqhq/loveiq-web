@@ -71,7 +71,7 @@ const avatars = [
   { src: "/0f7ed5d44e1082e3707e71327b5df742609705a3.jpg" },
 ];
 
-const Section08: FC = () => {
+const S10Testimonials: FC = () => {
   return (
     <section className="section-shell relative overflow-hidden bg-[#0A0510] px-4 text-text-primary" aria-labelledby="stories-heading">
       <div className="content-shell relative flex flex-col items-center gap-10">
@@ -144,4 +144,4 @@ const Section08: FC = () => {
   );
 };
 
-export default Section08;
+export default S10Testimonials;

@@ -263,7 +263,7 @@ const ArchetypeCard: FC<{ archetype: Archetype }> = ({ archetype }) => {
   );
 };
 
-const ArchetypesSection: FC = () => {
+const S05Archetypes: FC = () => {
   const carouselRef = useRef<HTMLDivElement>(null);
   const [isPaused, setIsPaused] = useState(false);
   const [activeIndex, setActiveIndex] = useState(0);
@@ -505,4 +505,4 @@ const ArchetypesSection: FC = () => {
   );
 };
 
-export default ArchetypesSection;
+export default S05Archetypes;

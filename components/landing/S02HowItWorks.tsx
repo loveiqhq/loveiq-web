@@ -116,7 +116,7 @@ const OrbitGlyph = ({ id }: { id: OrbitIconId }) => {
   }
 };
 
-const HowItWorksSection: FC = () => {
+const S02HowItWorks: FC = () => {
   return (
     <section className="section-shell relative overflow-hidden bg-[#0A0510] px-4 pt-24 pb-16 text-text-primary md:pt-28 md:pb-20" aria-labelledby="how-it-works-heading">
       <div className="pointer-events-none absolute inset-0" />
@@ -391,4 +391,4 @@ const HowItWorksSection: FC = () => {
   );
 };
 
-export default HowItWorksSection;
+export default S02HowItWorks;

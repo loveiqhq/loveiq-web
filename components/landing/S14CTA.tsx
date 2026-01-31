@@ -3,7 +3,7 @@
 import type { FC } from "react";
 import { trackStartSurvey } from "../../lib/analytics";
 
-const Section12: FC = () => {
+const S14CTA: FC = () => {
   return (
     <section className="section-shell relative overflow-hidden bg-gradient-to-br from-[#1a0d25] via-[#0f0a18] to-[#2a1640] px-4 text-text-primary">
       {/* Animated floating gradient orbs */}
@@ -86,4 +86,4 @@ const Section12: FC = () => {
   );
 };
 
-export default Section12;
+export default S14CTA;
