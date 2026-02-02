@@ -7,7 +7,7 @@ import S03TrustedBy from "./S03TrustedBy";
 import S04ValueFeatures from "./S04ValueFeatures";
 import S05Archetypes from "./S05Archetypes";
 import S06SampleProfile from "./S06SampleProfile";
-import S07AcademicBoard from "./S07AcademicBoard";
+// import S07AcademicBoard from "./S07AcademicBoard"; // Hidden temporarily
 import S08Report from "./S08Report";
 import S09Pillars from "./S09Pillars";
 import S10Testimonials from "./S10Testimonials";
@@ -32,7 +32,7 @@ const LandingPage: FC = () => {
       <S04ValueFeatures />
       <S05Archetypes />
       <S06SampleProfile />
-      <S07AcademicBoard />
+      {/* <S07AcademicBoard /> */}
       <S08Report />
       <S09Pillars />
       <S10Testimonials />

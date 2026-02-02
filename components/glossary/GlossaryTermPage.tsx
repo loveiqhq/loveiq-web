@@ -56,16 +56,6 @@ const GlossaryTermPage: FC<GlossaryTermPageProps> = ({ term }) => {
     };
   });
 
-  // Parse misinterpretations into myth/reality pairs
-  const parsedMisinterpretations = term.misinterpretations.map((m) => {
-    // Try to parse as "Myth" format first
-    const parts = m.split(/[;]/);
-    return {
-      myth: m,
-      reality: "",
-    };
-  });
-
   return (
     <main className="relative bg-[#0A0510] text-white min-h-screen">
       <GlossaryNavSection />
@@ -225,7 +215,7 @@ const GlossaryTermPage: FC<GlossaryTermPageProps> = ({ term }) => {
                   </div>
                 )}
 
-                {/* Common Misunderstandings Section */}
+{/* Common Misunderstandings Section - Hidden temporarily for updates
                 {term.misinterpretations.length > 0 && (
                   <div className="space-y-6 p-8 rounded-2xl bg-[#1a0f1f] border border-[rgba(244,63,94,0.2)] reveal-on-scroll">
                     <div className="flex items-center gap-3">
@@ -276,6 +266,7 @@ const GlossaryTermPage: FC<GlossaryTermPageProps> = ({ term }) => {
                     </div>
                   </div>
                 )}
+                */}
               </div>
 
               {/* Sidebar */}
