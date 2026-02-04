@@ -396,7 +396,7 @@ const S05Archetypes: FC = () => {
     if (window.innerWidth < 640) return 296; // 280px + 16px gap (gap-4)
     if (window.innerWidth < 768) return 352; // 320px + 32px gap (gap-8)
     if (window.innerWidth < 1024) return 392; // 360px + 32px gap (gap-8)
-    return 480; // 400px + 80px gap
+    return 424; // 400px + 24px gap (lg:gap-6)
   }, []);
 
   const [cardWidth, setCardWidth] = useState(480);
@@ -562,7 +562,7 @@ const S05Archetypes: FC = () => {
 
         <div
           ref={carouselRef}
-          className="flex w-max cursor-grab active:cursor-grabbing select-none gap-4 sm:gap-8 lg:gap-[80px] px-4"
+          className="flex w-max cursor-grab active:cursor-grabbing select-none gap-4 sm:gap-8 lg:gap-6 px-4"
           onMouseDown={(e) => {
             e.preventDefault();
             handleDragStart(e.clientX);
