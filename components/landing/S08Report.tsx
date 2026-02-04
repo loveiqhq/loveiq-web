@@ -241,7 +241,7 @@ const S08Report: FC = () => {
               </div>
               <div className="leading-tight">
                 <p className="text-[13px] font-semibold text-white">Archetype Found</p>
-                <p className="text-[12px] text-white/70">Deep Connector</p>
+                <p className="text-[12px] text-white/70">Sensual Connector</p>
               </div>
             </div>
           </div>
