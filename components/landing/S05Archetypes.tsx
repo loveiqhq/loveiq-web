@@ -248,23 +248,19 @@ const ArchetypeCard: FC<{ archetype: Archetype }> = ({ archetype }) => {
     >
       {/* Top-right blur effect */}
       <div
-        className="absolute w-[200px] h-[190px] rounded-full pointer-events-none"
+        className="absolute w-[120px] h-[120px] sm:w-[150px] sm:h-[140px] lg:w-[200px] lg:h-[190px] -right-[50px] -top-[60px] sm:-right-[70px] sm:-top-[80px] lg:-right-[100px] lg:-top-[120px] rounded-full pointer-events-none"
         style={{
-          right: '-100px',
-          top: '-120px',
           background: archetype.color,
-          filter: 'blur(80px)',
+          filter: 'blur(60px)',
         }}
         aria-hidden="true"
       />
       {/* Bottom-left blur effect */}
       <div
-        className="absolute w-[210px] h-[190px] rounded-full pointer-events-none"
+        className="absolute w-[130px] h-[120px] sm:w-[160px] sm:h-[140px] lg:w-[210px] lg:h-[190px] -left-[45px] -bottom-[70px] sm:-left-[60px] sm:-bottom-[90px] lg:-left-[90px] lg:-bottom-[150px] rounded-full pointer-events-none"
         style={{
-          left: '-90px',
-          bottom: '-150px',
           background: archetype.color,
-          filter: 'blur(80px)',
+          filter: 'blur(60px)',
         }}
         aria-hidden="true"
       />
