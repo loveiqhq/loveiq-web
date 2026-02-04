@@ -12,7 +12,7 @@ interface Archetype {
   attachment: string;
   initiation: string;
   powerOrientation: string;
-  riskOrientation: "Low" | "Medium" | "High";
+  riskOrientation: "Low" | "Medium" | "High" | "Very high";
   typicalConfidence: "Low" | "Medium" | "High";
 }
 
@@ -73,19 +73,116 @@ const archetypes: Archetype[] = [
     communication: "Gentle",
     attachment: "Secure",
     initiation: "Responsive",
-    powerOrientation: "Submissive",
+    powerOrientation: "Submissive/Switch",
     riskOrientation: "Low",
     typicalConfidence: "Medium",
   },
+  {
+    name: "Power Orchestrator",
+    tagline: '"I set the frame—and we play inside it."',
+    color: "#ff9f1c",
+    icon: (
+      <svg viewBox="0 0 72 72" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-full">
+        {/* Row 1 */}
+        {/* Top-left corner */}
+        <path transform="translate(6, 6)" d="M4.7533 0C2.15893 0 0 2.15906 0 4.75343V14.2326C-0.00491 15.544 1.05414 16.6113 2.3657 16.6162H2.38378H14.2511C15.5627 16.6213 16.6299 15.5622 16.6349 14.2507C16.6349 14.2447 16.6349 14.2386 16.6349 14.2326V2.3698C16.6321 1.05838 15.5668 -0.00273 14.2555 0C14.2538 0 14.2525 0 14.2511 0H4.7533Z" fill="currentColor"/>
+        {/* Top-middle */}
+        <path transform="translate(27.68, 6)" d="M2.38376 0C1.07227 -0.005 0.00507 1.05407 0 2.36557V2.36981V14.2512C0.00527 15.5625 1.07241 16.6214 2.38376 16.6163H14.2512C15.5552 16.6111 16.6111 15.5552 16.6163 14.2512V2.36981C16.6136 1.06393 15.557 0.00522 14.2512 0H2.38376Z" fill="currentColor"/>
+        {/* Top-right corner */}
+        <path transform="translate(49.36, 6)" d="M2.36975 0C1.05825 0.0027387 -0.0027203 1.06809 0 2.37959V2.38376V14.2512C-0.004913 15.5627 1.05421 16.6298 2.3657 16.6348H2.36975H14.2326C15.5441 16.6398 16.6112 15.5806 16.6162 14.2692C16.6162 14.2631 16.6162 14.2572 16.6162 14.2512V4.75349C16.6162 2.15892 14.462 0 11.8675 0L2.36975 0Z" fill="currentColor"/>
+        {/* Row 2 */}
+        {/* Middle-left */}
+        <path transform="translate(6, 27.68)" d="M2.38376 0C1.07227 -0.005 0.00507 1.05407 0 2.36557V2.36981V14.2512C0.00527 15.5625 1.07241 16.6214 2.38376 16.6163H14.2512C15.5552 16.6111 16.6111 15.5552 16.6163 14.2512V2.36981C16.6136 1.06393 15.557 0.00522 14.2512 0H2.38376Z" fill="currentColor"/>
+        {/* Center */}
+        <path transform="translate(27.68, 27.68)" d="M2.38376 0C1.07227 -0.005 0.00507 1.05407 0 2.36557V2.36981V14.2512C0.00527 15.5625 1.07241 16.6214 2.38376 16.6163H14.2512C15.5552 16.6111 16.6111 15.5552 16.6163 14.2512V2.36981C16.6136 1.06393 15.557 0.00522 14.2512 0H2.38376Z" fill="currentColor"/>
+        {/* Middle-right */}
+        <path transform="translate(49.36, 27.68)" d="M2.38376 0C1.07227 -0.005 0.00507 1.05407 0 2.36557V2.36981V14.2512C0.00527 15.5625 1.07241 16.6214 2.38376 16.6163H14.2512C15.5552 16.6111 16.6111 15.5552 16.6163 14.2512V2.36981C16.6136 1.06393 15.557 0.00522 14.2512 0H2.38376Z" fill="currentColor"/>
+        {/* Row 3 */}
+        {/* Bottom-left corner */}
+        <path transform="translate(6, 49.36)" d="M2.36516 0C1.05387 0.00527346 -0.00498044 1.07241 0 2.38369V11.8813C0 14.4759 2.15435 16.6302 4.74885 16.6302H14.2512C15.5625 16.6249 16.6214 15.5578 16.6163 14.2464V2.38369C16.6213 1.07241 15.5625 0.00527346 14.2512 0H2.36516Z" fill="currentColor"/>
+        {/* Bottom-middle */}
+        <path transform="translate(27.68, 49.36)" d="M2.38376 0C1.07227 -0.005 0.00507 1.05407 0 2.36557V2.36981V14.2512C0.00527 15.5625 1.07241 16.6214 2.38376 16.6163H14.2512C15.5552 16.6111 16.6111 15.5552 16.6163 14.2512V2.36981C16.6136 1.06393 15.557 0.00522 14.2512 0H2.38376Z" fill="currentColor"/>
+        {/* Bottom-right corner */}
+        <path transform="translate(49.36, 49.36)" d="M2.3838 0C1.07252 -0.00504931 0.00524621 1.05387 0 2.36516V14.228C-0.00762607 15.5394 1.04951 16.6087 2.3608 16.6164H2.3838H11.8816C14.4763 16.6164 16.6305 14.4576 16.6305 11.8628V2.36516C16.6253 1.05387 15.558 -0.00504931 14.2467 0H2.3838Z" fill="currentColor"/>
+      </svg>
+    ),
+    coreMotivation: "Power",
+    communication: "Commanding",
+    attachment: "Disorganized",
+    initiation: "Active",
+    powerOrientation: "Dominant",
+    riskOrientation: "High",
+    typicalConfidence: "High",
+  },
+  {
+    name: "Loyal Ritualist",
+    tagline: '"Routine is intimacy."',
+    color: "#2aff8f",
+    icon: (
+      <svg viewBox="0 0 60 52" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-full">
+        <path d="M25.5674 51.1349C24.784 51.1349 24.0476 50.8298 23.4936 50.2758L16.8471 43.6291C16.2932 43.0753 15.9881 42.3389 15.9881 41.5555C15.9881 40.7721 16.2932 40.0357 16.8472 39.4818L23.4937 32.8354C24.0476 32.2815 24.784 31.9765 25.5674 31.9765C26.3507 31.9765 27.0872 32.2815 27.641 32.8355C28.7844 33.979 28.7844 35.8395 27.6409 36.9826L26.0007 38.6229H41.0824C48.2796 38.6229 54.1349 32.7662 54.1349 25.5674C54.1349 22.2694 52.8866 19.1149 50.6198 16.6852C49.517 15.5029 49.5816 13.6434 50.7637 12.5404C51.3089 12.032 52.0192 11.7521 52.7639 11.7521C53.5744 11.7521 54.3562 12.0919 54.9088 12.6845C58.1918 16.2041 60 20.7793 60 25.5675C60 36.0004 51.5136 44.4882 41.0824 44.4882H26.0005L27.641 46.1287C28.7844 47.2719 28.7844 49.1324 27.641 50.2759C27.0872 50.8298 26.3509 51.1349 25.5674 51.1349ZM7.23621 39.3859C6.42562 39.3859 5.64387 39.0462 5.09121 38.4537C1.8082 34.9342 0 30.3578 0 25.5675C0 15.1363 8.48777 6.64992 18.9209 6.64992H34.0027L32.359 5.00625C31.2156 3.86309 31.2156 2.00262 32.359 0.859101C32.9128 0.305156 33.6492 0 34.4326 0C35.216 0 35.9524 0.305039 36.5064 0.859101L43.1561 7.50879C43.71 8.06273 44.015 8.79926 44.015 9.58266C44.0148 10.3665 43.7097 11.103 43.1555 11.6566L36.5058 18.3032C35.9518 18.8566 35.2155 19.1614 34.4326 19.1614C33.649 19.1614 32.9123 18.8563 32.3585 18.302C31.8048 17.748 31.5 17.0116 31.5001 16.2281C31.5004 15.4448 31.8055 14.7084 32.3597 14.1547L34.0002 12.5148H18.9209C11.7219 12.5148 5.86523 18.3702 5.86523 25.5673C5.86523 28.8674 7.11351 32.023 9.38027 34.4528C9.91453 35.0254 10.1939 35.7721 10.1667 36.5549C10.1394 37.3378 9.80895 38.0631 9.23625 38.5975C8.69121 39.1059 7.98105 39.3859 7.23621 39.3859Z" fill="currentColor"/>
+      </svg>
+    ),
+    coreMotivation: "Stability",
+    communication: "Consistent",
+    attachment: "Secure",
+    initiation: "Shared",
+    powerOrientation: "Switch",
+    riskOrientation: "Low",
+    typicalConfidence: "Medium",
+  },
+  {
+    name: "Exhibitionist Performer",
+    tagline: '"Watch me shine."',
+    color: "#e6b65c",
+    icon: (
+      <svg viewBox="0 0 50 56" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-full">
+        {/* Top narrow ellipse */}
+        <path fillRule="evenodd" clipRule="evenodd" d="M24.6667 0C28.7646 0 32.4017 0.63875 34.6533 1.6625C35.2629 1.93958 35.7587 2.23417 36.0912 2.56667C36.2108 2.68625 36.3333 2.7825 36.3333 2.91667C36.3333 3.05083 36.2108 3.14708 36.0912 3.26667C35.7587 3.59917 35.2629 3.89375 34.6533 4.17083C32.4017 5.19458 28.7646 5.83333 24.6667 5.83333C20.5687 5.83333 16.9317 5.19458 14.68 4.17083C14.0704 3.89375 13.5746 3.59917 13.2421 3.26667C13.1225 3.14708 13 3.05083 13 2.91667C13 2.7825 13.1225 2.68625 13.2421 2.56667C13.5746 2.23417 14.0704 1.93958 14.68 1.6625C16.9317 0.63875 20.5687 0 24.6667 0Z" transform="translate(0.5, 0)" fill="currentColor"/>
+        {/* Middle trapezoid body */}
+        <path fillRule="evenodd" clipRule="evenodd" d="M3.14356 33.7727C1.45698 34.3118 -0.41292 32.7126 0.0807525 31.0122L8.84253 0.832997C9.04467 0.136764 9.91094 -0.23658 10.5142 0.165567C12.8504 1.66473 16.3613 2.07898 21.7805 2.07898C27.1997 2.07898 30.0529 2.04446 32.3892 0.545295C33.3055 -0.0655678 34.6232 0.504754 34.9302 1.56233L43.4803 31.0122C43.9739 32.7126 42.104 34.3118 40.4175 33.7727C35.5558 32.219 28.9977 31.2457 21.7805 31.2457C14.5633 31.2457 8.00526 32.219 3.14356 33.7727Z" transform="translate(3, 6)" fill="currentColor"/>
+        {/* Bottom wide ellipse */}
+        <path fillRule="evenodd" clipRule="evenodd" d="M24.7917 0C33.2354 0 40.7283 1.34167 45.3717 3.45333C46.7775 4.09208 47.9033 4.79208 48.6704 5.55917C49.2246 6.11333 49.5833 6.67625 49.5833 7.29167C49.5833 7.90708 49.2246 8.47 48.6704 9.02417C47.9033 9.79125 46.7775 10.4913 45.3717 11.13C40.7283 13.2417 33.2354 14.5833 24.7917 14.5833C16.3479 14.5833 8.855 13.2417 4.21167 11.13C2.80583 10.4913 1.68 9.79125 0.912917 9.02417C0.35875 8.47 0 7.90708 0 7.29167C0 6.67625 0.35875 6.11333 0.912917 5.55917C1.68 4.79208 2.80583 4.09208 4.21167 3.45333C8.855 1.34167 16.3479 0 24.7917 0Z" transform="translate(0, 41)" fill="currentColor"/>
+      </svg>
+    ),
+    coreMotivation: "Validation",
+    communication: "Expressive",
+    attachment: "Mixed",
+    initiation: "Active",
+    powerOrientation: "Switch",
+    riskOrientation: "High",
+    typicalConfidence: "High",
+  },
+  {
+    name: "Explorer of Edges",
+    tagline: '"Let\'s find the edge—and keep going."',
+    color: "#ff2e63",
+    icon: (
+      <svg viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-full">
+        {/* Outer broken circle */}
+        <path d="M30 60C46.4777 60 60 46.4777 60 30C60 21.7036 56.3912 13.7111 50.3024 8.07375C49.8955 7.69605 49.3377 7.52438 48.7935 7.6343C48.2493 7.73215 47.7824 8.0823 47.5352 8.57672L44.9495 13.7479C44.1792 15.2885 44.5165 17.1261 45.5422 18.5098C47.9251 21.7242 49.3359 25.7004 49.3359 30C49.3359 40.6618 40.6618 49.3359 30 49.3359C19.3382 49.3359 10.5469 40.6618 10.5469 30C10.5469 19.3382 19.3382 10.6641 30 10.6641C31.5263 10.6641 33.0097 10.845 34.4324 11.1846C37.168 11.8376 40.3244 10.3862 40.7869 7.61193L41.4104 3.87152C41.5495 3.03902 41.0757 2.22352 40.2809 1.93172C36.9935 0.72832 33.5345 0 30 0C13.5223 0 0 13.5223 0 30C0 46.4777 13.5223 60 30 60Z" fill="currentColor"/>
+        {/* Inner broken circle */}
+        <path d="M37.755 20.8459C38.2579 20.5936 38.6098 20.118 38.7025 19.5618L38.7212 19.4501C38.9715 17.948 38.3657 16.3943 37.0085 15.7037C34.8812 14.6211 32.4853 14 29.9375 14C21.2137 14 14 21.0965 14 29.8203C14 38.5441 21.2137 45.6406 29.9375 45.6406C38.6613 45.6406 45.7578 38.5441 45.7578 29.8203C45.7578 27.3025 45.1452 24.9389 44.079 22.8371C43.231 21.1656 40.9609 21.4207 40.1227 23.0972C39.6784 23.9856 38.7703 24.5469 37.777 24.5469H33.4531C32.9862 24.5469 32.5399 24.7323 32.2104 25.0619C32.0203 25.252 31.6953 25.1173 31.6953 24.8485V24.2224C31.6953 24.0099 31.8154 23.8156 32.0055 23.7205L37.755 20.8459Z" fill="currentColor"/>
+      </svg>
+    ),
+    coreMotivation: "Intensity & transformation",
+    communication: "Honest",
+    attachment: "Disorganized",
+    initiation: "Active",
+    powerOrientation: "Dominant/Switch",
+    riskOrientation: "Very high",
+    typicalConfidence: "High",
+  },
 ];
 
-const getRiskLevel = (level: "Low" | "Medium" | "High"): number => {
+const getRiskLevel = (level: "Low" | "Medium" | "High" | "Very high"): number => {
   switch (level) {
     case "Low":
       return 1;
     case "Medium":
       return 2;
     case "High":
+    case "Very high":
       return 3;
   }
 };
@@ -149,8 +246,31 @@ const ArchetypeCard: FC<{ archetype: Archetype }> = ({ archetype }) => {
     <div
       className="relative flex-shrink-0 w-[280px] sm:w-[320px] md:w-[360px] lg:w-[400px] bg-[#130b17] border-2 border-white/10 rounded-[20px] overflow-hidden px-5 sm:px-6 lg:px-8 py-6 sm:py-8 lg:py-10"
     >
+      {/* Top-right blur effect */}
+      <div
+        className="absolute w-[200px] h-[190px] rounded-full pointer-events-none"
+        style={{
+          right: '-100px',
+          top: '-120px',
+          background: archetype.color,
+          filter: 'blur(80px)',
+        }}
+        aria-hidden="true"
+      />
+      {/* Bottom-left blur effect */}
+      <div
+        className="absolute w-[210px] h-[190px] rounded-full pointer-events-none"
+        style={{
+          left: '-90px',
+          bottom: '-150px',
+          background: archetype.color,
+          filter: 'blur(80px)',
+        }}
+        aria-hidden="true"
+      />
+
       {/* Header with icon and name */}
-      <div className="flex items-center gap-3 sm:gap-4 mb-4 sm:mb-5">
+      <div className="relative flex items-center gap-3 sm:gap-4 mb-4 sm:mb-5">
         <div
           className="flex-shrink-0 flex items-center justify-center w-[52px] h-[52px] sm:w-[60px] sm:h-[60px] lg:w-[68px] lg:h-[68px] rounded-xl p-2 sm:p-2.5"
           style={{ backgroundColor: archetype.color, color: "#0a0510" }}
@@ -158,7 +278,7 @@ const ArchetypeCard: FC<{ archetype: Archetype }> = ({ archetype }) => {
           {archetype.icon}
         </div>
         <div className="flex-1 min-w-0">
-          <h3 className="font-serif text-[18px] sm:text-[22px] lg:text-[26px] leading-tight text-white whitespace-nowrap">{archetype.name}</h3>
+          <h3 className="font-serif text-[18px] sm:text-[22px] lg:text-[26px] leading-tight text-white">{archetype.name}</h3>
           <p className="font-serif italic text-[12px] sm:text-[13px] lg:text-[14px] leading-snug text-[#9ca3af] mt-1">
             {archetype.tagline}
           </p>
@@ -166,8 +286,8 @@ const ArchetypeCard: FC<{ archetype: Archetype }> = ({ archetype }) => {
       </div>
 
       {/* Behavioral Tendencies */}
-      <div className="py-3 sm:py-4">
-        <p className="text-[12px] sm:text-[13px] lg:text-[14px] text-[#9ca3af] mb-3 sm:mb-4">Behavioral Tendencies:</p>
+      <div className="relative py-3 sm:py-4">
+        <p className="text-[12px] sm:text-[13px] lg:text-[14px] text-[#9ca3af] mb-3 sm:mb-4">Behavioral tendencies:</p>
 
         {/* Core motivation box */}
         <div
@@ -227,7 +347,7 @@ const ArchetypeCard: FC<{ archetype: Archetype }> = ({ archetype }) => {
       </div>
 
       {/* Progress bars */}
-      <div className="space-y-3 sm:space-y-4 mt-3 sm:mt-4">
+      <div className="relative space-y-3 sm:space-y-4 mt-3 sm:mt-4">
         <div>
           <div className="flex items-center justify-between mb-1.5 sm:mb-2">
             <span className="text-[10px] sm:text-[11px] lg:text-[12px] text-[#9ca3af]">Risk orientation</span>
