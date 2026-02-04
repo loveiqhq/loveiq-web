@@ -34,9 +34,19 @@
 }
 
 html {
-  /* Lenis smooth scroll handles scroll behavior */
+  scroll-behavior: smooth;
   height: 100%;
   overflow-x: hidden;
+}
+
+body {
+  margin: 0;
+  min-height: 100%;
+  overflow-x: hidden;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior-y: none;
+  background: var(--color-bg);
+  color: var(--color-text-primary);
 }
 
 html.lenis, html.lenis body {
@@ -44,7 +54,7 @@ html.lenis, html.lenis body {
 }
 
 .lenis.lenis-smooth {
-  scroll-behavior: auto !important;
+  scroll-behavior: auto;
 }
 
 .lenis.lenis-smooth [data-lenis-prevent] {
@@ -57,16 +67,6 @@ html.lenis, html.lenis body {
 
 .lenis.lenis-scrolling iframe {
   pointer-events: none;
-}
-
-body {
-  margin: 0;
-  min-height: 100%;
-  overflow-x: hidden;
-  -webkit-overflow-scrolling: touch;
-  overscroll-behavior-y: none;
-  background: var(--color-bg);
-  color: var(--color-text-primary);
 }
 
 body,
@@ -210,13 +210,12 @@ h3,
 .animate-on-scroll {
   opacity: 0;
   transform: translateY(24px);
-  filter: blur(8px);
-  transition: opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1), transform 0.85s cubic-bezier(0.16, 1, 0.3, 1), filter 0.85s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.85s cubic-bezier(0.16, 1, 0.3, 1);
 }
 .animate-on-scroll.animate {
   opacity: 1;
   transform: translateY(0);
-  filter: blur(0);
 }
 
 @keyframes columnReveal {

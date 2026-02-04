@@ -3,49 +3,33 @@
 import { useEffect, useRef } from "react";
 import Lenis from "lenis";
 
+function isGecko(): boolean {
+  if (typeof navigator === "undefined") return false;
+  const ua = navigator.userAgent;
+  return /Gecko\/\d/.test(ua) && !/like Gecko/.test(ua);
+}
+
 export default function SmoothScroll({ children }: { children: React.ReactNode }) {
   const lenisRef = useRef<Lenis | null>(null);
 
   useEffect(() => {
+    if (isGecko()) return;
+
     const lenis = new Lenis({
-      duration: 1.2,
-      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      autoRaf: true,
+      smoothWheel: !isGecko(),
+      duration: 0.7,
+      easing: (t: number) => 1 - Math.pow(1 - t, 3),
       orientation: "vertical",
       gestureOrientation: "vertical",
-      smoothWheel: true,
-      touchMultiplier: 2,
+      touchMultiplier: 1,
+      anchors: true,
     });
 
     lenisRef.current = lenis;
-
-    function raf(time: number) {
-      lenis.raf(time);
-      requestAnimationFrame(raf);
-    }
-
-    requestAnimationFrame(raf);
-
-    // Handle anchor links with smooth scroll
-    const handleAnchorClick = (e: MouseEvent) => {
-      const target = e.target as HTMLElement;
-      const anchor = target.closest('a[href^="#"]');
-      if (anchor) {
-        const href = anchor.getAttribute("href");
-        if (href && href !== "#") {
-          e.preventDefault();
-          const targetElement = document.querySelector(href);
-          if (targetElement) {
-            lenis.scrollTo(targetElement as HTMLElement, { offset: 0 });
-          }
-        }
-      }
-    };
-
-    document.addEventListener("click", handleAnchorClick);
-
     return () => {
-      document.removeEventListener("click", handleAnchorClick);
       lenis.destroy();
+      lenisRef.current = null;
     };
   }, []);
 
