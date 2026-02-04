@@ -1,6 +1,6 @@
 import "./globals.css";
 import Script from "next/script";
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Lora, Manrope } from "next/font/google";
 import { headers } from "next/headers";
 import SmoothScroll from "../components/SmoothScroll";
@@ -108,6 +108,13 @@ export const metadata: Metadata = {
     title: "LoveIQ | Science-backed sexual psychology assessment",
     description: "Take LoveIQ’s science-backed sexual psychology assessment to understand your desires, attachment patterns, and intimacy styles.",
   },
+};
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 1,
+  userScalable: false,
 };
 
 export default async function RootLayout({ children }: { children: React.ReactNode }) {
