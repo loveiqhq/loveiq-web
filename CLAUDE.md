@@ -1,61 +1,417 @@
 # CLAUDE.md
 
-This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
+> AI assistant instructions for the LoveIQ marketing website codebase.
 
-## Build and Development Commands
+## TL;DR - Quick Commands
 
 ```bash
-npm run dev      # Start development server (Next.js)
-npm run build    # Production build
-npm run start    # Run production server
-npm run lint     # Run ESLint
+npm install          # Install dependencies
+npm run dev          # Start dev server at http://localhost:3000
+npm run build        # Production build
+npm run lint         # Run ESLint
+npm run start        # Run production build locally
 ```
+
+---
+
+## Repo Map
+
+```
+loveiq-web/
+├── app/                        # Next.js App Router (pages + API routes)
+│   ├── api/
+│   │   ├── contact/route.ts    # Contact form → Resend + Slack
+│   │   ├── waitlist/route.ts   # Waitlist signup → Supabase + Resend + Slack
+│   │   └── health/route.ts     # Health check endpoint
+│   ├── about/page.tsx          # About page
+│   ├── waitlist/page.tsx       # Waitlist standalone page
+│   ├── glossary/               # Glossary pages (index + [slug])
+│   ├── trust-zone/             # Trust zone pages
+│   ├── [legal pages]           # privacy-policy, terms-*, cookies, imprint, etc.
+│   ├── globals.css             # CSS variables + Tailwind + animations
+│   ├── layout.tsx              # Root layout (fonts, scripts, metadata)
+│   ├── page.tsx                # Landing page entry
+│   ├── robots.ts               # robots.txt generation
+│   └── sitemap.ts              # sitemap.xml generation
+├── components/
+│   ├── landing/                # Landing page sections (S01-S14 + Nav/Footer)
+│   │   ├── LandingPage.tsx     # Main composition component
+│   │   ├── NavSection.tsx      # Navigation
+│   │   ├── S01Hero.tsx → S14CTA.tsx  # Numbered sections
+│   │   ├── FooterSection.tsx
+│   │   └── ScrollAnimator.tsx  # Scroll animation orchestrator
+│   ├── about/                  # About page sections
+│   ├── glossary/               # Glossary components
+│   ├── legal/                  # Legal page nav component
+│   └── SmoothScroll.tsx        # Lenis smooth scroll wrapper
+├── lib/
+│   ├── analytics.ts            # GA4 event tracking helpers
+│   ├── csrf.ts                 # CSRF token verification
+│   ├── ratelimit.ts            # IP-based rate limiting (Supabase-backed)
+│   ├── fetch-with-timeout.ts   # Fetch wrapper with timeout
+│   ├── glossary-data.ts        # Glossary content
+│   └── emails/
+│       └── waitlist.ts         # Waitlist confirmation email template
+├── public/                     # Static assets (images, videos)
+├── proxy.ts                    # Middleware: CSP headers, CSRF cookies, security logging
+├── .github/workflows/
+│   └── security.yml            # CI: npm audit + ESLint + build
+├── .planning/                  # Architecture docs (ARCHITECTURE.md, CONVENTIONS.md, etc.)
+├── SECURITY.md                 # Security guidelines + secrets rotation
+├── DEVELOPMENT.md              # Development setup guide
+└── [config files]              # package.json, tsconfig.json, tailwind.config.js, etc.
+```
+
+---
 
 ## Architecture Overview
 
-This is a Next.js 14 marketing/landing site for LoveIQ, a sexual psychology assessment platform. The site uses the App Router.
+**Type:** Static marketing site with API routes (Next.js 16 App Router)
 
-### Directory Structure
+**No user authentication.** This is a pre-launch marketing site with waitlist collection.
 
-- `app/` - Next.js App Router pages and API routes
-  - `page.tsx` - Landing page (renders `components/landing/LandingPage.tsx`)
-  - `about/page.tsx` - About page
-  - `waitlist/page.tsx` - Waitlist signup page
-  - `api/waitlist/route.ts` - Waitlist signup endpoint (Supabase + Resend + Slack)
-  - `api/contact/route.ts` - Contact form endpoint (Resend + reCAPTCHA + Slack)
-- `components/` - React components organized by page
-  - `landing/` - Landing page sections (HeroSection, NavSection, etc.)
-  - `about/` - About page sections
-  - `theme.ts` - Shared gradient and styling constants
-- `lib/` - Utilities
-  - `analytics.ts` - Google Analytics tracking helpers
-  - `emails/waitlist.ts` - Waitlist email template
+### Data Flow
 
-### Styling System
+1. **Page Load:** SSR → Client hydration → Smooth scroll init → Analytics pageview
+2. **Waitlist Signup:** Form → CSRF check → Rate limit → Zod validation → Honeypot check → Supabase insert → Resend email → Slack notification
+3. **Contact Form:** Form → reCAPTCHA → CSRF check → Rate limit → Zod validation → Resend email → Slack notification
 
-Uses Tailwind CSS with CSS custom properties defined in `app/globals.css`:
-- Color tokens: `--color-bg`, `--color-surface`, `--color-card`, `--accent-orange`, `--accent-purple`, etc.
-- Tailwind extends these via `tailwind.config.js` (e.g., `bg-page`, `text-text-primary`, `accent-orange`)
-- Typography: Manrope (sans) and Lora (serif) via `next/font/google`
-- Animation classes: `animate-on-scroll`, `reveal-on-scroll`, `animate-float`, etc.
+### Key Boundaries
 
-### API Integrations
+- **Server-only secrets:** Supabase service key, Resend API key, reCAPTCHA secret, Slack webhooks
+- **Client-safe:** Only `NEXT_PUBLIC_*` vars (site URL, reCAPTCHA site key)
+- **No direct DB client:** All Supabase access via REST API in API routes
 
-- **Supabase**: Waitlist signups stored via REST API (server-side only)
-- **Resend**: Transactional emails (waitlist confirmation, contact forms)
-- **Slack Webhooks**: Notifications for new signups/contacts
-- **Google Analytics**: Event tracking via `lib/analytics.ts`
-- **reCAPTCHA**: Contact form spam protection
+---
 
-### Environment Variables
+## Environment Variables
 
-Required in `.env.local` (see `SECURITY.md` for details):
-- `SUPABASE_URL`, `SUPABASE_SERVICE_ROLE_KEY`
-- `RESEND_API_KEY`, `RESEND_FROM`, `RESEND_REPLY_TO`
-- `RECAPTCHA_SECRET_KEY`
-- `SLACK_WAITLIST_WEBHOOK_URL`, `SLACK_CONTACT_WEBHOOK_URL`
-- `NEXT_PUBLIC_SITE_URL`
+Copy `.env.example` to `.env.local` and fill values:
 
-### Security Headers
+| Variable | Required | Purpose |
+|----------|----------|---------|
+| `NEXT_PUBLIC_SITE_URL` | Yes | Canonical URL for metadata |
+| `SUPABASE_URL` | For forms | Waitlist database |
+| `SUPABASE_SERVICE_ROLE_KEY` | For forms | Supabase auth (server-only!) |
+| `RESEND_API_KEY` | For forms | Email sending |
+| `RESEND_FROM` | No | From address (default: `LoveIQ <hello@send.loveiq.org>`) |
+| `RESEND_REPLY_TO` | No | Reply-to address |
+| `NEXT_PUBLIC_RECAPTCHA_SITE_KEY` | For contact | reCAPTCHA client key |
+| `RECAPTCHA_SECRET_KEY` | For contact | reCAPTCHA server key |
+| `SLACK_WAITLIST_WEBHOOK_URL` | No | Slack notifications |
+| `SLACK_CONTACT_WEBHOOK_URL` | No | Slack notifications |
+| `CONTACT_TO_EMAIL` | For contact | Contact form recipient |
 
-Configured in `next.config.js` with strict CSP, HSTS, X-Frame-Options, etc. Update CSP when adding new third-party scripts.
+**The site renders without env vars.** Forms will fail gracefully with error messages.
+
+---
+
+## Development
+
+### Quick Start
+
+```bash
+npm install
+cp .env.example .env.local  # Edit with your values (optional for UI work)
+npm run dev                  # http://localhost:3000
+```
+
+### CSP in Development
+
+The middleware (`proxy.ts`) relaxes CSP in dev mode:
+- Allows `'unsafe-eval'` for Next.js HMR
+- Allows `ws://localhost:*` for WebSocket connections
+- Skips `upgrade-insecure-requests`
+
+### Common Issues
+
+| Issue | Fix |
+|-------|-----|
+| Form returns 403 | Clear cookies for localhost, refresh page |
+| CSP errors in console | Ensure running latest code with dev CSP relaxation |
+| reCAPTCHA not loading | Set `NEXT_PUBLIC_RECAPTCHA_SITE_KEY`, register localhost in Google admin |
+
+---
+
+## Testing
+
+**No test framework configured.** Manual testing only.
+
+To validate changes:
+1. Run `npm run lint` - Must pass
+2. Run `npm run build` - Must succeed
+3. Test affected pages/forms manually in dev mode
+
+---
+
+## CI/CD
+
+**GitHub Actions** (`.github/workflows/security.yml`):
+
+1. **Security Audit:** `npm audit --audit-level=high` - Fails on high/critical vulnerabilities
+2. **Build & Lint:** `npm run lint` + `npm run build`
+
+Runs on push/PR to `main`.
+
+**Deployment:** Vercel (configured externally, not in repo)
+
+---
+
+## Styling System
+
+### Design Tokens
+
+CSS custom properties in `app/globals.css`:
+```css
+--color-bg: #0b0613;
+--color-surface: #0f0a18;
+--accent-orange: #f26d4f;
+--accent-purple: #9c7dff;
+/* ... see globals.css for full list */
+```
+
+Extended in `tailwind.config.js`:
+```js
+colors: {
+  page: "var(--color-bg)",
+  surface: "var(--color-surface)",
+  accent: { orange: "var(--accent-orange)", purple: "var(--accent-purple)" }
+}
+```
+
+### Typography
+
+- **Sans:** Manrope (`--font-sans`, class `font-sans`)
+- **Serif:** Lora (`--font-serif`, class `font-serif`)
+- Headings default to serif, body to sans
+
+### Utility Classes
+
+| Class | Purpose |
+|-------|---------|
+| `.content-shell` | Max-width container (1200px) |
+| `.section-shell` | Section vertical padding |
+| `.animate-on-scroll` | Fade-up on scroll (add `.animate` when visible) |
+| `.reveal-on-scroll` | Alternative scroll reveal (add `.is-visible`) |
+
+### Component Patterns
+
+```tsx
+// Standard section component
+const SectionName: FC = () => {
+  return (
+    <section className="relative bg-page py-16 lg:py-24">
+      <div className="content-shell">
+        {/* content */}
+      </div>
+    </section>
+  );
+};
+
+export default SectionName;
+```
+
+---
+
+## API Route Patterns
+
+### Standard Structure
+
+```typescript
+// app/api/example/route.ts
+import { NextResponse } from "next/server";
+import { z } from "zod";
+import { verifyCsrfToken } from "@/lib/csrf";
+import { checkRateLimit, getClientIp } from "@/lib/ratelimit";
+
+const schema = z.object({
+  email: z.string().email().max(320),
+  // ...
+});
+
+export async function POST(request: Request) {
+  // 1. CSRF verification
+  if (!(await verifyCsrfToken(request))) {
+    return NextResponse.json({ error: "Invalid request." }, { status: 403 });
+  }
+
+  // 2. Rate limiting
+  const ip = getClientIp(request);
+  const rateLimit = await checkRateLimit(ip, { bucket: "example", limit: 5, windowMs: 60_000 });
+  if (!rateLimit.allowed) {
+    return NextResponse.json({ error: "Please try again later." }, { status: 429 });
+  }
+
+  // 3. Validation
+  const parsed = schema.safeParse(await request.json().catch(() => ({})));
+  if (!parsed.success) {
+    return NextResponse.json({ error: "Invalid input" }, { status: 400 });
+  }
+
+  // 4. Business logic
+  try {
+    // ... do work
+    return NextResponse.json({ success: true });
+  } catch (err) {
+    console.error("Error:", err);
+    return NextResponse.json({ error: "Unable to process request." }, { status: 500 });
+  }
+}
+```
+
+### Error Response Format
+
+Always return `{ error: string }` or `{ success: true }`. Keep error messages generic to avoid information disclosure.
+
+---
+
+## How to Change Things Safely
+
+### Pre-Change Checklist
+
+- [ ] Read existing code in the area you're modifying
+- [ ] Run `npm run lint` - fix any errors
+- [ ] Run `npm run build` - ensure it succeeds
+- [ ] Test manually in browser
+
+### Common Tasks
+
+#### Add a New Landing Section
+
+1. Create `components/landing/S##NewSection.tsx`
+2. Follow existing section patterns (see `S05Archetypes.tsx` for complex example)
+3. Import and add to `components/landing/LandingPage.tsx` in order
+4. Use `animate-on-scroll` class for scroll animations
+
+#### Add a New Page
+
+1. Create `app/{page-name}/page.tsx`
+2. Create `components/{page-name}/{PageName}Page.tsx` for content
+3. Add to navigation if needed (`NavSection.tsx`, `FooterSection.tsx`)
+4. Add to `app/sitemap.ts` for SEO
+
+#### Add a New API Endpoint
+
+1. Create `app/api/{name}/route.ts`
+2. Include CSRF verification (`verifyCsrfToken`)
+3. Include rate limiting (`checkRateLimit`)
+4. Add Zod schema for input validation
+5. Use generic error messages
+6. Log errors with `console.error`
+
+#### Add a New Environment Variable
+
+1. Add to `.env.example` with description
+2. Document in this file's Environment Variables section
+3. If client-side, prefix with `NEXT_PUBLIC_`
+4. Update `SECURITY.md` if it's a secret
+
+#### Modify CSP / Add Third-Party Script
+
+1. Edit `proxy.ts` CSP directives
+2. Add domain to appropriate directive (`script-src`, `connect-src`, `img-src`, etc.)
+3. Test in both dev and production build
+4. Document in `SECURITY.md`
+
+---
+
+## Security Guidelines
+
+### Secrets
+
+- **Never commit secrets** - Use `.env.local` (gitignored)
+- **Never expose service keys** - `SUPABASE_SERVICE_ROLE_KEY` is server-only
+- **Use placeholders in code** - Document where to get real values
+
+### Input Handling
+
+- All API inputs validated with Zod
+- Email addresses normalized (lowercase, trimmed)
+- HTML escaped in email templates (`lib/emails/waitlist.ts`)
+- Header injection prevented in contact form
+
+### Rate Limiting
+
+- IP-based rate limiting on all form endpoints
+- Persisted in Supabase (survives deployments)
+- Email-based cooldown on waitlist
+
+### CSRF Protection
+
+- Double-submit cookie pattern
+- Cookie set by middleware (`proxy.ts`)
+- Verified in API routes (`lib/csrf.ts`)
+
+See `SECURITY.md` for rotation schedules and incident response.
+
+---
+
+## Agent Operating Rules
+
+When working in this codebase:
+
+1. **Search before creating** - Check if a similar component/pattern exists
+2. **Match existing patterns** - Follow conventions in `components/landing/` for sections
+3. **Smallest change principle** - Don't refactor unrelated code
+4. **Never commit secrets** - Use placeholders like `your-api-key-here`
+5. **Run lint before finishing** - `npm run lint` must pass
+6. **Test the build** - `npm run build` must succeed
+7. **Preserve security** - Don't weaken CSP, rate limits, or CSRF checks
+8. **Keep error messages generic** - Avoid information disclosure
+9. **Use existing utilities** - `lib/ratelimit.ts`, `lib/csrf.ts`, `lib/analytics.ts`
+10. **Document unknowns** - If uncertain, note assumptions and which files to check
+
+### When Uncertain
+
+- Check `.planning/codebase/` docs for architecture decisions
+- Look at similar existing code (e.g., existing API routes, existing sections)
+- Ask rather than guess on security-related changes
+
+---
+
+## FAQ / Troubleshooting
+
+### Build fails with "Module not found"
+
+Check import paths. This repo uses relative imports (no `@/` alias).
+
+### Forms fail silently
+
+Check browser DevTools Network tab for response. Common causes:
+- Missing CSRF cookie (refresh page)
+- Rate limited (wait 1 minute)
+- Missing env vars (check server logs)
+
+### Styles not applying
+
+- Check if using correct design token (see `globals.css`, `tailwind.config.js`)
+- Tailwind purges unused classes - ensure class is in content paths
+
+### Animations not working
+
+- `animate-on-scroll` needs JavaScript to add `.animate` class
+- `ScrollAnimator` component handles this on landing page
+- Check if `IntersectionObserver` is being set up correctly
+
+### Local dev slower than expected
+
+- Next.js 16 uses Turbopack in dev by default
+- First load compiles on-demand
+- Subsequent loads are cached
+
+---
+
+## File Quick Reference
+
+| Need to... | Look at... |
+|------------|------------|
+| Add landing section | `components/landing/LandingPage.tsx`, existing `S##*.tsx` |
+| Modify navigation | `components/landing/NavSection.tsx` |
+| Modify footer | `components/landing/FooterSection.tsx` |
+| Add API endpoint | `app/api/waitlist/route.ts` (reference) |
+| Change email template | `lib/emails/waitlist.ts` |
+| Add analytics event | `lib/analytics.ts` |
+| Modify design tokens | `app/globals.css` (CSS vars), `tailwind.config.js` |
+| Update security headers | `proxy.ts` |
+| Understand architecture | `.planning/codebase/ARCHITECTURE.md` |
+| Check coding conventions | `.planning/codebase/CONVENTIONS.md` |
