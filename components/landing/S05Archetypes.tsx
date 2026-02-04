@@ -248,7 +248,7 @@ const ArchetypeCard: FC<{ archetype: Archetype }> = ({ archetype }) => {
     >
       {/* Top-right blur effect */}
       <div
-        className="absolute w-[120px] h-[120px] sm:w-[150px] sm:h-[140px] lg:w-[200px] lg:h-[190px] -right-[55px] -top-[55px] sm:-right-[70px] sm:-top-[80px] lg:-right-[100px] lg:-top-[120px] rounded-full pointer-events-none blur-[30px] sm:blur-[50px] lg:blur-[60px]"
+        className="absolute w-[120px] h-[120px] sm:w-[150px] sm:h-[140px] lg:w-[200px] lg:h-[190px] -right-[75px] -top-[75px] sm:-right-[70px] sm:-top-[80px] lg:-right-[100px] lg:-top-[120px] rounded-full pointer-events-none blur-[45px] sm:blur-[50px] lg:blur-[60px]"
         style={{
           background: archetype.color,
         }}
@@ -256,7 +256,7 @@ const ArchetypeCard: FC<{ archetype: Archetype }> = ({ archetype }) => {
       />
       {/* Bottom-left blur effect */}
       <div
-        className="absolute w-[120px] h-[120px] sm:w-[160px] sm:h-[140px] lg:w-[210px] lg:h-[190px] -left-[55px] -bottom-[55px] sm:-left-[60px] sm:-bottom-[90px] lg:-left-[90px] lg:-bottom-[150px] rounded-full pointer-events-none blur-[30px] sm:blur-[50px] lg:blur-[60px]"
+        className="absolute w-[120px] h-[120px] sm:w-[160px] sm:h-[140px] lg:w-[210px] lg:h-[190px] -left-[75px] -bottom-[75px] sm:-left-[60px] sm:-bottom-[90px] lg:-left-[90px] lg:-bottom-[150px] rounded-full pointer-events-none blur-[45px] sm:blur-[50px] lg:blur-[60px]"
         style={{
           background: archetype.color,
         }}
