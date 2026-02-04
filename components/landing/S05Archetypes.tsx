@@ -244,7 +244,7 @@ const ArchetypeCard: FC<{ archetype: Archetype }> = ({ archetype }) => {
 
   return (
     <div
-      className="relative flex-shrink-0 w-[280px] sm:w-[320px] md:w-[360px] lg:w-[400px] bg-[#130b17] border-2 border-white/10 rounded-[20px] overflow-hidden px-5 sm:px-6 lg:px-8 py-6 sm:py-8 lg:py-10"
+      className="relative flex-shrink-0 w-[280px] sm:w-[320px] md:w-[360px] lg:w-[400px] bg-[#130b17] border-2 border-white/10 rounded-[20px] overflow-hidden px-4 sm:px-6 lg:px-8 py-6 sm:py-8 lg:py-10 box-border"
     >
       {/* Top-right blur effect */}
       <div
@@ -264,109 +264,109 @@ const ArchetypeCard: FC<{ archetype: Archetype }> = ({ archetype }) => {
       />
 
       {/* Header with icon and name */}
-      <div className="relative flex items-center gap-3 sm:gap-4 mb-4 sm:mb-5">
+      <div className="relative flex items-center gap-2 sm:gap-4 mb-4 sm:mb-5 w-full overflow-hidden">
         <div
-          className="flex-shrink-0 flex items-center justify-center w-[52px] h-[52px] sm:w-[60px] sm:h-[60px] lg:w-[68px] lg:h-[68px] rounded-xl p-2 sm:p-2.5"
+          className="flex-shrink-0 flex items-center justify-center w-[48px] h-[48px] sm:w-[60px] sm:h-[60px] lg:w-[68px] lg:h-[68px] rounded-xl p-2 sm:p-2.5"
           style={{ backgroundColor: archetype.color, color: "#0a0510" }}
         >
           {archetype.icon}
         </div>
-        <div className="flex-1 min-w-0">
-          <h3 className="font-serif text-[18px] sm:text-[22px] lg:text-[26px] leading-tight text-white">{archetype.name}</h3>
-          <p className="font-serif italic text-[12px] sm:text-[13px] lg:text-[14px] leading-snug text-[#9ca3af] mt-1">
+        <div className="flex-1 min-w-0 overflow-hidden">
+          <h3 className="font-serif text-[16px] sm:text-[22px] lg:text-[26px] leading-tight text-white break-words">{archetype.name}</h3>
+          <p className="font-serif italic text-[11px] sm:text-[13px] lg:text-[14px] leading-snug text-[#9ca3af] mt-1 break-words">
             {archetype.tagline}
           </p>
         </div>
       </div>
 
       {/* Behavioral Tendencies */}
-      <div className="relative py-3 sm:py-4">
-        <p className="text-[12px] sm:text-[13px] lg:text-[14px] text-[#9ca3af] mb-3 sm:mb-4">Behavioral tendencies:</p>
+      <div className="relative py-3 sm:py-4 w-full overflow-hidden">
+        <p className="text-[11px] sm:text-[13px] lg:text-[14px] text-[#9ca3af] mb-3 sm:mb-4">Behavioral tendencies:</p>
 
         {/* Core motivation box */}
         <div
-          className="flex items-center gap-2 sm:gap-3 p-3 sm:p-4 rounded-xl mb-4 sm:mb-5"
+          className="flex items-center gap-2 sm:gap-3 p-2 sm:p-4 rounded-xl mb-4 sm:mb-5 w-full box-border"
           style={{ backgroundColor: "#130b17", border: `1px solid ${archetype.color}` }}
         >
           <div
-            className="flex items-center justify-center w-8 h-8 sm:w-10 sm:h-10 rounded-full"
+            className="flex-shrink-0 flex items-center justify-center w-7 h-7 sm:w-10 sm:h-10 rounded-full"
             style={{ border: `1px solid ${archetype.color}` }}
           >
             <div
-              className="flex items-center justify-center w-5 h-5 sm:w-6 sm:h-6 rounded-full"
+              className="flex items-center justify-center w-4 h-4 sm:w-6 sm:h-6 rounded-full"
               style={{ border: `1px solid ${archetype.color}` }}
             >
-              <div className="w-2 h-2 sm:w-2.5 sm:h-2.5 rounded-full" style={{ backgroundColor: archetype.color }} />
+              <div className="w-1.5 h-1.5 sm:w-2.5 sm:h-2.5 rounded-full" style={{ backgroundColor: archetype.color }} />
             </div>
           </div>
-          <div>
-            <p className="text-[10px] sm:text-[11px] lg:text-[12px] font-bold" style={{ color: archetype.color }}>
+          <div className="min-w-0 flex-1">
+            <p className="text-[9px] sm:text-[11px] lg:text-[12px] font-bold" style={{ color: archetype.color }}>
               Core motivation:
             </p>
-            <p className="font-serif text-[16px] sm:text-[18px] lg:text-[20px] font-medium text-white">{archetype.coreMotivation}</p>
+            <p className="font-serif text-[14px] sm:text-[18px] lg:text-[20px] font-medium text-white break-words">{archetype.coreMotivation}</p>
           </div>
         </div>
 
         {/* Attributes grid */}
-        <div className="grid grid-cols-2 gap-x-4 sm:gap-x-6 lg:gap-x-8 gap-y-3 sm:gap-y-4">
-          <div>
-            <div className="flex items-center gap-1.5 mb-0.5 sm:mb-1">
+        <div className="grid grid-cols-2 gap-x-2 sm:gap-x-6 lg:gap-x-8 gap-y-3 sm:gap-y-4 w-full">
+          <div className="min-w-0 overflow-hidden">
+            <div className="flex items-center gap-1 sm:gap-1.5 mb-0.5 sm:mb-1">
               <CommunicationIcon color={attributeColor} />
-              <span className="text-[10px] sm:text-[11px] lg:text-[12px] text-[#9ca3af]">Communication</span>
+              <span className="text-[9px] sm:text-[11px] lg:text-[12px] text-[#9ca3af]">Communication</span>
             </div>
-            <p className="font-serif text-[14px] sm:text-[16px] lg:text-[18px] font-medium text-white">{archetype.communication}</p>
+            <p className="font-serif text-[12px] sm:text-[16px] lg:text-[18px] font-medium text-white break-words">{archetype.communication}</p>
           </div>
-          <div>
-            <div className="flex items-center gap-1.5 mb-0.5 sm:mb-1">
+          <div className="min-w-0 overflow-hidden">
+            <div className="flex items-center gap-1 sm:gap-1.5 mb-0.5 sm:mb-1">
               <InitiationIcon color={attributeColor} />
-              <span className="text-[10px] sm:text-[11px] lg:text-[12px] text-[#9ca3af]">Initiation</span>
+              <span className="text-[9px] sm:text-[11px] lg:text-[12px] text-[#9ca3af]">Initiation</span>
             </div>
-            <p className="font-serif text-[14px] sm:text-[16px] lg:text-[18px] font-medium text-white">{archetype.initiation}</p>
+            <p className="font-serif text-[12px] sm:text-[16px] lg:text-[18px] font-medium text-white break-words">{archetype.initiation}</p>
           </div>
-          <div>
-            <div className="flex items-center gap-1.5 mb-0.5 sm:mb-1">
+          <div className="min-w-0 overflow-hidden">
+            <div className="flex items-center gap-1 sm:gap-1.5 mb-0.5 sm:mb-1">
               <AttachmentIcon color={attributeColor} />
-              <span className="text-[10px] sm:text-[11px] lg:text-[12px] text-[#9ca3af]">Attachment</span>
+              <span className="text-[9px] sm:text-[11px] lg:text-[12px] text-[#9ca3af]">Attachment</span>
             </div>
-            <p className="font-serif text-[14px] sm:text-[16px] lg:text-[18px] font-medium text-white">{archetype.attachment}</p>
+            <p className="font-serif text-[12px] sm:text-[16px] lg:text-[18px] font-medium text-white break-words">{archetype.attachment}</p>
           </div>
-          <div>
-            <div className="flex items-center gap-1.5 mb-0.5 sm:mb-1">
+          <div className="min-w-0 overflow-hidden">
+            <div className="flex items-center gap-1 sm:gap-1.5 mb-0.5 sm:mb-1">
               <PowerIcon color={attributeColor} />
-              <span className="text-[10px] sm:text-[11px] lg:text-[12px] text-[#9ca3af]">Power orientation</span>
+              <span className="text-[9px] sm:text-[11px] lg:text-[12px] text-[#9ca3af] truncate">Power</span>
             </div>
-            <p className="font-serif text-[14px] sm:text-[16px] lg:text-[18px] font-medium text-white">{archetype.powerOrientation}</p>
+            <p className="font-serif text-[12px] sm:text-[16px] lg:text-[18px] font-medium text-white break-words">{archetype.powerOrientation}</p>
           </div>
         </div>
       </div>
 
       {/* Progress bars */}
-      <div className="relative space-y-3 sm:space-y-4 mt-3 sm:mt-4">
-        <div>
+      <div className="relative space-y-3 sm:space-y-4 mt-3 sm:mt-4 w-full">
+        <div className="w-full">
           <div className="flex items-center justify-between mb-1.5 sm:mb-2">
-            <span className="text-[10px] sm:text-[11px] lg:text-[12px] text-[#9ca3af]">Risk orientation</span>
-            <span className="font-serif text-[12px] sm:text-[13px] lg:text-[14px] font-medium text-white">{archetype.riskOrientation}</span>
+            <span className="text-[9px] sm:text-[11px] lg:text-[12px] text-[#9ca3af]">Risk orientation</span>
+            <span className="font-serif text-[10px] sm:text-[13px] lg:text-[14px] font-medium text-white">{archetype.riskOrientation}</span>
           </div>
-          <div className="flex gap-[4px]">
+          <div className="flex gap-[3px] sm:gap-[4px] w-full">
             {[1, 2, 3].map((level) => (
               <div
                 key={level}
-                className="flex-1 h-[5px] sm:h-[6px] rounded-full"
+                className="flex-1 h-[4px] sm:h-[6px] rounded-full"
                 style={{ backgroundColor: level <= riskLevel ? archetype.color : "rgba(255,255,255,0.1)" }}
               />
             ))}
           </div>
         </div>
-        <div>
+        <div className="w-full">
           <div className="flex items-center justify-between mb-1.5 sm:mb-2">
-            <span className="text-[10px] sm:text-[11px] lg:text-[12px] text-[#9ca3af]">Typical confidence</span>
-            <span className="font-serif text-[12px] sm:text-[13px] lg:text-[14px] font-medium text-white">{archetype.typicalConfidence}</span>
+            <span className="text-[9px] sm:text-[11px] lg:text-[12px] text-[#9ca3af]">Typical confidence</span>
+            <span className="font-serif text-[10px] sm:text-[13px] lg:text-[14px] font-medium text-white">{archetype.typicalConfidence}</span>
           </div>
-          <div className="flex gap-[4px]">
+          <div className="flex gap-[3px] sm:gap-[4px] w-full">
             {[1, 2, 3].map((level) => (
               <div
                 key={level}
-                className="flex-1 h-[5px] sm:h-[6px] rounded-full"
+                className="flex-1 h-[4px] sm:h-[6px] rounded-full"
                 style={{ backgroundColor: level <= confidenceLevel ? archetype.color : "rgba(255,255,255,0.1)" }}
               />
             ))}
