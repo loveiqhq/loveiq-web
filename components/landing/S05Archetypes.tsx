@@ -244,7 +244,8 @@ const ArchetypeCard: FC<{ archetype: Archetype }> = ({ archetype }) => {
 
   return (
     <div
-      className="relative flex-shrink-0 w-[280px] sm:w-[320px] md:w-[360px] lg:w-[400px] bg-[#130b17] border-2 border-white/10 rounded-[20px] overflow-hidden px-4 sm:px-6 lg:px-8 py-6 sm:py-8 lg:py-10 box-border"
+      className="relative flex-shrink-0 w-[280px] sm:w-[320px] md:w-[360px] lg:w-[400px] bg-[#130b17] border-2 border-white/10 rounded-[20px] overflow-hidden px-4 sm:px-6 lg:px-8 py-6 sm:py-8 lg:py-10 box-border isolate"
+      style={{ clipPath: 'inset(0 round 20px)' }}
     >
       {/* Top-right blur effect */}
       <div
