@@ -3,7 +3,7 @@ import type { FC } from "react";
 
 const FooterSection: FC = () => {
   return (
-    <footer className="relative overflow-hidden bg-[#050208] px-4 pb-10 pt-12 text-text-primary" aria-labelledby="footer-heading">
+    <footer className="relative overflow-hidden bg-gradient-to-b from-[#0A0510] to-[#110518] px-4 pb-10 pt-12 text-text-primary" aria-labelledby="footer-heading">
       <div className="content-shell relative flex flex-col gap-10">
         <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-[1.5fr_1fr_1fr_1fr]">
           {/* Brand Column */}
@@ -148,7 +148,7 @@ const FooterSection: FC = () => {
         </div>
 
         <div className="border-t border-border pt-6 text-xs text-text-muted">
-          <p>© 2026 Applied Psychometrics UG. Designed &amp; developed with care.</p>
+          <p>© 2026 Applied Psychometrics UG. Designed & developed with ❤️.</p>
         </div>
       </div>
     </footer>

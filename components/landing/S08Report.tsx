@@ -33,7 +33,7 @@ const S08Report: FC = () => {
               id="report-heading"
               className="font-serif text-[40px] leading-[1.05] tracking-[-0.03em] sm:text-[52px] md:text-[64px] md:leading-[1.05]"
             >
-              The LoveIQ Report
+              LoveIQ Report
             </h2>
             <p className="font-medium text-[18px] leading-[1.55] text-[#d1d5db] sm:text-[20px]">
               LoveIQ helps you decode your desires, attachment patterns, emotional needs, and intimate dynamics so you can build
