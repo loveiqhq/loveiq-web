@@ -41,7 +41,8 @@
       "Bash(del nul)",
       "Bash(test:*)",
       "Bash(git -C \"C:/Users/cicku/loveiq-web\" status)",
-      "Bash(tr:*)"
+      "Bash(tr:*)",
+      "Bash(node:*)"
     ]
   }
 }

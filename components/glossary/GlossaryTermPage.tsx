@@ -215,9 +215,9 @@ const GlossaryTermPage: FC<GlossaryTermPageProps> = ({ term }) => {
                   </div>
                 )}
 
-{/* Common Misunderstandings Section - Hidden temporarily for updates
+{/* Common Misunderstandings Section */}
                 {term.misinterpretations.length > 0 && (
-                  <div className="space-y-6 p-8 rounded-2xl bg-[#1a0f1f] border border-[rgba(244,63,94,0.2)] reveal-on-scroll">
+                  <div className="space-y-6 reveal-on-scroll stagger-5">
                     <div className="flex items-center gap-3">
                       <svg
                         className="h-5 w-5 text-[#fecdd3]"
@@ -238,35 +238,59 @@ const GlossaryTermPage: FC<GlossaryTermPageProps> = ({ term }) => {
                     </div>
                     <div className="space-y-4">
                       {term.misinterpretations.map((misinterpretation, i) => (
-                        <div key={i} className="flex gap-3 items-start">
-                          <div className="shrink-0 pt-1">
-                            <svg
-                              className="h-4 w-4 text-[#f87171]"
-                              viewBox="0 0 24 24"
-                              fill="none"
-                              stroke="currentColor"
-                              strokeWidth="2"
-                              strokeLinecap="round"
-                              strokeLinejoin="round"
-                            >
-                              <path d="M18 6 6 18" />
-                              <path d="m6 6 12 12" />
-                            </svg>
+                        <div key={i} className="rounded-xl border border-white/5 bg-white/[0.02] overflow-hidden">
+                          {/* Myth row */}
+                          <div className="flex gap-3 items-start p-4 bg-[rgba(244,63,94,0.08)] border-b border-white/5">
+                            <div className="shrink-0 mt-0.5 flex h-5 w-5 items-center justify-center rounded-full bg-[rgba(248,113,113,0.2)]">
+                              <svg
+                                className="h-3 w-3 text-[#f87171]"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                stroke="currentColor"
+                                strokeWidth="2.5"
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                              >
+                                <path d="M18 6 6 18" />
+                                <path d="m6 6 12 12" />
+                              </svg>
+                            </div>
+                            <div>
+                              <span className="text-[10px] font-bold uppercase tracking-wider text-[#f87171]">Myth</span>
+                              <p className="text-white/90 text-sm leading-relaxed mt-0.5">
+                                {misinterpretation}
+                              </p>
+                            </div>
                           </div>
-                          <div className="space-y-1">
-                            <p className="text-white text-sm font-bold">
-                              Myth: {misinterpretation}
-                            </p>
-                            <p className="text-white/60 text-sm font-light">
-                              Reality: This is a common misconception that deserves clarification.
-                            </p>
-                          </div>
+                          {/* Reality row */}
+                          {term.reality && term.reality[i] && (
+                            <div className="flex gap-3 items-start p-4 bg-[rgba(52,211,153,0.05)]">
+                              <div className="shrink-0 mt-0.5 flex h-5 w-5 items-center justify-center rounded-full bg-[rgba(52,211,153,0.2)]">
+                                <svg
+                                  className="h-3 w-3 text-[#34d399]"
+                                  viewBox="0 0 24 24"
+                                  fill="none"
+                                  stroke="currentColor"
+                                  strokeWidth="2.5"
+                                  strokeLinecap="round"
+                                  strokeLinejoin="round"
+                                >
+                                  <path d="M20 6 9 17l-5-5" />
+                                </svg>
+                              </div>
+                              <div>
+                                <span className="text-[10px] font-bold uppercase tracking-wider text-[#34d399]">Reality</span>
+                                <p className="text-white/70 text-sm leading-relaxed mt-0.5">
+                                  {term.reality[i]}
+                                </p>
+                              </div>
+                            </div>
+                          )}
                         </div>
                       ))}
                     </div>
                   </div>
                 )}
-                */}
               </div>
 
               {/* Sidebar */}
