@@ -358,10 +358,8 @@ const S06SampleProfile: FC = () => {
               <span className="italic text-[#fe6839]">Language.</span>
             </h2>
             <p className="max-w-[944px] text-lg leading-7 text-[#d1d5db] sm:text-xl">
-              Stop guessing. Get clarity, vocabulary, and a deeper understanding of
-              <br className="hidden sm:block" />
-              the terms that define your connection. We decode the complex
-              <br className="hidden sm:block" />
+              Stop guessing. Get clarity, vocabulary, and a deeper understanding of<br className="hidden sm:block" />{" "}
+              the terms that define your connection. We decode the complex<br className="hidden sm:block" />{" "}
               science of intimacy.
             </p>
           </div>
