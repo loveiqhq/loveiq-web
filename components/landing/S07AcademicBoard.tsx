@@ -34,44 +34,44 @@ const experts = [
 const renderLogos = (index: number) => {
   const mod = index % experts.length;
   switch (mod) {
-    case 0: // Konrad — Harvard + IPS Berlin
+    case 0: // Konrad — IPS Berlin + Harvard
       return (
         <>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src="/academic/ips-berlin-logo.svg" alt="" style={{ height: 34, width: 119 }} />
           <div className="flex items-center">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img src="/academic/harvard-shield.svg" alt="" style={{ height: 32, width: 27 }} />
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img src="/academic/harvard-logo.svg" alt="" style={{ height: 22, width: 84, marginLeft: 6, marginTop: 2 }} />
           </div>
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src="/academic/ips-berlin-logo.svg" alt="" style={{ height: 34, width: 119 }} />
         </>
       );
-    case 1: // Dijana — HHL + Columbia
+    case 1: // Dijana — Columbia + HHL
       return (
         <>
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src="/academic/hhl-logo.svg" alt="" style={{ height: 34, width: 136 }} />
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img src="/academic/columbia-logo.svg" alt="" style={{ height: 40, width: 58, transform: "scaleY(-1)" }} />
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src="/academic/hhl-logo.svg" alt="" style={{ height: 34, width: 136 }} />
         </>
       );
-    case 2: // Bruno — Oxford + ICL
+    case 2: // Bruno — ICL + Oxford
       return (
         <>
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src="/academic/oxford-logo.svg" alt="" style={{ height: 38, width: 128, transform: "scaleY(-1)" }} />
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img src="/academic/icl-logo.svg" alt="" style={{ height: 28, width: 107, transform: "scaleY(-1)" }} />
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src="/academic/oxford-logo.svg" alt="" style={{ height: 38, width: 128, transform: "scaleY(-1)" }} />
         </>
       );
-    case 3: // Quentin — MIT + Oxford
+    case 3: // Quentin — Oxford + MIT
       return (
         <>
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src="/academic/mit-logo.svg" alt="" style={{ height: 40, width: 173 }} />
-          {/* eslint-disable-next-line @next/next/no-img-element */}
           <img src="/academic/oxford-logo.svg" alt="" style={{ height: 34, width: 115, transform: "scaleY(-1)" }} />
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src="/academic/mit-logo.svg" alt="" style={{ height: 40, width: 75 }} />
         </>
       );
     default:
@@ -294,7 +294,7 @@ const S07AcademicBoard: FC = () => {
                 </h3>
 
                 {/* Tags */}
-                <div className="flex flex-wrap gap-2">
+                <div className="flex flex-col items-start gap-2">
                   {expert.tags.map((tag) => (
                     <span
                       key={tag}
@@ -306,7 +306,7 @@ const S07AcademicBoard: FC = () => {
                 </div>
 
                 {/* Logos */}
-                <div className="flex h-12 items-center justify-between">{renderLogos(idx)}</div>
+                <div className="flex h-12 items-center justify-evenly">{renderLogos(idx)}</div>
               </div>
             </div>
           ))}
