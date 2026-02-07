@@ -14,8 +14,8 @@ interface Archetype {
   attachment: string;
   initiation: string;
   powerOrientation: string;
-  riskOrientation: "Low" | "Medium" | "High" | "Very high";
-  typicalConfidence: "Low" | "Medium" | "High";
+  riskOrientation: "Low" | "Moderate" | "High" | "Very high";
+  typicalConfidence: "Low" | "Moderate" | "High";
 }
 
 const archetypes: Archetype[] = [
@@ -55,29 +55,12 @@ const archetypes: Archetype[] = [
       </svg>
     ),
     coreMotivation: "Intimacy & bonding",
-    communication: "Deliberate",
+    communication: "Authentic",
     attachment: "Anxious",
     initiation: "Responsive",
     powerOrientation: "Switch",
     riskOrientation: "Low",
-    typicalConfidence: "Medium",
-  },
-  {
-    name: "Relational Nurturer",
-    tagline: '"Your comfort and pleasure matter—so do mine."',
-    color: "#7fae9e",
-    icon: (
-      <svg viewBox="0 0 59 59" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-full">
-        <path d="M9.84886 1.96504C9.80235 0.861445 10.7092 -0.0447817 11.8128 0.00188468C23.9688 0.515918 29.1081 5.90859 29.4202 18.374L29.4496 18.3887C29.7571 5.91364 34.8942 0.516122 47.0571 0.00187878C48.1606 -0.0447806 49.0675 0.861445 49.021 1.96503C48.5251 13.7316 43.4729 18.931 31.8883 19.5455V24.5242C31.8883 25.8791 30.7899 26.9775 29.4349 26.9775C28.08 26.9775 26.9816 25.8791 26.9816 24.5242V19.5455C15.3969 18.931 10.3447 13.7316 9.84886 1.96504ZM57.5112 32.5233C56.233 30.7476 54.2654 29.6301 52.1064 29.4582C49.9597 29.2715 47.8376 30.0623 46.3876 31.5188L41.7017 35.8218V39.2578C41.7017 43.3201 38.3995 46.626 34.3416 46.626H22.0748V41.7139H34.3416C35.6959 41.7139 36.795 40.6136 36.795 39.2578V33.8896C36.795 32.7851 35.8996 31.8897 34.795 31.8897H21.6136C14.4081 31.8897 7.62948 34.7018 2.5314 39.8031L2.36725 39.9675C0.87577 41.4621 0.0356382 43.4858 0.030023 45.5972L-3.81437e-05 56.9009C-0.00298116 58.0076 0.893308 58.9062 1.99995 58.9062H27.7666C34.5036 58.9062 40.9584 56.4035 45.9411 51.8623L56.5347 42.1977C59.1598 39.5624 59.5818 35.4043 57.5112 32.5233Z" fill="currentColor"/>
-      </svg>
-    ),
-    coreMotivation: "Healing",
-    communication: "Gentle",
-    attachment: "Secure",
-    initiation: "Responsive",
-    powerOrientation: "Submissive/Switch",
-    riskOrientation: "Low",
-    typicalConfidence: "Medium",
+    typicalConfidence: "Moderate",
   },
   {
     name: "Power Orchestrator",
@@ -117,21 +100,41 @@ const archetypes: Archetype[] = [
     typicalConfidence: "High",
   },
   {
-    name: "Loyal Ritualist",
-    tagline: '"Routine is intimacy."',
-    color: "#2aff8f",
+    name: "Approval Seeker",
+    tagline: '"Tell me I\'m enough."',
+    color: "#e7b3c2",
     icon: (
-      <svg viewBox="0 0 60 52" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-full">
-        <path d="M25.5674 51.1349C24.784 51.1349 24.0476 50.8298 23.4936 50.2758L16.8471 43.6291C16.2932 43.0753 15.9881 42.3389 15.9881 41.5555C15.9881 40.7721 16.2932 40.0357 16.8472 39.4818L23.4937 32.8354C24.0476 32.2815 24.784 31.9765 25.5674 31.9765C26.3507 31.9765 27.0872 32.2815 27.641 32.8355C28.7844 33.979 28.7844 35.8395 27.6409 36.9826L26.0007 38.6229H41.0824C48.2796 38.6229 54.1349 32.7662 54.1349 25.5674C54.1349 22.2694 52.8866 19.1149 50.6198 16.6852C49.517 15.5029 49.5816 13.6434 50.7637 12.5404C51.3089 12.032 52.0192 11.7521 52.7639 11.7521C53.5744 11.7521 54.3562 12.0919 54.9088 12.6845C58.1918 16.2041 60 20.7793 60 25.5675C60 36.0004 51.5136 44.4882 41.0824 44.4882H26.0005L27.641 46.1287C28.7844 47.2719 28.7844 49.1324 27.641 50.2759C27.0872 50.8298 26.3509 51.1349 25.5674 51.1349ZM7.23621 39.3859C6.42562 39.3859 5.64387 39.0462 5.09121 38.4537C1.8082 34.9342 0 30.3578 0 25.5675C0 15.1363 8.48777 6.64992 18.9209 6.64992H34.0027L32.359 5.00625C31.2156 3.86309 31.2156 2.00262 32.359 0.859101C32.9128 0.305156 33.6492 0 34.4326 0C35.216 0 35.9524 0.305039 36.5064 0.859101L43.1561 7.50879C43.71 8.06273 44.015 8.79926 44.015 9.58266C44.0148 10.3665 43.7097 11.103 43.1555 11.6566L36.5058 18.3032C35.9518 18.8566 35.2155 19.1614 34.4326 19.1614C33.649 19.1614 32.9123 18.8563 32.3585 18.302C31.8048 17.748 31.5 17.0116 31.5001 16.2281C31.5004 15.4448 31.8055 14.7084 32.3597 14.1547L34.0002 12.5148H18.9209C11.7219 12.5148 5.86523 18.3702 5.86523 25.5673C5.86523 28.8674 7.11351 32.023 9.38027 34.4528C9.91453 35.0254 10.1939 35.7721 10.1667 36.5549C10.1394 37.3378 9.80895 38.0631 9.23625 38.5975C8.69121 39.1059 7.98105 39.3859 7.23621 39.3859Z" fill="currentColor"/>
+      <svg viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-full">
+        <path d="M18.75 26.25H11.25C9.17893 26.25 7.5 27.9289 7.5 30V48.75C7.5 50.8211 9.17893 52.5 11.25 52.5H18.75V26.25Z" fill="currentColor"/>
+        <path d="M50.625 26.25H39.375L42.1875 15.9375C42.8906 13.3594 41.4844 10.6641 38.9063 9.96094C37.6172 9.60938 36.2109 10.3125 35.625 11.4844L25.3125 25.1953C24.8438 25.8984 24.375 26.25 23.4375 26.25V48.75C23.4375 48.75 30 52.5 37.5 52.5H43.125C45.8203 52.5 48.1641 50.5078 48.6328 47.8125L52.3828 30.9375C53.0859 27.5391 50.625 26.25 50.625 26.25Z" fill="currentColor"/>
       </svg>
     ),
-    coreMotivation: "Stability",
-    communication: "Consistent",
-    attachment: "Secure",
-    initiation: "Shared",
-    powerOrientation: "Switch",
+    coreMotivation: "Validation",
+    communication: "Adaptive",
+    attachment: "Anxious",
+    initiation: "Responsive",
+    powerOrientation: "Submissive",
     riskOrientation: "Low",
-    typicalConfidence: "Medium",
+    typicalConfidence: "Low",
+  },
+  {
+    name: "Minimalist Companion",
+    tagline: '"Simple is enough."',
+    color: "#B5B2AD",
+    icon: (
+      <svg viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-full">
+        <circle cx="30" cy="12" r="8" fill="currentColor"/>
+        <circle cx="30" cy="30" r="8" fill="currentColor"/>
+        <circle cx="30" cy="48" r="8" fill="currentColor"/>
+      </svg>
+    ),
+    coreMotivation: "Connection",
+    communication: "Calm",
+    attachment: "Avoidant",
+    initiation: "Passive",
+    powerOrientation: "Submissive",
+    riskOrientation: "Low",
+    typicalConfidence: "Low",
   },
   {
     name: "Exhibitionist Performer",
@@ -156,32 +159,39 @@ const archetypes: Archetype[] = [
     typicalConfidence: "High",
   },
   {
-    name: "Explorer of Edges",
-    tagline: '"Let\'s find the edge—and keep going."',
-    color: "#ff2e63",
+    name: "Curious Apprentice",
+    tagline: '"Teach me everything."',
+    color: "#6faed9",
     icon: (
       <svg viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-full">
-        {/* Outer broken circle */}
-        <path d="M30 60C46.4777 60 60 46.4777 60 30C60 21.7036 56.3912 13.7111 50.3024 8.07375C49.8955 7.69605 49.3377 7.52438 48.7935 7.6343C48.2493 7.73215 47.7824 8.0823 47.5352 8.57672L44.9495 13.7479C44.1792 15.2885 44.5165 17.1261 45.5422 18.5098C47.9251 21.7242 49.3359 25.7004 49.3359 30C49.3359 40.6618 40.6618 49.3359 30 49.3359C19.3382 49.3359 10.5469 40.6618 10.5469 30C10.5469 19.3382 19.3382 10.6641 30 10.6641C31.5263 10.6641 33.0097 10.845 34.4324 11.1846C37.168 11.8376 40.3244 10.3862 40.7869 7.61193L41.4104 3.87152C41.5495 3.03902 41.0757 2.22352 40.2809 1.93172C36.9935 0.72832 33.5345 0 30 0C13.5223 0 0 13.5223 0 30C0 46.4777 13.5223 60 30 60Z" fill="currentColor"/>
-        {/* Inner broken circle */}
-        <path d="M37.755 20.8459C38.2579 20.5936 38.6098 20.118 38.7025 19.5618L38.7212 19.4501C38.9715 17.948 38.3657 16.3943 37.0085 15.7037C34.8812 14.6211 32.4853 14 29.9375 14C21.2137 14 14 21.0965 14 29.8203C14 38.5441 21.2137 45.6406 29.9375 45.6406C38.6613 45.6406 45.7578 38.5441 45.7578 29.8203C45.7578 27.3025 45.1452 24.9389 44.079 22.8371C43.231 21.1656 40.9609 21.4207 40.1227 23.0972C39.6784 23.9856 38.7703 24.5469 37.777 24.5469H33.4531C32.9862 24.5469 32.5399 24.7323 32.2104 25.0619C32.0203 25.252 31.6953 25.1173 31.6953 24.8485V24.2224C31.6953 24.0099 31.8154 23.8156 32.0055 23.7205L37.755 20.8459Z" fill="currentColor"/>
+        <g clipPath="url(#clip0_curious)">
+          <path fillRule="evenodd" clipRule="evenodd" d="M48.5812 45.7346C49.9124 45.8793 51.2109 44.9157 51.2109 43.5767V6.10006C51.2109 5.2426 50.6674 4.46989 49.8334 4.27086C44.1031 2.90346 36.3597 4.22849 32.2918 8.12654C31.935 8.46843 31.7578 8.95031 31.7578 9.44444V47.3364C31.7578 49.0497 33.8326 50.0358 35.2986 49.1492C39.1713 46.807 43.9668 45.2328 48.5812 45.7346Z" fill="currentColor"/>
+          <path fillRule="evenodd" clipRule="evenodd" d="M14.7499 3.75195C13.1047 3.75187 11.528 3.92504 10.1367 4.26347C9.31665 4.46294 8.78906 5.22759 8.78906 6.07151V43.576C8.78906 44.9149 10.0875 45.8786 11.4187 45.7338C16.0334 45.232 20.8287 46.806 24.7013 49.1482C26.1674 50.0349 28.2422 49.0488 28.2422 47.3355V9.43504C28.2422 8.94628 28.0688 8.46883 27.7179 8.12859C24.6467 5.15051 19.4239 3.75217 14.7499 3.75195Z" fill="currentColor"/>
+          <path fillRule="evenodd" clipRule="evenodd" d="M9.73676 49.648C7.54617 50.2958 5.24086 48.5525 5.27344 46.2626V13.0669C5.27344 10.7685 3.03843 9.13245 0.978398 10.1517C0.379102 10.4481 0 11.0588 0 11.7272V54.4958C0 55.0579 0.268828 55.586 0.723164 55.9168C1.17762 56.2478 1.76273 56.3412 2.2977 56.1687C4.22349 55.5473 6.1406 55.0659 8.0721 54.7244C13.5476 53.7563 15.0592 48.0388 9.73676 49.648Z" fill="currentColor"/>
+          <path fillRule="evenodd" clipRule="evenodd" d="M59.0218 10.1513C56.9617 9.13202 54.7268 10.7682 54.7268 13.0667V46.2621C54.7586 48.5532 52.4543 50.295 50.2633 49.6475C44.9409 48.0385 46.4526 53.756 51.928 54.724C53.8596 55.0655 55.7767 55.5469 57.7025 56.1683C58.2373 56.3407 58.8226 56.2473 59.277 55.9165C59.7314 55.5857 60.0002 55.0575 60.0002 54.4955V11.7267C60.0002 11.0583 59.6211 10.4476 59.0218 10.1513Z" fill="currentColor"/>
+        </g>
+        <defs>
+          <clipPath id="clip0_curious">
+            <rect width="60" height="60" fill="white"/>
+          </clipPath>
+        </defs>
       </svg>
     ),
-    coreMotivation: "Intensity & transformation",
-    communication: "Honest",
-    attachment: "Disorganized",
-    initiation: "Active",
-    powerOrientation: "Dominant/Switch",
-    riskOrientation: "Very high",
-    typicalConfidence: "High",
+    coreMotivation: "Growth",
+    communication: "Open",
+    attachment: "Secure",
+    initiation: "Shared",
+    powerOrientation: "Switch",
+    riskOrientation: "Moderate",
+    typicalConfidence: "Moderate",
   },
 ];
 
-const getRiskLevel = (level: "Low" | "Medium" | "High" | "Very high"): number => {
+const getRiskLevel = (level: "Low" | "Moderate" | "High" | "Very high"): number => {
   switch (level) {
     case "Low":
       return 1;
-    case "Medium":
+    case "Moderate":
       return 2;
     case "High":
     case "Very high":
