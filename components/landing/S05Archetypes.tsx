@@ -1,6 +1,8 @@
 "use client";
 
 import { useRef, useState, useEffect, useCallback, useId, type FC } from "react";
+import Link from "next/link";
+import { trackStartSurvey } from "../../lib/analytics";
 
 interface Archetype {
   name: string;
@@ -378,6 +380,123 @@ const ArchetypeCard: FC<{ archetype: Archetype }> = ({ archetype }) => {
   );
 };
 
+const SparkleIcon: FC = () => (
+  <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-6 h-6 sm:w-8 sm:h-8">
+    <path d="M25.28 15.41C25.28 14.91 24.99 14.45 24.54 14.23C23.39 13.65 22.16 13.11 20.79 12.59C18.51 11.72 16.86 10.04 15.99 7.74C15.48 6.34 14.95 5.1 14.38 3.94C14.16 3.48 13.69 3.19 13.19 3.19C12.69 3.19 12.22 3.48 12 3.94C11.43 5.1 10.9 6.34 10.39 7.74C9.52 10.04 7.86 11.72 5.59 12.59C4.21 13.11 3 13.65 1.88 14.23C1.43 14.45 1.14 14.91 1.14 15.41C1.14 15.91 1.43 16.37 1.88 16.59C3 17.17 4.21 17.71 5.59 18.23C7.86 19.1 9.52 20.78 10.39 23.08C10.9 24.48 11.43 25.72 12 26.88C12.22 27.33 12.69 27.63 13.19 27.63C13.69 27.63 14.16 27.33 14.38 26.88C14.95 25.72 15.48 24.48 15.99 23.08C16.86 20.78 18.51 19.1 20.79 18.23C22.16 17.71 23.39 17.17 24.54 16.59C24.99 16.37 25.28 15.91 25.28 15.41Z" fill="#fe6839"/>
+    <path d="M22.52 8.7C22.86 8.87 23.2 8.99 23.53 9.11C23.8 9.22 24 9.41 24.1 9.69C24.22 10.03 24.36 10.36 24.53 10.7C24.75 11.16 25.22 11.45 25.72 11.45C26.22 11.45 26.69 11.16 26.91 10.7C27.08 10.36 27.22 10.03 27.34 9.69C27.45 9.41 27.64 9.22 27.91 9.11C28.25 8.99 28.58 8.87 28.92 8.7C29.37 8.47 29.67 8.01 29.67 7.51C29.67 7.01 29.37 6.55 28.92 6.33C28.58 6.16 28.25 6.02 27.91 5.9C27.64 5.8 27.45 5.6 27.34 5.32C27.22 4.98 27.08 4.65 26.91 4.31C26.69 3.85 26.22 3.56 25.72 3.56C25.22 3.56 24.75 3.85 24.53 4.31C24.36 4.65 24.22 4.98 24.1 5.32C24 5.6 23.8 5.8 23.53 5.9C23.2 6.02 22.86 6.16 22.52 6.33C22.07 6.55 21.77 7.01 21.77 7.51C21.77 8.01 22.07 8.47 22.52 8.7Z" fill="#fe6839"/>
+  </svg>
+);
+
+const TeaserCard: FC = () => (
+  <div
+    className="relative flex-shrink-0 w-[280px] sm:w-[320px] md:w-[360px] lg:w-[400px] bg-[#130b17] border-2 border-white/10 rounded-[20px] overflow-hidden px-4 sm:px-6 lg:px-8 py-6 sm:py-8 lg:py-10 box-border isolate flex flex-col items-center justify-between text-center"
+    style={{ clipPath: "inset(0 round 20px)" }}
+  >
+    {/* Top-right glow */}
+    <div
+      className="absolute w-[120px] h-[120px] sm:w-[160px] sm:h-[160px] -right-[40px] -top-[40px] rounded-full pointer-events-none blur-[60px]"
+      style={{ background: "rgba(168, 85, 247, 0.4)" }}
+      aria-hidden="true"
+    />
+    {/* Bottom-left glow */}
+    <div
+      className="absolute w-[120px] h-[120px] sm:w-[160px] sm:h-[160px] -left-[40px] -bottom-[40px] rounded-full pointer-events-none blur-[60px]"
+      style={{ background: "rgba(254, 104, 57, 0.3)" }}
+      aria-hidden="true"
+    />
+
+    {/* Top section */}
+    <div className="relative flex flex-col items-center">
+      {/* Pill */}
+      <div className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-[25px] py-[9px] backdrop-blur-sm mb-2 sm:mb-4">
+        <span className="h-1.5 w-1.5 rounded-full bg-[#fe6839]" aria-hidden />
+        <span className="font-sans text-[13px] font-bold leading-[13.5px] tracking-[0.9px] uppercase text-white">
+          Unlock Insight
+        </span>
+      </div>
+
+      {/* Title */}
+      <h3 className="font-serif text-[20px] sm:text-[28px] lg:text-[32px] leading-tight text-white">
+        7 more{" "}
+        <span className="bg-gradient-to-r from-[#fe6839] via-[#a78bfa] to-[#e9d5ff] bg-clip-text text-transparent italic">
+          archetypes
+        </span>
+        <br />
+        to explore...
+      </h3>
+    </div>
+
+    {/* Archetype name stack */}
+    <div className="relative flex flex-col items-center gap-1 sm:gap-3 w-full overflow-hidden py-1 sm:py-3">
+      {/* Faded outer items hidden on mobile to save space */}
+      <span className="hidden sm:block font-serif sm:text-[16px] lg:text-[18px] leading-[24px] text-white/20">
+        Erotic Blueprint
+      </span>
+      <div className="flex items-center gap-1.5">
+        <span className="h-1 w-1 rounded-full bg-[#130b17]" aria-hidden />
+        <span className="h-1 w-1 rounded-full bg-white/40" aria-hidden />
+        <span className="font-serif text-[13px] sm:text-[18px] lg:text-[21px] leading-[22px] sm:leading-[24px] text-white/40">
+          Relational Healer
+        </span>
+      </div>
+      <div className="flex items-center gap-2 sm:gap-3 rounded-xl border border-white/10 bg-white/5 px-3 sm:px-6 py-1.5 sm:py-3 shadow-[0_10px_15px_-3px_rgba(0,0,0,0.1),0_4px_6px_-4px_rgba(0,0,0,0.1)] backdrop-blur-sm">
+        <SparkleIcon />
+        <span className="font-serif text-[15px] sm:text-[22px] lg:text-[26px] leading-[26px] sm:leading-[28px] font-medium text-white">
+          Spiritual Lover
+        </span>
+      </div>
+      <div className="flex items-center gap-1.5">
+        <span className="h-1 w-1 rounded-full bg-[#130b17]" aria-hidden />
+        <span className="h-1 w-1 rounded-full bg-white/40" aria-hidden />
+        <span className="font-serif text-[13px] sm:text-[18px] lg:text-[21px] leading-[22px] sm:leading-[24px] text-white/40">
+          Loyal Ritualist
+        </span>
+      </div>
+      <span className="hidden sm:block font-serif sm:text-[16px] lg:text-[18px] leading-[24px] text-white/20">
+        Storm Chaser
+      </span>
+    </div>
+
+    {/* Bottom section */}
+    <div className="relative flex flex-col items-center">
+      <p className="font-sans text-[11px] sm:text-[14px] lg:text-[16px] font-medium leading-[15px] sm:leading-[19.5px] text-center text-[#D1D5DB] max-w-[240px] sm:max-w-[444px] mb-3 sm:mb-5">
+        To explore all 14 archetypes, start our survey and discover which ones fit you best.
+      </p>
+
+      <Link
+        href="/waitlist"
+        className="group relative inline-flex items-center justify-center gap-2 overflow-hidden rounded-full bg-gradient-brand px-5 py-2.5 sm:px-6 sm:py-3 text-[12px] sm:text-[14px] font-semibold text-white shadow-pill transition hover:translate-y-[-2px] focus-visible-ring"
+        onClick={() => trackStartSurvey("archetype-teaser")}
+      >
+        <span
+          aria-hidden
+          className="pointer-events-none absolute inset-0 bg-white opacity-0 transition-opacity duration-500 group-hover:opacity-100"
+        />
+        <span className="relative z-10 transition-colors duration-500 group-hover:text-black">
+          Start survey now
+        </span>
+        <svg
+          aria-hidden
+          className="relative z-10 h-4 w-4 transition-colors duration-500 group-hover:text-black"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="2.4"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        >
+          <path d="M5 12h14" />
+          <path d="m12 5 7 7-7 7" />
+        </svg>
+      </Link>
+
+      <p className="mt-1.5 sm:mt-3 font-sans text-[9px] sm:text-[10px] font-bold leading-[18px] sm:leading-[20px] tracking-[1.4px] uppercase text-white/40 text-center">
+        {"\u2022"}Takes 10 minutes {"\u2022"} No account required
+      </p>
+    </div>
+  </div>
+);
+
 const S05Archetypes: FC = () => {
   const carouselRef = useRef<HTMLDivElement>(null);
   const [isPaused, setIsPaused] = useState(false);
@@ -400,8 +519,9 @@ const S05Archetypes: FC = () => {
   }, []);
 
   const [cardWidth, setCardWidth] = useState(480);
-  // Use 2x the base width for smoother looping (renders 6x cards = 18 total)
-  const totalWidth = cardWidth * archetypes.length * 2;
+  // Each set = 7 archetype cards + 1 teaser card = 8 cards. We use 3 sets doubled = 6 sets
+  const cardsPerSet = archetypes.length + 1; // 7 + 1 teaser
+  const totalWidth = cardWidth * cardsPerSet * 2;
 
   useEffect(() => {
     const handleResize = () => {
@@ -414,9 +534,9 @@ const S05Archetypes: FC = () => {
 
   const updateActiveIndex = useCallback(() => {
     const position = Math.abs(currentTranslateRef.current);
-    const index = Math.round(position / cardWidth) % archetypes.length;
+    const index = Math.round(position / cardWidth) % cardsPerSet;
     setActiveIndex(index);
-  }, [cardWidth]);
+  }, [cardWidth, cardsPerSet]);
 
   const animate = useCallback(
     (timestamp: number) => {
@@ -507,14 +627,14 @@ const S05Archetypes: FC = () => {
   );
 
   const handlePrevious = useCallback(() => {
-    const newIndex = activeIndex <= 0 ? archetypes.length - 1 : activeIndex - 1;
+    const newIndex = activeIndex <= 0 ? cardsPerSet - 1 : activeIndex - 1;
     navigateToSlide(newIndex);
-  }, [activeIndex, navigateToSlide]);
+  }, [activeIndex, cardsPerSet, navigateToSlide]);
 
   const handleNext = useCallback(() => {
-    const newIndex = activeIndex >= archetypes.length - 1 ? 0 : activeIndex + 1;
+    const newIndex = activeIndex >= cardsPerSet - 1 ? 0 : activeIndex + 1;
     navigateToSlide(newIndex);
-  }, [activeIndex, navigateToSlide]);
+  }, [activeIndex, cardsPerSet, navigateToSlide]);
 
   const handleDotClick = useCallback(
     (index: number) => {
@@ -578,9 +698,12 @@ const S05Archetypes: FC = () => {
           onTouchEnd={handleDragEnd}
           onMouseEnter={() => setIsPaused(true)}
         >
-          {[...archetypes, ...archetypes, ...archetypes, ...archetypes, ...archetypes, ...archetypes].map((archetype, idx) => (
-            <ArchetypeCard key={`${archetype.name}-${idx}`} archetype={archetype} />
-          ))}
+          {Array.from({ length: 6 }, (_, setIdx) => [
+            ...archetypes.map((archetype, cardIdx) => (
+              <ArchetypeCard key={`${archetype.name}-${setIdx}-${cardIdx}`} archetype={archetype} />
+            )),
+            <TeaserCard key={`teaser-${setIdx}`} />,
+          ]).flat()}
         </div>
       </div>
 
@@ -595,14 +718,14 @@ const S05Archetypes: FC = () => {
         </button>
 
         <div className="flex items-center gap-2">
-          {archetypes.map((_, index) => (
+          {Array.from({ length: cardsPerSet }, (_, index) => (
             <button
               key={index}
               onClick={() => handleDotClick(index)}
               className={`w-2 h-2 rounded-full transition-all duration-300 ${
                 index === activeIndex ? "bg-[#fe6839]" : "bg-white/20 hover:bg-white/40"
               }`}
-              aria-label={`Go to archetype ${index + 1}`}
+              aria-label={`Go to card ${index + 1}`}
               aria-current={index === activeIndex ? "true" : undefined}
             />
           ))}
@@ -616,6 +739,7 @@ const S05Archetypes: FC = () => {
           <ChevronRight />
         </button>
       </div>
+
     </section>
   );
 };

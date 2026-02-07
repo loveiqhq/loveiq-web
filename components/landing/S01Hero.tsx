@@ -93,10 +93,9 @@ const S01Hero: FC = () => {
         </div>
 
         <p className="animate-on-scroll mt-8 max-w-3xl text-lg leading-relaxed text-text-secondary sm:text-xl">
-          Built on latest science &amp; research.{" "}
-          <strong className="font-semibold text-white">A 10-minute guided survey</strong> that
-          <br />
-          uncovers your sexual patterns and archetype.
+          Grounded in state of the art science &amp; research.{" "}
+          <strong className="font-semibold text-white">In just 10 minutes, unlock a freemium personalized report</strong>{" "}
+          decoding your sexual archetype and patterns, so you can upgrade your intimate life with clarity
         </p>
 
         <div className="animate-on-scroll mt-12 flex flex-col items-center gap-4 sm:flex-row">
