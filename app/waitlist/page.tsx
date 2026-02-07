@@ -226,11 +226,11 @@ export default function WaitlistPage() {
           </div>
 
           <div className="mt-10 flex flex-wrap items-center justify-center gap-4 text-[11px] text-gray-500">
-            <span>Built With Science</span>
+            <a href="/privacy-policy" className="hover:text-white/70 transition-colors">Privacy Policy</a>
             <span className="text-gray-600">&gt;</span>
-            <span>Join the Movement</span>
+            <a href="/terms-of-use" className="hover:text-white/70 transition-colors">Terms of Use</a>
             <span className="text-gray-600">&gt;</span>
-            <span>Become an Affiliate</span>
+            <a href="/medical-disclaimer" className="hover:text-white/70 transition-colors">Medical &amp; Psychological Disclaimer</a>
           </div>
           <div className="mt-2 text-center text-[10px] text-gray-700">Ac 2026 LoveIQ &gt; Designed based on User Request</div>
         </div>
