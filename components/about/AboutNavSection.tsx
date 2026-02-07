@@ -127,7 +127,7 @@ const AboutNavSection: FC = () => {
   const shouldHide = isHidden && isMobile;
 
   return (
-    <header className={`pointer-events-none fixed inset-x-0 top-0 z-[120] px-4 sm:top-3 sm:z-40 nav-header ${shouldHide ? "nav-hidden" : ""}`}>
+    <header className={`pointer-events-none fixed inset-x-0 top-0 z-[120] px-2 sm:px-4 sm:top-3 sm:z-40 nav-header ${shouldHide ? "nav-hidden" : ""}`}>
       <div className="content-shell">
         <div className="relative pointer-events-auto">
           <div className="pointer-events-none absolute inset-[-10px] rounded-[999px] bg-[radial-gradient(80%_120%_at_50%_50%,rgba(0,0,0,0.55),transparent_65%)] blur-3xl" />

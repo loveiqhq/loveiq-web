@@ -128,7 +128,7 @@ const NavSection: FC = () => {
 
   return (
     <header
-      className={`pointer-events-none fixed inset-x-0 top-0 z-40 px-4 sm:top-3 nav-header ${shouldHide ? "nav-hidden" : ""}`}
+      className={`pointer-events-none fixed inset-x-0 top-0 z-40 px-2 sm:px-4 sm:top-3 nav-header ${shouldHide ? "nav-hidden" : ""}`}
     >
       <div className="content-shell">
         <div className="relative pointer-events-auto">
