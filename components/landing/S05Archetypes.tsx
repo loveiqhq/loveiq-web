@@ -317,28 +317,28 @@ const ArchetypeCard: FC<{ archetype: Archetype }> = ({ archetype }) => {
               <CommunicationIcon color={attributeColor} />
               <span className="text-[9px] sm:text-[11px] lg:text-[12px] text-[#9ca3af]">Communication</span>
             </div>
-            <p className="font-serif text-[12px] sm:text-[16px] lg:text-[18px] font-medium text-white break-words">{archetype.communication}</p>
+            <p className="font-serif text-[12px] sm:text-[14px] lg:text-[16px] font-medium text-white whitespace-nowrap">{archetype.communication}</p>
           </div>
           <div className="min-w-0 overflow-hidden">
             <div className="flex items-center gap-1 sm:gap-1.5 mb-0.5 sm:mb-1">
               <InitiationIcon color={attributeColor} />
               <span className="text-[9px] sm:text-[11px] lg:text-[12px] text-[#9ca3af]">Initiation</span>
             </div>
-            <p className="font-serif text-[12px] sm:text-[16px] lg:text-[18px] font-medium text-white break-words">{archetype.initiation}</p>
+            <p className="font-serif text-[12px] sm:text-[14px] lg:text-[16px] font-medium text-white whitespace-nowrap">{archetype.initiation}</p>
           </div>
           <div className="min-w-0 overflow-hidden">
             <div className="flex items-center gap-1 sm:gap-1.5 mb-0.5 sm:mb-1">
               <AttachmentIcon color={attributeColor} />
               <span className="text-[9px] sm:text-[11px] lg:text-[12px] text-[#9ca3af]">Attachment</span>
             </div>
-            <p className="font-serif text-[12px] sm:text-[16px] lg:text-[18px] font-medium text-white break-words">{archetype.attachment}</p>
+            <p className="font-serif text-[12px] sm:text-[14px] lg:text-[16px] font-medium text-white whitespace-nowrap">{archetype.attachment}</p>
           </div>
           <div className="min-w-0 overflow-hidden">
             <div className="flex items-center gap-1 sm:gap-1.5 mb-0.5 sm:mb-1">
               <PowerIcon color={attributeColor} />
               <span className="text-[9px] sm:text-[11px] lg:text-[12px] text-[#9ca3af] truncate">Power</span>
             </div>
-            <p className="font-serif text-[12px] sm:text-[16px] lg:text-[18px] font-medium text-white break-words">{archetype.powerOrientation}</p>
+            <p className="font-serif text-[12px] sm:text-[14px] lg:text-[16px] font-medium text-white whitespace-nowrap">{archetype.powerOrientation}</p>
           </div>
         </div>
       </div>
