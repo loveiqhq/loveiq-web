@@ -194,9 +194,8 @@ const S11PerfectFor: FC = () => {
               Perfect For<span className="bg-gradient-to-r from-[#fe6839] to-[#a78bfa] bg-clip-text text-transparent">?</span>
             </span>
           </h2>
-          <p className="text-base leading-relaxed text-text-secondary sm:text-lg sm:leading-relaxed">
-            <span className="block sm:inline">Designed for everyone on the spectrum</span>{" "}
-            <span className="block sm:inline">of relationship and self-discovery.</span>
+          <p className="max-w-2xl text-base leading-relaxed text-text-secondary sm:text-lg sm:leading-relaxed">
+            We built this for anyone ready to grow, discover themselves, and actively enhance their sexual life. And honestly, we built it for ourselves too (and yes, we use it).
           </p>
         </div>
       </div>

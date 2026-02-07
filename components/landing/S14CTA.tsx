@@ -17,9 +17,9 @@ const S14CTA: FC = () => {
       <div className="content-shell relative flex max-w-5xl flex-col items-center gap-8 text-center">
         <div className="space-y-8">
           <h3 className="font-serif text-[48px] leading-[1.05] font-semibold sm:text-[60px] md:text-[72px] md:leading-[1.05]">
-            Ready to understand your{" "}
+            Ready to understand{" "}
             <span className="relative inline-block -top-1 align-baseline italic text-[#FE6839]">
-              deepest self?
+              and grow?
               <div className="pointer-events-none mt-[2px]">
                 <svg viewBox="0 0 320 16" fill="none" preserveAspectRatio="none" className="h-[14px] w-full">
                   <path
@@ -34,9 +34,7 @@ const S14CTA: FC = () => {
             </span>
           </h3>
           <p className="text-lg leading-relaxed text-white/85">
-            Join thousands of others who have unlocked better relationships,
-            <br />
-            clearer communication, and deeper confidence.
+            Join us to build stronger relationships, communicate with real clarity, and step into confident, authentic sexuality.
           </p>
         </div>
 

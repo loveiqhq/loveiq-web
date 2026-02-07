@@ -3,13 +3,13 @@ import type { FC } from "react";
 const cards = [
   {
     title: "Instant Results",
-    description: "No waiting. Receive your comprehensive analysis immediately after completing the survey.",
+    description: "No waiting. Receive your comprehensive analysis immediately upon completing the survey.",
     tone: "from-[#ff8a5a] to-[#f26d4f]",
   },
   {
     title: "Science-Backed",
     description:
-      "Based on over +100 research & science backed papers & books from the world’s leading therapists and researcher.",
+      "Based on over +100 scientific papers papers & books from the worlds leading therapists and researchers.",
     tone: "from-[#7c6bff] to-[#a7c1ff]",
   },
   {

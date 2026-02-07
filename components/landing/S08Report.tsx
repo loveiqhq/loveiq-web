@@ -10,8 +10,8 @@ const features = [
     description: "Built with psychology & relationship science.",
   },
   {
-    title: "Deeply personalized interpretation",
-    description: "Of your specific patterns and archetype.",
+    title: "Personalized towards our archetypes",
+    description: "Showing our individual patterns and challenges.",
   },
   {
     title: "10+ detailed report sections",
@@ -36,8 +36,8 @@ const S08Report: FC = () => {
               LoveIQ Report
             </h2>
             <p className="font-medium text-[18px] leading-[1.55] text-[#d1d5db] sm:text-[20px]">
-              LoveIQ helps you decode your desires, attachment patterns, emotional needs, and intimate dynamics so you can build
-              relationships that feel aligned, exciting, and safe.
+              LoveIQ helps us decode our desires, attachment patterns, emotional needs, and intimate dynamics so we can build
+              relationships that are aligned, exciting, and safe.
             </p>
           </div>
 

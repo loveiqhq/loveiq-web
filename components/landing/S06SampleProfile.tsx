@@ -87,15 +87,15 @@ const archetypeInsights = [
 
 const explorationBullets = [
   {
-    title: "Explore your inner landscape.",
+    title: "Clarify your inner landscape.",
     description:
-      "Turn inward and map out the desires, boundaries, and emotions you’ve never fully named. LoveIQ guides you with thoughtful questions so you can give language to what you feel and want.",
+      "Turn inward, and map out the desires, boundaries, and emotions you've never fully named. LoveIQ guides us with thoughtful questions so we can give language to what we feel and want.",
     mobileLines: [
-      "Turn inward and map out the desires,",
-      "boundaries, and emotions you’ve never",
-      "fully named. LoveIQ guides you with",
-      "thoughtful questions so you can give",
-      "language to what you feel and want.",
+      "Turn inward, and map out the desires,",
+      "boundaries, and emotions you've never",
+      "fully named. LoveIQ guides us with",
+      "thoughtful questions so we can give",
+      "language to what we feel and want.",
     ],
     icon: (
       <svg
@@ -125,13 +125,13 @@ const explorationBullets = [
   {
     title: "Uncover your unique erotic signature.",
     description:
-      "Discover patterns that belong only to you - no generic horoscopes here. Our science based quiz reveals how your mind, body, and heart connect so you can understand yourself on your own.",
+      "Discover patterns that belong only to you\u2014no generic horoscopes here. Our science based report reveals how our mind, body, and heart connect so we can understand ourself.",
     mobileLines: [
       "Discover patterns that belong only to",
-      "you - no generic horoscopes here. Our",
-      "science based quiz reveals how your",
-      "mind, body, and heart connect so you",
-      "can understand yourself on your own.",
+      "you\u2014no generic horoscopes here. Our",
+      "science based report reveals how our",
+      "mind, body, and heart connect so we",
+      "can understand ourself.",
     ],
     icon: (
       <svg
