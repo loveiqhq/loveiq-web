@@ -157,8 +157,8 @@ const HeroSection = () => (
         </span>
       </h1>
       <p className="sensual-anim mt-16 max-w-[768px] text-center text-base font-normal leading-[32px] text-[#9CA3AF] md:mt-[72px] md:text-[20px]" style={{ animationDelay: '0.5s' }}>
-        At LoveIQ, trust is <span className="font-bold text-white">not a feature</span>, it is <span className="font-bold text-white">the foundation</span> of everything we build.<br />
-        We created a space designed to engage <span className="font-bold text-white">openly</span>, without<br />
+        At LoveIQ, trust is <span className="font-bold text-white">not a feature</span>, it is <span className="font-bold text-white">the foundation</span> of everything we build.{" "}
+        We created a space designed to engage <span className="font-bold text-white">openly</span>, without{" "}
         fear of <span className="font-bold text-white">exposure</span>, <span className="font-bold text-white">misuse</span>, or <span className="font-bold text-white">judgment</span>.
       </p>
     </div>
