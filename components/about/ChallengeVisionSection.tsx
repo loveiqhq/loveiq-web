@@ -30,7 +30,6 @@ const EyeIcon: FC = () => (
 );
 
 const ChallengeVisionSection: FC = () => {
-  const missionTags = ["Safe", "Private", "Non-judgmental"];
 
   return (
     <section id="challenge-vision" className="relative bg-[#0A0510] px-6 py-16 md:py-24">
@@ -71,19 +70,12 @@ const ChallengeVisionSection: FC = () => {
                 Our Mission
               </h3>
               <p className="text-base leading-[1.4] text-[#9CA3AF]">
-                <span className="text-white">To help people understand themselves </span>
-                scientifically, emotionally, and experimentially. LoveIQ is designed to feel:
+                We exists to <span className="text-white">help people understand their{" "}
+                emotional patterns and grow</span>, so we can build{" "}
+                healthier relationships, communicate more{" "}
+                honestly, and live with greater confidence,{" "}
+                connection, and fulfillment.
               </p>
-              <div className="flex flex-wrap gap-2">
-                {missionTags.map((tag) => (
-                  <span
-                    key={tag}
-                    className="rounded-full bg-white/10 px-2 py-1 text-xs font-normal text-[#9CA3AF] shadow-[0_3px_10px_rgba(167,139,250,0.05)]"
-                  >
-                    {tag}
-                  </span>
-                ))}
-              </div>
             </div>
           </div>
         </div>
@@ -103,8 +95,8 @@ const ChallengeVisionSection: FC = () => {
                 Our Vision
               </h3>
               <p className="max-w-[540px] text-base leading-[1.625] text-[#9CA3AF]">
-                <span className="text-white">Our vision is to become the world&apos;s most trusted platform for human self-understanding &amp; development to increase human happiness.</span>
-                {" "}We start with sexuality, but our horizon extends toward mapping the entire emotional and psychological landscape — identity, attachment, love, and beyond.
+                <span className="text-white">Our vision is to become the world&apos;s most trusted platform for human self-understanding &amp; personal growth.</span>
+                {" "}Starting with sexuality and expanding to the full emotional and psychological human experience. Because self-understanding &amp; growth is one of the highest-leverage drivers of human happiness, relationship quality, and mental health. Things truly needed in our world today.
               </p>
             </div>
 

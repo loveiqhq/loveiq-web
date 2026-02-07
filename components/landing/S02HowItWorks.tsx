@@ -10,16 +10,16 @@ const steps = [
   },
   {
     step: "Step Two",
-    title: "Get a Unique Report",
-    description: "Fully personalized report helping you uncover your sexuality in a new way.",
-    badge: "Science-Grade",
+    title: "Get your freemium Report",
+    description: "Gain new insights into your sexuality with a personalized report based on archetypes.",
+    badge: "Based on latest science",
     variant: "brain",
   },
   {
     step: "Step Three",
     title: "Grow With Guidance",
     description: "Discover insights that spark real behavioral change for deeper fulfillment.",
-    badge: "Life-Changing",
+    badge: "Life enhancing impact",
     variant: "chat",
   },
 ];

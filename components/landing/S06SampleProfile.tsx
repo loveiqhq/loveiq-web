@@ -297,8 +297,8 @@ const S06SampleProfile: FC = () => {
         <div className="grid gap-12 lg:grid-cols-[1.05fr_0.95fr] lg:items-center">
           <div className="relative space-y-7">
             <h3 className="font-serif text-4xl leading-tight sm:text-5xl md:text-[46px]">
-              <span className="block md:whitespace-nowrap">Embark on an exploration of</span>
-              <span className="block md:whitespace-nowrap">your desires and connection.</span>
+              <span className="block md:whitespace-nowrap">Let&apos;s explore our desires</span>
+              <span className="block md:whitespace-nowrap">and connection.</span>
             </h3>
             <div className="space-y-6">
               {explorationBullets.map((item) => (

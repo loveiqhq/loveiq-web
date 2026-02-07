@@ -268,7 +268,7 @@ const ProcessSection: FC = () => {
     },
     {
       title: "Transformation",
-      description: "We turn knowledge into simplified frameworks tailored to human needs and designed to be understood easily.",
+      description: "We turn knowledge into simplified frameworks tailored to human needs and designed to be implemented easily.",
       icon: <TransformIcon />,
     },
     {
@@ -278,7 +278,7 @@ const ProcessSection: FC = () => {
     },
     {
       title: "Reports",
-      description: "Fueled by our guided surveys we transform personal insights of users into highly informative reports that help humans to better understand themselves.",
+      description: "Fueled by our survey inputs we transform personal insights into highly informative reports that help us better understand ourselves.",
       icon: <ChartIcon />,
     },
     {

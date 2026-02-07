@@ -144,9 +144,8 @@ const S01Hero: FC = () => {
         <p className="animate-on-scroll mt-12 text-center text-base leading-7 text-white">
           <span className="font-light">Your </span>
           <span className="font-extrabold">privacy &amp; anonymity</span>
-          <span className="font-light"> comes first. Click on </span>
-          <Link href="/trust-zone" className="font-bold hover:underline">Trust Zone</Link>
-          <span className="font-light"> to learn more.</span>
+          <span className="font-light"> comes first. Learn more at our &gt; </span>
+          <Link href="/trust-zone" className="font-bold text-[#FE6839] hover:underline">Trust Zone</Link>
         </p>
       </div>
     </section>

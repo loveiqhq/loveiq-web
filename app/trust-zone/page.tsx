@@ -157,7 +157,9 @@ const HeroSection = () => (
         </span>
       </h1>
       <p className="sensual-anim mt-16 max-w-[768px] text-center text-base font-normal leading-[32px] text-[#9CA3AF] md:mt-[72px] md:text-[20px]" style={{ animationDelay: '0.5s' }}>
-        At LoveIQ, trust is <span className="font-bold text-white">not a feature</span>, it is <span className="font-bold text-white">the foundation</span> of everything we build. We created a space designed for you to engage <span className="font-bold text-white">openly</span>, without fear of <span className="font-bold text-white">exposure</span>, <span className="font-bold text-white">misuse</span>, or <span className="font-bold text-white">judgment</span>.
+        At LoveIQ, trust is <span className="font-bold text-white">not a feature</span>, it is <span className="font-bold text-white">the foundation</span> of everything we build.<br />
+        We created a space designed to engage <span className="font-bold text-white">openly</span>, without<br />
+        fear of <span className="font-bold text-white">exposure</span>, <span className="font-bold text-white">misuse</span>, or <span className="font-bold text-white">judgment</span>.
       </p>
     </div>
   </section>
@@ -179,7 +181,7 @@ const HonestySection = () => (
           <span className="font-light text-[#9CA3AF]">The internet itself carries inherent risks.</span>
         </p>
         <p className="reveal-on-scroll stagger-3 text-lg font-light leading-[29.25px] text-[#9CA3AF] md:text-[18px]">
-          What we can — and do — commit to is applying the best available technical standards, ethical restraint, and continuous improvement available to us, to reduce risk as far as responsibly possible.
+          We commit to applying the best available technical standards, and ethical principles available to us, to reduce risk as far as responsibly possible.
         </p>
       </div>
 
@@ -207,7 +209,7 @@ const HonestySection = () => (
           <div className="flex h-14 w-14 items-center justify-center rounded-full bg-white/5">
             <IconGavel />
           </div>
-          <h4 className="text-center font-serif text-xl font-normal leading-[28px] text-white">Ethical Restraint</h4>
+          <h4 className="text-center font-serif text-xl font-normal leading-[28px] text-white">Confidentiality</h4>
           <p className="text-center text-sm font-normal leading-5 text-[#6b7280]">
             Data usage is strictly limited
             <br />
@@ -361,7 +363,7 @@ const BoundariesSection = () => (
           <div className="mt-6 space-y-4">
             <h4 className="font-serif text-[20px] leading-[28px] text-white">Use an alias email</h4>
             <p className="text-[16px] font-light leading-[26px] text-[#9CA3AF]">
-              If it feels safer, you are explicitly welcome to use an anonymous or alias email address. Many users choose this option. Your experience, report quality, and access to insights remain exactly the same.
+              If it feels safer, we welcome your to use an anonymous or alias email address. Many choose this option. Your experience, report quality, and access to insights remain exactly the same.
             </p>
           </div>
         </div>
@@ -429,7 +431,7 @@ const UnderstandingSection = () => (
           </div>
           <h4 className="font-serif text-lg md:text-2xl leading-[24px] md:leading-[32px] text-white">We are here for you.</h4>
           <p className="mb-2 md:mb-4 text-center text-xs md:text-sm leading-[18px] md:leading-[20px] text-white/70">
-            No judgment. Just a safe space to process your world.
+            And honestly — we built this for ourselves too, so we could feel safe, open, and understood within our own team
           </p>
           <span className="rounded-full bg-[#FE6839]/10 px-2 py-0.5 md:px-3 md:py-1 text-[10px] md:text-xs font-medium text-[#fe6839]">
             Emotionally Safe Zone
@@ -446,11 +448,11 @@ const UnderstandingSection = () => (
         <h3 className="reveal-on-scroll stagger-1 font-serif text-4xl leading-[48px] tracking-[-1.2px] text-white md:text-[48px]">
           No judgment.
           <br />
-          Just understanding.
+          Just insights.
         </h3>
         <div className="reveal-on-scroll stagger-2 space-y-4 text-[20px] leading-[29.25px] text-[#9CA3AF]">
           <p>
-            The world can be loud with opinions. Here, there is only quiet acceptance. Whether you are navigating heartbreak, confusion, or joy, your feelings are valid simply because you feel them.
+            The world can be loud with opinions. Here, there are only insights. Whether we are navigating heartbreak, confusion, or joy, our feelings are valid simply because we feel them. 
           </p>
           <p>
             We created LoveIQ to be the one place where you don&apos;t have to pretend.
@@ -586,7 +588,7 @@ const QuoteSection = () => (
         <div className="absolute h-[150px] w-[150px] md:h-[400px] md:w-[400px] rounded-full bg-[#6b21a8] blur-[60px] md:blur-[100px] opacity-25 md:opacity-40 animate-pulse-glow" style={{ animationDelay: '1s' }} />
       </div>
       <p className="reveal-on-scroll relative z-10 mx-auto max-w-[900px] font-serif text-[28px] leading-[36px] md:text-[48px] md:leading-[56px] tracking-[-1.2px] text-white">
-        &quot;This is a space where you shall be able to be honest — even about things you have never said out loud before.&quot;
+        &quot;This is a space designed for honest reflection — even on thoughts and desires we&apos;ve never spoken aloud.&quot;
       </p>
 
       <div className="relative z-10 flex flex-col items-center gap-6 pt-6">
@@ -655,7 +657,7 @@ const EthicalPledgeSection = () => (
               We believe that emotional data is sacred. It is not just &quot;content&quot; - it is the fabric of your life.
             </p>
             <p className="reveal-on-scroll stagger-3 text-base leading-[1.7] text-[#9CA3AF]">
-              We promise to treat your vulnerability with the same reverence as a therapist. We use data only to improve the tool for you, never to manipulate your choices or emotions.
+              We promise to treat vulnerability with the same reverence as a therapist. We use data only to improve the tool, never to manipulate our choices or emotions.
             </p>
             <Link
               href="/privacy-policy"

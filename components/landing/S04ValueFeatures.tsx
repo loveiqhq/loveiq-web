@@ -11,7 +11,7 @@ const bullets = [
   },
   {
     title: "Tired of vague advice?",
-    description: "Generic tips don’t work for unique psychologies. You need insights tailored to your emotional blueprint.",
+    description: "Because every psychology is unique, one-size-fits-all advice doesn’t work. We all need guidance tailored to our emotional blueprint.",
     icon: "lock",
   },
 ];
