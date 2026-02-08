@@ -50,7 +50,10 @@
       "Bash(del \"C:\\\\Users\\\\cicku\\\\loveiq-web\\\\harvard_svg_temp.txt\")",
       "Bash(del \"C:\\\\Users\\\\cicku\\\\loveiq-web\\\\harvard_combined_logo.svg\")",
       "Bash(del \"C:\\\\Users\\\\cicku\\\\loveiq-web\\\\ips_berlin_logo.svg\")",
-      "Bash(del \"C:\\\\Users\\\\cicku\\\\loveiq-web\\\\_harvard_svg.txt\" \"C:\\\\Users\\\\cicku\\\\loveiq-web\\\\_ips_berlin_svg.txt\")"
+      "Bash(del \"C:\\\\Users\\\\cicku\\\\loveiq-web\\\\_harvard_svg.txt\" \"C:\\\\Users\\\\cicku\\\\loveiq-web\\\\_ips_berlin_svg.txt\")",
+      "mcp__plugin_figma_figma__get_metadata",
+      "mcp__plugin_figma_figma__get_design_context",
+      "mcp__plugin_figma_figma__get_screenshot"
     ]
   }
 }

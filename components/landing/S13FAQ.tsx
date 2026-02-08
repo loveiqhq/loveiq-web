@@ -116,15 +116,21 @@ const FAQItem: FC<FAQItemProps> = ({ question, answer }) => {
 
       {/* Answer Panel */}
       <div
-        className="w-full overflow-hidden transition-all duration-500 ease-out"
+        className="relative z-10 w-full overflow-hidden transition-all duration-500 ease-out"
         style={{
           maxHeight: isOpen ? contentHeight + 40 : 0,
           opacity: isOpen ? 1 : 0,
+          marginTop: isOpen ? -4 : 0,
         }}
       >
-        <div ref={contentRef} className="pt-3">
+        <div ref={contentRef} className="pt-5">
           {/* Answer Content Box */}
-          <div className="rounded-xl border border-white/5 bg-[#120B1C] px-4 py-4 sm:rounded-2xl sm:px-6 sm:py-5">
+          <div className="relative rounded-bl-2xl rounded-br-2xl rounded-tr-2xl border border-white/5 bg-[#120B1C] px-6 py-5">
+            <span className="absolute -left-px -top-4 flex h-8 w-8 items-center justify-center rounded-full bg-[#FE6839] shadow-[0px_10px_15px_-3px_rgba(0,0,0,0.1),0px_4px_6px_-4px_rgba(0,0,0,0.1)]">
+              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 14 14" fill="none">
+                <path d="M12.25 8.75C12.25 9.3939 11.7272 9.91667 11.0833 9.91667H4.08333L1.75 12.25V2.91667C1.75 2.27277 2.27277 1.75 2.91667 1.75H11.0833C11.7272 1.75 12.25 2.27277 12.25 2.91667V8.75" stroke="white" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round" />
+              </svg>
+            </span>
             <p className="text-sm leading-relaxed text-gray-300 sm:text-base">
               {answer}
             </p>
