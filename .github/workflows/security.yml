@@ -30,8 +30,7 @@ jobs:
         with:
           # Scan recent commits (works for both push and PR)
           path: ./
-          extra_args: --only-verified --fail --since-commit HEAD~10
-        continue-on-error: false
+          extra_args: --only-verified --since-commit HEAD~10
 
   # SAST using Semgrep for security patterns
   sast-semgrep:

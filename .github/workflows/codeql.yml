@@ -45,5 +45,3 @@ jobs:
         category: "/language:${{ matrix.language }}"
         upload: true
         output: sarif-results
-        # Add more details to findings
-        add-snippets: true

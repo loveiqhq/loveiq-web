@@ -7,7 +7,13 @@
 
 ## Issues Encountered
 
+### Round 1: Initial Push
+
 When you pushed the initial security implementation, the GitHub Actions workflow encountered several issues:
+
+### Round 2: After First Fixes
+
+After applying the first round of fixes, two more issues appeared:
 
 ### 1. ❌ TruffleHog: "BASE and HEAD commits are the same"
 ```
@@ -38,6 +44,22 @@ This job was skipped
 ```
 
 **Cause:** Correctly skipped - this job only runs on pull requests, not direct pushes.
+
+### 5. ⚠️ CodeQL: Deprecated "add-snippets" input
+```
+Warning: Input 'add-snippets' has been deprecated
+Warning: The `add-snippets` input has been removed and no longer has any effect.
+```
+
+**Cause:** CodeQL Action v3 removed the `add-snippets` parameter.
+
+### 6. ❌ TruffleHog: "flag 'fail' cannot be repeated"
+```
+trufflehog: error: flag 'fail' cannot be repeated, try --help
+Error: Process completed with exit code 1.
+```
+
+**Cause:** The `--fail` flag was specified in `extra_args` but TruffleHog action also adds it automatically.
 
 ---
 
@@ -142,6 +164,63 @@ echo "Follow \`GITHUB_SECURITY_SETUP.md\` to enable all features." >> $GITHUB_ST
 ```
 
 **Change:** Added helpful note explaining that warnings are expected if Advanced Security is not enabled.
+
+---
+
+### Fix #5: CodeQL - Remove Deprecated Parameter
+
+**Before:**
+```yaml
+- name: Perform CodeQL Analysis
+  uses: github/codeql-action/analyze@v3
+  with:
+    category: "/language:${{ matrix.language }}"
+    upload: true
+    output: sarif-results
+    add-snippets: true  # Deprecated
+```
+
+**After:**
+```yaml
+- name: Perform CodeQL Analysis
+  uses: github/codeql-action/analyze@v3
+  with:
+    category: "/language:${{ matrix.language }}"
+    upload: true
+    output: sarif-results
+    # Removed: add-snippets (deprecated in v3)
+```
+
+**Change:** Removed deprecated `add-snippets` parameter from both workflow files.
+
+**Applied to:**
+- `.github/workflows/codeql.yml`
+- `.github/workflows/security.yml` (CodeQL job)
+
+---
+
+### Fix #6: TruffleHog - Remove Duplicate --fail Flag
+
+**Before:**
+```yaml
+- name: TruffleHog Secret Scan
+  uses: trufflesecurity/trufflehog@main
+  with:
+    path: ./
+    extra_args: --only-verified --fail --since-commit HEAD~10
+  continue-on-error: false
+```
+
+**After:**
+```yaml
+- name: TruffleHog Secret Scan
+  uses: trufflesecurity/trufflehog@main
+  with:
+    path: ./
+    extra_args: --only-verified --since-commit HEAD~10
+```
+
+**Change:** Removed `--fail` from `extra_args` because the TruffleHog action adds it automatically. Also removed `continue-on-error: false` (default behavior).
 
 ---
 
