@@ -266,7 +266,7 @@ const S11PerfectFor: FC = () => {
                 className="pointer-events-none absolute inset-x-0 bottom-0 h-[60%] bg-gradient-to-t from-[#7c3aed]/55 via-[#a78bfa]/25 to-transparent opacity-0 blur-[4px] transition-opacity duration-500 group-hover:opacity-100"
                 aria-hidden
               />
-              <div className="absolute inset-x-0 bottom-0 p-6 pb-8 space-y-3 transition-all duration-500 group-hover:translate-y-[-4px]">
+              <div className="absolute inset-x-0 bottom-0 p-6 pb-8 space-y-3 transition-all duration-500 ease-out translate-y-[60px] group-hover:translate-y-0">
                 <div className="min-h-[64px] flex items-end">
                   <p className="font-serif text-2xl font-semibold text-white drop-shadow-md leading-tight">
                     {item.title}
@@ -275,7 +275,7 @@ const S11PerfectFor: FC = () => {
                 {item.description && (
                   <div className="relative">
                     <div className="pointer-events-none absolute inset-x-0 bottom-0 h-16 rounded-b-2xl bg-[radial-gradient(circle_at_50%_100%,rgba(167,139,250,0.42),transparent_70%)] opacity-0 blur-md transition-opacity duration-400 group-hover:opacity-100" />
-                    <p className={`relative text-white/80 opacity-0 transition-opacity duration-400 group-hover:opacity-100 ${item.smallText ? "text-xs" : "text-sm"}`}>
+                    <p className={`relative text-white/80 opacity-0 transition-opacity duration-400 delay-100 group-hover:opacity-100 ${item.smallText ? "text-xs" : "text-sm"}`}>
                       {item.description}
                     </p>
                   </div>
