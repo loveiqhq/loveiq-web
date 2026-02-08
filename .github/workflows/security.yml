@@ -28,11 +28,10 @@ jobs:
       - name: TruffleHog Secret Scan
         uses: trufflesecurity/trufflehog@main
         with:
-          # Scan entire git history
+          # Scan recent commits (works for both push and PR)
           path: ./
-          base: ${{ github.event.repository.default_branch }}
-          head: HEAD
-          extra_args: --only-verified --fail
+          extra_args: --only-verified --fail --since-commit HEAD~10
+        continue-on-error: false
 
   # SAST using Semgrep for security patterns
   sast-semgrep:
@@ -57,6 +56,7 @@ jobs:
       - name: Upload Semgrep results to GitHub Security
         uses: github/codeql-action/upload-sarif@v3
         if: always()
+        continue-on-error: true  # Allow to fail if Advanced Security not enabled
         with:
           sarif_file: semgrep.sarif
           category: semgrep
@@ -89,6 +89,7 @@ jobs:
 
       - name: Perform CodeQL Analysis
         uses: github/codeql-action/analyze@v3
+        continue-on-error: true  # Allow to fail if Advanced Security not enabled
         with:
           category: "/language:${{matrix.language}}"
 
@@ -211,9 +212,10 @@ jobs:
         run: |
           echo "Checking build output for leaked secrets..."
 
-          # Check .next build output for potential secrets
-          if grep -r "SUPABASE_SERVICE_ROLE_KEY\|RESEND_API_KEY\|RECAPTCHA_SECRET" .next/ || true; then
-            echo "⚠️  WARNING: Potential secrets found in build output!"
+          # Check .next build output for potential secrets (actual values, not just variable names)
+          # Look for patterns like: SUPABASE_SERVICE_ROLE_KEY=actual-secret-value
+          if grep -rE "(SUPABASE_SERVICE_ROLE_KEY|RESEND_API_KEY|RECAPTCHA_SECRET_KEY)\s*[:=]\s*['\"]?[a-zA-Z0-9_-]{20,}" .next/ 2>/dev/null | grep -v "process.env" | grep -v "undefined"; then
+            echo "⚠️  WARNING: Actual secrets found in build output!"
             exit 1
           fi
 
@@ -335,3 +337,6 @@ jobs:
           echo "| Security Linting | ${{ needs.security-lint.result }} |" >> $GITHUB_STEP_SUMMARY
           echo "| Next.js Security | ${{ needs.nextjs-security.result }} |" >> $GITHUB_STEP_SUMMARY
           echo "| Custom Rules | ${{ needs.custom-security-rules.result }} |" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "**Note:** Some checks may show warnings if GitHub Advanced Security is not enabled. This is expected." >> $GITHUB_STEP_SUMMARY
+          echo "Follow \`GITHUB_SECURITY_SETUP.md\` to enable all features." >> $GITHUB_STEP_SUMMARY
