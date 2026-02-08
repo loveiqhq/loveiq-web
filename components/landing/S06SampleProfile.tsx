@@ -461,10 +461,10 @@ const S06SampleProfile: FC = () => {
 
                         {/* Pills */}
                         <div className="flex flex-wrap gap-2">
-                          <span className="rounded-full border border-[rgba(254,104,57,0.3)] bg-[rgba(254,104,57,0.1)] px-2.5 py-1 text-[9px] font-bold uppercase tracking-[0.5px] text-[#fe6839] sm:px-3 sm:text-[10px]">
+                          <span className="inline-flex rounded-full border border-[rgba(254,104,57,0.35)] bg-[rgba(254,104,57,0.18)] px-2.5 py-1 text-[9px] font-bold uppercase tracking-[0.5px] text-[#fe6839] shadow-[0_10px_24px_rgba(0,0,0,0.35)] [filter:blur(2.2px)] sm:px-3 sm:text-[10px]">
                             Trait &amp; Disposition
                           </span>
-                          <span className="hidden rounded-full border border-white/10 bg-white/5 px-3 py-1 text-[10px] font-bold uppercase tracking-[0.5px] text-[#9ca3af] sm:inline-flex">
+                          <span className="hidden rounded-full border border-white/15 bg-[rgba(255,255,255,0.12)] px-3 py-1 text-[10px] font-bold uppercase tracking-[0.5px] text-[#c9ced8] shadow-[0_10px_24px_rgba(0,0,0,0.35)] [filter:blur(2.2px)] sm:inline-flex">
                             Relationship Dynamics &amp; Intimacy
                           </span>
                           <span className="flex items-center gap-1.5 rounded-full border border-[rgba(236,72,153,0.3)] bg-[rgba(236,72,153,0.1)] px-2.5 py-1 text-[9px] font-bold uppercase tracking-[0.5px] text-[#f472b6] sm:px-3 sm:text-[10px]">

@@ -117,6 +117,33 @@ const GlossaryPage: FC = () => {
     return filteredTerms[letter] && filteredTerms[letter].length > 0;
   };
 
+  const renderTermWithArrow = (term: string) => {
+    const words = term.trim().split(/\s+/);
+    const leadingWords = words.slice(0, -1).join(" ");
+    const lastWord = words[words.length - 1] ?? "";
+
+    return (
+      <>
+        {leadingWords ? `${leadingWords} ` : ""}
+        <span className="inline-flex items-center whitespace-nowrap">
+          {lastWord}
+          <svg
+            className="ml-2 inline-block h-4 w-4 align-middle text-[#fe6839] opacity-0 transition-opacity group-hover:opacity-100"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          >
+            <path d="M5 12h14" />
+            <path d="m12 5 7 7-7 7" />
+          </svg>
+        </span>
+      </>
+    );
+  };
+
   return (
     <main className="relative bg-[#0A0510] text-white min-h-screen">
       <GlossaryNavSection />
@@ -250,21 +277,9 @@ const GlossaryPage: FC = () => {
                       href={`/glossary/${item.slug}`}
                       className="group flex items-center gap-2"
                     >
-                      <span className="font-serif text-xl leading-7 transition-colors text-white group-hover:text-[#fe6839]">
-                        {item.term}
+                      <span className="font-serif text-xl leading-7 text-white transition-colors group-hover:text-[#fe6839]">
+                        {renderTermWithArrow(item.term)}
                       </span>
-                      <svg
-                        className="h-4 w-4 text-[#fe6839] opacity-0 group-hover:opacity-100 transition-opacity shrink-0"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="currentColor"
-                        strokeWidth="2"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                      >
-                        <path d="M5 12h14" />
-                        <path d="m12 5 7 7-7 7" />
-                      </svg>
                     </Link>
                   ))}
                 </div>
