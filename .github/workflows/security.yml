@@ -23,14 +23,25 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
         with:
-          fetch-depth: 0  # Full history for secret scanning
+          fetch-depth: 10  # Last 10 commits
 
       - name: TruffleHog Secret Scan
-        uses: trufflesecurity/trufflehog@main
-        with:
-          # Scan recent commits (works for both push and PR)
-          path: ./
-          extra_args: --only-verified --since-commit HEAD~10
+        # Scan filesystem instead of git history to avoid action parameter conflicts
+        run: |
+          # Install TruffleHog
+          curl -sSfL https://raw.githubusercontent.com/trufflesecurity/trufflehog/main/scripts/install.sh | sh -s -- -b /usr/local/bin
+
+          # Scan the repository filesystem
+          trufflehog filesystem . --only-verified --json --no-update 2>&1 | tee trufflehog-results.json
+
+          # Check if any verified secrets were found
+          if grep -q '"Verified":true' trufflehog-results.json; then
+            echo "❌ Found verified secrets!"
+            grep '"Verified":true' trufflehog-results.json
+            exit 1
+          else
+            echo "✅ No verified secrets found"
+          fi
 
   # SAST using Semgrep for security patterns
   sast-semgrep:
