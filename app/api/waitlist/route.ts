@@ -61,7 +61,7 @@ const notifySlackWaitlist = async ({
   const text = `New waitlist signup: ${firstName ? `*${firstName}* ` : ""}<mailto:${email}|${maskedEmail}>${source ? ` (source: ${source})` : ""}`;
 
   try {
-    console.log("Sending Slack waitlist notification for", maskedEmail, "source:", source || "n/a");
+    console.info("Sending Slack waitlist notification for", maskedEmail, "source:", source || "n/a");
     const res = await fetchWithTimeout(url, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -73,7 +73,7 @@ const notifySlackWaitlist = async ({
       const body = await res.text().catch(() => "");
       console.error("Slack webhook failed:", res.status, body);
     } else {
-      console.log("Slack webhook sent:", res.status);
+      console.info("Slack webhook sent:", res.status);
     }
   } catch (err) {
     console.error("Slack webhook error:", err);

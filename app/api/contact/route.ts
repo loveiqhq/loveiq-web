@@ -114,7 +114,7 @@ const sendSlackContactNotification = async (payload: {
     if (!res.ok) {
       console.error("Slack contact webhook failed:", res.status, body);
     } else {
-      console.log("Slack contact webhook sent:", res.status);
+      console.info("Slack contact webhook sent:", res.status);
     }
   } catch (err) {
     console.error("Slack contact webhook error:", err);

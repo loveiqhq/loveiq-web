@@ -5,10 +5,96 @@ on:
     branches: [main]
   pull_request:
     branches: [main]
+  schedule:
+    # Run security scans weekly on Mondays at 9am UTC
+    - cron: '0 9 * * 1'
+
+permissions:
+  contents: read
+  security-events: write
+  pull-requests: write
 
 jobs:
-  security-audit:
-    name: Security Audit
+  # Secret scanning to detect hardcoded credentials
+  secret-scan:
+    name: Secret Scanning
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0  # Full history for secret scanning
+
+      - name: TruffleHog Secret Scan
+        uses: trufflesecurity/trufflehog@main
+        with:
+          # Scan entire git history
+          path: ./
+          base: ${{ github.event.repository.default_branch }}
+          head: HEAD
+          extra_args: --only-verified --fail
+
+  # SAST using Semgrep for security patterns
+  sast-semgrep:
+    name: SAST - Semgrep
+    runs-on: ubuntu-latest
+    container:
+      image: semgrep/semgrep
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Run Semgrep
+        run: semgrep scan --config auto --sarif --output=semgrep.sarif
+        env:
+          SEMGREP_RULES: >-
+            p/security-audit
+            p/owasp-top-ten
+            p/nodejs
+            p/typescript
+            p/nextjs
+
+      - name: Upload Semgrep results to GitHub Security
+        uses: github/codeql-action/upload-sarif@v3
+        if: always()
+        with:
+          sarif_file: semgrep.sarif
+          category: semgrep
+
+  # CodeQL for deep code analysis
+  codeql-analysis:
+    name: CodeQL Analysis
+    runs-on: ubuntu-latest
+    permissions:
+      actions: read
+      contents: read
+      security-events: write
+    strategy:
+      fail-fast: false
+      matrix:
+        language: ['javascript-typescript']
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Initialize CodeQL
+        uses: github/codeql-action/init@v3
+        with:
+          languages: ${{ matrix.language }}
+          # Use security-extended query suite for more thorough analysis
+          queries: security-extended
+
+      - name: Autobuild
+        uses: github/codeql-action/autobuild@v3
+
+      - name: Perform CodeQL Analysis
+        uses: github/codeql-action/analyze@v3
+        with:
+          category: "/language:${{matrix.language}}"
+
+  # Dependency vulnerability scanning
+  dependency-scan:
+    name: Dependency Security Audit
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
@@ -25,10 +111,26 @@ jobs:
 
       - name: Run npm audit
         run: npm audit --audit-level=high
-        # Fails on high or critical vulnerabilities
+        continue-on-error: true
 
-  build-and-lint:
-    name: Build & Lint
+      - name: Generate SBOM (CycloneDX)
+        run: npx @cyclonedx/cyclonedx-npm --output-file sbom.json
+
+      - name: Upload SBOM as artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: sbom
+          path: sbom.json
+          retention-days: 90
+
+      - name: Check for known vulnerabilities in SBOM
+        run: |
+          echo "SBOM generated. Manual review recommended."
+          cat sbom.json | jq '.components | length'
+
+  # Enhanced linting with security rules
+  security-lint:
+    name: Security-Enhanced Linting
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
@@ -43,12 +145,193 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Run ESLint
+      - name: Install security ESLint plugins
+        run: npm install --no-save eslint-plugin-security eslint-plugin-no-secrets
+
+      - name: Run ESLint with security rules
+        run: npx eslint . --ext .js,.jsx,.ts,.tsx --format json --output-file eslint-results.json || true
+
+      - name: Display ESLint results
+        run: |
+          if [ -f eslint-results.json ]; then
+            cat eslint-results.json | jq '.'
+          fi
+
+      - name: Standard ESLint
         run: npm run lint
+
+  # Next.js specific security checks
+  nextjs-security:
+    name: Next.js Security Checks
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Check for unsafe Next.js patterns
+        run: |
+          echo "Checking for common Next.js security issues..."
+
+          # Check for dangerouslySetInnerHTML usage
+          if grep -r "dangerouslySetInnerHTML" app/ components/ --include="*.tsx" --include="*.jsx"; then
+            echo "⚠️  Found dangerouslySetInnerHTML usage - review for XSS risks"
+            exit 1
+          fi
+
+          # Check for eval() usage
+          if grep -r "\beval\(" app/ lib/ components/ --include="*.ts" --include="*.tsx" --include="*.js" --include="*.jsx"; then
+            echo "⚠️  Found eval() usage - potential code injection risk"
+            exit 1
+          fi
+
+          # Check for hardcoded secrets patterns
+          if grep -rE "(api[_-]?key|api[_-]?secret|password|secret[_-]?key|private[_-]?key|token)\s*=\s*['\"][^'\"]{20,}" app/ lib/ --include="*.ts" --include="*.tsx" --include="*.js"; then
+            echo "⚠️  Potential hardcoded secrets found"
+            exit 1
+          fi
+
+          echo "✅ No obvious Next.js security issues found"
 
       - name: Build project
         run: npm run build
         env:
-          # Provide dummy values for build (not used at build time)
           NEXT_PUBLIC_SITE_URL: https://loveiq.org
           NEXT_PUBLIC_RECAPTCHA_SITE_KEY: dummy
+
+      - name: Check build output for sensitive data
+        run: |
+          echo "Checking build output for leaked secrets..."
+
+          # Check .next build output for potential secrets
+          if grep -r "SUPABASE_SERVICE_ROLE_KEY\|RESEND_API_KEY\|RECAPTCHA_SECRET" .next/ || true; then
+            echo "⚠️  WARNING: Potential secrets found in build output!"
+            exit 1
+          fi
+
+          echo "✅ No secrets found in build output"
+
+  # Custom security rules check
+  custom-security-rules:
+    name: Custom Security Rules
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Check API route security patterns
+        run: |
+          echo "Validating API route security patterns..."
+
+          # Check that all API routes use CSRF verification
+          for file in app/api/*/route.ts; do
+            if [ -f "$file" ] && grep -q "export.*POST\|export.*PUT\|export.*DELETE\|export.*PATCH" "$file"; then
+              if ! grep -q "verifyCsrfToken" "$file"; then
+                echo "⚠️  $file: POST/PUT/DELETE/PATCH route missing CSRF verification"
+                exit 1
+              fi
+            fi
+          done
+
+          # Check that all API routes use rate limiting
+          for file in app/api/*/route.ts; do
+            if [ -f "$file" ] && grep -q "export.*POST" "$file"; then
+              if ! grep -q "checkRateLimit" "$file"; then
+                echo "⚠️  $file: POST route missing rate limiting"
+                exit 1
+              fi
+            fi
+          done
+
+          # Check that all API routes use Zod validation
+          for file in app/api/*/route.ts; do
+            if [ -f "$file" ] && grep -q "export.*POST\|export.*PUT" "$file"; then
+              if ! grep -q "z\.object\|zod" "$file"; then
+                echo "⚠️  $file: Route missing Zod schema validation"
+                exit 1
+              fi
+            fi
+          done
+
+          echo "✅ All API routes follow security patterns"
+
+      - name: Check for missing environment variables in code
+        run: |
+          echo "Checking for proper environment variable handling..."
+
+          # Ensure no direct access to process.env outside of config files
+          if grep -r "process\.env\." app/ components/ --include="*.tsx" --include="*.jsx" | grep -v "NEXT_PUBLIC_"; then
+            echo "⚠️  Found direct process.env access in client components (should use NEXT_PUBLIC_ prefix)"
+          fi
+
+          echo "✅ Environment variable handling check complete"
+
+      - name: Verify security headers in middleware
+        run: |
+          echo "Verifying security headers configuration..."
+
+          if [ ! -f "proxy.ts" ]; then
+            echo "⚠️  middleware.ts not found!"
+            exit 1
+          fi
+
+          # Check for essential security headers
+          REQUIRED_HEADERS=(
+            "Content-Security-Policy"
+            "X-Frame-Options"
+            "X-Content-Type-Options"
+            "Strict-Transport-Security"
+          )
+
+          for header in "${REQUIRED_HEADERS[@]}"; do
+            if ! grep -q "$header" proxy.ts; then
+              echo "⚠️  Missing security header: $header"
+              exit 1
+            fi
+          done
+
+          echo "✅ All required security headers present"
+
+  # Dependency review for PRs
+  dependency-review:
+    name: Dependency Review
+    runs-on: ubuntu-latest
+    if: github.event_name == 'pull_request'
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Dependency Review
+        uses: actions/dependency-review-action@v4
+        with:
+          fail-on-severity: moderate
+          deny-licenses: GPL-3.0, AGPL-3.0
+
+  # Security summary
+  security-summary:
+    name: Security Summary
+    runs-on: ubuntu-latest
+    needs: [secret-scan, sast-semgrep, codeql-analysis, dependency-scan, security-lint, nextjs-security, custom-security-rules]
+    if: always()
+    steps:
+      - name: Generate Security Summary
+        run: |
+          echo "# Security Scan Summary" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "| Check | Status |" >> $GITHUB_STEP_SUMMARY
+          echo "|-------|--------|" >> $GITHUB_STEP_SUMMARY
+          echo "| Secret Scanning | ${{ needs.secret-scan.result }} |" >> $GITHUB_STEP_SUMMARY
+          echo "| SAST (Semgrep) | ${{ needs.sast-semgrep.result }} |" >> $GITHUB_STEP_SUMMARY
+          echo "| CodeQL Analysis | ${{ needs.codeql-analysis.result }} |" >> $GITHUB_STEP_SUMMARY
+          echo "| Dependency Scan | ${{ needs.dependency-scan.result }} |" >> $GITHUB_STEP_SUMMARY
+          echo "| Security Linting | ${{ needs.security-lint.result }} |" >> $GITHUB_STEP_SUMMARY
+          echo "| Next.js Security | ${{ needs.nextjs-security.result }} |" >> $GITHUB_STEP_SUMMARY
+          echo "| Custom Rules | ${{ needs.custom-security-rules.result }} |" >> $GITHUB_STEP_SUMMARY

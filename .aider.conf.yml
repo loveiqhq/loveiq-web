@@ -1,0 +1,130 @@
+# Aider Configuration for LoveIQ Web
+
+# Model selection (adjust based on your preference)
+# model: gpt-4-turbo-preview
+# edit-format: diff
+
+# Read these files for context
+read:
+  - CLAUDE.md
+  - SECURITY.md
+  - .github/SECURITY_CHECKLIST.md
+  - .github/SECURITY_QUICK_REFERENCE.md
+  - package.json
+  - tsconfig.json
+
+# Files to watch for changes
+# watch:
+#   - app/**/*.tsx
+#   - components/**/*.tsx
+#   - lib/**/*.ts
+
+# Lint command to run after changes
+lint-cmd: npm run lint
+
+# Test command (add when tests are implemented)
+# test-cmd: npm test
+
+# Auto-commit settings
+auto-commits: false
+dirty-commits: false
+
+# Git settings
+git: true
+gitignore: true
+
+# Additional instructions for Aider
+instructions: |
+  # LoveIQ Web Project Instructions
+
+  ## Project Type
+  Next.js 16 App Router marketing website with TypeScript, React, and Tailwind CSS.
+  No user authentication - pre-launch marketing site with waitlist/contact forms.
+
+  ## Critical Security Rules
+
+  ### Every API Route Must Include:
+  1. CSRF verification (verifyCsrfToken)
+  2. Rate limiting (checkRateLimit)
+  3. Input validation (Zod schema)
+
+  ### Never:
+  - Commit secrets/API keys
+  - Use console.log (use console.info/warn/error)
+  - Use eval() or dangerouslySetInnerHTML
+  - Use Math.random() for security (use crypto.getRandomValues())
+  - Access process.env.* in client components (only NEXT_PUBLIC_*)
+  - Skip security controls in API routes
+  - Disclose information in error messages
+
+  ### Always:
+  - Follow existing code patterns
+  - Use TypeScript strict mode (no 'any')
+  - Validate all inputs with Zod
+  - Handle errors gracefully
+  - Use generic error messages
+  - Test with npm run lint and npm run build
+
+  ## API Route Template
+  ```typescript
+  import { NextResponse } from "next/server";
+  import { z } from "zod";
+  import { verifyCsrfToken } from "@/lib/csrf";
+  import { checkRateLimit, getClientIp } from "@/lib/ratelimit";
+
+  const schema = z.object({ email: z.string().email() });
+
+  export async function POST(request: Request) {
+    // 1. CSRF
+    if (!(await verifyCsrfToken(request))) {
+      return NextResponse.json({ error: "Invalid request." }, { status: 403 });
+    }
+
+    // 2. Rate limit
+    const ip = getClientIp(request);
+    const rateLimit = await checkRateLimit(ip, { bucket: "name", limit: 5, windowMs: 60_000 });
+    if (!rateLimit.allowed) {
+      return NextResponse.json({ error: "Please try again later." }, { status: 429 });
+    }
+
+    // 3. Validate
+    const parsed = schema.safeParse(await request.json().catch(() => ({})));
+    if (!parsed.success) {
+      return NextResponse.json({ error: "Invalid input" }, { status: 400 });
+    }
+
+    // 4. Business logic
+    try {
+      return NextResponse.json({ success: true });
+    } catch (err) {
+      console.error("Error:", err);
+      return NextResponse.json({ error: "Unable to process request." }, { status: 500 });
+    }
+  }
+  ```
+
+  ## File Organization
+  - Landing sections: components/landing/S##Name.tsx
+  - API routes: app/api/[name]/route.ts
+  - Utilities: lib/[name].ts
+  - Check existing files before creating new ones
+
+  ## Style
+  - Tailwind CSS (use design tokens from app/globals.css)
+  - Functional components with TypeScript
+  - Follow existing patterns
+
+  ## Testing
+  Run before committing:
+  1. npm run lint (must pass)
+  2. npm run build (must succeed)
+  3. Manual testing
+
+  ## Documentation
+  For details, read:
+  - CLAUDE.md - Main instructions
+  - SECURITY.md - Security policy
+  - .github/SECURITY_CHECKLIST.md - Developer checklist
+  - .github/SECURITY_QUICK_REFERENCE.md - Quick reference
+
+  When in doubt, check existing code and follow established patterns. Security first!

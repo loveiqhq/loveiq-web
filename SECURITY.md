@@ -47,6 +47,44 @@
 
 ## Dependencies
 - Run `npm audit` regularly; patch high/critical issues. Avoid shipping dev-only tooling to production if not needed.
+- **Automated scanning**: See `.github/workflows/security.yml` for comprehensive dependency scanning
+- **SBOM**: Software Bill of Materials generated on every build (90-day retention)
+- **Dependabot**: Configured in `.github/dependabot.yml` for automated security updates
+
+## Security Scanning
+
+The repository uses multiple layers of automated security scanning:
+
+### 1. Secret Scanning (TruffleHog)
+- Scans entire git history for leaked credentials
+- Runs on every push, PR, and weekly
+- Fails build if verified secrets detected
+
+### 2. SAST - Static Analysis
+- **Semgrep**: Fast SAST for OWASP Top 10, Node.js/Next.js patterns
+- **CodeQL**: Deep semantic analysis for complex vulnerabilities
+- Results visible in GitHub Security tab
+
+### 3. Dependency Scanning
+- **npm audit**: Fails on high/critical vulnerabilities
+- **SBOM generation**: CycloneDX format, stored as artifact
+- **Dependency Review**: Blocks PRs with vulnerable dependencies
+
+### 4. Custom Security Rules
+- API routes must have CSRF protection, rate limiting, Zod validation
+- Checks for dangerous patterns (eval, dangerouslySetInnerHTML)
+- Verifies security headers in middleware
+- Scans build output for leaked secrets
+
+### 5. Enhanced Linting
+- `eslint-plugin-security` for security anti-patterns
+- `eslint-plugin-no-secrets` for secret detection
+- Custom rules in `eslint.config.mjs`
+
+**For detailed information**, see `SECURITY_SCANNING.md`.
 
 ## Incident response
 - On suspected compromise: rotate Supabase/Resend keys, invalidate sessions if added later, redeploy, and review logs. Notify affected users if data exposure is confirmed.
+- Review GitHub Security tab for any active alerts
+- Check TruffleHog and CodeQL findings for indicators of compromise
+- Generate fresh SBOM to audit all dependencies

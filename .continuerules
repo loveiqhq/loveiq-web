@@ -1,0 +1,191 @@
+# Continue AI Rules for LoveIQ Web
+
+## Primary Documentation
+- `CLAUDE.md` - Codebase instructions and architecture
+- `SECURITY.md` - Security policy
+- `.github/SECURITY_CHECKLIST.md` - Developer security checklist
+- `.github/SECURITY_QUICK_REFERENCE.md` - Quick reference card
+
+## Project Overview
+**Type:** Next.js 16 App Router marketing website
+**Stack:** TypeScript, React, Tailwind CSS, Supabase, Resend
+**Purpose:** Pre-launch marketing with waitlist and contact forms
+**Auth:** None (no user authentication)
+
+## Security-First Approach
+
+### Mandatory for All API Routes
+
+1. **CSRF Protection**
+```typescript
+import { verifyCsrfToken } from "@/lib/csrf";
+if (!(await verifyCsrfToken(request))) {
+  return NextResponse.json({ error: "Invalid request." }, { status: 403 });
+}
+```
+
+2. **Rate Limiting**
+```typescript
+import { checkRateLimit, getClientIp } from "@/lib/ratelimit";
+const ip = getClientIp(request);
+const rateLimit = await checkRateLimit(ip, { bucket: "route-name", limit: 5, windowMs: 60_000 });
+if (!rateLimit.allowed) {
+  return NextResponse.json({ error: "Please try again later." }, { status: 429 });
+}
+```
+
+3. **Input Validation**
+```typescript
+import { z } from "zod";
+const schema = z.object({ email: z.string().email().max(320) });
+const parsed = schema.safeParse(await request.json().catch(() => ({})));
+if (!parsed.success) {
+  return NextResponse.json({ error: "Invalid input" }, { status: 400 });
+}
+```
+
+### Prohibited Patterns
+- ❌ Hardcoded secrets or API keys
+- ❌ `eval()`, `new Function()`, `dangerouslySetInnerHTML`
+- ❌ `Math.random()` for security (use `crypto.getRandomValues()`)
+- ❌ `console.log()` (use `console.info/warn/error`)
+- ❌ `process.env.*` in client components (only `NEXT_PUBLIC_*`)
+- ❌ Skipping security controls in API routes
+- ❌ Information disclosure in error messages
+
+### Required Patterns
+- ✅ CSRF verification in POST/PUT/DELETE/PATCH
+- ✅ Rate limiting on all POST routes
+- ✅ Zod schema validation
+- ✅ Generic error messages
+- ✅ Proper TypeScript types (no `any`)
+- ✅ Error handling with try/catch
+- ✅ Run `npm run lint` and `npm run build` before completing
+
+## Complete API Route Template
+
+```typescript
+import { NextResponse } from "next/server";
+import { z } from "zod";
+import { verifyCsrfToken } from "@/lib/csrf";
+import { checkRateLimit, getClientIp } from "@/lib/ratelimit";
+
+const schema = z.object({
+  email: z.string().email().max(320),
+});
+
+export async function POST(request: Request) {
+  // 1. CSRF verification
+  if (!(await verifyCsrfToken(request))) {
+    return NextResponse.json({ error: "Invalid request." }, { status: 403 });
+  }
+
+  // 2. Rate limiting
+  const ip = getClientIp(request);
+  const rateLimit = await checkRateLimit(ip, {
+    bucket: "route-name",
+    limit: 5,
+    windowMs: 60_000,
+  });
+  if (!rateLimit.allowed) {
+    return NextResponse.json({ error: "Please try again later." }, { status: 429 });
+  }
+
+  // 3. Validation
+  const parsed = schema.safeParse(await request.json().catch(() => ({})));
+  if (!parsed.success) {
+    return NextResponse.json({ error: "Invalid input" }, { status: 400 });
+  }
+
+  // 4. Business logic
+  try {
+    // ... do work
+    return NextResponse.json({ success: true });
+  } catch (err) {
+    console.error("Error:", err);
+    return NextResponse.json({ error: "Unable to process request." }, { status: 500 });
+  }
+}
+```
+
+## File Organization
+- Landing sections: `components/landing/S##Name.tsx`
+- API routes: `app/api/[name]/route.ts`
+- Utilities: `lib/[name].ts`
+- Pages: `app/[name]/page.tsx`
+- Always check for existing similar functionality before creating new files
+
+## Code Style
+- TypeScript strict mode
+- Functional components with FC type
+- Tailwind CSS for styling (use design tokens from `globals.css`)
+- Follow existing patterns in the codebase
+- ESLint rules must pass
+- No emoji unless explicitly requested
+
+## Environment Variables
+| Type | Prefix | Example |
+|------|--------|---------|
+| Server-only | None | `SUPABASE_SERVICE_ROLE_KEY` |
+| Client-safe | `NEXT_PUBLIC_` | `NEXT_PUBLIC_SITE_URL` |
+
+## Testing Checklist
+Before completing work:
+1. Run `npm run lint` - must pass with no errors
+2. Run `npm run build` - must succeed
+3. Test affected functionality manually
+4. Review `.github/SECURITY_CHECKLIST.md`
+
+## Component Pattern
+```typescript
+import { FC } from "react";
+
+interface Props {
+  title: string;
+}
+
+const ComponentName: FC<Props> = ({ title }) => {
+  return (
+    <section className="relative bg-page py-16 lg:py-24">
+      <div className="content-shell">
+        <h2 className="font-serif text-3xl lg:text-4xl">{title}</h2>
+      </div>
+    </section>
+  );
+};
+
+export default ComponentName;
+```
+
+## Security Headers
+All security headers are configured in `proxy.ts` (middleware):
+- Content-Security-Policy (nonce-based)
+- X-Frame-Options, X-Content-Type-Options
+- Strict-Transport-Security, Referrer-Policy
+- Update CSP when adding third-party scripts
+
+## Error Handling
+Use generic error messages only:
+```typescript
+// ✅ GOOD
+return NextResponse.json({ error: "Invalid input" }, { status: 400 });
+
+// ❌ BAD (information disclosure)
+return NextResponse.json({ error: "User john@example.com not found" }, { status: 400 });
+```
+
+## Resources
+- **Architecture**: `.planning/codebase/ARCHITECTURE.md`
+- **Conventions**: `.planning/codebase/CONVENTIONS.md`
+- **Security**: `SECURITY.md`, `SECURITY_SCANNING.md`
+- **Quick Reference**: `.github/SECURITY_QUICK_REFERENCE.md`
+
+## When Uncertain
+1. Check existing similar code
+2. Review `.planning/codebase/` documentation
+3. Follow patterns in `CLAUDE.md`
+4. Ask user rather than guessing on security matters
+
+---
+
+**Remember:** This is a security-focused project. All API routes must include CSRF verification, rate limiting, and input validation. When in doubt, check the security checklist.

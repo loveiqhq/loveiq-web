@@ -1,0 +1,11 @@
+# TruffleHog ignore configuration
+# Add patterns here to suppress false positives from secret scanning
+
+# Example format:
+# - path: "path/to/file"
+#   reason: "This is test data only"
+
+# - path: "docs/examples/*"
+#   reason: "Documentation examples with fake credentials"
+
+# Add your suppressions below:

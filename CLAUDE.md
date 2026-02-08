@@ -55,7 +55,8 @@ loveiq-web/
 ├── public/                     # Static assets (images, videos)
 ├── proxy.ts                    # Middleware: CSP headers, CSRF cookies, security logging
 ├── .github/workflows/
-│   └── security.yml            # CI: npm audit + ESLint + build
+│   ├── security.yml            # Comprehensive security scanning (secrets, SAST, dependencies, SBOM)
+│   └── codeql.yml              # Advanced CodeQL analysis
 ├── .planning/                  # Architecture docs (ARCHITECTURE.md, CONVENTIONS.md, etc.)
 ├── SECURITY.md                 # Security guidelines + secrets rotation
 ├── DEVELOPMENT.md              # Development setup guide

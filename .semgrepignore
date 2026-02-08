@@ -1,0 +1,38 @@
+# Semgrep ignore file - exclude files/directories from SAST scanning
+
+# Dependencies
+node_modules/
+.pnpm-store/
+
+# Build output
+.next/
+out/
+dist/
+
+# Test files (if added later)
+__tests__/
+*.test.ts
+*.test.tsx
+*.spec.ts
+*.spec.tsx
+
+# Configuration files
+*.config.js
+*.config.mjs
+*.config.ts
+tailwind.config.js
+postcss.config.js
+
+# Generated files
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
+
+# Documentation
+*.md
+docs/
+
+# Environment files (already in .gitignore but belt-and-braces)
+.env
+.env.local
+.env.*.local

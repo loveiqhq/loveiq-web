@@ -75,7 +75,7 @@ export function proxy(request: NextRequest) {
   // Security logging for API routes (3.4)
   if (request.nextUrl.pathname.startsWith("/api/")) {
     const ip = request.headers.get("x-real-ip") || request.headers.get("x-forwarded-for")?.split(",")[0] || "unknown";
-    console.log(
+    console.info(
       JSON.stringify({
         type: "api_request",
         timestamp: new Date().toISOString(),

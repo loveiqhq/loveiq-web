@@ -1,0 +1,104 @@
+# Windsurf AI Rules for LoveIQ Web
+
+## Documentation
+Read these files first:
+- `CLAUDE.md` - Main instructions
+- `SECURITY.md` - Security policy
+- `.github/SECURITY_CHECKLIST.md` - Developer checklist
+
+## Project
+Next.js 16 App Router | TypeScript | React | Tailwind CSS | Marketing site (no auth)
+
+## Critical Rules
+
+### Never
+- ❌ Commit secrets/API keys
+- ❌ Use console.log (use .info/.warn/.error)
+- ❌ Use eval() or dangerouslySetInnerHTML
+- ❌ Use Math.random() for security
+- ❌ Access process.env.* in client (only NEXT_PUBLIC_*)
+- ❌ Skip CSRF/rate limiting/validation in API routes
+
+### Always
+- ✅ CSRF verification in POST/PUT/DELETE/PATCH
+- ✅ Rate limiting in all POST routes
+- ✅ Zod validation for all inputs
+- ✅ crypto.getRandomValues() for security
+- ✅ Generic error messages (no info disclosure)
+- ✅ Run `npm run lint` and `npm run build`
+
+## API Route Pattern (Required)
+
+```typescript
+import { NextResponse } from "next/server";
+import { z } from "zod";
+import { verifyCsrfToken } from "@/lib/csrf";
+import { checkRateLimit, getClientIp } from "@/lib/ratelimit";
+
+const schema = z.object({ email: z.string().email() });
+
+export async function POST(request: Request) {
+  // 1. CSRF
+  if (!(await verifyCsrfToken(request))) {
+    return NextResponse.json({ error: "Invalid request." }, { status: 403 });
+  }
+
+  // 2. Rate limit
+  const ip = getClientIp(request);
+  const rateLimit = await checkRateLimit(ip, { bucket: "name", limit: 5, windowMs: 60_000 });
+  if (!rateLimit.allowed) {
+    return NextResponse.json({ error: "Please try again later." }, { status: 429 });
+  }
+
+  // 3. Validate
+  const parsed = schema.safeParse(await request.json().catch(() => ({})));
+  if (!parsed.success) {
+    return NextResponse.json({ error: "Invalid input" }, { status: 400 });
+  }
+
+  // 4. Business logic
+  try {
+    return NextResponse.json({ success: true });
+  } catch (err) {
+    console.error("Error:", err);
+    return NextResponse.json({ error: "Unable to process request." }, { status: 500 });
+  }
+}
+```
+
+## File Patterns
+- Landing sections: `components/landing/S##Name.tsx`
+- API routes: `app/api/[name]/route.ts`
+- Utils: `lib/[name].ts`
+- Check existing files before creating new ones
+
+## Security Headers
+Set in `proxy.ts`: CSP, X-Frame-Options, HSTS, etc.
+Update CSP when adding third-party scripts.
+
+## Environment Variables
+- Server-only: No prefix (e.g., `SUPABASE_SERVICE_ROLE_KEY`)
+- Client-safe: `NEXT_PUBLIC_` prefix (e.g., `NEXT_PUBLIC_SITE_URL`)
+
+## Style
+- Tailwind CSS (use design tokens from `globals.css`)
+- TypeScript strict mode
+- Functional components
+- Follow existing patterns
+
+## Testing
+Before completing:
+1. `npm run lint` - must pass
+2. `npm run build` - must succeed
+3. Manual testing of changes
+4. Review security checklist
+
+## Red Flags
+Reject: hardcoded secrets, missing security controls, unsafe patterns (eval, dangerouslySetInnerHTML), information disclosure in errors
+
+## Resources
+- `.github/SECURITY_QUICK_REFERENCE.md` - Quick reference
+- `SECURITY_SCANNING.md` - Security scanning details
+- `.planning/codebase/` - Architecture docs
+
+Remember: Security first. When in doubt, check the checklist or ask.
