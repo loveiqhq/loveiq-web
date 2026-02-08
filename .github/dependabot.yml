@@ -12,7 +12,8 @@ updates:
       time: "09:00"
     open-pull-requests-limit: 10
     reviewers:
-      - "loveiqhq/maintainers"
+      - "eman-cickusic"
+      - "FerhadJukicc"
     labels:
       - "dependencies"
       - "security"
@@ -40,7 +41,8 @@ updates:
     schedule:
       interval: "monthly"
     reviewers:
-      - "loveiqhq/maintainers"
+      - "eman-cickusic"
+      - "FerhadJukicc"
     labels:
       - "dependencies"
       - "github-actions"
