@@ -97,6 +97,8 @@ const S07AcademicBoard: FC = () => {
   const [activeIndex, setActiveIndex] = useState(0);
   const isDraggingRef = useRef(false);
   const startXRef = useRef(0);
+  const startYRef = useRef(0);
+  const directionLockedRef = useRef<"horizontal" | "vertical" | null>(null);
   const currentTranslateRef = useRef(0);
   const startTranslateRef = useRef(0);
   const animationRef = useRef<number | null>(null);
@@ -152,14 +154,34 @@ const S07AcademicBoard: FC = () => {
     };
   }, []);
 
-  const handleDragStart = (clientX: number) => {
+  const handleDragStart = (clientX: number, clientY?: number) => {
     isDraggingRef.current = true;
     startXRef.current = clientX;
+    startYRef.current = clientY ?? 0;
+    directionLockedRef.current = null;
     startTranslateRef.current = currentTranslateRef.current;
   };
 
-  const handleDragMove = (clientX: number) => {
+  const handleDragMove = (clientX: number, clientY?: number, e?: React.TouchEvent) => {
     if (!isDraggingRef.current) return;
+
+    if (clientY !== undefined && directionLockedRef.current === null) {
+      const deltaX = Math.abs(clientX - startXRef.current);
+      const deltaY = Math.abs(clientY - startYRef.current);
+      if (deltaX > 5 || deltaY > 5) {
+        directionLockedRef.current = deltaX > deltaY ? "horizontal" : "vertical";
+      }
+    }
+
+    if (directionLockedRef.current === "vertical") {
+      isDraggingRef.current = false;
+      return;
+    }
+
+    if (directionLockedRef.current === "horizontal" && e) {
+      e.preventDefault();
+    }
+
     const diff = clientX - startXRef.current;
     currentTranslateRef.current = startTranslateRef.current + diff;
 
@@ -176,6 +198,7 @@ const S07AcademicBoard: FC = () => {
 
   const handleDragEnd = () => {
     isDraggingRef.current = false;
+    directionLockedRef.current = null;
     lastTimeRef.current = 0;
     updateActiveIndex();
   };
@@ -256,8 +279,8 @@ const S07AcademicBoard: FC = () => {
             handleDragEnd();
             setIsPaused(false);
           }}
-          onTouchStart={(e) => handleDragStart(e.touches[0].clientX)}
-          onTouchMove={(e) => handleDragMove(e.touches[0].clientX)}
+          onTouchStart={(e) => handleDragStart(e.touches[0].clientX, e.touches[0].clientY)}
+          onTouchMove={(e) => handleDragMove(e.touches[0].clientX, e.touches[0].clientY, e)}
           onTouchEnd={handleDragEnd}
           onMouseEnter={() => setIsPaused(true)}
         >

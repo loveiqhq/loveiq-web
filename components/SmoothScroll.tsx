@@ -9,11 +9,16 @@ function isGecko(): boolean {
   return /Gecko\/\d/.test(ua) && !/like Gecko/.test(ua);
 }
 
+function isTouchDevice(): boolean {
+  if (typeof window === "undefined") return false;
+  return window.matchMedia("(pointer: coarse)").matches;
+}
+
 export default function SmoothScroll({ children }: { children: React.ReactNode }) {
   const lenisRef = useRef<Lenis | null>(null);
 
   useEffect(() => {
-    if (isGecko()) return;
+    if (isGecko() || isTouchDevice()) return;
 
     const lenis = new Lenis({
       autoRaf: true,
