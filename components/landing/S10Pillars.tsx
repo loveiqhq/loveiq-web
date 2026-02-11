@@ -84,7 +84,7 @@ const IconPrivacy = () => (
 
 const icons = [IconBolt, IconScience, IconPrivacy];
 
-const S09Pillars: FC = () => {
+const S10Pillars: FC = () => {
   return (
     <section className="section-shell relative bg-[#0A0510] px-4 text-text-primary" aria-labelledby="pillars-heading">
       <div className="content-shell relative flex flex-col gap-6 lg:flex-row">
@@ -116,4 +116,4 @@ const S09Pillars: FC = () => {
   );
 };
 
-export default S09Pillars;
+export default S10Pillars;

@@ -91,7 +91,7 @@ const ChevronRight = () => (
   </svg>
 );
 
-const S07AcademicBoard: FC = () => {
+const S08AcademicBoard: FC = () => {
   const carouselRef = useRef<HTMLDivElement>(null);
   const [isPaused, setIsPaused] = useState(false);
   const [activeIndex, setActiveIndex] = useState(0);
@@ -375,4 +375,4 @@ const S07AcademicBoard: FC = () => {
   );
 };
 
-export default S07AcademicBoard;
+export default S08AcademicBoard;

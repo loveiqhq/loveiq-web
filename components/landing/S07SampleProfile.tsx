@@ -203,7 +203,7 @@ const explorationBullets = [
   },
 ];
 
-const S06SampleProfile: FC = () => {
+const S07SampleProfile: FC = () => {
   return (
     <section className="relative mt-0 overflow-hidden bg-[#0A0510] px-4 pb-24 pt-14 text-white">
       <div className="relative mx-auto flex max-w-6xl flex-col gap-14">
@@ -584,4 +584,4 @@ const S06SampleProfile: FC = () => {
   );
 };
 
-export default S06SampleProfile;
+export default S07SampleProfile;

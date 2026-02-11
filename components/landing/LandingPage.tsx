@@ -3,15 +3,15 @@ import ScrollAnimator from "./ScrollAnimator";
 import NavSection from "./NavSection";
 import S01Hero from "./S01Hero";
 import S02HowItWorks from "./S02HowItWorks";
-import S03TrustedBy from "./S03TrustedBy";
-import S04ValueFeatures from "./S04ValueFeatures";
-import S05Archetypes from "./S05Archetypes";
-import S06SampleProfile from "./S06SampleProfile";
-import S07AcademicBoard from "./S07AcademicBoard";
-import S08Report from "./S08Report";
-import S09Pillars from "./S09Pillars";
-import S10Testimonials from "./S10Testimonials";
-import S11PerfectFor from "./S11PerfectFor";
+import S03PerfectFor from "./S03PerfectFor";
+import S04TrustedBy from "./S04TrustedBy";
+import S05ValueFeatures from "./S05ValueFeatures";
+import S06Archetypes from "./S06Archetypes";
+import S07SampleProfile from "./S07SampleProfile";
+import S08AcademicBoard from "./S08AcademicBoard";
+import S09Report from "./S09Report";
+import S10Pillars from "./S10Pillars";
+import S11Testimonials from "./S11Testimonials";
 import S12WhyWeCreated from "./S12WhyWeCreated";
 import S13FAQ from "./S13FAQ";
 import S14CTA from "./S14CTA";
@@ -26,17 +26,17 @@ const LandingPage: FC = () => {
       <div id="about">
         <S02HowItWorks />
       </div>
+      <S03PerfectFor />
       <div id="glossary">
-        <S03TrustedBy />
+        <S04TrustedBy />
       </div>
-      <S04ValueFeatures />
-      <S05Archetypes />
-      <S06SampleProfile />
-      <S07AcademicBoard />
-      <S08Report />
-      <S09Pillars />
-      <S10Testimonials />
-      <S11PerfectFor />
+      <S05ValueFeatures />
+      <S06Archetypes />
+      <S07SampleProfile />
+      <S08AcademicBoard />
+      <S09Report />
+      <S10Pillars />
+      <S11Testimonials />
       <S12WhyWeCreated />
       <S13FAQ />
       <S14CTA />
