@@ -507,7 +507,7 @@ const TeaserCard: FC = () => (
   </div>
 );
 
-const S05Archetypes: FC = () => {
+const S06Archetypes: FC = () => {
   const carouselRef = useRef<HTMLDivElement>(null);
   const [isPaused, setIsPaused] = useState(false);
   const [activeIndex, setActiveIndex] = useState(0);
@@ -777,4 +777,4 @@ const S05Archetypes: FC = () => {
   );
 };
 
-export default S05Archetypes;
+export default S06Archetypes;
