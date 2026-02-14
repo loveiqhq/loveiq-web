@@ -1,7 +1,7 @@
 "use client";
 
 import type { FC } from "react";
-import { useEffect } from "react";
+import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import Link from "next/link";
 import type { GlossaryTerm } from "../../lib/glossary-data";
 import { glossaryTerms } from "../../lib/glossary-data";
@@ -18,6 +18,124 @@ function slugify(text: string): string {
     .replace(/[^a-z0-9]+/g, "-")
     .replace(/^-|-$/g, "");
 }
+
+interface MythRealityCardProps {
+  myth: string;
+  reality: string;
+  index: number;
+}
+
+const MythRealityCard: FC<MythRealityCardProps> = ({ myth, reality, index }) => {
+  const [isRevealed, setIsRevealed] = useState(false);
+  const [contentHeight, setContentHeight] = useState(0);
+  const contentRef = useRef<HTMLDivElement>(null);
+  const cardId = `myth-reality-${index}`;
+
+  useLayoutEffect(() => {
+    const updateHeight = () => {
+      if (contentRef.current) {
+        setContentHeight(contentRef.current.scrollHeight);
+      }
+    };
+
+    updateHeight();
+    window.addEventListener("resize", updateHeight);
+    return () => window.removeEventListener("resize", updateHeight);
+  }, [reality]);
+
+  return (
+    <div
+      className="rounded-xl overflow-hidden transition-colors duration-300 ease"
+      style={{
+        border: isRevealed
+          ? "1px solid rgba(52,211,153,0.15)"
+          : "1px solid rgba(255,255,255,0.05)",
+      }}
+    >
+      {/* Myth row — clickable */}
+      <button
+        type="button"
+        onClick={() => setIsRevealed(!isRevealed)}
+        className="flex w-full cursor-pointer select-none items-center gap-3 p-4 bg-[rgba(244,63,94,0.08)] text-left transition-colors duration-200 ease hover:bg-[rgba(244,63,94,0.12)]"
+        aria-expanded={isRevealed}
+        aria-controls={cardId}
+      >
+        <div className="shrink-0 mt-0.5 flex h-5 w-5 items-center justify-center rounded-full bg-[rgba(248,113,113,0.2)]">
+          <svg
+            className="h-3 w-3 text-[#f87171]"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2.5"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          >
+            <path d="M18 6 6 18" />
+            <path d="m6 6 12 12" />
+          </svg>
+        </div>
+        <div className="flex-1 min-w-0">
+          <span className="text-[10px] font-bold uppercase tracking-wider text-[#f87171]">Myth</span>
+          <p className="text-white/90 text-sm leading-relaxed mt-0.5">
+            {myth}
+          </p>
+        </div>
+        {/* Chevron */}
+        <svg
+          className="h-4 w-4 shrink-0 text-white/30 transition-transform duration-300"
+          style={{
+            transform: isRevealed ? "rotate(180deg)" : "rotate(0deg)",
+            transitionTimingFunction: "cubic-bezier(0.2,0.8,0.2,1)",
+          }}
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        >
+          <path d="m6 9 6 6 6-6" />
+        </svg>
+      </button>
+
+      {/* Reality row — collapsible */}
+      {reality && (
+        <div
+          id={cardId}
+          className="overflow-hidden transition-all duration-500 ease-out"
+          style={{
+            maxHeight: isRevealed ? contentHeight : 0,
+            opacity: isRevealed ? 1 : 0,
+          }}
+        >
+          <div ref={contentRef}>
+            <div className="flex gap-3 items-start p-4 bg-[rgba(52,211,153,0.05)] border-t border-white/5">
+              <div className="shrink-0 mt-0.5 flex h-5 w-5 items-center justify-center rounded-full bg-[rgba(52,211,153,0.2)]">
+                <svg
+                  className="h-3 w-3 text-[#34d399]"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2.5"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                >
+                  <path d="M20 6 9 17l-5-5" />
+                </svg>
+              </div>
+              <div>
+                <span className="text-[10px] font-bold uppercase tracking-wider text-[#34d399]">Reality</span>
+                <p className="text-white/70 text-sm leading-relaxed mt-0.5">
+                  {reality}
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+    </div>
+  );
+};
 
 const GlossaryTermPage: FC<GlossaryTermPageProps> = ({ term }) => {
   useEffect(() => {
@@ -236,57 +354,15 @@ const GlossaryTermPage: FC<GlossaryTermPageProps> = ({ term }) => {
                         Common Misunderstandings
                       </h2>
                     </div>
+                    <p className="text-xs text-white/30 -mt-2">Tap each myth to reveal the reality</p>
                     <div className="space-y-4">
                       {term.misinterpretations.map((misinterpretation, i) => (
-                        <div key={i} className="rounded-xl border border-white/5 bg-white/[0.02] overflow-hidden">
-                          {/* Myth row */}
-                          <div className="flex gap-3 items-start p-4 bg-[rgba(244,63,94,0.08)] border-b border-white/5">
-                            <div className="shrink-0 mt-0.5 flex h-5 w-5 items-center justify-center rounded-full bg-[rgba(248,113,113,0.2)]">
-                              <svg
-                                className="h-3 w-3 text-[#f87171]"
-                                viewBox="0 0 24 24"
-                                fill="none"
-                                stroke="currentColor"
-                                strokeWidth="2.5"
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
-                              >
-                                <path d="M18 6 6 18" />
-                                <path d="m6 6 12 12" />
-                              </svg>
-                            </div>
-                            <div>
-                              <span className="text-[10px] font-bold uppercase tracking-wider text-[#f87171]">Myth</span>
-                              <p className="text-white/90 text-sm leading-relaxed mt-0.5">
-                                {misinterpretation}
-                              </p>
-                            </div>
-                          </div>
-                          {/* Reality row */}
-                          {term.reality && term.reality[i] && (
-                            <div className="flex gap-3 items-start p-4 bg-[rgba(52,211,153,0.05)]">
-                              <div className="shrink-0 mt-0.5 flex h-5 w-5 items-center justify-center rounded-full bg-[rgba(52,211,153,0.2)]">
-                                <svg
-                                  className="h-3 w-3 text-[#34d399]"
-                                  viewBox="0 0 24 24"
-                                  fill="none"
-                                  stroke="currentColor"
-                                  strokeWidth="2.5"
-                                  strokeLinecap="round"
-                                  strokeLinejoin="round"
-                                >
-                                  <path d="M20 6 9 17l-5-5" />
-                                </svg>
-                              </div>
-                              <div>
-                                <span className="text-[10px] font-bold uppercase tracking-wider text-[#34d399]">Reality</span>
-                                <p className="text-white/70 text-sm leading-relaxed mt-0.5">
-                                  {term.reality[i]}
-                                </p>
-                              </div>
-                            </div>
-                          )}
-                        </div>
+                        <MythRealityCard
+                          key={i}
+                          myth={misinterpretation}
+                          reality={term.reality?.[i] || ""}
+                          index={i}
+                        />
                       ))}
                     </div>
                   </div>

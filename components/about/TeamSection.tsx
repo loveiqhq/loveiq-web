@@ -38,42 +38,63 @@ const TeamSection: FC = () => {
     {
       name: "Ema Djedović",
       role: "Product Lead",
-      image: "/about/team-ema-djedovic-new.jpeg",
+      image: "/about/team-ema-djedovic.png",
       linkedinUrl: "https://www.linkedin.com/in/ema-djedovic/",
       socials: ["linkedin"],
       hoverColor: "purple",
+      imageScale: 1,
+      imagePosition: "center 20%",
     },
     {
       name: "Eman Cickusic",
       role: "Tech Lead",
-      image: "/about/team-eman-cickusic-61a88a.png",
+      image: "/about/team-eman-cickusic.png",
       linkedinUrl: "https://www.linkedin.com/in/eman-cickusic/",
       socials: ["linkedin"],
       hoverColor: "orange",
+      imageScale: 1.5,
+      imagePosition: "center 0%",
+      imageOffsetY: "-25%",
     },
     {
       name: "Ferhad Jukić",
       role: "Full-Stack Engineer",
-      image: "/about/team-ferhad-jukic.png",
+      image: "/about/team-ferhad-jukic-new.png",
       linkedinUrl: "https://www.linkedin.com/in/ferhad-juki%C4%87-7a9049333/",
       socials: ["linkedin"],
       hoverColor: "purple",
+      imageScale: 1,
+      imagePosition: "center 50%",
+    },
+    {
+      name: "Adna Njuhovic",
+      role: "Growth Lead",
+      image: "/about/team-adna-njuhovic.png",
+      linkedinUrl: "https://www.linkedin.com/in/adna-njuhovic/",
+      socials: ["linkedin"],
+      hoverColor: "orange",
+      imageScale: 1.05,
+      imagePosition: "center 25%",
     },
     {
       name: "Ismar Fazlić",
       role: "Design Lead",
-      image: "/about/team-ismar-fazlic-74951d.png",
+      image: "/about/team-ismar-fazlic.png",
       linkedinUrl: "https://www.linkedin.com/in/ismar-fazlic/",
       socials: ["linkedin"],
       hoverColor: "orange",
+      imageScale: 1.35,
+      imagePosition: "center 15%",
     },
     {
       name: "Marcus Börner",
       role: "Strategy Lead",
-      image: "/about/team-marcus-borner-56586a.png",
+      image: "/about/team-marcus-borner.png",
       linkedinUrl: "https://www.linkedin.com/in/marcusb1/",
       socials: ["linkedin"],
       hoverColor: "purple",
+      imageScale: 1,
+      imagePosition: "center center",
     },
   ];
 
@@ -120,7 +141,7 @@ const TeamSection: FC = () => {
         </div>
 
         {/* Team Grid */}
-        <div className="mx-auto flex w-full max-w-[920px] flex-wrap justify-center gap-6">
+        <div className="mx-auto flex w-full max-w-[940px] flex-wrap justify-center gap-6">
           {team.map((member, index) => {
             const isPurple = member.hoverColor === "purple";
             const hoverShadow = isPurple
@@ -136,14 +157,20 @@ const TeamSection: FC = () => {
                 {/* Photo */}
                 <div className="relative mb-5 h-[256px] w-full overflow-hidden rounded-2xl bg-[#0A0510]">
                   <div className="pointer-events-none absolute inset-0 z-10 bg-gradient-to-t from-[#0A0510] via-transparent to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-60" />
-                  <Image
-                    src={member.image}
-                    alt={member.name}
-                    fill
-                    quality={85}
-                    sizes="580px"
-                    className="object-cover opacity-90 grayscale-[20%] transition-all duration-700 ease-out group-hover:scale-110 group-hover:opacity-100 group-hover:grayscale-0"
-                  />
+                  <div
+                    className="absolute inset-0"
+                    style={member.imageScale !== 1 ? { transform: `${member.imageOffsetY ? `translateY(${member.imageOffsetY}) ` : ''}scale(${member.imageScale})` } : undefined}
+                  >
+                    <Image
+                      src={member.image}
+                      alt={member.name}
+                      fill
+                      quality={85}
+                      sizes="580px"
+                      className="object-cover transition-transform duration-700 ease-out group-hover:scale-110"
+                      style={{ objectPosition: member.imagePosition }}
+                    />
+                  </div>
                 </div>
 
                 {/* Info */}

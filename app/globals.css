@@ -272,6 +272,7 @@ h3,
 .stagger-2 { transition-delay: 200ms; }
 .stagger-3 { transition-delay: 300ms; }
 .stagger-4 { transition-delay: 400ms; }
+.stagger-5 { transition-delay: 500ms; }
 
 /* Hero character-by-character animation */
 @keyframes sensual-char-reveal {

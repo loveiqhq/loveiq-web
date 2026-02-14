@@ -28,3 +28,6 @@ tmp_*
 *.tmp
 dist/
 
+# Data source files
+*.csv
+

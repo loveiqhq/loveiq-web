@@ -53,7 +53,10 @@
       "Bash(del \"C:\\\\Users\\\\cicku\\\\loveiq-web\\\\_harvard_svg.txt\" \"C:\\\\Users\\\\cicku\\\\loveiq-web\\\\_ips_berlin_svg.txt\")",
       "mcp__plugin_figma_figma__get_metadata",
       "mcp__plugin_figma_figma__get_design_context",
-      "mcp__plugin_figma_figma__get_screenshot"
+      "mcp__plugin_figma_figma__get_screenshot",
+      "Bash(npx next build:*)",
+      "mcp__figma__get_figma_data",
+      "Bash(cd:*)"
     ]
   }
 }
