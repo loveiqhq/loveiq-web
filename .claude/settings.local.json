@@ -58,7 +58,16 @@
       "mcp__figma__get_figma_data",
       "Bash(cd:*)",
       "Bash(npx --yes sharp-cli:*)",
-      "Bash(npx sharp-cli:*)"
+      "Bash(npx sharp-cli:*)",
+      "Bash(npm run test:*)",
+      "Bash(npm test:*)",
+      "Bash(wc:*)",
+      "WebFetch(domain:github.com)",
+      "Bash(npx husky init)",
+      "Bash(npx vitest run)",
+      "Bash(npx vitest:*)",
+      "Bash(npm ls:*)",
+      "Bash(npx playwright:*)"
     ]
   }
 }

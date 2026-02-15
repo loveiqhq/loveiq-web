@@ -1,0 +1,10 @@
+# Default owners for the entire repo
+* @eman-cickusic @FerhadJukicc
+
+# Security-critical files require explicit review
+proxy.ts @eman-cickusic @FerhadJukicc
+lib/csrf.ts @eman-cickusic @FerhadJukicc
+lib/ratelimit.ts @eman-cickusic @FerhadJukicc
+app/api/ @eman-cickusic @FerhadJukicc
+SECURITY.md @eman-cickusic @FerhadJukicc
+.github/workflows/ @eman-cickusic @FerhadJukicc

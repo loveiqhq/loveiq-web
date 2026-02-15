@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
+import logger from "./lib/logger";
 
 const CSRF_COOKIE_NAME = "__csrf";
 const CSRF_TOKEN_LENGTH = 32;
@@ -30,7 +31,9 @@ export function proxy(request: NextRequest) {
     "base-uri 'self'",
     "form-action 'self'",
     isDev ? "" : "upgrade-insecure-requests", // Skip upgrade-insecure-requests in dev (localhost is http)
-  ].filter(Boolean).join("; ");
+  ]
+    .filter(Boolean)
+    .join("; ");
 
   // Clone the request headers and set CSP nonce for use in components
   const requestHeaders = new Headers(request.headers);
@@ -52,10 +55,7 @@ export function proxy(request: NextRequest) {
     "Permissions-Policy",
     "geolocation=(), microphone=(), camera=(), autoplay=(), payment=()"
   );
-  response.headers.set(
-    "Strict-Transport-Security",
-    "max-age=63072000; includeSubDomains; preload"
-  );
+  response.headers.set("Strict-Transport-Security", "max-age=63072000; includeSubDomains; preload");
   // Cross-Origin-Opener-Policy for origin isolation
   response.headers.set("Cross-Origin-Opener-Policy", "same-origin-allow-popups");
 
@@ -74,17 +74,17 @@ export function proxy(request: NextRequest) {
 
   // Security logging for API routes (3.4)
   if (request.nextUrl.pathname.startsWith("/api/")) {
-    const ip = request.headers.get("x-real-ip") || request.headers.get("x-forwarded-for")?.split(",")[0] || "unknown";
-    console.info(
-      JSON.stringify({
-        type: "api_request",
-        timestamp: new Date().toISOString(),
-        method: request.method,
-        path: request.nextUrl.pathname,
-        ip,
-        userAgent: request.headers.get("user-agent")?.slice(0, 100) || "unknown",
-      })
-    );
+    const ip =
+      request.headers.get("x-real-ip") ||
+      request.headers.get("x-forwarded-for")?.split(",")[0] ||
+      "unknown";
+    logger.info({
+      type: "api_request",
+      method: request.method,
+      path: request.nextUrl.pathname,
+      ip,
+      userAgent: request.headers.get("user-agent")?.slice(0, 100) || "unknown",
+    });
   }
 
   return response;

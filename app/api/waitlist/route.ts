@@ -5,6 +5,7 @@ import { z } from "zod";
 import { checkRateLimit, checkCooldown, getClientIp } from "../../../lib/ratelimit";
 import { fetchWithTimeout } from "../../../lib/fetch-with-timeout";
 import { verifyCsrfToken } from "../../../lib/csrf";
+import logger from "../../../lib/logger";
 
 type Payload = {
   email?: string;
@@ -52,7 +53,7 @@ const notifySlackWaitlist = async ({
   const url = process.env.SLACK_WAITLIST_WEBHOOK_URL;
 
   if (!url) {
-    console.warn("Slack webhook missing: set SLACK_WAITLIST_WEBHOOK_URL to enable waitlist alerts.");
+    logger.warn("Slack webhook missing: set SLACK_WAITLIST_WEBHOOK_URL to enable waitlist alerts.");
     return;
   }
 
@@ -61,7 +62,7 @@ const notifySlackWaitlist = async ({
   const text = `New waitlist signup: ${firstName ? `*${firstName}* ` : ""}<mailto:${email}|${maskedEmail}>${source ? ` (source: ${source})` : ""}`;
 
   try {
-    console.info("Sending Slack waitlist notification for", maskedEmail, "source:", source || "n/a");
+    logger.info({ maskedEmail, source: source || "n/a" }, "Sending Slack waitlist notification");
     const res = await fetchWithTimeout(url, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -71,12 +72,12 @@ const notifySlackWaitlist = async ({
 
     if (!res.ok) {
       const body = await res.text().catch(() => "");
-      console.error("Slack webhook failed:", res.status, body);
+      logger.error({ status: res.status, body }, "Slack webhook failed");
     } else {
-      console.info("Slack webhook sent:", res.status);
+      logger.info({ status: res.status }, "Slack webhook sent");
     }
   } catch (err) {
-    console.error("Slack webhook error:", err);
+    logger.error({ err }, "Slack webhook error");
   }
 };
 
@@ -96,12 +97,14 @@ export async function POST(request: Request) {
       { error: "Please try again later." },
       {
         status: 429,
-        headers: { "Retry-After": String(Math.ceil((rateLimit.resetAt.getTime() - Date.now()) / 1000)) },
+        headers: {
+          "Retry-After": String(Math.ceil((rateLimit.resetAt.getTime() - Date.now()) / 1000)),
+        },
       }
     );
   }
 
-  const parsed = waitlistSchema.safeParse(await request.json().catch(() => ({} as Payload)));
+  const parsed = waitlistSchema.safeParse(await request.json().catch(() => ({}) as Payload));
   if (!parsed.success) {
     return NextResponse.json({ error: "Invalid input" }, { status: 400 });
   }
@@ -130,7 +133,7 @@ export async function POST(request: Request) {
   const serviceRoleKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
 
   if (!url || !serviceRoleKey) {
-    return NextResponse.json({ error: "Supabase env vars missing" }, { status: 500 });
+    return NextResponse.json({ error: "Service unavailable." }, { status: 503 });
   }
 
   const insertPayload = {

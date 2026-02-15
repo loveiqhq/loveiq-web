@@ -5,6 +5,8 @@
  * server restarts and deployments, preventing abuse even during deployments.
  */
 
+import logger from "./logger";
+
 const SUPABASE_URL = process.env.SUPABASE_URL;
 const SUPABASE_SERVICE_ROLE_KEY = process.env.SUPABASE_SERVICE_ROLE_KEY;
 
@@ -42,7 +44,7 @@ export async function checkRateLimit(
   // If Supabase is not configured, fall back to allowing the request
   // but log a warning. In production, this should be configured.
   if (!SUPABASE_URL || !SUPABASE_SERVICE_ROLE_KEY) {
-    console.warn("[ratelimit] Supabase not configured, rate limiting disabled");
+    logger.warn("[ratelimit] Supabase not configured, rate limiting disabled");
     return { allowed: true, remaining: config.limit, resetAt };
   }
 
@@ -73,7 +75,7 @@ export async function checkRateLimit(
       if (response.status === 404) {
         return checkRateLimitSimple(compositeKey, config, now);
       }
-      console.error("[ratelimit] Supabase RPC failed:", response.status);
+      logger.error({ status: response.status }, "[ratelimit] Supabase RPC failed");
       // Fail open with warning - don't block users if DB has issues
       return { allowed: true, remaining: config.limit, resetAt };
     }
@@ -85,7 +87,7 @@ export async function checkRateLimit(
       resetAt: new Date(result.reset_at ?? resetAt),
     };
   } catch (err) {
-    console.error("[ratelimit] Error checking rate limit:", err);
+    logger.error({ err }, "[ratelimit] Error checking rate limit");
     // Fail open with warning - don't block users if DB has issues
     return { allowed: true, remaining: config.limit, resetAt };
   }
@@ -117,7 +119,7 @@ async function checkRateLimitSimple(
     );
 
     if (!getResponse.ok) {
-      console.error("[ratelimit] Failed to get rate limit:", getResponse.status);
+      logger.error({ status: getResponse.status }, "[ratelimit] Failed to get rate limit");
       return { allowed: true, remaining: config.limit, resetAt };
     }
 
@@ -158,7 +160,7 @@ async function checkRateLimitSimple(
     });
 
     if (!upsertResponse.ok) {
-      console.error("[ratelimit] Failed to upsert rate limit:", upsertResponse.status);
+      logger.error({ status: upsertResponse.status }, "[ratelimit] Failed to upsert rate limit");
     }
 
     return {
@@ -167,7 +169,7 @@ async function checkRateLimitSimple(
       resetAt,
     };
   } catch (err) {
-    console.error("[ratelimit] Simple rate limit error:", err);
+    logger.error({ err }, "[ratelimit] Simple rate limit error");
     return { allowed: true, remaining: config.limit, resetAt };
   }
 }
@@ -234,7 +236,7 @@ export async function checkCooldown(
 
     return { allowed: true, retryAfterMs: 0 };
   } catch (err) {
-    console.error("[ratelimit] Cooldown check error:", err);
+    logger.error({ err }, "[ratelimit] Cooldown check error");
     return { allowed: true, retryAfterMs: 0 };
   }
 }

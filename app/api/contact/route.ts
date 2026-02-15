@@ -4,6 +4,7 @@ import { z } from "zod";
 import { checkRateLimit, getClientIp } from "../../../lib/ratelimit";
 import { fetchWithTimeout } from "../../../lib/fetch-with-timeout";
 import { verifyCsrfToken } from "../../../lib/csrf";
+import logger from "../../../lib/logger";
 
 // Lazy initialization to avoid build-time errors when env vars are not set
 let _resend: Resend | null = null;
@@ -36,7 +37,7 @@ const contactSchema = z.object({
 
 const verifyCaptcha = async (token: string, ip: string) => {
   if (!recaptchaSecret) {
-    console.error("Missing RECAPTCHA_SECRET_KEY");
+    logger.error("Missing RECAPTCHA_SECRET_KEY");
     return false;
   }
 
@@ -55,14 +56,14 @@ const verifyCaptcha = async (token: string, ip: string) => {
     });
 
     if (!res.ok) {
-      console.error("reCAPTCHA verify failed:", res.status);
+      logger.error({ status: res.status }, "reCAPTCHA verify failed");
       return false;
     }
 
     const json = (await res.json()) as { success?: boolean };
     return Boolean(json.success);
   } catch (err) {
-    console.error("reCAPTCHA verify error:", err);
+    logger.error({ err }, "reCAPTCHA verify error");
     return false;
   }
 };
@@ -76,7 +77,7 @@ const sendSlackContactNotification = async (payload: {
 }) => {
   const webhookUrl = slackContactWebhook;
   if (!webhookUrl) {
-    console.warn("Slack contact webhook missing: SLACK_CONTACT_WEBHOOK_URL");
+    logger.warn("Slack contact webhook missing: SLACK_CONTACT_WEBHOOK_URL");
     return;
   }
 
@@ -88,13 +89,10 @@ const sendSlackContactNotification = async (payload: {
 
   // Truncate message to prevent overly long Slack messages
   const truncatedMessage =
-    payload.message.length > 200
-      ? payload.message.slice(0, 200) + "..."
-      : payload.message;
+    payload.message.length > 200 ? payload.message.slice(0, 200) + "..." : payload.message;
 
   // Escape special Slack markdown characters in user content
-  const escapeSlack = (s: string) =>
-    s.replace(/[&<>*_~`]/g, (c) => `\\${c}`);
+  const escapeSlack = (s: string) => s.replace(/[&<>*_~`]/g, (c) => `\\${c}`);
 
   const text =
     `📩 *New contact request*\n` +
@@ -112,12 +110,12 @@ const sendSlackContactNotification = async (payload: {
     });
     const body = await res.text();
     if (!res.ok) {
-      console.error("Slack contact webhook failed:", res.status, body);
+      logger.error({ status: res.status, body }, "Slack contact webhook failed");
     } else {
-      console.info("Slack contact webhook sent:", res.status);
+      logger.info({ status: res.status }, "Slack contact webhook sent");
     }
   } catch (err) {
-    console.error("Slack contact webhook error:", err);
+    logger.error({ err }, "Slack contact webhook error");
   }
 };
 
@@ -130,7 +128,7 @@ export async function POST(request: Request) {
 
   // Validate required config
   if (!contactToEmail) {
-    console.error("Missing CONTACT_TO_EMAIL environment variable");
+    logger.error("Missing CONTACT_TO_EMAIL environment variable");
     return NextResponse.json({ error: "Service unavailable." }, { status: 503 });
   }
 
@@ -143,7 +141,9 @@ export async function POST(request: Request) {
       { error: "Please try again later." },
       {
         status: 429,
-        headers: { "Retry-After": String(Math.ceil((rateLimit.resetAt.getTime() - Date.now()) / 1000)) },
+        headers: {
+          "Retry-After": String(Math.ceil((rateLimit.resetAt.getTime() - Date.now()) / 1000)),
+        },
       }
     );
   }
@@ -167,7 +167,7 @@ export async function POST(request: Request) {
   // Additional validation - reject if sanitization changed the email
   // (indicates attempted header injection)
   if (sanitizedReplyTo !== email.trim()) {
-    console.warn("Potential header injection attempt in email:", email.slice(0, 50));
+    logger.warn("Potential header injection attempt in email");
     return NextResponse.json({ error: "Invalid email format." }, { status: 400 });
   }
 
@@ -190,8 +190,11 @@ export async function POST(request: Request) {
 
     await sendSlackContactNotification({ firstName, lastName, email, phone, message });
   } catch (err) {
-    console.error("Contact email send error:", err);
-    return NextResponse.json({ error: "Unable to send message. Please try later." }, { status: 500 });
+    logger.error({ err }, "Contact email send error");
+    return NextResponse.json(
+      { error: "Unable to send message. Please try later." },
+      { status: 500 }
+    );
   }
 
   return NextResponse.json({ success: true });

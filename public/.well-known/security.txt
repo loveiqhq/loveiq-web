@@ -1,0 +1,4 @@
+Contact: mailto:hello@loveiq.org
+Preferred-Languages: en
+Canonical: https://www.loveiq.org/.well-known/security.txt
+Expires: 2027-02-15T00:00:00.000Z

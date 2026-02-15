@@ -1,126 +1,77 @@
 # Testing Patterns
 
-**Analysis Date:** 2025-01-14
+**Last Updated:** 2026-02-15
 
 ## Test Framework
 
-**Runner:**
-- Not detected (no test framework in dependencies)
-- No Jest, Vitest, or other test runner configured
-
-**Assertion Library:**
-- Not applicable
+**Runner:** Vitest 4.x
+**Config:** `vitest.config.ts`
 
 **Run Commands:**
+
 ```bash
-# No test commands available
-# npm test is not configured in package.json
+npm test              # Run all tests once
+npm run test:watch    # Run tests in watch mode
+npm run test:coverage # Run tests with coverage report
 ```
 
 ## Test File Organization
 
-**Location:**
-- No test files detected in codebase
+**Location:** `__tests__/` (mirrors source structure)
 
-**Naming:**
-- Not established (no tests exist)
+**Naming:** `*.test.ts`
 
 **Structure:**
-- Not applicable
+
+```
+__tests__/
+├── api/
+│   ├── contact-validation.test.ts   # Contact form Zod schema tests
+│   └── waitlist-validation.test.ts  # Waitlist Zod schema tests
+├── lib/
+│   ├── analytics.test.ts            # GA4 event tracking tests
+│   ├── csrf.test.ts                 # CSRF token verification tests
+│   ├── fetch-with-timeout.test.ts   # Fetch wrapper timeout tests
+│   ├── ratelimit.test.ts            # IP extraction + rate limit tests
+│   └── emails/
+│       └── waitlist.test.ts         # Email template + XSS prevention tests
+├── proxy.test.ts                    # Middleware security header tests
+└── fixtures/                        # Shared test data
+```
 
 ## Test Structure
 
-**Suite Organization:**
-- Not applicable (no tests)
+**Suite Organization:** `describe` blocks grouped by function/module, `it` blocks for individual cases.
 
 **Patterns:**
-- Not established
+
+- Test file mirrors source file path (`lib/csrf.ts` -> `__tests__/lib/csrf.test.ts`)
+- Edge cases and error paths are tested explicitly
+- Security-relevant tests (XSS, injection) are included
 
 ## Mocking
 
-**Framework:**
-- Not applicable
+**Framework:** Vitest built-in (`vi.fn()`, `vi.mock()`, `vi.stubGlobal()`)
 
 **Patterns:**
-- Not established
 
-**What Would Need Mocking:**
-- External API calls (Supabase, Resend, reCAPTCHA, Slack)
-- Environment variables
-- Rate limiting state (in-memory Maps)
-
-## Fixtures and Factories
-
-**Test Data:**
-- Not established
-
-**Location:**
-- Not established
+- `vi.stubGlobal('fetch', ...)` for HTTP calls
+- `vi.stubGlobal('window', ...)` for browser globals (analytics)
+- Environment variables mocked via `vi.stubEnv()` or direct assignment
+- External services (Supabase, Resend, Slack) mocked at the fetch level
 
 ## Coverage
 
-**Requirements:**
-- No coverage tracking
-
-**Configuration:**
-- Not configured
+**Provider:** V8
+**Thresholds:** Lines 60% (enforced in vitest.config.ts)
+**Report formats:** text, lcov
 
 ## Test Types
 
-**Unit Tests:**
-- Not implemented
-
-**Integration Tests:**
-- Not implemented
-
-**E2E Tests:**
-- Not implemented
-
-## Recommended Testing Strategy
-
-When tests are added, consider:
-
-**Unit Tests (Priority: High):**
-- Zod schema validation (`app/api/waitlist/route.ts`, `app/api/contact/route.ts`)
-- Rate limiting logic (`isRateLimited` function)
-- Email template generation (`lib/emails/waitlist.ts`)
-- Analytics helpers (`lib/analytics.ts`)
-
-**Integration Tests (Priority: Medium):**
-- API route handlers with mocked external services
-- Supabase insertion flow
-- Resend email sending
-
-**E2E Tests (Priority: Low for marketing site):**
-- Waitlist signup flow
-- Contact form submission
-- Navigation between pages
-
-**Suggested Framework:**
-- Vitest (fast, TypeScript-native, works well with Next.js)
-- React Testing Library for component tests
-- MSW for API mocking
-
-**Sample Test Setup:**
-```bash
-npm install -D vitest @testing-library/react @testing-library/jest-dom msw
-```
-
-**Sample vitest.config.ts:**
-```typescript
-import { defineConfig } from 'vitest/config';
-import react from '@vitejs/plugin-react';
-
-export default defineConfig({
-  plugins: [react()],
-  test: {
-    environment: 'jsdom',
-    setupFiles: ['./tests/setup.ts'],
-  },
-});
-```
+**Unit Tests:** Implemented for lib utilities and Zod schemas
+**Integration Tests:** API route handler tests with mocked external services
+**E2E Tests:** Playwright smoke tests for critical user flows
 
 ---
 
-*Testing analysis: 2025-01-14*
-*Update when test patterns are established*
+_Last updated: 2026-02-15_
