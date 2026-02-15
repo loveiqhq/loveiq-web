@@ -217,7 +217,7 @@ jobs:
       - name: Build project
         run: npm run build
         env:
-          NEXT_PUBLIC_SITE_URL: https://loveiq.org
+          NEXT_PUBLIC_SITE_URL: https://www.loveiq.org
           NEXT_PUBLIC_RECAPTCHA_SITE_KEY: dummy
 
       - name: Check build output for sensitive data

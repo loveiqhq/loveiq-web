@@ -5,7 +5,7 @@ import { Lora, Manrope } from "next/font/google";
 import { headers } from "next/headers";
 import SmoothScroll from "../components/SmoothScroll";
 
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://loveiq.org";
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://www.loveiq.org";
 
 const manrope = Manrope({
   subsets: ["latin"],
