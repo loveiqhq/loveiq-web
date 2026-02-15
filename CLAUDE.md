@@ -361,6 +361,7 @@ When working in this codebase:
 8. **Keep error messages generic** - Avoid information disclosure
 9. **Use existing utilities** - `lib/ratelimit.ts`, `lib/csrf.ts`, `lib/analytics.ts`
 10. **Document unknowns** - If uncertain, note assumptions and which files to check
+11. **Clean up temporary files** - If you create any `.md` files for planning, implementation logs, fix summaries, or debugging notes (e.g., in `.planning/` or repo root), **delete them once the task is complete**. Only permanent documentation (like this file, `SECURITY.md`, `DEVELOPMENT.md`, `.planning/codebase/*`) should remain in the repo.
 
 ### When Uncertain
 
