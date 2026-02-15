@@ -475,6 +475,7 @@ const TeaserCard: FC = () => (
 
       <Link
         href="/waitlist"
+        aria-label="Start survey now - discover your archetype"
         className="group relative inline-flex items-center justify-center gap-2 overflow-hidden rounded-full bg-gradient-brand px-5 py-2.5 sm:px-6 sm:py-3 text-[12px] sm:text-[14px] font-semibold text-white shadow-pill transition hover:translate-y-[-2px] focus-visible-ring"
         onClick={() => trackStartSurvey("archetype-teaser")}
       >

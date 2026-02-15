@@ -56,7 +56,9 @@
       "mcp__plugin_figma_figma__get_screenshot",
       "Bash(npx next build:*)",
       "mcp__figma__get_figma_data",
-      "Bash(cd:*)"
+      "Bash(cd:*)",
+      "Bash(npx --yes sharp-cli:*)",
+      "Bash(npx sharp-cli:*)"
     ]
   }
 }

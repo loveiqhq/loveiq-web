@@ -38,12 +38,12 @@ const renderLogos = (index: number) => {
       return (
         <>
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src="/academic/ips-berlin-logo.svg" alt="" style={{ height: 34, width: 119 }} />
+          <img src="/academic/ips-berlin-logo.svg" alt="IPS Berlin logo" style={{ height: 34, width: 119 }} />
           <div className="flex items-center">
             {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src="/academic/harvard-shield.svg" alt="" style={{ height: 32, width: 27 }} />
+            <img src="/academic/harvard-shield.svg" alt="Harvard University shield" style={{ height: 32, width: 27 }} />
             {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src="/academic/harvard-logo.svg" alt="" style={{ height: 22, width: 84, marginLeft: 6, marginTop: 2 }} />
+            <img src="/academic/harvard-logo.svg" alt="Harvard University" style={{ height: 22, width: 84, marginLeft: 6, marginTop: 2 }} />
           </div>
         </>
       );
@@ -51,27 +51,27 @@ const renderLogos = (index: number) => {
       return (
         <>
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src="/academic/columbia-logo.svg" alt="" style={{ height: 40, width: 58, transform: "scaleY(-1)" }} />
+          <img src="/academic/columbia-logo.svg" alt="Columbia University logo" style={{ height: 40, width: 58, transform: "scaleY(-1)" }} />
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src="/academic/hhl-logo.svg" alt="" style={{ height: 34, width: 136 }} />
+          <img src="/academic/hhl-logo.svg" alt="HHL Leipzig logo" style={{ height: 34, width: 136 }} />
         </>
       );
     case 2: // Bruno — ICL + Oxford
       return (
         <>
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src="/academic/icl-logo.svg" alt="" style={{ height: 28, width: 107, transform: "scaleY(-1)" }} />
+          <img src="/academic/icl-logo.svg" alt="Imperial College London logo" style={{ height: 28, width: 107, transform: "scaleY(-1)" }} />
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src="/academic/oxford-logo.svg" alt="" style={{ height: 38, width: 128, transform: "scaleY(-1)" }} />
+          <img src="/academic/oxford-logo.svg" alt="University of Oxford logo" style={{ height: 38, width: 128, transform: "scaleY(-1)" }} />
         </>
       );
     case 3: // Quentin — Oxford + MIT
       return (
         <>
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src="/academic/oxford-logo.svg" alt="" style={{ height: 34, width: 115, transform: "scaleY(-1)" }} />
+          <img src="/academic/oxford-logo.svg" alt="University of Oxford logo" style={{ height: 34, width: 115, transform: "scaleY(-1)" }} />
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src="/academic/mit-logo.svg" alt="" style={{ height: 40, width: 75 }} />
+          <img src="/academic/mit-logo.svg" alt="MIT logo" style={{ height: 40, width: 75 }} />
         </>
       );
     default:
