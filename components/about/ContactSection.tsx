@@ -168,8 +168,9 @@ const ContactSection: FC = () => {
   return (
     <section id="contact" className="overflow-hidden bg-[#0A0510] px-4 py-16 md:px-6 md:py-24">
       <div className="content-shell mx-auto max-w-[1100px]">
+        <div className="reveal-on-scroll">
         {/* Header card with gradient background */}
-        <div className="reveal-on-scroll relative rounded-t-[24px] border border-b-0 border-white/10 bg-[#120B1C] p-8 md:rounded-t-[32px] md:p-16">
+        <div className="relative rounded-t-[24px] border border-b-0 border-white/10 bg-[#120B1C] p-8 md:rounded-t-[32px] md:p-16">
           <div className="pointer-events-none absolute inset-0 isolate overflow-hidden rounded-t-[24px] md:rounded-t-[32px]" style={{ clipPath: 'inset(0 round 24px 24px 0 0)' }}>
             <div className="absolute -left-16 -top-16 h-[200px] w-[200px] rounded-full bg-[#2e0147] blur-[80px] md:-left-64 md:-top-64 md:h-[500px] md:w-[500px] md:blur-[200px]" />
             <div className="absolute -bottom-12 -right-10 h-[120px] w-[120px] rounded-full bg-[#fe6839] blur-[80px] md:-bottom-52 md:-right-40 md:h-[300px] md:w-[300px] md:blur-[200px]" />
@@ -184,7 +185,7 @@ const ContactSection: FC = () => {
         </div>
 
         {/* Form card */}
-        <div className="reveal-on-scroll stagger-1 rounded-b-[24px] border border-white/10 bg-[#120B1C] p-6 md:rounded-b-[32px] md:p-12">
+        <div className="rounded-b-[24px] border border-white/10 bg-[#120B1C] p-6 md:rounded-b-[32px] md:p-12">
           <Script
             src="https://www.google.com/recaptcha/api.js?render=explicit"
             strategy="afterInteractive"
@@ -263,6 +264,7 @@ const ContactSection: FC = () => {
               </div>
             )}
           </form>
+        </div>
         </div>
       </div>
     </section>

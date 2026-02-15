@@ -53,7 +53,8 @@ const TeamSection: FC = () => {
       socials: ["linkedin"],
       hoverColor: "orange",
       imageScale: 1.5,
-      imagePosition: "center 0%",
+      imagePosition: "60% 0%",
+      imageOffsetX: "5%",
       imageOffsetY: "-25%",
     },
     {
@@ -159,7 +160,7 @@ const TeamSection: FC = () => {
                   <div className="pointer-events-none absolute inset-0 z-10 bg-gradient-to-t from-[#0A0510] via-transparent to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-60" />
                   <div
                     className="absolute inset-0"
-                    style={member.imageScale !== 1 ? { transform: `${member.imageOffsetY ? `translateY(${member.imageOffsetY}) ` : ''}scale(${member.imageScale})` } : undefined}
+                    style={member.imageScale !== 1 ? { transform: `${member.imageOffsetX ? `translateX(${member.imageOffsetX}) ` : ''}${member.imageOffsetY ? `translateY(${member.imageOffsetY}) ` : ''}scale(${member.imageScale})` } : undefined}
                   >
                     <Image
                       src={member.image}
