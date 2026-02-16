@@ -177,7 +177,7 @@ export default function WaitlistPage() {
                 type="email"
                 name="email"
                 aria-label="Email address"
-                className="h-12 min-w-0 w-full border-none bg-transparent pr-12 text-base text-white placeholder-white/30 focus:outline-none focus:ring-0"
+                className="h-12 min-w-0 w-full border-none bg-transparent pr-12 text-base text-white placeholder-white/30 focus:outline-hidden focus:ring-0"
                 placeholder="name@email.com"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}

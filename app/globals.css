@@ -1,6 +1,57 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme {
+  --color-page: var(--color-bg);
+  --color-surface: var(--color-surface);
+  --color-card: var(--color-card);
+  --color-panel: var(--color-panel);
+  --color-border: var(--color-border);
+
+  --color-text-primary: var(--color-text-primary);
+  --color-text-secondary: var(--color-text-secondary);
+  --color-text-muted: var(--color-text-muted);
+
+  --color-accent-orange: var(--accent-orange);
+  --color-accent-peach: var(--accent-peach);
+  --color-accent-purple: var(--accent-purple);
+  --color-accent-indigo: var(--accent-indigo);
+
+  --radius-card: var(--radius-card);
+  --radius-pill: 9999px;
+
+  --shadow-card: var(--shadow-card);
+  --shadow-soft: var(--shadow-soft);
+  --shadow-pill: var(--shadow-pill);
+  --shadow-focus:
+    0 0 0 2px var(--color-border-strong),
+    0 0 0 4px color-mix(in srgb, var(--accent-purple) 40%, transparent);
+
+  --spacing-section: var(--space-section);
+  --spacing-gutter: var(--space-gutter);
+
+  --background-image-gradient-brand: var(--gradient-brand);
+  --background-image-gradient-surface: var(--gradient-surface);
+}
+
+/*
+  The default border color has changed to `currentcolor` in Tailwind CSS v4,
+  so we've added these compatibility styles to make sure everything still
+  looks the same as it did with Tailwind CSS v3.
+
+  If we ever want to remove these styles, we need to add an explicit border
+  color utility to any element that depends on these defaults.
+*/
+@layer base {
+  *,
+  ::after,
+  ::before,
+  ::backdrop,
+  ::file-selector-button {
+    border-color: var(--color-gray-200, currentcolor);
+  }
+}
 
 :root {
   color-scheme: light;
@@ -24,7 +75,8 @@
   --space-section: 4.5rem;
   --space-gutter: 1.25rem;
   --gradient-brand: linear-gradient(120deg, #fe6839 0%, #ff7f3e 40%, #ff9450 70%, #c36ddf 100%);
-  --gradient-surface: radial-gradient(circle at 20% 20%, rgba(242, 109, 79, 0.12), transparent 45%),
+  --gradient-surface:
+    radial-gradient(circle at 20% 20%, rgba(242, 109, 79, 0.12), transparent 45%),
     radial-gradient(circle at 80% 20%, rgba(124, 88, 255, 0.14), transparent 45%),
     radial-gradient(circle at 50% 75%, rgba(111, 63, 255, 0.12), transparent 50%);
 }
@@ -49,7 +101,8 @@ body {
   color: var(--color-text-primary);
 }
 
-html.lenis, html.lenis body {
+html.lenis,
+html.lenis body {
   height: auto;
 }
 
@@ -71,14 +124,22 @@ html.lenis, html.lenis body {
 
 body,
 .font-sans {
-  font-family: var(--font-sans, 'Manrope', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif);
+  font-family: var(
+    --font-sans,
+    "Manrope",
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    sans-serif
+  );
 }
 
 h1,
 h2,
 h3,
 .font-serif {
-  font-family: var(--font-serif, 'Lora', 'Times New Roman', serif);
+  font-family: var(--font-serif, "Lora", "Times New Roman", serif);
 }
 
 .bg-noise {
@@ -105,7 +166,9 @@ h3,
 
 .focus-visible-ring:focus-visible {
   outline: none;
-  box-shadow: 0 0 0 2px var(--color-border-strong), 0 0 0 4px color-mix(in srgb, var(--accent-purple) 40%, transparent);
+  box-shadow:
+    0 0 0 2px var(--color-border-strong),
+    0 0 0 4px color-mix(in srgb, var(--accent-purple) 40%, transparent);
 }
 
 @keyframes float {
@@ -126,7 +189,6 @@ h3,
     transform: rotate(360deg);
   }
 }
-
 
 @keyframes pulse-glow {
   0%,
@@ -210,7 +272,8 @@ h3,
 .animate-on-scroll {
   opacity: 0;
   transform: translateY(24px);
-  transition: opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1),
+  transition:
+    opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1),
     transform 0.85s cubic-bezier(0.16, 1, 0.3, 1);
 }
 .animate-on-scroll.animate {
@@ -268,11 +331,21 @@ h3,
 }
 
 /* Stagger classes for reveal-on-scroll */
-.stagger-1 { transition-delay: 100ms; }
-.stagger-2 { transition-delay: 200ms; }
-.stagger-3 { transition-delay: 300ms; }
-.stagger-4 { transition-delay: 400ms; }
-.stagger-5 { transition-delay: 500ms; }
+.stagger-1 {
+  transition-delay: 100ms;
+}
+.stagger-2 {
+  transition-delay: 200ms;
+}
+.stagger-3 {
+  transition-delay: 300ms;
+}
+.stagger-4 {
+  transition-delay: 400ms;
+}
+.stagger-5 {
+  transition-delay: 500ms;
+}
 
 /* Hero character-by-character animation */
 @keyframes sensual-char-reveal {
@@ -316,8 +389,13 @@ h3,
 
 /* Icon float animation */
 @keyframes icon-float {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-5px); }
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-5px);
+  }
 }
 
 .animate-icon-float {
@@ -342,7 +420,8 @@ h3,
 
 /* Floating background orb animations */
 @keyframes float1 {
-  0%, 100% {
+  0%,
+  100% {
     transform: translate(0, 0) scale(1);
   }
   25% {
@@ -357,7 +436,8 @@ h3,
 }
 
 @keyframes float2 {
-  0%, 100% {
+  0%,
+  100% {
     transform: translate(0, 0) scale(1);
   }
   25% {
@@ -372,7 +452,8 @@ h3,
 }
 
 @keyframes float3 {
-  0%, 100% {
+  0%,
+  100% {
     transform: translate(0, 0) scale(1);
   }
   33% {
@@ -384,7 +465,8 @@ h3,
 }
 
 @keyframes float4 {
-  0%, 100% {
+  0%,
+  100% {
     transform: translate(0, 0) scale(1);
   }
   20% {
@@ -419,7 +501,8 @@ h3,
 
 /* Glossary term page orb animations - center stays centered, only vertical movement */
 @keyframes glossary-orb-center {
-  0%, 100% {
+  0%,
+  100% {
     transform: translateX(-50%) translateY(0) scale(1);
     opacity: 1;
   }
@@ -434,7 +517,8 @@ h3,
 }
 
 @keyframes glossary-orb-left {
-  0%, 100% {
+  0%,
+  100% {
     transform: translateX(-50%) translate(0, 0) scale(1);
     opacity: 1;
   }
@@ -453,7 +537,8 @@ h3,
 }
 
 @keyframes glossary-orb-right {
-  0%, 100% {
+  0%,
+  100% {
     transform: translateX(-50%) translate(0, 0) scale(1);
     opacity: 1;
   }
@@ -485,7 +570,8 @@ h3,
 
 /* Simple up/down float animations for waitlist */
 @keyframes float-up-down {
-  0%, 100% {
+  0%,
+  100% {
     transform: translateY(0);
   }
   50% {
@@ -494,7 +580,8 @@ h3,
 }
 
 @keyframes float-up-down-reverse {
-  0%, 100% {
+  0%,
+  100% {
     transform: translateY(0);
   }
   50% {
@@ -532,4 +619,3 @@ h3,
 .scrollbar-hide::-webkit-scrollbar {
   display: none;
 }
-

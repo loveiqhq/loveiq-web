@@ -25,7 +25,10 @@ const features = [
 
 const S09Report: FC = () => {
   return (
-    <section className="section-shell relative overflow-hidden bg-[#0A0510] px-4 text-text-primary" aria-labelledby="report-heading">
+    <section
+      className="section-shell relative overflow-hidden bg-[#0A0510] px-4 text-text-primary"
+      aria-labelledby="report-heading"
+    >
       <div className="content-shell relative grid gap-12 lg:grid-cols-[1.05fr_0.95fr] lg:items-center">
         <div className="space-y-8">
           <div className="space-y-4">
@@ -36,15 +39,15 @@ const S09Report: FC = () => {
               LoveIQ Report
             </h2>
             <p className="font-medium text-[18px] leading-[1.55] text-[#d1d5db] sm:text-[20px]">
-              LoveIQ helps us decode our desires, attachment patterns, emotional needs, and intimate dynamics so we can build
-              relationships that are aligned, exciting, and safe.
+              LoveIQ helps us decode our desires, attachment patterns, emotional needs, and intimate
+              dynamics so we can build relationships that are aligned, exciting, and safe.
             </p>
           </div>
 
           <div className="space-y-8">
             {features.map((item) => (
               <div key={item.title} className="group flex gap-3">
-                <div className="mt-[2px] flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full bg-white/5 text-accent-orange shadow-soft transition duration-300 ease-out group-hover:-translate-y-[2px] group-hover:scale-105 group-hover:bg-gradient-to-br group-hover:from-[#f26d4f] group-hover:via-[#ff9450] group-hover:to-[#f26d4f] group-hover:text-white">
+                <div className="mt-[2px] flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-white/5 text-accent-orange shadow-soft transition duration-300 ease-out group-hover:-translate-y-[2px] group-hover:scale-105 group-hover:bg-linear-to-br group-hover:from-[#f26d4f] group-hover:via-[#ff9450] group-hover:to-[#f26d4f] group-hover:text-white">
                   <svg
                     aria-hidden
                     className="h-4 w-4"
@@ -59,7 +62,9 @@ const S09Report: FC = () => {
                   </svg>
                 </div>
                 <div className="space-y-1">
-                  <p className="font-serif text-[20px] font-semibold leading-[28px] text-white">{item.title}</p>
+                  <p className="font-serif text-[20px] font-semibold leading-[28px] text-white">
+                    {item.title}
+                  </p>
                   <p className="font-medium text-[14px] leading-5 text-[#9ca3af] sm:text-[16px] sm:leading-[20px]">
                     {item.description}
                   </p>
@@ -85,7 +90,9 @@ const S09Report: FC = () => {
               />
               <span className="pointer-events-none absolute inset-0 rounded-full bg-white/10 opacity-0 transition duration-300 group-hover:opacity-100" />
               <span className="pointer-events-none absolute inset-[-12%] rounded-full border border-white/15 mix-blend-screen opacity-70" />
-              <span className="relative z-10 transition-colors duration-500 group-hover:text-black">Start survey now</span>
+              <span className="relative z-10 transition-colors duration-500 group-hover:text-black">
+                Start survey now
+              </span>
               <svg
                 aria-hidden
                 className="relative z-10 h-5 w-5 transition-colors duration-500 group-hover:text-black"
@@ -111,8 +118,12 @@ const S09Report: FC = () => {
                 />
               </div>
               <div className="space-y-0.5 leading-tight text-text-secondary">
-                <p className="font-serif text-[14px] italic leading-5 text-[#d1d5db]">“The accuracy shocked me.”</p>
-                <p className="text-[12px] font-bold uppercase tracking-[0.03em] text-accent-orange">— Alex M.</p>
+                <p className="font-serif text-[14px] italic leading-5 text-[#d1d5db]">
+                  “The accuracy shocked me.”
+                </p>
+                <p className="text-[12px] font-bold uppercase tracking-[0.03em] text-accent-orange">
+                  — Alex M.
+                </p>
               </div>
             </div>
           </div>
@@ -224,7 +235,7 @@ const S09Report: FC = () => {
               </div>
             </div>
 
-            <div className="absolute right-[-24px] top-28 flex min-w-[230px] items-center gap-3 rounded-2xl border border-[#3b2a4d] bg-[#2b1c3b]/95 px-5 py-4 text-sm text-white shadow-[0_22px_90px_rgba(0,0,0,0.6)] backdrop-blur-sm transition duration-300 ease-out animate-float-delayed">
+            <div className="absolute right-[-24px] top-28 flex min-w-[230px] items-center gap-3 rounded-2xl border border-[#3b2a4d] bg-[#2b1c3b]/95 px-5 py-4 text-sm text-white shadow-[0_22px_90px_rgba(0,0,0,0.6)] backdrop-blur-xs transition duration-300 ease-out animate-float-delayed">
               <div className="flex h-10 w-10 items-center justify-center rounded-full bg-[#5a2aa3] text-white shadow-[0_10px_30px_rgba(0,0,0,0.35)]">
                 <svg
                   aria-hidden

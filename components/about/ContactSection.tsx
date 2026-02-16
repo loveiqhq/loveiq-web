@@ -21,7 +21,7 @@ const FormField: FC<FormFieldProps> = ({ id, label, type = "text", value, onChan
       id={id}
       name={id}
       type={type}
-      className="h-[49px] w-full border-b border-white/10 bg-transparent text-sm text-white transition focus:border-white/30 focus:outline-none focus:ring-0 disabled:opacity-60"
+      className="h-[49px] w-full border-b border-white/10 bg-transparent text-sm text-white transition focus:border-white/30 focus:outline-hidden focus:ring-0 disabled:opacity-60"
       value={value}
       onChange={onChange}
       required
@@ -216,7 +216,7 @@ const ContactSection: FC = () => {
               <div className="absolute -bottom-12 -right-10 h-[120px] w-[120px] rounded-full bg-[#fe6839] blur-[80px] md:-bottom-52 md:-right-40 md:h-[300px] md:w-[300px] md:blur-[200px]" />
             </div>
             <div className="relative">
-              <h2 className="font-serif text-4xl font-semibold leading-[1] tracking-[-0.025em] text-white md:text-[60px] md:leading-[60px]">
+              <h2 className="font-serif text-4xl font-semibold leading-none tracking-[-0.025em] text-white md:text-[60px] md:leading-[60px]">
                 Contact Our
                 <br />
                 <span className="text-[#fe6839]">Team</span>
@@ -286,7 +286,7 @@ const ContactSection: FC = () => {
                     id="message"
                     name="message"
                     rows={4}
-                    className="w-full rounded-xl border border-white/10 bg-[#0a0510]/50 px-4 py-4 text-sm font-light text-white placeholder:text-[#4B5563] focus:border-white/30 focus:outline-none disabled:opacity-60"
+                    className="w-full rounded-xl border border-white/10 bg-[#0a0510]/50 px-4 py-4 text-sm font-light text-white placeholder:text-[#4B5563] focus:border-white/30 focus:outline-hidden disabled:opacity-60"
                     placeholder="Tell us a bit about yourself and your project goals"
                     value={form.message}
                     onChange={handleChange}

@@ -60,7 +60,8 @@ const faqs = [
   },
   {
     question: "How long does the first assessment take?",
-    answer: "Most users complete the initial assessment in 7–12 minutes. It is mobile-friendly, intuitive, and can be paused and resumed at any time.",
+    answer:
+      "Most users complete the initial assessment in 7–12 minutes. It is mobile-friendly, intuitive, and can be paused and resumed at any time.",
   },
   {
     question: "Can I save progress, revisit results, or share with a partner?",
@@ -100,15 +101,34 @@ const FAQItem: FC<FAQItemProps> = ({ question, answer }) => {
         className="flex w-full cursor-pointer select-none items-center justify-between gap-3 rounded-xl border border-white/5 bg-[#120b1c] px-4 py-3.5 text-left transition-all duration-300 hover:border-white/10 sm:gap-4 sm:px-6 sm:py-4"
         aria-expanded={isOpen}
       >
-        <span className="text-sm font-medium leading-snug text-white/90 sm:text-base md:text-lg">{question}</span>
-        <span className="flex-shrink-0 text-white/50">
+        <span className="text-sm font-medium leading-snug text-white/90 sm:text-base md:text-lg">
+          {question}
+        </span>
+        <span className="shrink-0 text-white/50">
           {isOpen ? (
-            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="2" viewBox="0 0 14 2" fill="none">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="14"
+              height="2"
+              viewBox="0 0 14 2"
+              fill="none"
+            >
               <path d="M1 1h12" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
             </svg>
           ) : (
-            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 14 14" fill="none">
-              <path d="M7 1v12M1 7h12" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="14"
+              height="14"
+              viewBox="0 0 14 14"
+              fill="none"
+            >
+              <path
+                d="M7 1v12M1 7h12"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+              />
             </svg>
           )}
         </span>
@@ -127,13 +147,23 @@ const FAQItem: FC<FAQItemProps> = ({ question, answer }) => {
           {/* Answer Content Box */}
           <div className="relative rounded-bl-2xl rounded-br-2xl rounded-tr-2xl border border-white/5 bg-[#120B1C] px-6 py-5">
             <span className="absolute -left-px -top-4 flex h-8 w-8 items-center justify-center rounded-full bg-[#FE6839] shadow-[0px_10px_15px_-3px_rgba(0,0,0,0.1),0px_4px_6px_-4px_rgba(0,0,0,0.1)]">
-              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 14 14" fill="none">
-                <path d="M12.25 8.75C12.25 9.3939 11.7272 9.91667 11.0833 9.91667H4.08333L1.75 12.25V2.91667C1.75 2.27277 2.27277 1.75 2.91667 1.75H11.0833C11.7272 1.75 12.25 2.27277 12.25 2.91667V8.75" stroke="white" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round" />
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="14"
+                height="14"
+                viewBox="0 0 14 14"
+                fill="none"
+              >
+                <path
+                  d="M12.25 8.75C12.25 9.3939 11.7272 9.91667 11.0833 9.91667H4.08333L1.75 12.25V2.91667C1.75 2.27277 2.27277 1.75 2.91667 1.75H11.0833C11.7272 1.75 12.25 2.27277 12.25 2.91667V8.75"
+                  stroke="white"
+                  strokeWidth="1.75"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
               </svg>
             </span>
-            <p className="text-sm leading-relaxed text-gray-300 sm:text-base">
-              {answer}
-            </p>
+            <p className="text-sm leading-relaxed text-gray-300 sm:text-base">{answer}</p>
           </div>
         </div>
       </div>
@@ -143,13 +173,19 @@ const FAQItem: FC<FAQItemProps> = ({ question, answer }) => {
 
 const S13FAQ: FC = () => {
   return (
-    <section className="section-shell relative overflow-hidden bg-[#0A0510] px-4 text-text-primary" aria-labelledby="faq-heading">
+    <section
+      className="section-shell relative overflow-hidden bg-[#0A0510] px-4 text-text-primary"
+      aria-labelledby="faq-heading"
+    >
       <div className="content-shell relative flex max-w-4xl flex-col items-center gap-8 animate-on-scroll">
         <div className="flex items-center gap-2 rounded-full border border-border bg-white/5 px-4 py-1 text-[11px] font-semibold uppercase tracking-[0.2em] text-[#FE6839]">
           FAQs
         </div>
         <div className="space-y-3 text-center">
-          <h2 id="faq-heading" className="font-serif text-3xl leading-tight sm:text-4xl md:text-5xl">
+          <h2
+            id="faq-heading"
+            className="font-serif text-3xl leading-tight sm:text-4xl md:text-5xl"
+          >
             <span className="block sm:inline">Curious Minds Ask.</span>{" "}
             <span className="block sm:inline text-[#9c7dff]">We Answer.</span>
           </h2>

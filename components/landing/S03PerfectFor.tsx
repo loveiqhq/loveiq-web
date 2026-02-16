@@ -6,7 +6,8 @@ import { useRef, useState, useEffect, useCallback, type FC } from "react";
 const personas = [
   {
     title: "Singles",
-    description: "Gain self-awareness, attract healthier partners, and stop repeating old patterns.",
+    description:
+      "Gain self-awareness, attract healthier partners, and stop repeating old patterns.",
     image: "/carousel/singles.png",
     overlay: "from-[#1a0b2a]/85 via-[#0a0510]/35 to-transparent",
   },
@@ -25,14 +26,16 @@ const personas = [
   },
   {
     title: "Self-Development Lovers",
-    description: "Anyone obsessed with understanding their psychology, attachment style, and desire patterns.",
+    description:
+      "Anyone obsessed with understanding their psychology, attachment style, and desire patterns.",
     image: "/carousel/selfDevelopers.png",
     overlay: "from-[#1a0b2a]/85 via-[#0a0510]/75 to-transparent",
     smallText: true,
   },
   {
     title: "Therapists & Coaches",
-    description: "Use a structured psychometric tool to help clients articulate their emotional and sexual identity.",
+    description:
+      "Use a structured psychometric tool to help clients articulate their emotional and sexual identity.",
     image: "/carousel/therapists.png",
     smallText: true,
   },
@@ -41,13 +44,25 @@ const personas = [
 // Arrow icons as inline SVG components
 const ChevronLeft = () => (
   <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <path d="M10 12L6 8L10 4" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+    <path
+      d="M10 12L6 8L10 4"
+      stroke="white"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
   </svg>
 );
 
 const ChevronRight = () => (
   <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <path d="M6 12L10 8L6 4" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+    <path
+      d="M6 12L10 8L6 4"
+      stroke="white"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
   </svg>
 );
 
@@ -74,31 +89,34 @@ const S03PerfectFor: FC = () => {
     setActiveIndex(index);
   }, [cardWidth]);
 
-  const animate = useCallback((timestamp: number) => {
-    if (!lastTimeRef.current) lastTimeRef.current = timestamp;
-    const delta = timestamp - lastTimeRef.current;
-    lastTimeRef.current = timestamp;
+  const animate = useCallback(
+    (timestamp: number) => {
+      if (!lastTimeRef.current) lastTimeRef.current = timestamp;
+      const delta = timestamp - lastTimeRef.current;
+      lastTimeRef.current = timestamp;
 
-    if (!isPaused && !isDraggingRef.current) {
-      currentTranslateRef.current -= delta * 0.03; // Speed: pixels per ms
+      if (!isPaused && !isDraggingRef.current) {
+        currentTranslateRef.current -= delta * 0.03; // Speed: pixels per ms
 
-      // Reset to beginning when we've scrolled past the first set
-      if (Math.abs(currentTranslateRef.current) >= totalWidth) {
-        currentTranslateRef.current = currentTranslateRef.current + totalWidth;
+        // Reset to beginning when we've scrolled past the first set
+        if (Math.abs(currentTranslateRef.current) >= totalWidth) {
+          currentTranslateRef.current = currentTranslateRef.current + totalWidth;
+        }
+
+        if (carouselRef.current) {
+          carouselRef.current.style.transform = `translateX(${currentTranslateRef.current}px)`;
+        }
+
+        // Update active index for dot indicators
+        updateActiveIndex();
       }
 
-      if (carouselRef.current) {
-        carouselRef.current.style.transform = `translateX(${currentTranslateRef.current}px)`;
+      if (animateFnRef.current) {
+        animationRef.current = requestAnimationFrame(animateFnRef.current);
       }
-
-      // Update active index for dot indicators
-      updateActiveIndex();
-    }
-
-    if (animateFnRef.current) {
-      animationRef.current = requestAnimationFrame(animateFnRef.current);
-    }
-  }, [isPaused, totalWidth, updateActiveIndex]);
+    },
+    [isPaused, totalWidth, updateActiveIndex]
+  );
 
   useEffect(() => {
     animateFnRef.current = animate;
@@ -164,22 +182,25 @@ const S03PerfectFor: FC = () => {
   };
 
   // Navigate to a specific slide index
-  const navigateToSlide = useCallback((index: number) => {
-    const targetPosition = -(index * cardWidth);
-    currentTranslateRef.current = targetPosition;
-    if (carouselRef.current) {
-      carouselRef.current.style.transition = 'transform 0.4s ease-out';
-      carouselRef.current.style.transform = `translateX(${targetPosition}px)`;
-      // Remove transition after animation completes
-      setTimeout(() => {
-        if (carouselRef.current) {
-          carouselRef.current.style.transition = '';
-        }
-      }, 400);
-    }
-    setActiveIndex(index);
-    lastTimeRef.current = 0;
-  }, [cardWidth]);
+  const navigateToSlide = useCallback(
+    (index: number) => {
+      const targetPosition = -(index * cardWidth);
+      currentTranslateRef.current = targetPosition;
+      if (carouselRef.current) {
+        carouselRef.current.style.transition = "transform 0.4s ease-out";
+        carouselRef.current.style.transform = `translateX(${targetPosition}px)`;
+        // Remove transition after animation completes
+        setTimeout(() => {
+          if (carouselRef.current) {
+            carouselRef.current.style.transition = "";
+          }
+        }, 400);
+      }
+      setActiveIndex(index);
+      lastTimeRef.current = 0;
+    },
+    [cardWidth]
+  );
 
   // Navigate left (previous slide)
   const handlePrevious = useCallback(() => {
@@ -194,37 +215,62 @@ const S03PerfectFor: FC = () => {
   }, [activeIndex, navigateToSlide]);
 
   // Handle dot click
-  const handleDotClick = useCallback((index: number) => {
-    navigateToSlide(index);
-  }, [navigateToSlide]);
+  const handleDotClick = useCallback(
+    (index: number) => {
+      navigateToSlide(index);
+    },
+    [navigateToSlide]
+  );
 
   return (
-    <section className="section-shell relative overflow-hidden bg-[#0A0510] px-4 text-text-primary" aria-labelledby="audience-heading">
+    <section
+      className="section-shell relative overflow-hidden bg-[#0A0510] px-4 text-text-primary"
+      aria-labelledby="audience-heading"
+    >
       <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute left-0 top-1/2 h-[480px] w-[480px] -translate-y-1/2 rounded-full bg-[#541475]/12 blur-[110px]" aria-hidden />
+        <div
+          className="absolute left-0 top-1/2 h-[480px] w-[480px] -translate-y-1/2 rounded-full bg-[#541475]/12 blur-[110px]"
+          aria-hidden
+        />
       </div>
 
       <div className="content-shell relative flex flex-col items-center gap-8">
-        <div className="absolute inset-0 -z-[1]">
-          <div className="absolute left-0 top-1/2 h-[420px] w-[420px] -translate-y-1/2 rounded-full bg-[#541475]/10 blur-[90px]" aria-hidden />
+        <div className="absolute inset-0 -z-1">
+          <div
+            className="absolute left-0 top-1/2 h-[420px] w-[420px] -translate-y-1/2 rounded-full bg-[#541475]/10 blur-[90px]"
+            aria-hidden
+          />
         </div>
 
         <div className="max-w-4xl space-y-5 text-center sm:space-y-6 mb-8 sm:mb-10">
-          <h2 id="audience-heading" className="font-serif text-4xl leading-tight text-white sm:text-5xl md:text-[52px] md:leading-[1.1]">
+          <h2
+            id="audience-heading"
+            className="font-serif text-4xl leading-tight text-white sm:text-5xl md:text-[52px] md:leading-[1.1]"
+          >
             <span className="block sm:inline">Who Is This</span>{" "}
             <span className="block sm:inline">
-              Perfect For<span className="bg-gradient-to-r from-[#fe6839] to-[#a78bfa] bg-clip-text text-transparent">?</span>
+              Perfect For
+              <span className="bg-linear-to-r from-[#fe6839] to-[#a78bfa] bg-clip-text text-transparent">
+                ?
+              </span>
             </span>
           </h2>
           <p className="max-w-2xl text-base leading-relaxed text-text-secondary sm:text-lg sm:leading-relaxed">
-            We built this for anyone ready to grow, discover themselves, and actively enhance their sexual life. And honestly, we built it for ourselves too (and yes, we use it).
+            We built this for anyone ready to grow, discover themselves, and actively enhance their
+            sexual life. And honestly, we built it for ourselves too (and yes, we use it).
           </p>
         </div>
       </div>
 
       <div className="relative w-screen max-w-none left-1/2 -translate-x-1/2 overflow-hidden pb-4 mt-8 sm:mt-10">
-        <div className="pointer-events-none absolute inset-y-0 left-0 w-16 sm:w-24 bg-gradient-to-r from-[#0a0510] to-transparent z-10" aria-hidden />
-        <div className="pointer-events-none absolute inset-y-0 right-0 w-16 sm:w-24 bg-gradient-to-l from-[#0a0510] to-transparent z-10" aria-hidden />
+        <div
+          className="pointer-events-none absolute inset-y-0 left-0 w-16 sm:w-24 bg-linear-to-r from-[#0a0510] to-transparent z-10"
+          aria-hidden
+        />
+        <div
+          className="pointer-events-none absolute inset-y-0 right-0 w-16 sm:w-24 bg-linear-to-l from-[#0a0510] to-transparent z-10"
+          aria-hidden
+        />
 
         <div
           ref={carouselRef}
@@ -254,16 +300,19 @@ const S03PerfectFor: FC = () => {
                 alt={item.title}
                 fill
                 sizes="(min-width: 640px) 360px, 90vw"
-                className={`object-cover transition-transform duration-700 ${item.featured ? "scale-[1.05] group-hover:scale-[1.1]" : "group-hover:scale-[1.04]"
-                  }`}
+                className={`object-cover transition-transform duration-700 ${
+                  item.featured
+                    ? "scale-[1.05] group-hover:scale-[1.1]"
+                    : "group-hover:scale-[1.04]"
+                }`}
                 priority={idx === 0}
               />
               <div
-                className={`pointer-events-none absolute inset-0 bg-gradient-to-t from-[#0a0510]/80 via-[#0a0510]/40 to-transparent ${item.overlay ?? ""}`}
+                className={`pointer-events-none absolute inset-0 bg-linear-to-t from-[#0a0510]/80 via-[#0a0510]/40 to-transparent ${item.overlay ?? ""}`}
                 aria-hidden
               />
               <div
-                className="pointer-events-none absolute inset-x-0 bottom-0 h-[60%] bg-gradient-to-t from-[#7c3aed]/55 via-[#a78bfa]/25 to-transparent opacity-0 blur-[4px] transition-opacity duration-500 group-hover:opacity-100"
+                className="pointer-events-none absolute inset-x-0 bottom-0 h-[60%] bg-linear-to-t from-[#7c3aed]/55 via-[#a78bfa]/25 to-transparent opacity-0 blur-xs transition-opacity duration-500 group-hover:opacity-100"
                 aria-hidden
               />
               <div className="absolute inset-x-0 bottom-0 p-6 pb-8 space-y-3 transition-all duration-500 ease-out translate-y-[60px] group-hover:translate-y-0">
@@ -275,7 +324,9 @@ const S03PerfectFor: FC = () => {
                 {item.description && (
                   <div className="relative">
                     <div className="pointer-events-none absolute inset-x-0 bottom-0 h-16 rounded-b-2xl bg-[radial-gradient(circle_at_50%_100%,rgba(167,139,250,0.42),transparent_70%)] opacity-0 blur-md transition-opacity duration-400 group-hover:opacity-100" />
-                    <p className={`relative text-white/80 opacity-0 transition-opacity duration-400 delay-100 group-hover:opacity-100 ${item.smallText ? "text-xs" : "text-sm"}`}>
+                    <p
+                      className={`relative text-white/80 opacity-0 transition-opacity duration-400 delay-100 group-hover:opacity-100 ${item.smallText ? "text-xs" : "text-sm"}`}
+                    >
                       {item.description}
                     </p>
                   </div>
@@ -291,7 +342,7 @@ const S03PerfectFor: FC = () => {
         {/* Previous Button */}
         <button
           onClick={handlePrevious}
-          className="flex items-center justify-center w-12 h-12 rounded-2xl bg-[#1e102e] border border-white/10 shadow-sm transition-all duration-200 hover:bg-[#2a1840] hover:border-white/20 active:scale-95"
+          className="flex items-center justify-center w-12 h-12 rounded-2xl bg-[#1e102e] border border-white/10 shadow-xs transition-all duration-200 hover:bg-[#2a1840] hover:border-white/20 active:scale-95"
           aria-label="Previous slide"
         >
           <ChevronLeft />
@@ -304,9 +355,7 @@ const S03PerfectFor: FC = () => {
               key={index}
               onClick={() => handleDotClick(index)}
               className={`w-2 h-2 rounded-full transition-all duration-300 ${
-                index === activeIndex
-                  ? "bg-[#fe6839]"
-                  : "bg-white/20 hover:bg-white/40"
+                index === activeIndex ? "bg-[#fe6839]" : "bg-white/20 hover:bg-white/40"
               }`}
               aria-label={`Go to slide ${index + 1}`}
               aria-current={index === activeIndex ? "true" : undefined}
@@ -317,7 +366,7 @@ const S03PerfectFor: FC = () => {
         {/* Next Button */}
         <button
           onClick={handleNext}
-          className="flex items-center justify-center w-12 h-12 rounded-2xl bg-[#1e102e] border border-white/10 shadow-sm transition-all duration-200 hover:bg-[#2a1840] hover:border-white/20 active:scale-95"
+          className="flex items-center justify-center w-12 h-12 rounded-2xl bg-[#1e102e] border border-white/10 shadow-xs transition-all duration-200 hover:bg-[#2a1840] hover:border-white/20 active:scale-95"
           aria-label="Next slide"
         >
           <ChevronRight />

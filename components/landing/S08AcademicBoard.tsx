@@ -38,12 +38,24 @@ const renderLogos = (index: number) => {
       return (
         <>
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src="/academic/ips-berlin-logo.svg" alt="IPS Berlin logo" style={{ height: 34, width: 119 }} />
+          <img
+            src="/academic/ips-berlin-logo.svg"
+            alt="IPS Berlin logo"
+            style={{ height: 34, width: 119 }}
+          />
           <div className="flex items-center">
             {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src="/academic/harvard-shield.svg" alt="Harvard University shield" style={{ height: 32, width: 27 }} />
+            <img
+              src="/academic/harvard-shield.svg"
+              alt="Harvard University shield"
+              style={{ height: 32, width: 27 }}
+            />
             {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src="/academic/harvard-logo.svg" alt="Harvard University" style={{ height: 22, width: 84, marginLeft: 6, marginTop: 2 }} />
+            <img
+              src="/academic/harvard-logo.svg"
+              alt="Harvard University"
+              style={{ height: 22, width: 84, marginLeft: 6, marginTop: 2 }}
+            />
           </div>
         </>
       );
@@ -51,25 +63,45 @@ const renderLogos = (index: number) => {
       return (
         <>
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src="/academic/columbia-logo.svg" alt="Columbia University logo" style={{ height: 40, width: 58, transform: "scaleY(-1)" }} />
+          <img
+            src="/academic/columbia-logo.svg"
+            alt="Columbia University logo"
+            style={{ height: 40, width: 58, transform: "scaleY(-1)" }}
+          />
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src="/academic/hhl-logo.svg" alt="HHL Leipzig logo" style={{ height: 34, width: 136 }} />
+          <img
+            src="/academic/hhl-logo.svg"
+            alt="HHL Leipzig logo"
+            style={{ height: 34, width: 136 }}
+          />
         </>
       );
     case 2: // Bruno — ICL + Oxford
       return (
         <>
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src="/academic/icl-logo.svg" alt="Imperial College London logo" style={{ height: 28, width: 107, transform: "scaleY(-1)" }} />
+          <img
+            src="/academic/icl-logo.svg"
+            alt="Imperial College London logo"
+            style={{ height: 28, width: 107, transform: "scaleY(-1)" }}
+          />
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src="/academic/oxford-logo.svg" alt="University of Oxford logo" style={{ height: 38, width: 128, transform: "scaleY(-1)" }} />
+          <img
+            src="/academic/oxford-logo.svg"
+            alt="University of Oxford logo"
+            style={{ height: 38, width: 128, transform: "scaleY(-1)" }}
+          />
         </>
       );
     case 3: // Quentin — Oxford + MIT
       return (
         <>
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src="/academic/oxford-logo.svg" alt="University of Oxford logo" style={{ height: 34, width: 115, transform: "scaleY(-1)" }} />
+          <img
+            src="/academic/oxford-logo.svg"
+            alt="University of Oxford logo"
+            style={{ height: 34, width: 115, transform: "scaleY(-1)" }}
+          />
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img src="/academic/mit-logo.svg" alt="MIT logo" style={{ height: 40, width: 75 }} />
         </>
@@ -81,13 +113,25 @@ const renderLogos = (index: number) => {
 
 const ChevronLeft = () => (
   <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <path d="M10 12L6 8L10 4" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+    <path
+      d="M10 12L6 8L10 4"
+      stroke="white"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
   </svg>
 );
 
 const ChevronRight = () => (
   <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <path d="M6 12L10 8L6 4" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+    <path
+      d="M6 12L10 8L6 4"
+      stroke="white"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
   </svg>
 );
 
@@ -137,7 +181,7 @@ const S08AcademicBoard: FC = () => {
         animationRef.current = requestAnimationFrame(animateFnRef.current);
       }
     },
-    [isPaused, totalWidth, updateActiveIndex],
+    [isPaused, totalWidth, updateActiveIndex]
   );
 
   useEffect(() => {
@@ -219,7 +263,7 @@ const S08AcademicBoard: FC = () => {
       setActiveIndex(index);
       lastTimeRef.current = 0;
     },
-    [cardWidth],
+    [cardWidth]
   );
 
   const handlePrevious = useCallback(() => {
@@ -236,7 +280,7 @@ const S08AcademicBoard: FC = () => {
     (index: number) => {
       navigateToSlide(index);
     },
-    [navigateToSlide],
+    [navigateToSlide]
   );
 
   return (
@@ -252,17 +296,18 @@ const S08AcademicBoard: FC = () => {
           Supported by academic multidisciplinary expertise
         </h2>
         <p className="mx-auto mt-6 max-w-2xl text-center text-lg font-light leading-relaxed text-text-secondary">
-          Our Academic Board supports us that what we build is grounded in science, ethics and state of the art methodology.
+          Our Academic Board supports us that what we build is grounded in science, ethics and state
+          of the art methodology.
         </p>
       </div>
 
       <div className="relative mt-12 w-screen max-w-none left-1/2 -translate-x-1/2 overflow-hidden pb-4 sm:mt-16">
         <div
-          className="pointer-events-none absolute inset-y-0 left-0 z-10 w-16 bg-gradient-to-r from-[#0a0510] to-transparent sm:w-24"
+          className="pointer-events-none absolute inset-y-0 left-0 z-10 w-16 bg-linear-to-r from-[#0a0510] to-transparent sm:w-24"
           aria-hidden
         />
         <div
-          className="pointer-events-none absolute inset-y-0 right-0 z-10 w-16 bg-gradient-to-l from-[#0a0510] to-transparent sm:w-24"
+          className="pointer-events-none absolute inset-y-0 right-0 z-10 w-16 bg-linear-to-l from-[#0a0510] to-transparent sm:w-24"
           aria-hidden
         />
 
@@ -304,11 +349,14 @@ const S08AcademicBoard: FC = () => {
               />
 
               {/* Desaturation overlay */}
-              <div className="absolute inset-0 bg-[rgba(255,255,255,0.3)] mix-blend-saturation" aria-hidden />
+              <div
+                className="absolute inset-0 bg-[rgba(255,255,255,0.3)] mix-blend-saturation"
+                aria-hidden
+              />
 
               {/* Dark gradient */}
               <div
-                className="absolute inset-0 bg-gradient-to-t from-[#0a0510] from-[1%] via-[rgba(10,5,16,0.6)] via-[37%] to-transparent to-[72%]"
+                className="absolute inset-0 bg-linear-to-t from-[#0a0510] from-1% via-[rgba(10,5,16,0.6)] via-37% to-transparent to-72%"
                 aria-hidden
               />
 
@@ -343,7 +391,7 @@ const S08AcademicBoard: FC = () => {
       <div className="mt-4 flex items-center justify-center gap-6 pb-8">
         <button
           onClick={handlePrevious}
-          className="flex h-12 w-12 items-center justify-center rounded-2xl border border-white/10 bg-[#1e102e] shadow-sm transition-all duration-200 hover:border-white/20 hover:bg-[#2a1840] active:scale-95"
+          className="flex h-12 w-12 items-center justify-center rounded-2xl border border-white/10 bg-[#1e102e] shadow-xs transition-all duration-200 hover:border-white/20 hover:bg-[#2a1840] active:scale-95"
           aria-label="Previous slide"
         >
           <ChevronLeft />
@@ -365,7 +413,7 @@ const S08AcademicBoard: FC = () => {
 
         <button
           onClick={handleNext}
-          className="flex h-12 w-12 items-center justify-center rounded-2xl border border-white/10 bg-[#1e102e] shadow-sm transition-all duration-200 hover:border-white/20 hover:bg-[#2a1840] active:scale-95"
+          className="flex h-12 w-12 items-center justify-center rounded-2xl border border-white/10 bg-[#1e102e] shadow-xs transition-all duration-200 hover:border-white/20 hover:bg-[#2a1840] active:scale-95"
           aria-label="Next slide"
         >
           <ChevronRight />

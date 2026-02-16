@@ -3,8 +3,18 @@ import Link from "next/link";
 import type { FC } from "react";
 
 const archetypeStats = [
-  { label: "Emotional Resonance", value: 85, status: "High", gradient: "from-[#541475] to-[#fe6839]" },
-  { label: "Spontaneous Desire", value: 45, status: "Moderate", gradient: "from-[#fe6839] to-[#fdba74]" },
+  {
+    label: "Emotional Resonance",
+    value: 85,
+    status: "High",
+    gradient: "from-[#541475] to-[#fe6839]",
+  },
+  {
+    label: "Spontaneous Desire",
+    value: 45,
+    status: "Moderate",
+    gradient: "from-[#fe6839] to-[#fdba74]",
+  },
 ];
 
 const archetypeInsights = [
@@ -57,8 +67,20 @@ const archetypeInsights = [
           strokeLinecap="round"
           strokeLinejoin="round"
         />
-        <path d="M7.5 15H12.5" stroke="#FE6839" strokeWidth="1.66667" strokeLinecap="round" strokeLinejoin="round" />
-        <path d="M8.33334 18.3333H11.6667" stroke="#FE6839" strokeWidth="1.66667" strokeLinecap="round" strokeLinejoin="round" />
+        <path
+          d="M7.5 15H12.5"
+          stroke="#FE6839"
+          strokeWidth="1.66667"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+        <path
+          d="M8.33334 18.3333H11.6667"
+          stroke="#FE6839"
+          strokeWidth="1.66667"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
       </svg>
     ),
     tone: "from-[#5c2229] to-[#3c151e]",
@@ -102,8 +124,8 @@ const explorationBullets = [
         aria-hidden
         className="h-7 w-7"
         viewBox="0 0 28 28"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
       >
         <path
           d="M2.33331 14C2.33331 20.439 7.56097 25.6667 14 25.6667C20.439 25.6667 25.6666 20.439 25.6666 14C25.6666 7.56103 20.439 2.33337 14 2.33337C7.56097 2.33337 2.33331 7.56103 2.33331 14V14"
@@ -138,8 +160,8 @@ const explorationBullets = [
         aria-hidden
         className="h-7 w-7"
         viewBox="0 0 28 28"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
       >
         <path
           d="M14 11.6666C12.7122 11.6666 11.6667 12.7122 11.6667 14C11.6667 15.19 11.55 16.9283 11.3633 18.6666"
@@ -169,7 +191,13 @@ const explorationBullets = [
           strokeLinecap="round"
           strokeLinejoin="round"
         />
-        <path d="M2.33331 18.6666H2.34498" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round" />
+        <path
+          d="M2.33331 18.6666H2.34498"
+          stroke="currentColor"
+          strokeWidth="1.75"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
         <path
           d="M25.4333 18.6666C25.6667 16.3333 25.5862 12.4203 25.4333 11.6666"
           stroke="currentColor"
@@ -207,11 +235,11 @@ const S07SampleProfile: FC = () => {
   return (
     <section className="relative mt-0 overflow-hidden bg-[#0A0510] px-4 pb-24 pt-14 text-white">
       <div className="relative mx-auto flex max-w-6xl flex-col gap-14">
-{/* Hidden: LoveIQ Gives You Language section
+        {/* Hidden: LoveIQ Gives You Language section
         <div className="space-y-6 text-center">
           <h2 className="font-serif text-3xl leading-tight text-white sm:text-4xl md:text-5xl">
             LoveIQ Gives You{" "}
-            <span className="italic bg-gradient-to-r from-[#A78BFA] via-[#CBB9FF] to-[#E9D5FF] bg-clip-text text-transparent">
+            <span className="italic bg-linear-to-r from-[#A78BFA] via-[#CBB9FF] to-[#E9D5FF] bg-clip-text text-transparent">
               Language.
             </span>
           </h2>
@@ -222,7 +250,7 @@ const S07SampleProfile: FC = () => {
           </p>
         </div>
 
-        <div className="relative overflow-hidden rounded-[40px] border border-white/10 bg-[#1E102E] shadow-[0_25px_50px_-12px_rgba(0,0,0,0.5)] backdrop-blur-[12px]">
+        <div className="relative overflow-hidden rounded-[40px] border border-white/10 bg-[#1E102E] shadow-[0_25px_50px_-12px_rgba(0,0,0,0.5)] backdrop-blur-md">
           <div className="relative">
             <div className="flex items-center gap-3 border-b border-white/5 px-6 py-4">
               <span className="h-3 w-3 rounded-full bg-[#fe6839]/60" />
@@ -249,7 +277,7 @@ const S07SampleProfile: FC = () => {
                     <div key={stat.label} className="space-y-3">
                       <div className="h-3 rounded-full bg-white/10">
                         <div
-                          className={`h-full rounded-full bg-gradient-to-r ${stat.gradient} shadow-[0_1px_2px_rgba(0,0,0,0.2)]`}
+                          className={`h-full rounded-full bg-linear-to-r ${stat.gradient} shadow-[0_1px_2px_rgba(0,0,0,0.2)]`}
                           style={{ width: `${stat.value}%` }}
                           aria-hidden
                         />
@@ -265,7 +293,7 @@ const S07SampleProfile: FC = () => {
                 </div>
               </div>
 
-              <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-[#231330]/90 via-[#1f102c]/92 to-[#160b22]/95 px-5 py-6 shadow-[0_18px_80px_rgba(0,0,0,0.45)]">
+              <div className="relative overflow-hidden rounded-3xl bg-linear-to-br from-[#231330]/90 via-[#1f102c]/92 to-[#160b22]/95 px-5 py-6 shadow-[0_18px_80px_rgba(0,0,0,0.45)]">
                 <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_0%,rgba(254,104,57,0.18),transparent_45%)]" />
                 <div className="absolute inset-0 bg-[radial-gradient(circle_at_10%_100%,rgba(92,34,41,0.18),transparent_35%)]" />
                 <div className="relative grid gap-4">
@@ -277,7 +305,7 @@ const S07SampleProfile: FC = () => {
                       }`}
                     >
                       <div
-                        className={`flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-xl bg-gradient-to-br ${item.tone} text-[#f0eaff]`}
+                        className={`flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-linear-to-br ${item.tone} text-[#f0eaff]`}
                       >
                         {item.icon}
                       </div>
@@ -303,7 +331,7 @@ const S07SampleProfile: FC = () => {
             <div className="space-y-6">
               {explorationBullets.map((item) => (
                 <div key={item.title} className="group flex gap-4">
-                  <div className="mt-1 flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-xl border border-white/10 bg-[#241433]/80 text-[#cbb8ff] shadow-[0_16px_50px_rgba(0,0,0,0.35)] transition duration-300 ease-out group-hover:-translate-y-1 group-hover:scale-[1.03] group-hover:border-white/20 group-hover:bg-gradient-to-br group-hover:from-[#f26d4f] group-hover:via-[#9c7dff] group-hover:to-[#5d7cff] group-hover:text-[#0d0715]">
+                  <div className="mt-1 flex h-12 w-12 shrink-0 items-center justify-center rounded-xl border border-white/10 bg-[#241433]/80 text-[#cbb8ff] shadow-[0_16px_50px_rgba(0,0,0,0.35)] transition duration-300 ease-out group-hover:-translate-y-1 group-hover:scale-[1.03] group-hover:border-white/20 group-hover:bg-linear-to-br group-hover:from-[#f26d4f] group-hover:via-[#9c7dff] group-hover:to-[#5d7cff] group-hover:text-[#0d0715]">
                     {item.icon}
                   </div>
                   <div className="space-y-1">
@@ -354,32 +382,32 @@ const S07SampleProfile: FC = () => {
           {/* Section Header */}
           <div className="relative z-10 mb-28 flex flex-col items-center gap-8 text-center">
             <h2 className="font-serif text-4xl leading-tight tracking-[-0.025em] text-white sm:text-5xl md:text-[60px]">
-              LoveIQ Gives You{" "}
-              <span className="italic text-[#fe6839]">Language.</span>
+              LoveIQ Gives You <span className="italic text-[#fe6839]">Language.</span>
             </h2>
             <p className="max-w-[944px] text-lg leading-7 text-[#d1d5db] sm:text-xl">
-              Stop guessing. Get clarity, vocabulary, and a deeper understanding of<br className="hidden sm:block" />{" "}
-              the terms that define your connection. We decode the complex<br className="hidden sm:block" />{" "}
-              science of intimacy.
+              Stop guessing. Get clarity, vocabulary, and a deeper understanding of
+              <br className="hidden sm:block" /> the terms that define your connection. We decode
+              the complex
+              <br className="hidden sm:block" /> science of intimacy.
             </p>
           </div>
 
           {/* Glossary Interface Mockup */}
           <div className="relative mx-auto max-w-[1232px]">
-            <div className="relative overflow-hidden rounded-3xl border border-white/10 bg-[rgba(15,8,21,0.8)] shadow-[0_0_0_1px_rgba(255,255,255,0.05),0_25px_50px_-12px_rgba(0,0,0,0.25)] backdrop-blur-[12px]">
+            <div className="relative overflow-hidden rounded-3xl border border-white/10 bg-[rgba(15,8,21,0.8)] shadow-[0_0_0_1px_rgba(255,255,255,0.05),0_25px_50px_-12px_rgba(0,0,0,0.25)] backdrop-blur-md">
               {/* Top gloss line */}
-              <div className="absolute left-0 right-0 top-0 h-px bg-gradient-to-r from-transparent via-white/20 to-transparent" />
+              <div className="absolute left-0 right-0 top-0 h-px bg-linear-to-r from-transparent via-white/20 to-transparent" />
 
               <div className="flex min-h-[480px] flex-col lg:h-[550px] lg:flex-row">
                 {/* Sidebar Navigation - Hidden on mobile */}
                 <div className="hidden w-[340px] border-r border-white/5 bg-[rgba(10,5,16,0.5)] lg:block">
                   {/* Search Header */}
-                  <div className="border-b border-white/5 bg-[rgba(10,5,16,0.2)] px-5 py-5 backdrop-blur-sm">
+                  <div className="border-b border-white/5 bg-[rgba(10,5,16,0.2)] px-5 py-5 backdrop-blur-xs">
                     <div className="relative">
                       <input
                         type="text"
                         placeholder="Search terminology..."
-                        className="w-full rounded-xl border border-white/10 bg-white/5 py-2.5 pl-10 pr-4 text-xs font-medium text-white/60 placeholder-[#6b7280] shadow-[inset_0_2px_4px_1px_rgba(0,0,0,0.2)] outline-none focus:border-white/20"
+                        className="w-full rounded-xl border border-white/10 bg-white/5 py-2.5 pl-10 pr-4 text-xs font-medium text-white/60 placeholder-[#6b7280] shadow-[inset_0_2px_4px_1px_rgba(0,0,0,0.2)] outline-hidden focus:border-white/20"
                         readOnly
                       />
                       <svg
@@ -388,11 +416,18 @@ const S07SampleProfile: FC = () => {
                         fill="none"
                       >
                         <circle cx="8" cy="8" r="5.5" stroke="currentColor" strokeWidth="1.5" />
-                        <path d="M12 12L16 16" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+                        <path
+                          d="M12 12L16 16"
+                          stroke="currentColor"
+                          strokeWidth="1.5"
+                          strokeLinecap="round"
+                        />
                       </svg>
                     </div>
                     <div className="mt-3 flex items-center justify-between px-1">
-                      <span className="text-[10px] font-bold uppercase tracking-[1px] text-[#6b7280]">Recent Terms</span>
+                      <span className="text-[10px] font-bold uppercase tracking-[1px] text-[#6b7280]">
+                        Recent Terms
+                      </span>
                       <span className="text-[10px] font-medium text-[#fe6839]">Filter</span>
                     </div>
                   </div>
@@ -404,10 +439,18 @@ const S07SampleProfile: FC = () => {
                       <div className="absolute bottom-0 left-0 top-0 w-[2px] bg-[#fe6839]" />
                       <div className="space-y-0.5">
                         <p className="font-serif text-sm font-bold text-white">Responsive Desire</p>
-                        <p className="text-[10px] font-medium tracking-[0.25px] text-[#fe6839]">Physiology</p>
+                        <p className="text-[10px] font-medium tracking-[0.25px] text-[#fe6839]">
+                          Physiology
+                        </p>
                       </div>
                       <svg className="h-4 w-4 text-[#fe6839]" viewBox="0 0 16 16" fill="none">
-                        <path d="M6 12L10 8L6 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                        <path
+                          d="M6 12L10 8L6 4"
+                          stroke="currentColor"
+                          strokeWidth="1.5"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                        />
                       </svg>
                     </div>
 
@@ -424,8 +467,12 @@ const S07SampleProfile: FC = () => {
                         className={`rounded-xl px-4 py-3 ${index >= 4 ? "opacity-40" : ""}`}
                       >
                         <div className="space-y-0.5">
-                          <p className="font-serif text-sm font-medium text-[#9ca3af]">{item.term}</p>
-                          <p className="text-[10px] font-medium tracking-[0.25px] text-[#4b5563]">{item.category}</p>
+                          <p className="font-serif text-sm font-medium text-[#9ca3af]">
+                            {item.term}
+                          </p>
+                          <p className="text-[10px] font-medium tracking-[0.25px] text-[#4b5563]">
+                            {item.category}
+                          </p>
                         </div>
                       </div>
                     ))}
@@ -446,9 +493,17 @@ const S07SampleProfile: FC = () => {
                     {/* Back to Glossary */}
                     <div className="mb-4 flex items-center gap-2">
                       <svg className="h-3.5 w-3.5 text-[#6b7280]" viewBox="0 0 14 14" fill="none">
-                        <path d="M9 11L5 7L9 3" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                        <path
+                          d="M9 11L5 7L9 3"
+                          stroke="currentColor"
+                          strokeWidth="1.5"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                        />
                       </svg>
-                      <span className="text-[10px] font-bold uppercase tracking-[1px] text-[#6b7280]">Back to Glossary</span>
+                      <span className="text-[10px] font-bold uppercase tracking-[1px] text-[#6b7280]">
+                        Back to Glossary
+                      </span>
                     </div>
 
                     <div className="flex gap-10">
@@ -456,20 +511,26 @@ const S07SampleProfile: FC = () => {
                       <div className="flex-1 space-y-4">
                         {/* Heading */}
                         <h3 className="font-serif text-2xl leading-[1.1] tracking-[-0.025em] text-white sm:text-3xl lg:text-[42px]">
-                          Importance of<br className="hidden sm:block" /> Sexuality
+                          Importance of
+                          <br className="hidden sm:block" /> Sexuality
                         </h3>
 
                         {/* Pills */}
                         <div className="flex flex-wrap gap-2">
-                          <span className="inline-flex rounded-full border border-[rgba(254,104,57,0.35)] bg-[rgba(254,104,57,0.18)] px-2.5 py-1 text-[9px] font-bold uppercase tracking-[0.5px] text-[#fe6839] shadow-[0_10px_24px_rgba(0,0,0,0.35)] [filter:blur(2.2px)] sm:px-3 sm:text-[10px]">
+                          <span className="inline-flex rounded-full border border-[rgba(254,104,57,0.35)] bg-[rgba(254,104,57,0.18)] px-2.5 py-1 text-[9px] font-bold uppercase tracking-[0.5px] text-[#fe6839] shadow-[0_10px_24px_rgba(0,0,0,0.35)] filter-[blur(2.2px)] sm:px-3 sm:text-[10px]">
                             Trait &amp; Disposition
                           </span>
-                          <span className="hidden rounded-full border border-white/15 bg-[rgba(255,255,255,0.12)] px-3 py-1 text-[10px] font-bold uppercase tracking-[0.5px] text-[#c9ced8] shadow-[0_10px_24px_rgba(0,0,0,0.35)] [filter:blur(2.2px)] sm:inline-flex">
+                          <span className="hidden rounded-full border border-white/15 bg-[rgba(255,255,255,0.12)] px-3 py-1 text-[10px] font-bold uppercase tracking-[0.5px] text-[#c9ced8] shadow-[0_10px_24px_rgba(0,0,0,0.35)] filter-[blur(2.2px)] sm:inline-flex">
                             Relationship Dynamics &amp; Intimacy
                           </span>
                           <span className="flex items-center gap-1.5 rounded-full border border-[rgba(236,72,153,0.3)] bg-[rgba(236,72,153,0.1)] px-2.5 py-1 text-[9px] font-bold uppercase tracking-[0.5px] text-[#f472b6] sm:px-3 sm:text-[10px]">
                             <svg className="h-3 w-3" viewBox="0 0 12 12" fill="none">
-                              <path d="M6 1V11M1 6H11" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+                              <path
+                                d="M6 1V11M1 6H11"
+                                stroke="currentColor"
+                                strokeWidth="1.5"
+                                strokeLinecap="round"
+                              />
                             </svg>
                             Sensitive Topic
                           </span>
@@ -477,32 +538,59 @@ const S07SampleProfile: FC = () => {
 
                         {/* Definition */}
                         <p className="font-serif text-base leading-7 text-[#e5e7eb] sm:text-lg lg:text-xl">
-                          How central sex and sexual connection are to a person&apos;s overall relationship satisfaction and sense of wellbeing.
+                          How central sex and sexual connection are to a person&apos;s overall
+                          relationship satisfaction and sense of wellbeing.
                         </p>
 
                         {/* What This Really Means */}
                         <div className="space-y-3 pt-2">
                           <div className="flex items-center gap-2">
                             <svg className="h-4 w-4 text-[#fe6839]" viewBox="0 0 18 18" fill="none">
-                              <path d="M9 1.5V16.5M9 1.5L5 5.5M9 1.5L13 5.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                              <path
+                                d="M9 1.5V16.5M9 1.5L5 5.5M9 1.5L13 5.5"
+                                stroke="currentColor"
+                                strokeWidth="1.5"
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                              />
                             </svg>
-                            <span className="font-serif text-base font-bold text-white">What This Really Means</span>
+                            <span className="font-serif text-base font-bold text-white">
+                              What This Really Means
+                            </span>
                           </div>
                           <div className="space-y-3 text-sm leading-[1.55] text-[#9ca3af]">
-                            <p>For some people, sexual connection is a primary bonding channel; for others, it is secondary to emotional intimacy, companionship, or shared goals.</p>
-                            <p className="hidden sm:block">Importance can shift with health, aging, parenting, and life stress, and it is also shaped by culture and values.</p>
+                            <p>
+                              For some people, sexual connection is a primary bonding channel; for
+                              others, it is secondary to emotional intimacy, companionship, or
+                              shared goals.
+                            </p>
+                            <p className="hidden sm:block">
+                              Importance can shift with health, aging, parenting, and life stress,
+                              and it is also shaped by culture and values.
+                            </p>
                           </div>
                         </div>
                       </div>
 
                       {/* Sidebar Column */}
-                      <div className="hidden w-[180px] flex-shrink-0 space-y-6 lg:block">
+                      <div className="hidden w-[180px] shrink-0 space-y-6 lg:block">
                         {/* Related Terms */}
                         <div className="space-y-3">
-                          <span className="font-serif text-sm font-bold text-white">Related Terms</span>
+                          <span className="font-serif text-sm font-bold text-white">
+                            Related Terms
+                          </span>
                           <div className="flex flex-col gap-2">
-                            {["Relationship Satisfaction", "Sexual Needs", "Sexual Frequency Expectations", "Affection Gap", "Emotional Intimacy"].map((term) => (
-                              <span key={term} className="rounded-lg border border-white/10 bg-white/5 px-3 py-1.5 text-[11px] text-[#9ca3af]">
+                            {[
+                              "Relationship Satisfaction",
+                              "Sexual Needs",
+                              "Sexual Frequency Expectations",
+                              "Affection Gap",
+                              "Emotional Intimacy",
+                            ].map((term) => (
+                              <span
+                                key={term}
+                                className="rounded-lg border border-white/10 bg-white/5 px-3 py-1.5 text-[11px] text-[#9ca3af]"
+                              >
                                 {term}
                               </span>
                             ))}
@@ -513,19 +601,34 @@ const S07SampleProfile: FC = () => {
                         <div className="space-y-3">
                           <span className="font-serif text-sm font-bold text-white">Tags</span>
                           <div className="flex flex-wrap gap-x-2 gap-y-1.5">
-                            {["#importance-of-sex", "#sexual-priorities", "#relationship-satisfaction", "#libido-compatibility", "#intimacy-needs", "#life-stages"].map((tag) => (
-                              <span key={tag} className="text-[10px] font-medium tracking-[0.25px] text-[#fe6839]">{tag}</span>
+                            {[
+                              "#importance-of-sex",
+                              "#sexual-priorities",
+                              "#relationship-satisfaction",
+                              "#libido-compatibility",
+                              "#intimacy-needs",
+                              "#life-stages",
+                            ].map((tag) => (
+                              <span
+                                key={tag}
+                                className="text-[10px] font-medium tracking-[0.25px] text-[#fe6839]"
+                              >
+                                {tag}
+                              </span>
                             ))}
                           </div>
                         </div>
 
                         {/* Inside LoveIQ Box */}
                         <div className="relative overflow-hidden rounded-xl border border-[#2e0147] bg-[#1a0f24] p-4">
-                          <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-[rgba(46,1,71,0.2)] to-transparent" />
+                          <div className="pointer-events-none absolute inset-0 bg-linear-to-br from-[rgba(46,1,71,0.2)] to-transparent" />
                           <div className="relative space-y-2">
-                            <span className="font-serif text-xs font-bold uppercase tracking-[0.7px] text-[#a78bfa]">Inside LoveIQ</span>
-                            <p className="text-[11px] leading-[1.5] text-[#9ca3af]">
-                              We identify patterns related to Importance of Sexuality by analyzing responses in our assessment modules.
+                            <span className="font-serif text-xs font-bold uppercase tracking-[0.7px] text-[#a78bfa]">
+                              Inside LoveIQ
+                            </span>
+                            <p className="text-[11px] leading-normal text-[#9ca3af]">
+                              We identify patterns related to Importance of Sexuality by analyzing
+                              responses in our assessment modules.
                             </p>
                           </div>
                         </div>
@@ -540,7 +643,8 @@ const S07SampleProfile: FC = () => {
             <div
               className="pointer-events-none absolute inset-x-0 top-0 h-[250px] rounded-t-3xl"
               style={{
-                background: "linear-gradient(180deg, rgba(167, 139, 250, 0.03) 0%, rgba(167, 139, 250, 0.02) 50%, rgba(167, 139, 250, 0.00) 100%)",
+                background:
+                  "linear-gradient(180deg, rgba(167, 139, 250, 0.03) 0%, rgba(167, 139, 250, 0.02) 50%, rgba(167, 139, 250, 0.00) 100%)",
                 backdropFilter: "blur(1.5px)",
                 WebkitBackdropFilter: "blur(1.5px)",
               }}
@@ -551,7 +655,8 @@ const S07SampleProfile: FC = () => {
               className="pointer-events-none absolute inset-x-0 bottom-0 h-[380px]"
               style={{
                 borderRadius: "58px 58px 24px 24px",
-                background: "linear-gradient(180deg, rgba(167, 139, 250, 0.00) 0.11%, rgba(167, 139, 250, 0.00) 24.82%, rgba(167, 139, 250, 0.01) 36.43%, rgba(167, 139, 250, 0.02) 51.68%, rgba(167, 139, 250, 0.03) 84.06%, rgba(167, 139, 250, 0.12) 99.89%)",
+                background:
+                  "linear-gradient(180deg, rgba(167, 139, 250, 0.00) 0.11%, rgba(167, 139, 250, 0.00) 24.82%, rgba(167, 139, 250, 0.01) 36.43%, rgba(167, 139, 250, 0.02) 51.68%, rgba(167, 139, 250, 0.03) 84.06%, rgba(167, 139, 250, 0.12) 99.89%)",
                 filter: "blur(2px)",
                 backdropFilter: "blur(2.55px)",
                 WebkitBackdropFilter: "blur(2.55px)",
@@ -571,7 +676,13 @@ const S07SampleProfile: FC = () => {
                 viewBox="0 0 16 16"
                 fill="none"
               >
-                <path d="M3 8H13M13 8L9 4M13 8L9 12" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                <path
+                  d="M3 8H13M13 8L9 4M13 8L9 12"
+                  stroke="currentColor"
+                  strokeWidth="1.5"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
               </svg>
             </Link>
           </div>

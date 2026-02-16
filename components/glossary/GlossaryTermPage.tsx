@@ -428,18 +428,18 @@ const GlossaryTermPage: FC<GlossaryTermPageProps> = ({ term }) => {
                 )}
 
                 {/* Inside LoveIQ Card */}
-                <div className="rounded-2xl border border-white/10 p-6 space-y-4 bg-gradient-to-br from-[rgba(46,1,71,0.5)] to-[#0a0510]">
+                <div className="rounded-2xl border border-white/10 p-6 space-y-4 bg-linear-to-br from-[rgba(46,1,71,0.5)] to-[#0a0510]">
                   <h3 className="font-serif text-sm font-semibold uppercase tracking-[1.4px] text-[#a78bfa]">
                     Inside LoveIQ
                   </h3>
-                  <p className="text-sm font-light leading-[1.625] text-[#9ca3af]">
+                  <p className="text-sm font-light leading-relaxed text-[#9ca3af]">
                     We identify patterns related to {term.term} by analyzing responses in our
                     assessment modules, helping you understand your unique relationship dynamics.
                   </p>
                   <div className="space-y-2">
                     <div className="h-1 rounded-full bg-white/10 overflow-hidden">
                       <div
-                        className="h-full rounded-full bg-gradient-to-r from-[#fe6839] via-[#a78bfa] to-[#e9d5ff]"
+                        className="h-full rounded-full bg-linear-to-r from-[#fe6839] via-[#a78bfa] to-[#e9d5ff]"
                         style={{ width: "66%" }}
                       />
                     </div>

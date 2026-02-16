@@ -3,13 +3,16 @@ import type { FC } from "react";
 
 const FooterSection: FC = () => {
   return (
-    <footer className="relative overflow-hidden bg-gradient-to-b from-[#0A0510] to-[#110518] px-4 pb-10 pt-12 text-text-primary" aria-labelledby="footer-heading">
+    <footer
+      className="relative overflow-hidden bg-linear-to-b from-[#0A0510] to-[#110518] px-4 pb-10 pt-12 text-text-primary"
+      aria-labelledby="footer-heading"
+    >
       <div className="content-shell relative flex flex-col gap-10">
         <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-[1.5fr_1fr_1fr_1fr]">
           {/* Brand Column */}
           <div className="space-y-4">
             <div className="flex items-center gap-2.5">
-              <div className="relative flex h-7 w-7 items-center justify-center overflow-hidden rounded-2xl bg-gradient-to-br from-[#ff9450] via-[#fe6839] to-[#c36ddf] shadow-[0_8px_18px_rgba(0,0,0,0.28)]">
+              <div className="relative flex h-7 w-7 items-center justify-center overflow-hidden rounded-2xl bg-linear-to-br from-[#ff9450] via-[#fe6839] to-[#c36ddf] shadow-[0_8px_18px_rgba(0,0,0,0.28)]">
                 <svg
                   aria-hidden
                   viewBox="0 0 24 24"
@@ -28,7 +31,8 @@ const FooterSection: FC = () => {
               </h2>
             </div>
             <p className="max-w-xs text-sm leading-relaxed text-[#6B7280]">
-              Democratizing sexual psychology. We translate complex research into actionable insights for everyday life.
+              Democratizing sexual psychology. We translate complex research into actionable
+              insights for everyday life.
             </p>
           </div>
 
@@ -37,22 +41,34 @@ const FooterSection: FC = () => {
             <h3 className="text-lg font-semibold text-white">Explore</h3>
             <ul className="space-y-2 text-sm list-none p-0 m-0">
               <li>
-                <Link href="/" className="text-[#6B7280] transition hover:text-white focus-visible-ring rounded">
+                <Link
+                  href="/"
+                  className="text-[#6B7280] transition hover:text-white focus-visible-ring rounded-sm"
+                >
                   Home
                 </Link>
               </li>
               <li>
-                <Link href="/about" className="text-[#6B7280] transition hover:text-white focus-visible-ring rounded">
+                <Link
+                  href="/about"
+                  className="text-[#6B7280] transition hover:text-white focus-visible-ring rounded-sm"
+                >
                   About Us
                 </Link>
               </li>
               <li>
-                <Link href="/glossary" className="text-[#6B7280] transition hover:text-white focus-visible-ring rounded">
+                <Link
+                  href="/glossary"
+                  className="text-[#6B7280] transition hover:text-white focus-visible-ring rounded-sm"
+                >
                   Glossary
                 </Link>
               </li>
               <li>
-                <Link href="/trust-zone" className="text-[#6B7280] transition hover:text-white focus-visible-ring rounded">
+                <Link
+                  href="/trust-zone"
+                  className="text-[#6B7280] transition hover:text-white focus-visible-ring rounded-sm"
+                >
                   Trust Center
                 </Link>
               </li>
@@ -76,7 +92,7 @@ const FooterSection: FC = () => {
               <li>
                 <Link
                   href="/privacy-policy"
-                  className="text-[#6B7280] transition hover:text-white focus-visible-ring rounded"
+                  className="text-[#6B7280] transition hover:text-white focus-visible-ring rounded-sm"
                   target="_blank"
                   rel="noreferrer noopener"
                 >
@@ -86,7 +102,7 @@ const FooterSection: FC = () => {
               <li>
                 <Link
                   href="/cookies"
-                  className="text-[#6B7280] transition hover:text-white focus-visible-ring rounded"
+                  className="text-[#6B7280] transition hover:text-white focus-visible-ring rounded-sm"
                   target="_blank"
                   rel="noreferrer noopener"
                 >
@@ -96,7 +112,7 @@ const FooterSection: FC = () => {
               <li>
                 <Link
                   href="/imprint"
-                  className="text-[#6B7280] transition hover:text-white focus-visible-ring rounded"
+                  className="text-[#6B7280] transition hover:text-white focus-visible-ring rounded-sm"
                   target="_blank"
                   rel="noreferrer noopener"
                 >
@@ -106,7 +122,7 @@ const FooterSection: FC = () => {
               <li>
                 <Link
                   href="/terms-and-conditions"
-                  className="text-[#6B7280] transition hover:text-white focus-visible-ring rounded"
+                  className="text-[#6B7280] transition hover:text-white focus-visible-ring rounded-sm"
                   target="_blank"
                   rel="noreferrer noopener"
                 >
@@ -116,7 +132,7 @@ const FooterSection: FC = () => {
               <li>
                 <Link
                   href="/terms-of-use"
-                  className="text-[#6B7280] transition hover:text-white focus-visible-ring rounded"
+                  className="text-[#6B7280] transition hover:text-white focus-visible-ring rounded-sm"
                   target="_blank"
                   rel="noreferrer noopener"
                 >
@@ -126,7 +142,7 @@ const FooterSection: FC = () => {
               <li>
                 <Link
                   href="/digital-content-terms"
-                  className="text-[#6B7280] transition hover:text-white focus-visible-ring rounded"
+                  className="text-[#6B7280] transition hover:text-white focus-visible-ring rounded-sm"
                   target="_blank"
                   rel="noreferrer noopener"
                 >
@@ -136,7 +152,7 @@ const FooterSection: FC = () => {
               <li>
                 <Link
                   href="/medical-disclaimer"
-                  className="text-[#6B7280] transition hover:text-white focus-visible-ring rounded"
+                  className="text-[#6B7280] transition hover:text-white focus-visible-ring rounded-sm"
                   target="_blank"
                   rel="noreferrer noopener"
                 >
