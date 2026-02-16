@@ -19,14 +19,16 @@ const staticRoutes = [
 ];
 
 export default function sitemap(): MetadataRoute.Sitemap {
+  const siteLastModified = new Date("2026-02-16");
+
   const staticEntries = staticRoutes.map((path) => ({
     url: `${siteUrl}${path}`,
-    lastModified: new Date(),
+    lastModified: siteLastModified,
   }));
 
   const glossaryEntries = getAllSlugs().map((slug) => ({
     url: `${siteUrl}/glossary/${slug}`,
-    lastModified: new Date(),
+    lastModified: siteLastModified,
   }));
 
   return [...staticEntries, ...glossaryEntries];

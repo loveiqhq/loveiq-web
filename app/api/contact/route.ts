@@ -84,7 +84,9 @@ const sendSlackContactNotification = async (payload: {
   // Mask PII to avoid sending full details to Slack
   const maskedEmail = payload.email.replace(/^(.).+(@.+)$/, "$1***$2");
   const maskedPhone = payload.phone
-    ? payload.phone.slice(0, 3) + "***" + payload.phone.slice(-2)
+    ? payload.phone.length > 6
+      ? payload.phone.slice(0, 3) + "***" + payload.phone.slice(-2)
+      : "***"
     : null;
 
   // Truncate message to prevent overly long Slack messages

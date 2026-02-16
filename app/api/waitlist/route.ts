@@ -59,7 +59,7 @@ const notifySlackWaitlist = async ({
 
   // Mask to avoid sending full PII to Slack
   const maskedEmail = email.replace(/^(.).+(@.+)$/, "$1***$2");
-  const text = `New waitlist signup: ${firstName ? `*${firstName}* ` : ""}<mailto:${email}|${maskedEmail}>${source ? ` (source: ${source})` : ""}`;
+  const text = `New waitlist signup: ${firstName ? `*${firstName}* ` : ""}${maskedEmail}${source ? ` (source: ${source})` : ""}`;
 
   try {
     logger.info({ maskedEmail, source: source || "n/a" }, "Sending Slack waitlist notification");

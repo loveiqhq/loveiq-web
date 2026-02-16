@@ -1,14 +1,20 @@
 /**
- * Persistent rate limiting using Supabase
+ * Persistent rate limiting using Supabase with in-memory fallback.
  *
  * This module provides sliding-window rate limiting that persists across
  * server restarts and deployments, preventing abuse even during deployments.
+ * When Supabase is unavailable, an in-memory fallback ensures rate limiting
+ * still operates (per-instance only).
  */
 
+import { fetchWithTimeout } from "./fetch-with-timeout";
 import logger from "./logger";
 
 const SUPABASE_URL = process.env.SUPABASE_URL;
 const SUPABASE_SERVICE_ROLE_KEY = process.env.SUPABASE_SERVICE_ROLE_KEY;
+
+/** Timeout for Supabase rate limit requests (ms) */
+const RATELIMIT_TIMEOUT_MS = 3000;
 
 interface RateLimitResult {
   allowed: boolean;
@@ -26,8 +32,57 @@ interface RateLimitConfig {
 }
 
 /**
+ * In-memory rate limiter fallback.
+ * Only effective per serverless instance but still better than no rate limiting.
+ */
+const memoryStore = new Map<string, number[]>();
+
+function checkMemoryRateLimit(key: string, config: RateLimitConfig): RateLimitResult {
+  const now = Date.now();
+  const windowStart = now - config.windowMs;
+  const resetAt = new Date(now + config.windowMs);
+
+  const hits = memoryStore.get(key) ?? [];
+  const validHits = hits.filter((t) => t > windowStart);
+
+  if (validHits.length >= config.limit) {
+    memoryStore.set(key, validHits);
+    return {
+      allowed: false,
+      remaining: 0,
+      resetAt: new Date(Math.min(...validHits) + config.windowMs),
+    };
+  }
+
+  validHits.push(now);
+  memoryStore.set(key, validHits);
+
+  return {
+    allowed: true,
+    remaining: config.limit - validHits.length,
+    resetAt,
+  };
+}
+
+// Periodically clean up stale entries from memory store (every 5 minutes)
+if (typeof setInterval !== "undefined") {
+  setInterval(() => {
+    const now = Date.now();
+    memoryStore.forEach((hits, key) => {
+      const valid = hits.filter((t) => t > now - 300_000); // Keep last 5 min
+      if (valid.length === 0) {
+        memoryStore.delete(key);
+      } else {
+        memoryStore.set(key, valid);
+      }
+    });
+  }, 300_000);
+}
+
+/**
  * Check if a request should be rate limited using Supabase for persistence.
- * Uses a sliding window algorithm.
+ * Uses a sliding window algorithm. Falls back to in-memory rate limiting
+ * when Supabase is unavailable.
  *
  * @param key - The key to rate limit (typically IP address or email)
  * @param config - Rate limit configuration
@@ -38,22 +93,19 @@ export async function checkRateLimit(
   config: RateLimitConfig
 ): Promise<RateLimitResult> {
   const now = Date.now();
-  const windowStart = now - config.windowMs;
   const resetAt = new Date(now + config.windowMs);
-
-  // If Supabase is not configured, fall back to allowing the request
-  // but log a warning. In production, this should be configured.
-  if (!SUPABASE_URL || !SUPABASE_SERVICE_ROLE_KEY) {
-    logger.warn("[ratelimit] Supabase not configured, rate limiting disabled");
-    return { allowed: true, remaining: config.limit, resetAt };
-  }
-
   const compositeKey = `${config.bucket}:${key}`;
+
+  // If Supabase is not configured, use in-memory fallback
+  if (!SUPABASE_URL || !SUPABASE_SERVICE_ROLE_KEY) {
+    logger.warn("[ratelimit] Supabase not configured, using in-memory fallback");
+    return checkMemoryRateLimit(compositeKey, config);
+  }
 
   try {
     // Call Supabase RPC function to atomically check and update rate limit
     // This uses a stored procedure for atomic operations
-    const response = await fetch(`${SUPABASE_URL}/rest/v1/rpc/check_rate_limit`, {
+    const response = await fetchWithTimeout(`${SUPABASE_URL}/rest/v1/rpc/check_rate_limit`, {
       method: "POST",
       headers: {
         apikey: SUPABASE_SERVICE_ROLE_KEY,
@@ -68,6 +120,7 @@ export async function checkRateLimit(
         p_now: now,
       }),
       cache: "no-store",
+      timeoutMs: RATELIMIT_TIMEOUT_MS,
     });
 
     if (!response.ok) {
@@ -75,9 +128,11 @@ export async function checkRateLimit(
       if (response.status === 404) {
         return checkRateLimitSimple(compositeKey, config, now);
       }
-      logger.error({ status: response.status }, "[ratelimit] Supabase RPC failed");
-      // Fail open with warning - don't block users if DB has issues
-      return { allowed: true, remaining: config.limit, resetAt };
+      logger.error(
+        { status: response.status },
+        "[ratelimit] Supabase RPC failed, using in-memory fallback"
+      );
+      return checkMemoryRateLimit(compositeKey, config);
     }
 
     const result = await response.json();
@@ -87,9 +142,8 @@ export async function checkRateLimit(
       resetAt: new Date(result.reset_at ?? resetAt),
     };
   } catch (err) {
-    logger.error({ err }, "[ratelimit] Error checking rate limit");
-    // Fail open with warning - don't block users if DB has issues
-    return { allowed: true, remaining: config.limit, resetAt };
+    logger.error({ err }, "[ratelimit] Error checking rate limit, using in-memory fallback");
+    return checkMemoryRateLimit(compositeKey, config);
   }
 }
 
@@ -107,7 +161,7 @@ async function checkRateLimitSimple(
 
   try {
     // Get existing rate limit record
-    const getResponse = await fetch(
+    const getResponse = await fetchWithTimeout(
       `${SUPABASE_URL}/rest/v1/rate_limits?key=eq.${encodeURIComponent(key)}&select=hits`,
       {
         headers: {
@@ -115,12 +169,16 @@ async function checkRateLimitSimple(
           Authorization: `Bearer ${SUPABASE_SERVICE_ROLE_KEY}`,
         },
         cache: "no-store",
+        timeoutMs: RATELIMIT_TIMEOUT_MS,
       }
     );
 
     if (!getResponse.ok) {
-      logger.error({ status: getResponse.status }, "[ratelimit] Failed to get rate limit");
-      return { allowed: true, remaining: config.limit, resetAt };
+      logger.error(
+        { status: getResponse.status },
+        "[ratelimit] Failed to get rate limit, using in-memory fallback"
+      );
+      return checkMemoryRateLimit(key, config);
     }
 
     const records = (await getResponse.json()) as Array<{ hits: number[] }>;
@@ -143,7 +201,7 @@ async function checkRateLimitSimple(
     const newHits = [...validHits, now];
 
     // Upsert the rate limit record
-    const upsertResponse = await fetch(`${SUPABASE_URL}/rest/v1/rate_limits`, {
+    const upsertResponse = await fetchWithTimeout(`${SUPABASE_URL}/rest/v1/rate_limits`, {
       method: "POST",
       headers: {
         apikey: SUPABASE_SERVICE_ROLE_KEY!,
@@ -157,6 +215,7 @@ async function checkRateLimitSimple(
         updated_at: new Date(now).toISOString(),
       }),
       cache: "no-store",
+      timeoutMs: RATELIMIT_TIMEOUT_MS,
     });
 
     if (!upsertResponse.ok) {
@@ -169,8 +228,8 @@ async function checkRateLimitSimple(
       resetAt,
     };
   } catch (err) {
-    logger.error({ err }, "[ratelimit] Simple rate limit error");
-    return { allowed: true, remaining: config.limit, resetAt };
+    logger.error({ err }, "[ratelimit] Simple rate limit error, using in-memory fallback");
+    return checkMemoryRateLimit(key, config);
   }
 }
 
@@ -191,7 +250,7 @@ export async function checkCooldown(
   const now = Date.now();
 
   try {
-    const getResponse = await fetch(
+    const getResponse = await fetchWithTimeout(
       `${SUPABASE_URL}/rest/v1/rate_limits?key=eq.${encodeURIComponent(compositeKey)}&select=updated_at`,
       {
         headers: {
@@ -199,6 +258,7 @@ export async function checkCooldown(
           Authorization: `Bearer ${SUPABASE_SERVICE_ROLE_KEY}`,
         },
         cache: "no-store",
+        timeoutMs: RATELIMIT_TIMEOUT_MS,
       }
     );
 
@@ -218,7 +278,7 @@ export async function checkCooldown(
     }
 
     // Update cooldown timestamp
-    await fetch(`${SUPABASE_URL}/rest/v1/rate_limits`, {
+    await fetchWithTimeout(`${SUPABASE_URL}/rest/v1/rate_limits`, {
       method: "POST",
       headers: {
         apikey: SUPABASE_SERVICE_ROLE_KEY,
@@ -232,6 +292,7 @@ export async function checkCooldown(
         updated_at: new Date(now).toISOString(),
       }),
       cache: "no-store",
+      timeoutMs: RATELIMIT_TIMEOUT_MS,
     });
 
     return { allowed: true, retryAfterMs: 0 };

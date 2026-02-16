@@ -1,4 +1,4 @@
-'use client';
+"use client";
 
 import Image from "next/image";
 import { useState } from "react";
@@ -46,8 +46,20 @@ const FAQItem = ({ question, answer }: FAQItemProps) => {
         aria-expanded={isOpen}
       >
         <span className="text-sm font-semibold text-white sm:text-base">{question}</span>
-        <span className={`text-white/50 transition-transform duration-300 ${isOpen ? "rotate-45" : ""}`}>
-          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+        <span
+          className={`text-white/50 transition-transform duration-300 ${isOpen ? "rotate-45" : ""}`}
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="20"
+            height="20"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          >
             <path d="M5 12h14" />
             <path d="M12 5v14" />
           </svg>
@@ -89,11 +101,11 @@ export default function WaitlistPage() {
     setStatus("loading");
     setErrorMessage(null);
     try {
-      // Get CSRF token from cookie
-      const csrfToken = document.cookie
+      // Get CSRF token from cookie (__Host-csrf in production, __csrf in dev)
+      const csrfCookie = document.cookie
         .split("; ")
-        .find((row) => row.startsWith("__csrf="))
-        ?.split("=")[1] || "";
+        .find((row) => row.startsWith("__Host-csrf=") || row.startsWith("__csrf="));
+      const csrfToken = csrfCookie?.substring(csrfCookie.indexOf("=") + 1) || "";
 
       const res = await fetch("/api/waitlist", {
         method: "POST",
@@ -132,9 +144,12 @@ export default function WaitlistPage() {
               </span>
               <span>Available in early 2026</span>
             </div>
-            <h1 className="font-serif text-3xl leading-tight tracking-tight sm:text-4xl md:text-5xl">Get Early Access</h1>
+            <h1 className="font-serif text-3xl leading-tight tracking-tight sm:text-4xl md:text-5xl">
+              Get Early Access
+            </h1>
             <p className="max-w-2xl text-sm text-white/70 sm:text-base">
-              Be amongst the first to experience the new standard in relationship psychology. Sign up to be notified when we launch.
+              Be amongst the first to experience the new standard in relationship psychology. Sign
+              up to be notified when we launch.
             </p>
           </div>
 
@@ -152,14 +167,16 @@ export default function WaitlistPage() {
               name="website"
               value={website}
               onChange={(e) => setWebsite(e.target.value)}
-              className="hidden"
+              className="absolute -left-[9999px] h-0 w-0 overflow-hidden"
               tabIndex={-1}
               autoComplete="off"
+              aria-hidden="true"
             />
             <div className="grid grid-cols-[1fr_auto] items-stretch gap-2 rounded-2xl border border-white/10 bg-white/5 p-2 shadow-xl shadow-black/20 transition-all hover:bg-white/10 focus-within:border-[#FE6839]/50 focus-within:ring-1 focus-within:ring-[#FE6839]/50 sm:gap-3 sm:rounded-full sm:p-2 sm:pl-4">
               <input
                 type="email"
                 name="email"
+                aria-label="Email address"
                 className="h-12 min-w-0 w-full border-none bg-transparent pr-12 text-base text-white placeholder-white/30 focus:outline-none focus:ring-0"
                 placeholder="name@email.com"
                 value={email}
@@ -177,7 +194,11 @@ export default function WaitlistPage() {
                 className="justify-self-end whitespace-nowrap rounded-full bg-[#FE6839] px-4 py-2.5 text-sm font-semibold text-white shadow-lg shadow-[#FE6839]/20 transition-all hover:bg-[#ff7b52] hover:shadow-[#FE6839]/40 sm:px-7 sm:py-3 sm:text-base"
                 disabled={status === "loading"}
               >
-                {status === "loading" ? "Submitting..." : status === "success" ? "Joined!" : "Join waitlist"}
+                {status === "loading"
+                  ? "Submitting..."
+                  : status === "success"
+                    ? "Joined!"
+                    : "Join waitlist"}
               </button>
             </div>
             <div className="min-h-[32px]" aria-live="polite" role="status">
@@ -210,13 +231,16 @@ export default function WaitlistPage() {
               ))}
             </div>
             <span className="text-sm text-white/70">
-              Join the <strong className="font-semibold text-white">fast-growing</strong> early-access waitlist
+              Join the <strong className="font-semibold text-white">fast-growing</strong>{" "}
+              early-access waitlist
             </span>
           </div>
 
           <div className="flex flex-col items-center gap-3 text-center">
             <h2 className="font-serif text-2xl sm:text-3xl">Frequently Asked Questions</h2>
-            <p className="text-xs text-white/60 sm:text-sm">Everything you need to know about the early access.</p>
+            <p className="text-xs text-white/60 sm:text-sm">
+              Everything you need to know about the early access.
+            </p>
           </div>
 
           <div className="mt-6 flex flex-col gap-3">
@@ -226,13 +250,21 @@ export default function WaitlistPage() {
           </div>
 
           <div className="mt-10 flex flex-wrap items-center justify-center gap-4 text-[11px] text-gray-500">
-            <a href="/privacy-policy" className="hover:text-white/70 transition-colors">Privacy Policy</a>
+            <a href="/privacy-policy" className="hover:text-white/70 transition-colors">
+              Privacy Policy
+            </a>
             <span className="text-gray-600">&gt;</span>
-            <a href="/terms-of-use" className="hover:text-white/70 transition-colors">Terms of Use</a>
+            <a href="/terms-of-use" className="hover:text-white/70 transition-colors">
+              Terms of Use
+            </a>
             <span className="text-gray-600">&gt;</span>
-            <a href="/medical-disclaimer" className="hover:text-white/70 transition-colors">Medical &amp; Psychological Disclaimer</a>
+            <a href="/medical-disclaimer" className="hover:text-white/70 transition-colors">
+              Medical &amp; Psychological Disclaimer
+            </a>
           </div>
-          <div className="mt-2 text-center text-[10px] text-gray-700">Ac 2026 LoveIQ &gt; Designed based on User Request</div>
+          <div className="mt-2 text-center text-[10px] text-gray-700">
+            Ac 2026 LoveIQ &gt; Designed based on User Request
+          </div>
         </div>
       </div>
     </div>

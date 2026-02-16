@@ -103,6 +103,7 @@ function useScrollDirection() {
 const NavSection: FC = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const { isHidden, isMobile } = useScrollDirection();
+  const menuRef = useRef<HTMLDivElement | null>(null);
 
   // Close menu when hiding navbar
   useEffect(() => {
@@ -119,6 +120,37 @@ const NavSection: FC = () => {
     };
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
+  }, [menuOpen]);
+
+  // Focus trap for mobile menu
+  useEffect(() => {
+    if (!menuOpen || !menuRef.current) return;
+    const menu = menuRef.current;
+    const focusable = menu.querySelectorAll<HTMLElement>(
+      "a, button, [tabindex]:not([tabindex='-1'])"
+    );
+    if (focusable.length === 0) return;
+    const first = focusable[0];
+    const last = focusable[focusable.length - 1];
+    first.focus();
+
+    const trapFocus = (e: KeyboardEvent) => {
+      if (e.key !== "Tab") return;
+      if (e.shiftKey) {
+        if (document.activeElement === first) {
+          e.preventDefault();
+          last.focus();
+        }
+      } else {
+        if (document.activeElement === last) {
+          e.preventDefault();
+          first.focus();
+        }
+      }
+    };
+
+    menu.addEventListener("keydown", trapFocus);
+    return () => menu.removeEventListener("keydown", trapFocus);
   }, [menuOpen]);
 
   const closeMenu = () => setMenuOpen(false);
@@ -201,7 +233,9 @@ const NavSection: FC = () => {
                 />
                 <span className="pointer-events-none absolute inset-0 rounded-full bg-white/10 opacity-0 transition duration-300 group-hover:opacity-100" />
                 <span className="pointer-events-none absolute inset-[-12%] rounded-full border border-white/15 mix-blend-screen opacity-70" />
-                <span className="relative z-10 transition-colors duration-500 group-hover:text-black">Start survey now</span>
+                <span className="relative z-10 transition-colors duration-500 group-hover:text-black">
+                  Start survey now
+                </span>
                 <svg
                   aria-hidden
                   className="relative z-10 h-4 w-4 sm:h-5 sm:w-5 transition-colors duration-500 group-hover:text-black"
@@ -257,7 +291,10 @@ const NavSection: FC = () => {
             </div>
           </nav>
           {menuOpen && (
-            <div className="pointer-events-auto absolute left-0 right-0 top-[72px] mx-auto w-full max-w-[332px] rounded-[24px] border border-white/10 bg-[rgba(21,10,34,0.5)] px-2.5 py-7 shadow-[0_25px_50px_-12px_rgba(0,0,0,0.5)] backdrop-blur-xl sm:hidden animate-menu-slide-down">
+            <div
+              ref={menuRef}
+              className="pointer-events-auto absolute left-0 right-0 top-[72px] mx-auto w-full max-w-[332px] rounded-[24px] border border-white/10 bg-[rgba(21,10,34,0.5)] px-2.5 py-7 shadow-[0_25px_50px_-12px_rgba(0,0,0,0.5)] backdrop-blur-xl sm:hidden animate-menu-slide-down"
+            >
               <div className="flex flex-col items-center gap-10">
                 {navLinks.map((item) => (
                   <Link

@@ -2,7 +2,8 @@ import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
 import logger from "./lib/logger";
 
-const CSRF_COOKIE_NAME = "__csrf";
+const isProduction = process.env.NODE_ENV === "production";
+const CSRF_COOKIE_NAME = isProduction ? "__Host-csrf" : "__csrf";
 const CSRF_TOKEN_LENGTH = 32;
 
 function generateCsrfToken(): string {
@@ -15,17 +16,20 @@ export function proxy(request: NextRequest) {
   // Generate a random nonce for CSP
   const nonce = Buffer.from(crypto.randomUUID()).toString("base64");
 
-  const isDev = process.env.NODE_ENV !== "production";
+  const isDev = !isProduction;
 
   // Build CSP header with nonce
-  // In development, allow 'unsafe-eval' for Next.js HMR/webpack and ws: for websocket connections
+  // Production: nonce-based with strict-dynamic (domain allowlists kept as fallback for older browsers)
+  // Development: permissive for HMR/webpack
   const cspHeader = [
     "default-src 'self'",
-    `script-src 'self' 'unsafe-inline'${isDev ? " 'unsafe-eval'" : ""} https://www.googletagmanager.com https://www.google-analytics.com https://www.google.com/recaptcha/ https://www.gstatic.com/recaptcha/ https://cdn-cookieyes.com https://cookieyes.com`,
+    isDev
+      ? "script-src 'self' 'unsafe-inline' 'unsafe-eval'"
+      : `script-src 'self' 'nonce-${nonce}' 'strict-dynamic' https://www.googletagmanager.com https://www.google-analytics.com https://www.google.com/recaptcha/ https://www.gstatic.com/recaptcha/ https://cdn-cookieyes.com https://cookieyes.com`,
     "style-src 'self' 'unsafe-inline'", // Tailwind requires unsafe-inline for styles
-    "img-src 'self' data: blob: https://images.unsplash.com https://www.google-analytics.com https://www.googletagmanager.com https://www.figma.com https://cdn-cookieyes.com",
+    "img-src 'self' data: blob: https://images.unsplash.com https://www.google-analytics.com https://www.googletagmanager.com https://cdn-cookieyes.com",
     "media-src 'self'",
-    `connect-src 'self'${isDev ? " ws://localhost:* http://localhost:*" : ""} https://www.google-analytics.com https://www.googletagmanager.com https://images.unsplash.com https://www.figma.com https://www.google.com/recaptcha/ https://cdn-cookieyes.com https://log.cookieyes.com https://cookieyes.com`,
+    `connect-src 'self'${isDev ? " ws://localhost:* http://localhost:*" : ""} https://www.google-analytics.com https://www.googletagmanager.com https://images.unsplash.com https://www.google.com/recaptcha/ https://cdn-cookieyes.com https://log.cookieyes.com https://cookieyes.com`,
     "frame-src 'self' https://www.google.com/recaptcha/ https://recaptcha.google.com/recaptcha/ https://www.gstatic.com/recaptcha/ https://cdn-cookieyes.com",
     "frame-ancestors 'none'",
     "base-uri 'self'",
@@ -55,7 +59,7 @@ export function proxy(request: NextRequest) {
     "Permissions-Policy",
     "geolocation=(), microphone=(), camera=(), autoplay=(), payment=()"
   );
-  response.headers.set("Strict-Transport-Security", "max-age=63072000; includeSubDomains; preload");
+  response.headers.set("Strict-Transport-Security", "max-age=63072000; includeSubDomains");
   // Cross-Origin-Opener-Policy for origin isolation
   response.headers.set("Cross-Origin-Opener-Policy", "same-origin-allow-popups");
 
@@ -65,7 +69,7 @@ export function proxy(request: NextRequest) {
     const csrfToken = generateCsrfToken();
     response.cookies.set(CSRF_COOKIE_NAME, csrfToken, {
       httpOnly: false, // Must be readable by JavaScript
-      secure: process.env.NODE_ENV === "production",
+      secure: isProduction,
       sameSite: "strict",
       path: "/",
       maxAge: 60 * 60 * 24, // 24 hours

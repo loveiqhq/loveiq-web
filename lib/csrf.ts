@@ -2,18 +2,21 @@
  * CSRF Protection using Double-Submit Cookie Pattern
  *
  * How it works:
- * 1. Server generates a random token and sets it in a cookie (via middleware.ts)
+ * 1. Server generates a random token and sets it in a cookie (via proxy.ts)
  * 2. Client reads the cookie and includes it in request headers
  * 3. Server verifies the header matches the cookie
  *
  * This works because:
  * - Attackers can't read cookies from other domains (Same-Origin Policy)
  * - Attackers can't set custom headers in cross-origin requests
+ *
+ * In production, the cookie uses the __Host- prefix for stronger scoping.
  */
 
 import { cookies } from "next/headers";
 
-const CSRF_COOKIE_NAME = "__csrf";
+const isProduction = process.env.NODE_ENV === "production";
+const CSRF_COOKIE_NAME = isProduction ? "__Host-csrf" : "__csrf";
 const CSRF_HEADER_NAME = "x-csrf-token";
 
 /**

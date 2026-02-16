@@ -40,7 +40,7 @@ const AboutPage: FC = () => {
   }, []);
 
   return (
-    <main className="relative bg-[#0A0510] text-white">
+    <main id="main-content" className="relative bg-[#0A0510] text-white">
       <AboutNavSection />
       <HeroSection />
       <div className="space-y-16 md:space-y-20">

@@ -4,6 +4,7 @@ import type { Metadata, Viewport } from "next";
 import { Lora, Manrope } from "next/font/google";
 import { headers } from "next/headers";
 import SmoothScroll from "../components/SmoothScroll";
+import { NonceProvider } from "../components/NonceProvider";
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://www.loveiq.org";
 
@@ -89,7 +90,8 @@ const faqSchema = {
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: "LoveIQ | Science-backed sexual psychology assessment",
-  description: "Take LoveIQ’s science-backed sexual psychology assessment to understand your desires, attachment patterns, and intimacy styles.",
+  description:
+    "Take LoveIQ's science-backed sexual psychology assessment to understand your desires, attachment patterns, and intimacy styles.",
   alternates: {
     canonical: siteUrl,
   },
@@ -99,15 +101,26 @@ export const metadata: Metadata = {
   },
   openGraph: {
     title: "LoveIQ | Science-backed sexual psychology assessment",
-    description: "Take LoveIQ’s science-backed sexual psychology assessment to understand your desires, attachment patterns, and intimacy styles.",
+    description:
+      "Take LoveIQ's science-backed sexual psychology assessment to understand your desires, attachment patterns, and intimacy styles.",
     url: siteUrl,
     siteName: "LoveIQ",
     type: "website",
+    images: [
+      {
+        url: `${siteUrl}/images/og-image.png`,
+        width: 1200,
+        height: 630,
+        alt: "LoveIQ - Science-backed sexual psychology assessment",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: "LoveIQ | Science-backed sexual psychology assessment",
-    description: "Take LoveIQ’s science-backed sexual psychology assessment to understand your desires, attachment patterns, and intimacy styles.",
+    description:
+      "Take LoveIQ's science-backed sexual psychology assessment to understand your desires, attachment patterns, and intimacy styles.",
+    images: [`${siteUrl}/images/og-image.png`],
   },
 };
 
@@ -130,7 +143,8 @@ export default async function RootLayout({ children }: { children: React.ReactNo
         <Script
           id="cookieyes"
           src="https://cdn-cookieyes.com/client_data/761bc9303937f7b41b200de8ed556d45/script.js"
-          strategy="lazyOnload"
+          strategy="afterInteractive"
+          nonce={nonce}
         />
         <Script
           src="https://www.googletagmanager.com/gtag/js?id=G-QTYY69L46N"
@@ -147,18 +161,41 @@ export default async function RootLayout({ children }: { children: React.ReactNo
             });
           `}
         </Script>
-        <Script id="schema-org" type="application/ld+json" strategy="afterInteractive" nonce={nonce}>
+        <Script
+          id="schema-org"
+          type="application/ld+json"
+          strategy="afterInteractive"
+          nonce={nonce}
+        >
           {JSON.stringify(organizationSchema)}
         </Script>
-        <Script id="schema-website" type="application/ld+json" strategy="afterInteractive" nonce={nonce}>
+        <Script
+          id="schema-website"
+          type="application/ld+json"
+          strategy="afterInteractive"
+          nonce={nonce}
+        >
           {JSON.stringify(websiteSchema)}
         </Script>
-        <Script id="schema-faq" type="application/ld+json" strategy="afterInteractive" nonce={nonce}>
+        <Script
+          id="schema-faq"
+          type="application/ld+json"
+          strategy="afterInteractive"
+          nonce={nonce}
+        >
           {JSON.stringify(faqSchema)}
         </Script>
       </head>
       <body className="bg-white dark:bg-[#050208]">
-        <SmoothScroll>{children}</SmoothScroll>
+        <a
+          href="#main-content"
+          className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-50 focus:rounded-lg focus:bg-white focus:px-4 focus:py-2 focus:text-black focus:shadow-lg"
+        >
+          Skip to main content
+        </a>
+        <NonceProvider nonce={nonce}>
+          <SmoothScroll>{children}</SmoothScroll>
+        </NonceProvider>
       </body>
     </html>
   );

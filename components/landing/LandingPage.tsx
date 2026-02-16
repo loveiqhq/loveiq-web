@@ -19,7 +19,7 @@ import FooterSection from "./FooterSection";
 
 const LandingPage: FC = () => {
   return (
-    <main className="relative bg-page text-text-primary">
+    <main id="main-content" className="relative bg-page text-text-primary">
       <ScrollAnimator />
       <NavSection />
       <S01Hero />

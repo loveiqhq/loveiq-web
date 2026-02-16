@@ -20,17 +20,18 @@ describe("checkRateLimit", () => {
     vi.restoreAllMocks();
   });
 
-  it("fails open on network error", async () => {
+  it("falls back to in-memory rate limiting on network error", async () => {
     vi.spyOn(globalThis, "fetch").mockRejectedValue(new Error("Network error"));
 
     const result = await checkRateLimit("1.2.3.4", {
-      bucket: "test",
+      bucket: "test-net-error",
       limit: 5,
       windowMs: 60000,
     });
 
     expect(result.allowed).toBe(true);
-    expect(result.remaining).toBe(5);
+    // In-memory fallback counts the current request (limit - 1)
+    expect(result.remaining).toBe(4);
   });
 
   it("returns a valid resetAt date", async () => {
@@ -38,7 +39,7 @@ describe("checkRateLimit", () => {
     const before = Date.now();
 
     const result = await checkRateLimit("1.2.3.4", {
-      bucket: "test",
+      bucket: "test-reset",
       limit: 5,
       windowMs: 60000,
     });
@@ -46,18 +47,18 @@ describe("checkRateLimit", () => {
     expect(result.resetAt.getTime()).toBeGreaterThanOrEqual(before);
   });
 
-  it("returns default remaining on error", async () => {
+  it("returns remaining minus one on error (in-memory fallback)", async () => {
     vi.spyOn(globalThis, "fetch").mockRejectedValue(new Error("fail"));
 
     const result = await checkRateLimit("192.168.1.1", {
-      bucket: "contact",
+      bucket: "contact-err",
       limit: 3,
       windowMs: 30000,
     });
 
-    // On error, should return the configured limit as remaining
+    // In-memory fallback counts the current request (limit - 1)
     expect(result.allowed).toBe(true);
-    expect(result.remaining).toBe(3);
+    expect(result.remaining).toBe(2);
   });
 });
 

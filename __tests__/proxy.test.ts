@@ -52,7 +52,9 @@ function makeNextRequest(url = "http://localhost:3000/", cookieValue?: string) {
     headers,
     cookies: {
       get: (name: string) => {
+        // In test (NODE_ENV=test !== "production"), cookie name is "__csrf"
         if (name === "__csrf" && cookieValue) return { value: cookieValue };
+        if (name === "__Host-csrf" && cookieValue) return { value: cookieValue };
         return undefined;
       },
     },
@@ -93,7 +95,6 @@ describe("proxy middleware", () => {
     const hsts = mockResponseHeaders.get("Strict-Transport-Security");
     expect(hsts).toContain("max-age=63072000");
     expect(hsts).toContain("includeSubDomains");
-    expect(hsts).toContain("preload");
   });
 
   it("sets Referrer-Policy", () => {

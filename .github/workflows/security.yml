@@ -26,29 +26,16 @@ jobs:
           fetch-depth: 10 # Last 10 commits
 
       - name: TruffleHog Secret Scan
-        # Scan filesystem instead of git history to avoid action parameter conflicts
-        run: |
-          # Install TruffleHog
-          curl -sSfL https://raw.githubusercontent.com/trufflesecurity/trufflehog/main/scripts/install.sh | sh -s -- -b /usr/local/bin
-
-          # Scan the repository filesystem
-          trufflehog filesystem . --only-verified --json --no-update 2>&1 | tee trufflehog-results.json
-
-          # Check if any verified secrets were found
-          if grep -q '"Verified":true' trufflehog-results.json; then
-            echo "❌ Found verified secrets!"
-            grep '"Verified":true' trufflehog-results.json
-            exit 1
-          else
-            echo "✅ No verified secrets found"
-          fi
+        uses: trufflesecurity/trufflehog@v3.88.28
+        with:
+          extra_args: --only-verified
 
   # SAST using Semgrep for security patterns
   sast-semgrep:
     name: SAST - Semgrep
     runs-on: ubuntu-latest
     container:
-      image: semgrep/semgrep
+      image: semgrep/semgrep:1.116.0
     steps:
       - name: Checkout code
         uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
@@ -248,7 +235,7 @@ jobs:
           echo "Validating API route security patterns..."
 
           # Check that all API routes use CSRF verification
-          for file in app/api/*/route.ts; do
+          for file in $(find app/api -name 'route.ts' 2>/dev/null); do
             if [ -f "$file" ] && grep -q "export.*POST\|export.*PUT\|export.*DELETE\|export.*PATCH" "$file"; then
               if ! grep -q "verifyCsrfToken" "$file"; then
                 echo "⚠️  $file: POST/PUT/DELETE/PATCH route missing CSRF verification"
@@ -258,7 +245,7 @@ jobs:
           done
 
           # Check that all API routes use rate limiting
-          for file in app/api/*/route.ts; do
+          for file in $(find app/api -name 'route.ts' 2>/dev/null); do
             if [ -f "$file" ] && grep -q "export.*POST" "$file"; then
               if ! grep -q "checkRateLimit" "$file"; then
                 echo "⚠️  $file: POST route missing rate limiting"
@@ -268,7 +255,7 @@ jobs:
           done
 
           # Check that all API routes use Zod validation
-          for file in app/api/*/route.ts; do
+          for file in $(find app/api -name 'route.ts' 2>/dev/null); do
             if [ -f "$file" ] && grep -q "export.*POST\|export.*PUT" "$file"; then
               if ! grep -q "z\.object\|zod" "$file"; then
                 echo "⚠️  $file: Route missing Zod schema validation"
