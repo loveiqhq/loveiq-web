@@ -67,7 +67,15 @@
       "Bash(npx vitest run)",
       "Bash(npx vitest:*)",
       "Bash(npm ls:*)",
-      "Bash(npx playwright:*)"
+      "Bash(npx playwright:*)",
+      "Bash(ffmpeg:*)",
+      "Bash(where:*)",
+      "Bash(\"/c/ProgramData/chocolatey/bin/ffmpeg.exe\" -version)",
+      "Bash(\"/c/Program Files/ffmpeg/bin/ffmpeg.exe\" -version)",
+      "Bash(cmd.exe /c \"ffmpeg -version\")",
+      "Bash(cmd.exe /c \"ffmpeg -i \"\"C:\\\\Users\\\\Hamza Korkutovic\\\\loveiq-web\\\\mixkit-playful-couple-having-fun-between-the-sheets-42966-full-hd.mp4\"\" 2>&1\")",
+      "Bash(export PATH=\"$PATH:/c/ffmpeg/bin:/c/Program Files/ffmpeg/bin:/c/Users/Hamza Korkutovic/AppData/Local/Microsoft/WinGet/Packages\")",
+      "Bash(cmd.exe /c \"where ffmpeg\")"
     ]
   }
 }

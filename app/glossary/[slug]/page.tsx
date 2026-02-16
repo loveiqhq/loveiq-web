@@ -3,6 +3,8 @@ import { notFound } from "next/navigation";
 import GlossaryTermPage from "../../../components/glossary/GlossaryTermPage";
 import { getTermBySlug, getAllSlugs } from "../../../lib/glossary-data";
 
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://www.loveiq.org";
+
 interface PageProps {
   params: Promise<{ slug: string }>;
 }
@@ -25,6 +27,9 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   return {
     title: `${term.term} | LoveIQ Glossary`,
     description: term.definition,
+    alternates: {
+      canonical: `${siteUrl}/glossary/${slug}`,
+    },
     openGraph: {
       title: `${term.term} | LoveIQ Glossary`,
       description: term.definition,

@@ -2,9 +2,14 @@ import type { Metadata } from "next";
 import LegalNavSection from "../../components/legal/LegalNavSection";
 import FooterSection from "../../components/landing/FooterSection";
 
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://www.loveiq.org";
+
 export const metadata: Metadata = {
   title: "Privacy Policy | LoveIQ",
   description: "LoveIQ Privacy Policy - How we collect, use, and protect your personal data.",
+  alternates: {
+    canonical: `${siteUrl}/privacy-policy`,
+  },
 };
 
 export default function PrivacyPolicyPage() {
@@ -17,7 +22,10 @@ export default function PrivacyPolicyPage() {
             Privacy Policy
           </h1>
 
-          <div className="font-sans space-y-8 text-gray-300 leading-relaxed" style={{ fontSize: "18px" }}>
+          <div
+            className="font-sans space-y-8 text-gray-300 leading-relaxed"
+            style={{ fontSize: "18px" }}
+          >
             {/* Section 1 */}
             <section>
               <h2 className="text-white font-semibold mb-4">1. Controller</h2>
@@ -34,7 +42,10 @@ export default function PrivacyPolicyPage() {
                 Managing Director: Marcus Barner
                 <br />
                 Email:{" "}
-                <a href="mailto:hello@loveiq.org" className="text-gray-300 hover:text-white transition-colors">
+                <a
+                  href="mailto:hello@loveiq.org"
+                  className="text-gray-300 hover:text-white transition-colors"
+                >
                   hello@loveiq.org
                 </a>
               </p>
@@ -45,9 +56,11 @@ export default function PrivacyPolicyPage() {
             <section>
               <h2 className="text-white font-semibold mb-4">2. Scope of this Privacy Policy</h2>
               <p>
-                This Privacy Policy applies to the LoveIQ platform, including our website, mobile applications, surveys, psychometric tools, reports, subscription services and any related digital
-                services (&quot;Platform&quot;). We process personal data in compliance with the General Data Protection Regulation (GDPR), the German Federal Data Protection Act (BDSG), and all
-                applicable EU data-protection laws.
+                This Privacy Policy applies to the LoveIQ platform, including our website, mobile
+                applications, surveys, psychometric tools, reports, subscription services and any
+                related digital services (&quot;Platform&quot;). We process personal data in
+                compliance with the General Data Protection Regulation (GDPR), the German Federal
+                Data Protection Act (BDSG), and all applicable EU data-protection laws.
               </p>
             </section>
 
@@ -66,10 +79,14 @@ export default function PrivacyPolicyPage() {
               <h3 className="text-white font-medium mb-2">3.2 Psychometric and Survey Data</h3>
               <ul className="list-disc list-inside mb-4 space-y-1">
                 <li>Answers to psychometric questionnaires</li>
-                <li>Personality, attachment, relationship and sexuality-related self-descriptions</li>
+                <li>
+                  Personality, attachment, relationship and sexuality-related self-descriptions
+                </li>
                 <li>Emotional, behavioral and relational self-assessments</li>
               </ul>
-              <p className="mb-4">These data qualify as special categories of personal data under Art. 9 GDPR.</p>
+              <p className="mb-4">
+                These data qualify as special categories of personal data under Art. 9 GDPR.
+              </p>
 
               <h3 className="text-white font-medium mb-2">3.3 Usage and Technical Data</h3>
               <ul className="list-disc list-inside mb-4 space-y-1">
@@ -81,7 +98,9 @@ export default function PrivacyPolicyPage() {
 
               <h3 className="text-white font-medium mb-2">3.4 Payment Data</h3>
               <p>
-                We do not store full payment data. Payments are processed by external payment providers (e.g. Stripe). We receive transaction references, payment status and subscription IDs.
+                We do not store full payment data. Payments are processed by external payment
+                providers (e.g. Stripe). We receive transaction references, payment status and
+                subscription IDs.
               </p>
             </section>
 
@@ -97,19 +116,27 @@ export default function PrivacyPolicyPage() {
                 <li>Fraud prevention and platform security</li>
                 <li>Customer support</li>
                 <li>Legal and accounting compliance</li>
-                <li>Scientific and statistical improvement of our platform (using pseudonymized or anonymized data)</li>
+                <li>
+                  Scientific and statistical improvement of our platform (using pseudonymized or
+                  anonymized data)
+                </li>
               </ul>
             </section>
 
             {/* Section 5 */}
             <section>
-              <h2 className="text-white font-semibold mb-4">5. Legal Bases for Processing (Art. 6 &amp; 9 GDPR)</h2>
+              <h2 className="text-white font-semibold mb-4">
+                5. Legal Bases for Processing (Art. 6 &amp; 9 GDPR)
+              </h2>
               <p className="mb-4">We rely on the following legal bases:</p>
               <ul className="list-disc list-inside mb-4 space-y-1">
                 <li>Account and service delivery: Art. 6(1)(b) GDPR (contract)</li>
                 <li>Technical operation and security: Art. 6(1)(f) GDPR (legitimate interest)</li>
                 <li>Marketing communications: Art. 6(1)(a) GDPR (consent)</li>
-                <li>Processing of sensitive psychometric, sexual and relationship data: Art. 9(2)(a) GDPR (explicit consent)</li>
+                <li>
+                  Processing of sensitive psychometric, sexual and relationship data: Art. 9(2)(a)
+                  GDPR (explicit consent)
+                </li>
                 <li>Legal compliance: Art. 6(1)(c) GDPR</li>
               </ul>
               <p>You may withdraw consent at any time with effect for the future.</p>
@@ -119,7 +146,8 @@ export default function PrivacyPolicyPage() {
             <section>
               <h2 className="text-white font-semibold mb-4">6. Automated Processing and AI</h2>
               <p className="mb-4">
-                We use automated systems, including artificial intelligence, to analyze your inputs and generate psychometric reports. This processing:
+                We use automated systems, including artificial intelligence, to analyze your inputs
+                and generate psychometric reports. This processing:
               </p>
               <ul className="list-disc list-inside mb-4 space-y-1">
                 <li>Does not produce legal effects</li>
@@ -140,14 +168,18 @@ export default function PrivacyPolicyPage() {
                 <li>Customer support tools</li>
                 <li>Analytics and security providers</li>
               </ul>
-              <p>All recipients are bound by data-processing agreements in accordance with Art. 28 GDPR.</p>
+              <p>
+                All recipients are bound by data-processing agreements in accordance with Art. 28
+                GDPR.
+              </p>
             </section>
 
             {/* Section 8 */}
             <section>
               <h2 className="text-white font-semibold mb-4">8. International Data Transfers</h2>
               <p className="mb-4">
-                Some service providers may process data outside the EU/EEA. Where this occurs, we ensure protection through:
+                Some service providers may process data outside the EU/EEA. Where this occurs, we
+                ensure protection through:
               </p>
               <ul className="list-disc list-inside space-y-1">
                 <li>EU Standard Contractual Clauses</li>
@@ -182,7 +214,10 @@ export default function PrivacyPolicyPage() {
               </ul>
               <p>
                 Requests can be sent to:{" "}
-                <a href="mailto:hello@loveiq.org" className="text-gray-300 hover:text-white transition-colors">
+                <a
+                  href="mailto:hello@loveiq.org"
+                  className="text-gray-300 hover:text-white transition-colors"
+                >
                   hello@loveiq.org
                 </a>
               </p>
@@ -192,7 +227,8 @@ export default function PrivacyPolicyPage() {
             <section>
               <h2 className="text-white font-semibold mb-4">11. Right to Lodge a Complaint</h2>
               <p>
-                You may lodge a complaint with any EU supervisory authority, in particular: Berlin Commissioner for Data Protection and Freedom of Information{" "}
+                You may lodge a complaint with any EU supervisory authority, in particular: Berlin
+                Commissioner for Data Protection and Freedom of Information{" "}
                 <a
                   href="https://www.datenschutz-berlin.de"
                   target="_blank"
@@ -206,9 +242,12 @@ export default function PrivacyPolicyPage() {
 
             {/* Section 12 */}
             <section>
-              <h2 className="text-white font-semibold mb-4">12. Data Protection Impact Assessment (Art. 35 GDPR)</h2>
+              <h2 className="text-white font-semibold mb-4">
+                12. Data Protection Impact Assessment (Art. 35 GDPR)
+              </h2>
               <p className="mb-4">
-                Because LoveIQ processes sensitive psychological, sexual and relational data using automated analysis, we have conducted a Data Protection Impact Assessment (DPIA).
+                Because LoveIQ processes sensitive psychological, sexual and relational data using
+                automated analysis, we have conducted a Data Protection Impact Assessment (DPIA).
               </p>
               <p className="mb-4">The DPIA includes:</p>
               <ul className="list-disc list-inside space-y-1">
@@ -224,7 +263,9 @@ export default function PrivacyPolicyPage() {
             {/* Section 13 */}
             <section>
               <h2 className="text-white font-semibold mb-4">13. Security Measures</h2>
-              <p className="mb-4">We apply technical and organizational security measures including:</p>
+              <p className="mb-4">
+                We apply technical and organizational security measures including:
+              </p>
               <ul className="list-disc list-inside space-y-1">
                 <li>Encryption in transit and at rest</li>
                 <li>Role-based access controls</li>
@@ -236,7 +277,10 @@ export default function PrivacyPolicyPage() {
             {/* Section 14 */}
             <section>
               <h2 className="text-white font-semibold mb-4">14. Changes</h2>
-              <p>We may update this Privacy Policy from time to time. Users will be informed of material changes.</p>
+              <p>
+                We may update this Privacy Policy from time to time. Users will be informed of
+                material changes.
+              </p>
             </section>
           </div>
         </article>

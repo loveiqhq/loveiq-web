@@ -2,24 +2,23 @@ import type { Metadata } from "next";
 import LegalNavSection from "../../components/legal/LegalNavSection";
 import FooterSection from "../../components/landing/FooterSection";
 
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://www.loveiq.org";
+
 export const metadata: Metadata = {
   title: "Cookie Policy | LoveIQ",
   description: "LoveIQ Cookie Policy - Information about cookies and tracking technologies we use.",
+  alternates: {
+    canonical: `${siteUrl}/cookies`,
+  },
 };
 
 export default function CookiesPage() {
   return (
     <>
       <LegalNavSection />
-      <main
-        className="min-h-screen px-4 py-20"
-        style={{ backgroundColor: "#09050F" }}
-      >
+      <main className="min-h-screen px-4 py-20" style={{ backgroundColor: "#09050F" }}>
         <article className="mx-auto max-w-3xl">
-          <h1
-            className="font-serif font-light text-white mb-10"
-            style={{ fontSize: "36px" }}
-          >
+          <h1 className="font-serif font-light text-white mb-10" style={{ fontSize: "36px" }}>
             Cookie Policy
           </h1>
 
@@ -28,12 +27,14 @@ export default function CookiesPage() {
             style={{ fontSize: "18px" }}
           >
             <p>
-              This Cookie Policy explains how the following company uses cookies and similar technologies on loveiq.org
-              and related services.
+              This Cookie Policy explains how the following company uses cookies and similar
+              technologies on loveiq.org and related services.
             </p>
 
             <p>
-              <span className="font-semibold text-white">Applied Psychometrics UG (in formation) (haftungsbeschränkt)</span>
+              <span className="font-semibold text-white">
+                Applied Psychometrics UG (in formation) (haftungsbeschränkt)
+              </span>
               <br />
               Hasenheide 62
               <br />
@@ -57,8 +58,9 @@ export default function CookiesPage() {
             <section>
               <h2 className="text-white font-semibold mb-4">1. What are Cookies?</h2>
               <p className="mb-4">
-                Cookies are small text files stored on your device when you visit a website. They allow the website to
-                recognize your device and store certain information about your preferences or past actions.
+                Cookies are small text files stored on your device when you visit a website. They
+                allow the website to recognize your device and store certain information about your
+                preferences or past actions.
               </p>
               <p className="mb-4">We also use similar technologies such as:</p>
               <ul className="list-disc list-inside mb-4 space-y-1">
@@ -79,11 +81,12 @@ export default function CookiesPage() {
                 <li>ePrivacy Directive</li>
               </ul>
               <p className="mb-4">
-                <strong>Strictly necessary cookies:</strong> § 25 (2) TTDSG / Art. 6(1)(b) GDPR — no consent required.
+                <strong>Strictly necessary cookies:</strong> § 25 (2) TTDSG / Art. 6(1)(b) GDPR — no
+                consent required.
               </p>
               <p>
-                <strong>All other cookies:</strong> § 25 (1) TTDSG / Art. 6(1)(a) GDPR — require prior explicit consent
-                via our consent banner.
+                <strong>All other cookies:</strong> § 25 (1) TTDSG / Art. 6(1)(a) GDPR — require
+                prior explicit consent via our consent banner.
               </p>
             </section>
 
@@ -91,7 +94,10 @@ export default function CookiesPage() {
               <h2 className="text-white font-semibold mb-4">3. Categories of Cookies We Use</h2>
 
               <h3 className="text-white font-medium mb-2">A. Strictly Necessary Cookies</h3>
-              <p className="mb-2">These cookies are required for the operation of LoveIQ and cannot be disabled. Examples:</p>
+              <p className="mb-2">
+                These cookies are required for the operation of LoveIQ and cannot be disabled.
+                Examples:
+              </p>
               <ul className="list-disc list-inside mb-4 space-y-1">
                 <li>login authentication</li>
                 <li>session security</li>
@@ -99,7 +105,8 @@ export default function CookiesPage() {
                 <li>consent status storage</li>
               </ul>
               <p className="mb-6">
-                Legal basis: Legitimate interest &amp; contract performance (Art. 6(1)(b) GDPR, §25(2) TTDSG)
+                Legal basis: Legitimate interest &amp; contract performance (Art. 6(1)(b) GDPR,
+                §25(2) TTDSG)
               </p>
 
               <h3 className="text-white font-medium mb-2">B. Functional Cookies</h3>
@@ -118,8 +125,13 @@ export default function CookiesPage() {
                 <li>error tracking</li>
                 <li>performance metrics</li>
               </ul>
-              <p className="mb-2">Typical tools may include privacy-friendly analytics and aggregated statistics.</p>
-              <p className="mb-6">Legal basis: Consent (Art. 6(1)(a) GDPR). IP addresses are anonymized where technically possible.</p>
+              <p className="mb-2">
+                Typical tools may include privacy-friendly analytics and aggregated statistics.
+              </p>
+              <p className="mb-6">
+                Legal basis: Consent (Art. 6(1)(a) GDPR). IP addresses are anonymized where
+                technically possible.
+              </p>
 
               <h3 className="text-white font-medium mb-2">D. Marketing Cookies</h3>
               <p className="mb-2">We may use cookies for:</p>
@@ -139,7 +151,10 @@ export default function CookiesPage() {
                 <li>email services</li>
                 <li>analytics tools</li>
               </ul>
-              <p>These providers may set their own cookies. We conclude data-processing agreements with partners under Art. 28 GDPR.</p>
+              <p>
+                These providers may set their own cookies. We conclude data-processing agreements
+                with partners under Art. 28 GDPR.
+              </p>
             </section>
 
             <section>
@@ -150,7 +165,10 @@ export default function CookiesPage() {
                 <li>Reject non-essential cookies</li>
                 <li>Customize preferences</li>
               </ul>
-              <p>Your choices are stored and can be changed at any time via the “Cookie Settings” link in the footer.</p>
+              <p>
+                Your choices are stored and can be changed at any time via the “Cookie Settings”
+                link in the footer.
+              </p>
             </section>
 
             <section>
@@ -177,7 +195,10 @@ export default function CookiesPage() {
 
             <section>
               <h2 className="text-white font-semibold mb-4">7. Data Transfers</h2>
-              <p className="mb-4">Some third-party providers may process data outside the EU. We ensure protection through:</p>
+              <p className="mb-4">
+                Some third-party providers may process data outside the EU. We ensure protection
+                through:
+              </p>
               <ul className="list-disc list-inside space-y-1">
                 <li>EU Standard Contractual Clauses</li>
                 <li>additional safeguards</li>

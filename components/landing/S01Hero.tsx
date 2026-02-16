@@ -1,34 +1,23 @@
 "use client";
 
 import type { FC } from "react";
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useState } from "react";
 import Link from "next/link";
 import { trackLearnMore, trackStartSurvey } from "../../lib/analytics";
 
 const S01Hero: FC = () => {
-  const [loadVideo, setLoadVideo] = useState(false);
   const [videoReady, setVideoReady] = useState(false);
-  const videoRef = useRef<HTMLVideoElement | null>(null);
 
-  useEffect(() => {
-    const id = window.setTimeout(() => setLoadVideo(true), 300);
-    return () => window.clearTimeout(id);
-  }, []);
-
-  useEffect(() => {
-    if (!loadVideo) return;
-    const video = videoRef.current;
+  const videoRef = useCallback((video: HTMLVideoElement | null) => {
     if (!video) return;
-
-    const handleReady = () => setVideoReady(true);
-    video.addEventListener("canplay", handleReady, { once: true });
-    video.addEventListener("loadeddata", handleReady, { once: true });
-
-    return () => {
-      video.removeEventListener("canplay", handleReady);
-      video.removeEventListener("loadeddata", handleReady);
-    };
-  }, [loadVideo]);
+    if (video.readyState >= 2) {
+      setVideoReady(true);
+      return;
+    }
+    const onReady = () => setVideoReady(true);
+    video.addEventListener("canplay", onReady, { once: true });
+    video.addEventListener("loadeddata", onReady, { once: true });
+  }, []);
 
   return (
     <section
@@ -38,27 +27,17 @@ const S01Hero: FC = () => {
       <div className="pointer-events-none absolute inset-0 overflow-hidden">
         <video
           ref={videoRef}
-          className="absolute inset-0 h-full w-full object-cover"
+          className="absolute inset-0 h-full w-full object-cover transition-opacity duration-500 ease-out sm:scale-105 sm:translate-y-[2%] sm:[object-position:50%_40%] [object-position:50%_30%]"
           autoPlay
           muted
           loop
           playsInline
-          preload="none"
+          preload="auto"
           aria-hidden
-          style={{
-            opacity: videoReady ? 0.8 : 0,
-            transition: "opacity 480ms ease",
-            filter: "none",
-            transform: "scale(1.05) translateY(2%)",
-            objectPosition: "50% 60%",
-          }}
+          style={{ opacity: videoReady ? 0.8 : 0 }}
         >
-          {loadVideo && (
-            <>
-              <source media="(max-width: 640px)" src="/8060391-uhd_4096_2160_25fps-mobile.mp4" type="video/mp4" />
-              <source src="/8060391-uhd_4096_2160_25fps.mp4" type="video/mp4" />
-            </>
-          )}
+          <source media="(max-width: 640px)" src="/couple-hero-mobile.mp4" type="video/mp4" />
+          <source src="/couple-hero.mp4" type="video/mp4" />
         </video>
         <div className="absolute inset-0 bg-gradient-to-b from-[#0b0613]/35 via-[#0b0613]/55 to-[#0b0613]/80" />
         <div className="absolute inset-x-0 bottom-0 h-64 bg-gradient-to-b from-transparent via-[#0b0613]/65 to-[#0A0510]" />
@@ -66,7 +45,10 @@ const S01Hero: FC = () => {
 
       <div className="content-shell relative z-10 flex flex-col items-center px-4 text-center">
         <div className="animate-on-scroll mt-2 inline-flex items-center gap-2 rounded-full border border-border bg-white/5 px-4 py-2 text-[11px] font-semibold tracking-[0.08em] text-[#D8B4FE] shadow-soft backdrop-blur">
-          <span className="h-2 w-2 rounded-full bg-accent-orange shadow-[0_0_0_6px_rgba(242,109,79,0.12)] animate-pulse-glow" aria-hidden />
+          <span
+            className="h-2 w-2 rounded-full bg-accent-orange shadow-[0_0_0_6px_rgba(242,109,79,0.12)] animate-pulse-glow"
+            aria-hidden
+          />
           Science-backed methodology
         </div>
 
@@ -79,7 +61,12 @@ const S01Hero: FC = () => {
               Sexual Psychology
             </span>
             <div aria-hidden className="pointer-events-none absolute inset-x-0 top-full mt-[4px]">
-              <svg viewBox="0 0 100 24" fill="none" preserveAspectRatio="none" className="h-[14px] w-full">
+              <svg
+                viewBox="0 0 100 24"
+                fill="none"
+                preserveAspectRatio="none"
+                className="h-[14px] w-full"
+              >
                 <path
                   d="M0 10 C 25 22, 75 22, 100 10"
                   stroke="#FE6839"
@@ -94,8 +81,11 @@ const S01Hero: FC = () => {
 
         <p className="animate-on-scroll mt-8 max-w-3xl text-lg leading-relaxed text-text-secondary sm:text-xl">
           Grounded in state of the art science &amp; research.{" "}
-          <strong className="font-semibold text-white">In just 10 minutes, unlock a freemium personalized report</strong>{" "}
-          decoding your sexual archetype and patterns, so you can upgrade your intimate life with clarity
+          <strong className="font-semibold text-white">
+            In just 10 minutes, unlock a freemium personalized report
+          </strong>{" "}
+          decoding your sexual archetype and patterns, so you can upgrade your intimate life with
+          clarity
         </p>
 
         <div className="animate-on-scroll mt-12 flex flex-col items-center gap-4 sm:flex-row">
@@ -116,7 +106,9 @@ const S01Hero: FC = () => {
               />
               <span className="pointer-events-none absolute inset-0 rounded-full bg-white/10 opacity-0 transition duration-300 group-hover:opacity-100" />
               <span className="pointer-events-none absolute inset-[-12%] rounded-full border border-white/15 mix-blend-screen opacity-70" />
-              <span className="relative z-10 transition-colors duration-500 group-hover:text-black">Start survey now</span>
+              <span className="relative z-10 transition-colors duration-500 group-hover:text-black">
+                Start survey now
+              </span>
               <svg
                 aria-hidden
                 className="relative z-10 h-5 w-5 transition-colors duration-500 group-hover:text-black"
@@ -145,7 +137,9 @@ const S01Hero: FC = () => {
           <span className="font-light">Your </span>
           <span className="font-extrabold">privacy &amp; anonymity</span>
           <span className="font-light"> comes first. Learn more at our &gt; </span>
-          <Link href="/trust-zone" className="font-bold text-[#FE6839] hover:underline">Trust Zone</Link>
+          <Link href="/trust-zone" className="font-bold text-[#FE6839] hover:underline">
+            Trust Zone
+          </Link>
         </p>
       </div>
     </section>

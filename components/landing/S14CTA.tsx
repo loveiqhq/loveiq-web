@@ -16,12 +16,17 @@ const S14CTA: FC = () => {
       <div className="pointer-events-none absolute inset-0 bg-noise opacity-12" />
       <div className="content-shell relative flex max-w-5xl flex-col items-center gap-8 text-center">
         <div className="space-y-8">
-          <h3 className="font-serif text-[48px] leading-[1.05] font-semibold sm:text-[60px] md:text-[72px] md:leading-[1.05]">
+          <h2 className="font-serif text-[48px] leading-[1.05] font-semibold sm:text-[60px] md:text-[72px] md:leading-[1.05]">
             Ready to understand{" "}
             <span className="relative inline-block -top-1 align-baseline italic text-[#FE6839]">
               and grow?
               <div className="pointer-events-none mt-[2px]">
-                <svg viewBox="0 0 320 16" fill="none" preserveAspectRatio="none" className="h-[14px] w-full">
+                <svg
+                  viewBox="0 0 320 16"
+                  fill="none"
+                  preserveAspectRatio="none"
+                  className="h-[14px] w-full"
+                >
                   <path
                     d="M6 6 C 110 18, 210 18, 314 6"
                     stroke="#FE6839"
@@ -32,9 +37,10 @@ const S14CTA: FC = () => {
                 </svg>
               </div>
             </span>
-          </h3>
+          </h2>
           <p className="text-lg leading-relaxed text-white/85">
-            Join us to build stronger relationships, communicate with real clarity, and step into confident, authentic sexuality.
+            Join us to build stronger relationships, communicate with real clarity, and step into
+            confident, authentic sexuality.
           </p>
         </div>
 
@@ -55,7 +61,9 @@ const S14CTA: FC = () => {
             />
             <span className="pointer-events-none absolute inset-0 rounded-full bg-white/10 opacity-0 transition duration-300 group-hover:opacity-100" />
             <span className="pointer-events-none absolute inset-[-12%] rounded-full border border-white/15 mix-blend-screen opacity-70" />
-            <span className="relative z-10 transition-colors duration-500 group-hover:text-black">Start survey now</span>
+            <span className="relative z-10 transition-colors duration-500 group-hover:text-black">
+              Start survey now
+            </span>
             <svg
               aria-hidden
               className="relative z-10 h-5 w-5 transition-colors duration-500 group-hover:text-black"
@@ -71,7 +79,16 @@ const S14CTA: FC = () => {
             </svg>
           </a>
           <div className="flex flex-wrap items-center justify-center gap-x-3 gap-y-1 text-[11px] font-semibold uppercase tracking-[0.18em] text-white/75 sm:text-xs">
-            <svg aria-hidden className="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <svg
+              aria-hidden
+              className="h-4 w-4"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            >
               <circle cx="12" cy="12" r="10" />
               <path d="M12 6v6l4 2" />
             </svg>
