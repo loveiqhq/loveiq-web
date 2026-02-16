@@ -235,7 +235,7 @@ const S03PerfectFor: FC = () => {
       </div>
 
       <div className="content-shell relative flex flex-col items-center gap-8">
-        <div className="absolute inset-0 -z-1">
+        <div className="absolute inset-0 -z-[1]">
           <div
             className="absolute left-0 top-1/2 h-[420px] w-[420px] -translate-y-1/2 rounded-full bg-[#541475]/10 blur-[90px]"
             aria-hidden
@@ -250,7 +250,7 @@ const S03PerfectFor: FC = () => {
             <span className="block sm:inline">Who Is This</span>{" "}
             <span className="block sm:inline">
               Perfect For
-              <span className="bg-linear-to-r from-[#fe6839] to-[#a78bfa] bg-clip-text text-transparent">
+              <span className="bg-gradient-to-r from-[#fe6839] to-[#a78bfa] bg-clip-text text-transparent">
                 ?
               </span>
             </span>
@@ -264,11 +264,11 @@ const S03PerfectFor: FC = () => {
 
       <div className="relative w-screen max-w-none left-1/2 -translate-x-1/2 overflow-hidden pb-4 mt-8 sm:mt-10">
         <div
-          className="pointer-events-none absolute inset-y-0 left-0 w-16 sm:w-24 bg-linear-to-r from-[#0a0510] to-transparent z-10"
+          className="pointer-events-none absolute inset-y-0 left-0 w-16 sm:w-24 bg-gradient-to-r from-[#0a0510] to-transparent z-10"
           aria-hidden
         />
         <div
-          className="pointer-events-none absolute inset-y-0 right-0 w-16 sm:w-24 bg-linear-to-l from-[#0a0510] to-transparent z-10"
+          className="pointer-events-none absolute inset-y-0 right-0 w-16 sm:w-24 bg-gradient-to-l from-[#0a0510] to-transparent z-10"
           aria-hidden
         />
 
@@ -308,11 +308,11 @@ const S03PerfectFor: FC = () => {
                 priority={idx === 0}
               />
               <div
-                className={`pointer-events-none absolute inset-0 bg-linear-to-t from-[#0a0510]/80 via-[#0a0510]/40 to-transparent ${item.overlay ?? ""}`}
+                className={`pointer-events-none absolute inset-0 bg-gradient-to-t from-[#0a0510]/80 via-[#0a0510]/40 to-transparent ${item.overlay ?? ""}`}
                 aria-hidden
               />
               <div
-                className="pointer-events-none absolute inset-x-0 bottom-0 h-[60%] bg-linear-to-t from-[#7c3aed]/55 via-[#a78bfa]/25 to-transparent opacity-0 blur-xs transition-opacity duration-500 group-hover:opacity-100"
+                className="pointer-events-none absolute inset-x-0 bottom-0 h-[60%] bg-gradient-to-t from-[#7c3aed]/55 via-[#a78bfa]/25 to-transparent opacity-0 blur-[4px] transition-opacity duration-500 group-hover:opacity-100"
                 aria-hidden
               />
               <div className="absolute inset-x-0 bottom-0 p-6 pb-8 space-y-3 transition-all duration-500 ease-out translate-y-[60px] group-hover:translate-y-0">
@@ -342,7 +342,7 @@ const S03PerfectFor: FC = () => {
         {/* Previous Button */}
         <button
           onClick={handlePrevious}
-          className="flex items-center justify-center w-12 h-12 rounded-2xl bg-[#1e102e] border border-white/10 shadow-xs transition-all duration-200 hover:bg-[#2a1840] hover:border-white/20 active:scale-95"
+          className="flex items-center justify-center w-12 h-12 rounded-2xl bg-[#1e102e] border border-white/10 shadow-sm transition-all duration-200 hover:bg-[#2a1840] hover:border-white/20 active:scale-95"
           aria-label="Previous slide"
         >
           <ChevronLeft />
@@ -366,7 +366,7 @@ const S03PerfectFor: FC = () => {
         {/* Next Button */}
         <button
           onClick={handleNext}
-          className="flex items-center justify-center w-12 h-12 rounded-2xl bg-[#1e102e] border border-white/10 shadow-xs transition-all duration-200 hover:bg-[#2a1840] hover:border-white/20 active:scale-95"
+          className="flex items-center justify-center w-12 h-12 rounded-2xl bg-[#1e102e] border border-white/10 shadow-sm transition-all duration-200 hover:bg-[#2a1840] hover:border-white/20 active:scale-95"
           aria-label="Next slide"
         >
           <ChevronRight />

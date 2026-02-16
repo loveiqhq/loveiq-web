@@ -29,7 +29,7 @@ const HeroSection: FC = () => {
       {/* Background Layer */}
       <div className="pointer-events-none absolute inset-0 z-0 overflow-hidden">
         {/* Dot Matrix Pattern */}
-        <div className="absolute inset-0 bg-[radial-gradient(rgba(255,255,255,0.05)_1px,transparent_1px)] bg-size-[32px_32px] opacity-50 mask-[radial-gradient(ellipse_70%_60%_at_50%_50%,#000_60%,transparent_100%)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(rgba(255,255,255,0.05)_1px,transparent_1px)] bg-[size:32px_32px] opacity-50 [mask-image:radial-gradient(ellipse_70%_60%_at_50%_50%,#000_60%,transparent_100%)]" />
         {/* Central Breathing Glow */}
         <div
           className="absolute left-1/2 top-1/2 h-[800px] w-[800px] -translate-x-1/2 -translate-y-1/2 animate-pulse rounded-full bg-[#2E0147] blur-[120px] mix-blend-screen"

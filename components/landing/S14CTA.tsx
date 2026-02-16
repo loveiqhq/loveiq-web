@@ -5,10 +5,10 @@ import { trackStartSurvey } from "../../lib/analytics";
 
 const S14CTA: FC = () => {
   return (
-    <section className="section-shell relative overflow-hidden bg-linear-to-br from-[#1a0d25] via-[#0f0a18] to-[#2a1640] px-4 text-text-primary">
+    <section className="section-shell relative overflow-hidden bg-gradient-to-br from-[#1a0d25] via-[#0f0a18] to-[#2a1640] px-4 text-text-primary">
       {/* Animated floating gradient orbs */}
       <div className="pointer-events-none absolute inset-0 overflow-hidden">
-        <div className="absolute top-[5%] left-[5%] h-[250px] w-[250px] md:h-[500px] md:w-[500px] md:top-[10%] md:left-[15%] rounded-full bg-[rgba(242,109,79,0.25)] blur-[30px] md:blur-2xl animate-float1" />
+        <div className="absolute top-[5%] left-[5%] h-[250px] w-[250px] md:h-[500px] md:w-[500px] md:top-[10%] md:left-[15%] rounded-full bg-[rgba(242,109,79,0.25)] blur-[30px] md:blur-[40px] animate-float1" />
         <div className="absolute top-[15%] right-[0%] h-[200px] w-[200px] md:h-[400px] md:w-[400px] md:top-[20%] md:right-[10%] rounded-full bg-[rgba(124,88,255,0.28)] blur-[25px] md:blur-[35px] animate-float2" />
         <div className="absolute bottom-[5%] left-[20%] h-[220px] w-[220px] md:h-[450px] md:w-[450px] md:bottom-[10%] md:left-[40%] rounded-full bg-[rgba(111,63,255,0.24)] blur-[28px] md:blur-[38px] animate-float3" />
         <div className="absolute top-[40%] left-[0%] h-[150px] w-[150px] md:h-[300px] md:w-[300px] md:top-[50%] md:left-[5%] rounded-full bg-[rgba(254,104,57,0.2)] blur-[20px] md:blur-[30px] animate-float4" />

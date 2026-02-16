@@ -265,16 +265,16 @@ const HeroSection = () => (
         style={{ objectPosition: "center 35%" }}
       />
     </div>
-    <div className="absolute bottom-0 left-0 right-0 h-[45%] bg-linear-to-t from-[#0a0510] via-[#0a0510]/80 to-transparent" />
+    <div className="absolute bottom-0 left-0 right-0 h-[45%] bg-gradient-to-t from-[#0a0510] via-[#0a0510]/80 to-transparent" />
     <div className="absolute -bottom-[237px] left-1/2 h-[600px] w-[600px] -translate-x-1/2 rounded-full bg-[#2e0147] blur-[250px] animate-pulse-glow" />
-    <div className="absolute inset-x-0 top-0 h-px bg-linear-to-r from-transparent via-white/20 to-transparent" />
+    <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/20 to-transparent" />
     <div className="content-shell relative z-10 flex flex-col items-center px-4 pt-40 pb-24 md:pt-[208px] md:pb-[176px]">
       <h1
         className="sensual-anim text-center font-serif text-4xl font-normal leading-[1.2] tracking-[-2.4px] sm:text-5xl md:text-6xl lg:text-[80px] lg:leading-[96px]"
         style={{ animationDelay: "0.2s" }}
       >
         <span className="text-white">Your privacy</span>
-        <span className="mt-2 block bg-linear-to-r from-[#fe6839] via-[#a78bfa] to-[#e9d5ff] bg-clip-text text-transparent md:mt-0">
+        <span className="mt-2 block bg-gradient-to-r from-[#fe6839] via-[#a78bfa] to-[#e9d5ff] bg-clip-text text-transparent md:mt-0">
           comes first.
         </span>
       </h1>
@@ -380,7 +380,7 @@ const SecuritySection = () => (
           </p>
         </div>
         <div className="flex items-center gap-6">
-          <div className="flex h-16 w-16 items-center justify-center rounded-xl border border-white/10 bg-linear-to-br from-[#2E0147] to-[#0a0510] shadow-lg">
+          <div className="flex h-16 w-16 items-center justify-center rounded-xl border border-white/10 bg-gradient-to-br from-[#2E0147] to-[#0a0510] shadow-lg">
             <IconLockLarge />
           </div>
           <div className="flex flex-col gap-1">
@@ -466,7 +466,7 @@ const IdentitySection = () => (
         <div className="space-y-4">
           {/* Name field */}
           <div className="flex items-center justify-between rounded-lg border border-white/5 bg-white/5 p-[13px]">
-            <span className="text-xs font-normal uppercase tracking-widest text-[#6b7280]">
+            <span className="text-xs font-normal uppercase tracking-[0.1em] text-[#6b7280]">
               Name
             </span>
             <span className="text-xs text-white/50 blur-[1.5px]">Sarah Doe</span>
@@ -475,7 +475,7 @@ const IdentitySection = () => (
 
           {/* Email field */}
           <div className="flex items-center justify-between rounded-lg border border-white/5 bg-white/5 p-[13px]">
-            <span className="text-xs font-normal uppercase tracking-widest text-[#6b7280]">
+            <span className="text-xs font-normal uppercase tracking-[0.1em] text-[#6b7280]">
               Email
             </span>
             <span className="text-xs text-white/50 blur-[1.5px]">sarahdoe@gmail.com</span>
@@ -484,7 +484,7 @@ const IdentitySection = () => (
 
           {/* Status field - highlighted green */}
           <div className="flex items-center justify-between rounded-lg border border-[#4ade80] bg-[rgba(34,197,94,0.1)] p-[13px]">
-            <span className="text-xs font-semibold uppercase tracking-widest text-[#4ade80]">
+            <span className="text-xs font-semibold uppercase tracking-[0.1em] text-[#4ade80]">
               Status
             </span>
             <span className="text-xs font-normal text-white">ANONYMOUS</span>
@@ -529,7 +529,7 @@ const BoundariesSection = () => (
         Respecting your boundaries
       </h3>
       <div className="flex w-full flex-col gap-8 md:flex-row md:justify-center">
-        <div className="reveal-on-scroll group relative overflow-hidden rounded-2xl border border-white/10 bg-linear-to-br from-[#1A0B25] to-[#0A0510] p-8 md:w-[488px] transition-all duration-500 ease-out transform-gpu hover:-translate-y-2 hover:shadow-[0_25px_60px_-12px_rgba(254,104,57,0.25)]">
+        <div className="reveal-on-scroll group relative overflow-hidden rounded-2xl border border-white/10 bg-gradient-to-br from-[#1A0B25] to-[#0A0510] p-8 md:w-[488px] transition-all duration-500 ease-out transform-gpu hover:-translate-y-2 hover:shadow-[0_25px_60px_-12px_rgba(254,104,57,0.25)]">
           <div
             aria-hidden
             className="pointer-events-none absolute inset-0 rounded-2xl bg-[radial-gradient(circle_at_50%_25%,rgba(254,104,57,0.18),transparent_70%)] opacity-0 transition-opacity duration-500 group-hover:opacity-100"
@@ -546,7 +546,7 @@ const BoundariesSection = () => (
             </p>
           </div>
         </div>
-        <div className="reveal-on-scroll stagger-1 group relative overflow-hidden rounded-2xl border border-white/10 bg-linear-to-br from-[#1A0B25] to-[#0A0510] p-8 md:w-[501px] transition-all duration-500 ease-out transform-gpu hover:-translate-y-2 hover:shadow-[0_25px_60px_-12px_rgba(254,104,57,0.25)]">
+        <div className="reveal-on-scroll stagger-1 group relative overflow-hidden rounded-2xl border border-white/10 bg-gradient-to-br from-[#1A0B25] to-[#0A0510] p-8 md:w-[501px] transition-all duration-500 ease-out transform-gpu hover:-translate-y-2 hover:shadow-[0_25px_60px_-12px_rgba(254,104,57,0.25)]">
           <div
             aria-hidden
             className="pointer-events-none absolute inset-0 rounded-2xl bg-[radial-gradient(circle_at_50%_25%,rgba(254,104,57,0.18),transparent_70%)] opacity-0 transition-opacity duration-500 group-hover:opacity-100"
@@ -617,7 +617,7 @@ const UnderstandingSection = () => (
           className="object-cover"
           sizes="(min-width: 1024px) 484px, 100vw"
         />
-        <div className="absolute inset-0 bg-linear-to-t from-[#0A0510] via-[#2E0147]/50 to-transparent opacity-80" />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#0A0510] via-[#2E0147]/50 to-transparent opacity-80" />
 
         {/* Overlay Card */}
         <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 flex w-[240px] md:w-[320px] flex-col items-center gap-1 md:gap-2 rounded-[16px] border border-white/10 bg-[#1A0B25]/80 px-5 py-5 md:px-10 md:py-8 shadow-[0_25px_50px_-12px_rgba(0,0,0,0.25)] backdrop-blur-[6px]">
@@ -761,7 +761,7 @@ const ResearchSection = () => (
           className="object-cover"
           sizes="(min-width: 1024px) 448px, 100vw"
         />
-        <div className="absolute inset-0 bg-linear-to-tr from-[#0A0510] via-[#2E0147]/50 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-tr from-[#0A0510] via-[#2E0147]/50 to-transparent" />
 
         {/* Bottom Overlay */}
         <div className="absolute bottom-0 left-0 right-0 p-8">
@@ -847,7 +847,7 @@ const IconSafeZone = () => (
 );
 
 const QuoteSection = () => (
-  <section className="relative overflow-hidden bg-white/2 px-4 pt-[37px] pb-24">
+  <section className="relative overflow-hidden bg-white/[0.02] px-4 pt-[37px] pb-24">
     <div className="content-shell relative flex flex-col items-center gap-5 py-8 text-center">
       {/* Purple blur background - centered behind content */}
       <div className="pointer-events-none absolute inset-0 flex items-center justify-center">
@@ -970,7 +970,7 @@ const EthicalPledgeSection = () => (
               sizes="(min-width: 1024px) 450px, 100vw"
               style={{ objectPosition: "50% 35%", transform: "scale(1.7)" }}
             />
-            <div className="absolute inset-0 bg-linear-to-t from-[#13081A] via-transparent to-transparent" />
+            <div className="absolute inset-0 bg-gradient-to-t from-[#13081A] via-transparent to-transparent" />
           </div>
         </div>
       </div>

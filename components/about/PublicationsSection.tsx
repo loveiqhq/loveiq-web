@@ -63,7 +63,7 @@ const PublicationsSection: FC = () => {
               target="_blank"
             >
               <div className="relative overflow-hidden rounded-xl border border-white/5 bg-[#120B1C] p-6 transition-all duration-500 ease-out hover:-translate-y-1 hover:border-[#a855f7]/50 hover:shadow-[0_0_30px_-5px_rgba(168,85,247,0.15)]">
-                <div className="pointer-events-none absolute inset-0 -translate-x-full bg-linear-to-r from-[#a855f7]/0 via-[#a855f7]/5 to-[#a855f7]/0 transition-transform duration-1000 ease-in-out group-hover:translate-x-full" />
+                <div className="pointer-events-none absolute inset-0 translate-x-[-100%] bg-gradient-to-r from-[#a855f7]/0 via-[#a855f7]/5 to-[#a855f7]/0 transition-transform duration-1000 ease-in-out group-hover:translate-x-[100%]" />
                 <div className="relative z-10 flex items-start justify-between gap-4">
                   <div>
                     <h3 className="mb-2 font-sans text-lg font-semibold tracking-tight text-white transition-colors duration-300 group-hover:text-[#a855f7]">

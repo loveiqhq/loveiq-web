@@ -15,7 +15,7 @@ const S12WhyWeCreated: FC = () => {
         <div className="max-w-5xl space-y-4 text-center">
           <h2 id="why-heading" className="font-serif text-[48px] leading-tight text-white">
             Why we created{" "}
-            <span className="bg-linear-to-r from-[#fe6839] to-[#a78bfa] bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-[#fe6839] to-[#a78bfa] bg-clip-text text-transparent">
               LoveIQ?
             </span>
           </h2>
@@ -45,7 +45,7 @@ const S12WhyWeCreated: FC = () => {
           {/* Card 1 - Women/Men bars - Purple hover */}
           <div className="group relative overflow-hidden rounded-[40px] border border-white/10 bg-[#150A22] p-3 shadow-[0_10px_44px_-3px_rgba(167,139,250,0.1),0_4px_6px_-5px_#A78BFA] transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_10px_44px_-3px_rgba(167,139,250,0.25),0_4px_6px_-5px_#A78BFA]">
             <div
-              className="pointer-events-none absolute -inset-px rounded-[40px] bg-linear-to-b from-[#A78BFA]/30 to-transparent opacity-0 blur-xs transition-opacity duration-500 group-hover:opacity-100"
+              className="pointer-events-none absolute inset-[-1px] rounded-[40px] bg-gradient-to-b from-[#A78BFA]/30 to-transparent opacity-0 blur-[4px] transition-opacity duration-500 group-hover:opacity-100"
               aria-hidden
             />
             <div className="relative flex flex-col">
@@ -66,8 +66,8 @@ const S12WhyWeCreated: FC = () => {
 
                   <div className="relative flex w-full max-w-[220px] flex-col gap-4">
                     <div className="relative h-2 overflow-hidden rounded-full bg-white/10">
-                      <div className="absolute inset-y-0 left-0 w-[42%] rounded-full bg-linear-to-r from-[#541475] to-[#8b5cf6] shadow-[0_0_12px_rgba(139,92,246,0.35)] transition-transform duration-500 group-hover:scale-[1.02] origin-left" />
-                      <div className="absolute inset-y-0 right-0 w-[54%] rounded-full bg-linear-to-l from-[#a78bfa] to-[#8b5cf6] opacity-70 transition-transform duration-500 group-hover:scale-[1.02] origin-right" />
+                      <div className="absolute inset-y-0 left-0 w-[42%] rounded-full bg-gradient-to-r from-[#541475] to-[#8b5cf6] shadow-[0_0_12px_rgba(139,92,246,0.35)] transition-transform duration-500 group-hover:scale-[1.02] origin-left" />
+                      <div className="absolute inset-y-0 right-0 w-[54%] rounded-full bg-gradient-to-l from-[#a78bfa] to-[#8b5cf6] opacity-70 transition-transform duration-500 group-hover:scale-[1.02] origin-right" />
                     </div>
                     <div className="relative">
                       <span className="absolute -top-12 left-[42%] -translate-x-1/2 rounded-md bg-[#541475] px-2 py-1 text-[10px] font-bold text-white opacity-0 shadow-lg transition-all duration-300 group-hover:-translate-y-1 group-hover:opacity-100">
@@ -161,7 +161,7 @@ const S12WhyWeCreated: FC = () => {
           {/* Card 2 - Satisfaction circle - Orange hover */}
           <div className="group relative overflow-hidden rounded-[40px] border border-white/10 bg-[#150A22] p-3 shadow-[0_10px_44px_-3px_rgba(167,139,250,0.1),0_4px_6px_-5px_#A78BFA] transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_10px_44px_-3px_rgba(254,104,57,0.25),0_4px_6px_-5px_#fe6839]">
             <div
-              className="pointer-events-none absolute -inset-px rounded-[40px] bg-linear-to-b from-[#fe6839]/30 to-transparent opacity-0 blur-xs transition-opacity duration-500 group-hover:opacity-100"
+              className="pointer-events-none absolute inset-[-1px] rounded-[40px] bg-gradient-to-b from-[#fe6839]/30 to-transparent opacity-0 blur-[4px] transition-opacity duration-500 group-hover:opacity-100"
               aria-hidden
             />
             <div className="relative flex flex-col">
@@ -230,7 +230,7 @@ const S12WhyWeCreated: FC = () => {
           {/* Card 3 - Fulfillment gap - Purple hover */}
           <div className="group relative overflow-hidden rounded-[40px] border border-white/10 bg-[#150A22] p-3 shadow-[0_10px_44px_-3px_rgba(167,139,250,0.1),0_4px_6px_-5px_#A78BFA] transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_10px_44px_-3px_rgba(167,139,250,0.25),0_4px_6px_-5px_#A78BFA]">
             <div
-              className="pointer-events-none absolute -inset-px rounded-[40px] bg-linear-to-b from-[#A78BFA]/30 to-transparent opacity-0 blur-xs transition-opacity duration-500 group-hover:opacity-100"
+              className="pointer-events-none absolute inset-[-1px] rounded-[40px] bg-gradient-to-b from-[#A78BFA]/30 to-transparent opacity-0 blur-[4px] transition-opacity duration-500 group-hover:opacity-100"
               aria-hidden
             />
             <div className="relative flex flex-col">
@@ -244,7 +244,7 @@ const S12WhyWeCreated: FC = () => {
                 </div>
 
                 <div className="flex flex-1 flex-col items-center justify-center gap-4">
-                  <div className="flex h-14 w-14 items-center justify-center rounded-xl border border-white/10 bg-linear-to-br from-[#2e0147] to-[#541475] text-white shadow-[0_18px_40px_rgba(0,0,0,0.35)] transition-transform duration-500 group-hover:rotate-6">
+                  <div className="flex h-14 w-14 items-center justify-center rounded-xl border border-white/10 bg-gradient-to-br from-[#2e0147] to-[#541475] text-white shadow-[0_18px_40px_rgba(0,0,0,0.35)] transition-transform duration-500 group-hover:rotate-6">
                     <svg
                       width="24"
                       height="24"

@@ -9156,7 +9156,7 @@ export const glossaryTerms: GlossaryTerm[] = [
     definition:
       "The set of sexual desires, fantasies, or impulses a person disowns, suppresses, or judges—often because they conflict with identity, values, or social norms.",
     extendedNotes:
-      "Sexual shadow-sm work is about bringing curiosity and compassion to hidden or “unacceptable” parts of desire without acting them out in harmful ways. For many people, the shadow-sm contains taboo themes, power fantasies, or contradictions that feel scary to name. Exploring it safely can reduce shame, improve consent clarity, and support healthier erotic self-knowledge.",
+      "Sexual shadow work is about bringing curiosity and compassion to hidden or “unacceptable” parts of desire without acting them out in harmful ways. For many people, the shadow contains taboo themes, power fantasies, or contradictions that feel scary to name. Exploring it safely can reduce shame, improve consent clarity, and support healthier erotic self-knowledge.",
     examples: [
       "Someone feels aroused by a fantasy but worries it says something “bad” about them",
       "A person hides interest in kink from partners out of fear of judgment",
@@ -9166,15 +9166,15 @@ export const glossaryTerms: GlossaryTerm[] = [
     sensitivityLevel: "Highly Sensitive",
     misinterpretations: [
       "Your fantasies reveal your real-world intentions",
-      "Having a sexual shadow-sm means you are unsafe",
+      "Having a sexual shadow means you are unsafe",
       "Shadow exploration requires acting out taboo fantasies",
-      "The shadow-sm disappears once you talk about it once.",
+      "The shadow disappears once you talk about it once.",
     ],
     reality: [
       "Sexual Shadow describes the set of sexual desires, fantasies, or impulses a person disowns, suppresses, or judges—often because they conflict with identity, values, or, so it doesn’t mean that your fantasies reveal your real-world intentions.",
       "Sexual Shadow isn’t defined by you are unsafe, and it’s about the set of sexual desires, fantasies, or impulses a person disowns, suppresses, or judges—often because they conflict with identity, values, or.",
-      "Sexual Shadow describes the set of sexual desires, fantasies, or impulses a person disowns, suppresses, or judges—often because they conflict with identity, values, or, so it doesn’t mean that shadow-sm exploration requires acting out taboo fantasies.",
-      "Sexual Shadow describes the set of sexual desires, fantasies, or impulses a person disowns, suppresses, or judges—often because they conflict with identity, values, or, so it doesn’t mean that the shadow-sm disappears once you talk about it once.",
+      "Sexual Shadow describes the set of sexual desires, fantasies, or impulses a person disowns, suppresses, or judges—often because they conflict with identity, values, or, so it doesn’t mean that shadow exploration requires acting out taboo fantasies.",
+      "Sexual Shadow describes the set of sexual desires, fantasies, or impulses a person disowns, suppresses, or judges—often because they conflict with identity, values, or, so it doesn’t mean that the shadow disappears once you talk about it once.",
     ],
     relatedTerms: ["Fantasy", "Kink Curiosity", "Fantasy Comfort", "Fantasy Boundaries", "Consent"],
     tags: [

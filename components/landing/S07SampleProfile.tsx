@@ -239,7 +239,7 @@ const S07SampleProfile: FC = () => {
         <div className="space-y-6 text-center">
           <h2 className="font-serif text-3xl leading-tight text-white sm:text-4xl md:text-5xl">
             LoveIQ Gives You{" "}
-            <span className="italic bg-linear-to-r from-[#A78BFA] via-[#CBB9FF] to-[#E9D5FF] bg-clip-text text-transparent">
+            <span className="italic bg-gradient-to-r from-[#A78BFA] via-[#CBB9FF] to-[#E9D5FF] bg-clip-text text-transparent">
               Language.
             </span>
           </h2>
@@ -250,7 +250,7 @@ const S07SampleProfile: FC = () => {
           </p>
         </div>
 
-        <div className="relative overflow-hidden rounded-[40px] border border-white/10 bg-[#1E102E] shadow-[0_25px_50px_-12px_rgba(0,0,0,0.5)] backdrop-blur-md">
+        <div className="relative overflow-hidden rounded-[40px] border border-white/10 bg-[#1E102E] shadow-[0_25px_50px_-12px_rgba(0,0,0,0.5)] backdrop-blur-[12px]">
           <div className="relative">
             <div className="flex items-center gap-3 border-b border-white/5 px-6 py-4">
               <span className="h-3 w-3 rounded-full bg-[#fe6839]/60" />
@@ -277,7 +277,7 @@ const S07SampleProfile: FC = () => {
                     <div key={stat.label} className="space-y-3">
                       <div className="h-3 rounded-full bg-white/10">
                         <div
-                          className={`h-full rounded-full bg-linear-to-r ${stat.gradient} shadow-[0_1px_2px_rgba(0,0,0,0.2)]`}
+                          className={`h-full rounded-full bg-gradient-to-r ${stat.gradient} shadow-[0_1px_2px_rgba(0,0,0,0.2)]`}
                           style={{ width: `${stat.value}%` }}
                           aria-hidden
                         />
@@ -293,7 +293,7 @@ const S07SampleProfile: FC = () => {
                 </div>
               </div>
 
-              <div className="relative overflow-hidden rounded-3xl bg-linear-to-br from-[#231330]/90 via-[#1f102c]/92 to-[#160b22]/95 px-5 py-6 shadow-[0_18px_80px_rgba(0,0,0,0.45)]">
+              <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-[#231330]/90 via-[#1f102c]/92 to-[#160b22]/95 px-5 py-6 shadow-[0_18px_80px_rgba(0,0,0,0.45)]">
                 <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_0%,rgba(254,104,57,0.18),transparent_45%)]" />
                 <div className="absolute inset-0 bg-[radial-gradient(circle_at_10%_100%,rgba(92,34,41,0.18),transparent_35%)]" />
                 <div className="relative grid gap-4">
@@ -305,7 +305,7 @@ const S07SampleProfile: FC = () => {
                       }`}
                     >
                       <div
-                        className={`flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-linear-to-br ${item.tone} text-[#f0eaff]`}
+                        className={`flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-xl bg-gradient-to-br ${item.tone} text-[#f0eaff]`}
                       >
                         {item.icon}
                       </div>
@@ -331,7 +331,7 @@ const S07SampleProfile: FC = () => {
             <div className="space-y-6">
               {explorationBullets.map((item) => (
                 <div key={item.title} className="group flex gap-4">
-                  <div className="mt-1 flex h-12 w-12 shrink-0 items-center justify-center rounded-xl border border-white/10 bg-[#241433]/80 text-[#cbb8ff] shadow-[0_16px_50px_rgba(0,0,0,0.35)] transition duration-300 ease-out group-hover:-translate-y-1 group-hover:scale-[1.03] group-hover:border-white/20 group-hover:bg-linear-to-br group-hover:from-[#f26d4f] group-hover:via-[#9c7dff] group-hover:to-[#5d7cff] group-hover:text-[#0d0715]">
+                  <div className="mt-1 flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-xl border border-white/10 bg-[#241433]/80 text-[#cbb8ff] shadow-[0_16px_50px_rgba(0,0,0,0.35)] transition duration-300 ease-out group-hover:-translate-y-1 group-hover:scale-[1.03] group-hover:border-white/20 group-hover:bg-gradient-to-br group-hover:from-[#f26d4f] group-hover:via-[#9c7dff] group-hover:to-[#5d7cff] group-hover:text-[#0d0715]">
                     {item.icon}
                   </div>
                   <div className="space-y-1">
@@ -394,20 +394,20 @@ const S07SampleProfile: FC = () => {
 
           {/* Glossary Interface Mockup */}
           <div className="relative mx-auto max-w-[1232px]">
-            <div className="relative overflow-hidden rounded-3xl border border-white/10 bg-[rgba(15,8,21,0.8)] shadow-[0_0_0_1px_rgba(255,255,255,0.05),0_25px_50px_-12px_rgba(0,0,0,0.25)] backdrop-blur-md">
+            <div className="relative overflow-hidden rounded-3xl border border-white/10 bg-[rgba(15,8,21,0.8)] shadow-[0_0_0_1px_rgba(255,255,255,0.05),0_25px_50px_-12px_rgba(0,0,0,0.25)] backdrop-blur-[12px]">
               {/* Top gloss line */}
-              <div className="absolute left-0 right-0 top-0 h-px bg-linear-to-r from-transparent via-white/20 to-transparent" />
+              <div className="absolute left-0 right-0 top-0 h-px bg-gradient-to-r from-transparent via-white/20 to-transparent" />
 
               <div className="flex min-h-[480px] flex-col lg:h-[550px] lg:flex-row">
                 {/* Sidebar Navigation - Hidden on mobile */}
                 <div className="hidden w-[340px] border-r border-white/5 bg-[rgba(10,5,16,0.5)] lg:block">
                   {/* Search Header */}
-                  <div className="border-b border-white/5 bg-[rgba(10,5,16,0.2)] px-5 py-5 backdrop-blur-xs">
+                  <div className="border-b border-white/5 bg-[rgba(10,5,16,0.2)] px-5 py-5 backdrop-blur-sm">
                     <div className="relative">
                       <input
                         type="text"
                         placeholder="Search terminology..."
-                        className="w-full rounded-xl border border-white/10 bg-white/5 py-2.5 pl-10 pr-4 text-xs font-medium text-white/60 placeholder-[#6b7280] shadow-[inset_0_2px_4px_1px_rgba(0,0,0,0.2)] outline-hidden focus:border-white/20"
+                        className="w-full rounded-xl border border-white/10 bg-white/5 py-2.5 pl-10 pr-4 text-xs font-medium text-white/60 placeholder-[#6b7280] shadow-[inset_0_2px_4px_1px_rgba(0,0,0,0.2)] outline-none focus:border-white/20"
                         readOnly
                       />
                       <svg
@@ -517,10 +517,10 @@ const S07SampleProfile: FC = () => {
 
                         {/* Pills */}
                         <div className="flex flex-wrap gap-2">
-                          <span className="inline-flex rounded-full border border-[rgba(254,104,57,0.35)] bg-[rgba(254,104,57,0.18)] px-2.5 py-1 text-[9px] font-bold uppercase tracking-[0.5px] text-[#fe6839] shadow-[0_10px_24px_rgba(0,0,0,0.35)] filter-[blur(2.2px)] sm:px-3 sm:text-[10px]">
+                          <span className="inline-flex rounded-full border border-[rgba(254,104,57,0.35)] bg-[rgba(254,104,57,0.18)] px-2.5 py-1 text-[9px] font-bold uppercase tracking-[0.5px] text-[#fe6839] shadow-[0_10px_24px_rgba(0,0,0,0.35)] [filter:blur(2.2px)] sm:px-3 sm:text-[10px]">
                             Trait &amp; Disposition
                           </span>
-                          <span className="hidden rounded-full border border-white/15 bg-[rgba(255,255,255,0.12)] px-3 py-1 text-[10px] font-bold uppercase tracking-[0.5px] text-[#c9ced8] shadow-[0_10px_24px_rgba(0,0,0,0.35)] filter-[blur(2.2px)] sm:inline-flex">
+                          <span className="hidden rounded-full border border-white/15 bg-[rgba(255,255,255,0.12)] px-3 py-1 text-[10px] font-bold uppercase tracking-[0.5px] text-[#c9ced8] shadow-[0_10px_24px_rgba(0,0,0,0.35)] [filter:blur(2.2px)] sm:inline-flex">
                             Relationship Dynamics &amp; Intimacy
                           </span>
                           <span className="flex items-center gap-1.5 rounded-full border border-[rgba(236,72,153,0.3)] bg-[rgba(236,72,153,0.1)] px-2.5 py-1 text-[9px] font-bold uppercase tracking-[0.5px] text-[#f472b6] sm:px-3 sm:text-[10px]">
@@ -573,7 +573,7 @@ const S07SampleProfile: FC = () => {
                       </div>
 
                       {/* Sidebar Column */}
-                      <div className="hidden w-[180px] shrink-0 space-y-6 lg:block">
+                      <div className="hidden w-[180px] flex-shrink-0 space-y-6 lg:block">
                         {/* Related Terms */}
                         <div className="space-y-3">
                           <span className="font-serif text-sm font-bold text-white">
@@ -621,12 +621,12 @@ const S07SampleProfile: FC = () => {
 
                         {/* Inside LoveIQ Box */}
                         <div className="relative overflow-hidden rounded-xl border border-[#2e0147] bg-[#1a0f24] p-4">
-                          <div className="pointer-events-none absolute inset-0 bg-linear-to-br from-[rgba(46,1,71,0.2)] to-transparent" />
+                          <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-[rgba(46,1,71,0.2)] to-transparent" />
                           <div className="relative space-y-2">
                             <span className="font-serif text-xs font-bold uppercase tracking-[0.7px] text-[#a78bfa]">
                               Inside LoveIQ
                             </span>
-                            <p className="text-[11px] leading-normal text-[#9ca3af]">
+                            <p className="text-[11px] leading-[1.5] text-[#9ca3af]">
                               We identify patterns related to Importance of Sexuality by analyzing
                               responses in our assessment modules.
                             </p>

@@ -104,7 +104,7 @@ const FAQItem: FC<FAQItemProps> = ({ question, answer }) => {
         <span className="text-sm font-medium leading-snug text-white/90 sm:text-base md:text-lg">
           {question}
         </span>
-        <span className="shrink-0 text-white/50">
+        <span className="flex-shrink-0 text-white/50">
           {isOpen ? (
             <svg
               xmlns="http://www.w3.org/2000/svg"

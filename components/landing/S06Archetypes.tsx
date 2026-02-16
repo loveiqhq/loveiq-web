@@ -395,12 +395,12 @@ const ArchetypeCard: FC<{ archetype: Archetype }> = ({ archetype }) => {
 
   return (
     <div
-      className="relative shrink-0 w-[280px] sm:w-[320px] md:w-[360px] lg:w-[400px] bg-[#130b17] border-2 border-white/10 rounded-[20px] overflow-hidden px-4 sm:px-6 lg:px-8 py-6 sm:py-8 lg:py-10 box-border isolate"
+      className="relative flex-shrink-0 w-[280px] sm:w-[320px] md:w-[360px] lg:w-[400px] bg-[#130b17] border-2 border-white/10 rounded-[20px] overflow-hidden px-4 sm:px-6 lg:px-8 py-6 sm:py-8 lg:py-10 box-border isolate"
       style={{ clipPath: "inset(0 round 20px)" }}
     >
       {/* Top-right blur effect */}
       <div
-        className="absolute w-[100px] h-[100px] sm:w-[150px] sm:h-[140px] lg:w-[200px] lg:h-[190px] -right-[60px] -top-[60px] sm:-right-[70px] sm:-top-[80px] lg:-right-[100px] lg:-top-[120px] rounded-full pointer-events-none blur-2xl sm:blur-[50px] lg:blur-[60px]"
+        className="absolute w-[100px] h-[100px] sm:w-[150px] sm:h-[140px] lg:w-[200px] lg:h-[190px] -right-[60px] -top-[60px] sm:-right-[70px] sm:-top-[80px] lg:-right-[100px] lg:-top-[120px] rounded-full pointer-events-none blur-[40px] sm:blur-[50px] lg:blur-[60px]"
         style={{
           background: archetype.color,
         }}
@@ -408,7 +408,7 @@ const ArchetypeCard: FC<{ archetype: Archetype }> = ({ archetype }) => {
       />
       {/* Bottom-left blur effect */}
       <div
-        className="absolute w-[100px] h-[100px] sm:w-[160px] sm:h-[140px] lg:w-[210px] lg:h-[190px] -left-[60px] -bottom-[60px] sm:-left-[60px] sm:-bottom-[90px] lg:-left-[90px] lg:-bottom-[150px] rounded-full pointer-events-none blur-2xl sm:blur-[50px] lg:blur-[60px]"
+        className="absolute w-[100px] h-[100px] sm:w-[160px] sm:h-[140px] lg:w-[210px] lg:h-[190px] -left-[60px] -bottom-[60px] sm:-left-[60px] sm:-bottom-[90px] lg:-left-[90px] lg:-bottom-[150px] rounded-full pointer-events-none blur-[40px] sm:blur-[50px] lg:blur-[60px]"
         style={{
           background: archetype.color,
         }}
@@ -418,16 +418,16 @@ const ArchetypeCard: FC<{ archetype: Archetype }> = ({ archetype }) => {
       {/* Header with icon and name */}
       <div className="relative flex items-center gap-2 sm:gap-4 mb-4 sm:mb-5 w-full overflow-hidden">
         <div
-          className="shrink-0 flex items-center justify-center w-[48px] h-[48px] sm:w-[60px] sm:h-[60px] lg:w-[68px] lg:h-[68px] rounded-xl p-2 sm:p-2.5"
+          className="flex-shrink-0 flex items-center justify-center w-[48px] h-[48px] sm:w-[60px] sm:h-[60px] lg:w-[68px] lg:h-[68px] rounded-xl p-2 sm:p-2.5"
           style={{ backgroundColor: archetype.color, color: "#0a0510" }}
         >
           {archetype.icon}
         </div>
         <div className="flex-1 min-w-0 overflow-hidden">
-          <h3 className="font-serif text-[16px] sm:text-[22px] lg:text-[26px] leading-tight text-white wrap-break-word">
+          <h3 className="font-serif text-[16px] sm:text-[22px] lg:text-[26px] leading-tight text-white break-words">
             {archetype.name}
           </h3>
-          <p className="font-serif italic text-[11px] sm:text-[13px] lg:text-[14px] leading-snug text-[#9ca3af] mt-1 wrap-break-word">
+          <p className="font-serif italic text-[11px] sm:text-[13px] lg:text-[14px] leading-snug text-[#9ca3af] mt-1 break-words">
             {archetype.tagline}
           </p>
         </div>
@@ -445,7 +445,7 @@ const ArchetypeCard: FC<{ archetype: Archetype }> = ({ archetype }) => {
           style={{ backgroundColor: "#130b17", border: `1px solid ${archetype.color}` }}
         >
           <div
-            className="shrink-0 flex items-center justify-center w-7 h-7 sm:w-10 sm:h-10 rounded-full"
+            className="flex-shrink-0 flex items-center justify-center w-7 h-7 sm:w-10 sm:h-10 rounded-full"
             style={{ border: `1px solid ${archetype.color}` }}
           >
             <div
@@ -465,7 +465,7 @@ const ArchetypeCard: FC<{ archetype: Archetype }> = ({ archetype }) => {
             >
               Core motivation:
             </p>
-            <p className="font-serif text-[14px] sm:text-[18px] lg:text-[20px] font-medium text-white wrap-break-word">
+            <p className="font-serif text-[14px] sm:text-[18px] lg:text-[20px] font-medium text-white break-words">
               {archetype.coreMotivation}
             </p>
           </div>
@@ -590,7 +590,7 @@ const SparkleIcon: FC = () => (
 
 const TeaserCard: FC = () => (
   <div
-    className="relative shrink-0 w-[280px] sm:w-[320px] md:w-[360px] lg:w-[400px] bg-[#130b17] border-2 border-white/10 rounded-[20px] overflow-hidden px-4 sm:px-6 lg:px-8 py-6 sm:py-8 lg:py-10 box-border isolate flex flex-col items-center justify-between text-center"
+    className="relative flex-shrink-0 w-[280px] sm:w-[320px] md:w-[360px] lg:w-[400px] bg-[#130b17] border-2 border-white/10 rounded-[20px] overflow-hidden px-4 sm:px-6 lg:px-8 py-6 sm:py-8 lg:py-10 box-border isolate flex flex-col items-center justify-between text-center"
     style={{ clipPath: "inset(0 round 20px)" }}
   >
     {/* Top-right glow */}
@@ -609,7 +609,7 @@ const TeaserCard: FC = () => (
     {/* Top section */}
     <div className="relative flex flex-col items-center">
       {/* Pill */}
-      <div className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-[25px] py-[9px] backdrop-blur-xs mb-2 sm:mb-4">
+      <div className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-[25px] py-[9px] backdrop-blur-sm mb-2 sm:mb-4">
         <span className="h-1.5 w-1.5 rounded-full bg-[#fe6839]" aria-hidden />
         <span className="font-sans text-[13px] font-bold leading-[13.5px] tracking-[0.9px] uppercase text-white">
           Unlock Insight
@@ -619,7 +619,7 @@ const TeaserCard: FC = () => (
       {/* Title */}
       <h3 className="font-serif text-[20px] sm:text-[28px] lg:text-[32px] leading-tight text-white">
         7 more{" "}
-        <span className="bg-linear-to-r from-[#fe6839] via-[#a78bfa] to-[#e9d5ff] bg-clip-text text-transparent italic">
+        <span className="bg-gradient-to-r from-[#fe6839] via-[#a78bfa] to-[#e9d5ff] bg-clip-text text-transparent italic">
           archetypes
         </span>
         <br />
@@ -640,7 +640,7 @@ const TeaserCard: FC = () => (
           Relational Healer
         </span>
       </div>
-      <div className="flex items-center gap-2 sm:gap-3 rounded-xl border border-white/10 bg-white/5 px-3 sm:px-6 py-1.5 sm:py-3 shadow-[0_10px_15px_-3px_rgba(0,0,0,0.1),0_4px_6px_-4px_rgba(0,0,0,0.1)] backdrop-blur-xs">
+      <div className="flex items-center gap-2 sm:gap-3 rounded-xl border border-white/10 bg-white/5 px-3 sm:px-6 py-1.5 sm:py-3 shadow-[0_10px_15px_-3px_rgba(0,0,0,0.1),0_4px_6px_-4px_rgba(0,0,0,0.1)] backdrop-blur-sm">
         <SparkleIcon />
         <span className="font-serif text-[15px] sm:text-[22px] lg:text-[26px] leading-[26px] sm:leading-[28px] font-medium text-white">
           Spiritual Lover
@@ -890,7 +890,7 @@ const S06Archetypes: FC = () => {
           className="font-serif text-[36px] sm:text-[48px] lg:text-[64px] leading-tight text-white tracking-[-0.02em]"
         >
           <span className="font-normal block sm:inline">Explore Our</span>{" "}
-          <span className="font-medium italic bg-linear-to-r from-[#fe6839] via-[#a78bfa] to-[#e9d5ff] bg-clip-text text-transparent block sm:inline">
+          <span className="font-medium italic bg-gradient-to-r from-[#fe6839] via-[#a78bfa] to-[#e9d5ff] bg-clip-text text-transparent block sm:inline">
             14 Archetypes
           </span>
         </h2>
@@ -904,11 +904,11 @@ const S06Archetypes: FC = () => {
       {/* Carousel */}
       <div className="relative w-screen max-w-none left-1/2 -translate-x-1/2 overflow-hidden pb-4 mt-10 sm:mt-0">
         <div
-          className="pointer-events-none absolute inset-y-0 left-0 w-16 sm:w-24 lg:w-32 bg-linear-to-r from-[#0a0510] to-transparent z-10"
+          className="pointer-events-none absolute inset-y-0 left-0 w-16 sm:w-24 lg:w-32 bg-gradient-to-r from-[#0a0510] to-transparent z-10"
           aria-hidden
         />
         <div
-          className="pointer-events-none absolute inset-y-0 right-0 w-16 sm:w-24 lg:w-32 bg-linear-to-l from-[#0a0510] to-transparent z-10"
+          className="pointer-events-none absolute inset-y-0 right-0 w-16 sm:w-24 lg:w-32 bg-gradient-to-l from-[#0a0510] to-transparent z-10"
           aria-hidden
         />
 
@@ -943,7 +943,7 @@ const S06Archetypes: FC = () => {
       <div className="flex items-center justify-center gap-4 sm:gap-6 mt-6 sm:mt-8 pb-4 sm:pb-8">
         <button
           onClick={handlePrevious}
-          className="flex items-center justify-center w-10 h-10 sm:w-12 sm:h-12 rounded-2xl bg-[#1e102e] border border-white/10 shadow-xs transition-all duration-200 hover:bg-[#2a1840] hover:border-white/20 active:scale-95"
+          className="flex items-center justify-center w-10 h-10 sm:w-12 sm:h-12 rounded-2xl bg-[#1e102e] border border-white/10 shadow-sm transition-all duration-200 hover:bg-[#2a1840] hover:border-white/20 active:scale-95"
           aria-label="Previous archetype"
         >
           <ChevronLeft />
@@ -965,7 +965,7 @@ const S06Archetypes: FC = () => {
 
         <button
           onClick={handleNext}
-          className="flex items-center justify-center w-10 h-10 sm:w-12 sm:h-12 rounded-2xl bg-[#1e102e] border border-white/10 shadow-xs transition-all duration-200 hover:bg-[#2a1840] hover:border-white/20 active:scale-95"
+          className="flex items-center justify-center w-10 h-10 sm:w-12 sm:h-12 rounded-2xl bg-[#1e102e] border border-white/10 shadow-sm transition-all duration-200 hover:bg-[#2a1840] hover:border-white/20 active:scale-95"
           aria-label="Next archetype"
         >
           <ChevronRight />

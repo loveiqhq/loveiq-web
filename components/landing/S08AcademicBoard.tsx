@@ -303,11 +303,11 @@ const S08AcademicBoard: FC = () => {
 
       <div className="relative mt-12 w-screen max-w-none left-1/2 -translate-x-1/2 overflow-hidden pb-4 sm:mt-16">
         <div
-          className="pointer-events-none absolute inset-y-0 left-0 z-10 w-16 bg-linear-to-r from-[#0a0510] to-transparent sm:w-24"
+          className="pointer-events-none absolute inset-y-0 left-0 z-10 w-16 bg-gradient-to-r from-[#0a0510] to-transparent sm:w-24"
           aria-hidden
         />
         <div
-          className="pointer-events-none absolute inset-y-0 right-0 z-10 w-16 bg-linear-to-l from-[#0a0510] to-transparent sm:w-24"
+          className="pointer-events-none absolute inset-y-0 right-0 z-10 w-16 bg-gradient-to-l from-[#0a0510] to-transparent sm:w-24"
           aria-hidden
         />
 
@@ -356,7 +356,7 @@ const S08AcademicBoard: FC = () => {
 
               {/* Dark gradient */}
               <div
-                className="absolute inset-0 bg-linear-to-t from-[#0a0510] from-1% via-[rgba(10,5,16,0.6)] via-37% to-transparent to-72%"
+                className="absolute inset-0 bg-gradient-to-t from-[#0a0510] from-[1%] via-[rgba(10,5,16,0.6)] via-[37%] to-transparent to-[72%]"
                 aria-hidden
               />
 
@@ -391,7 +391,7 @@ const S08AcademicBoard: FC = () => {
       <div className="mt-4 flex items-center justify-center gap-6 pb-8">
         <button
           onClick={handlePrevious}
-          className="flex h-12 w-12 items-center justify-center rounded-2xl border border-white/10 bg-[#1e102e] shadow-xs transition-all duration-200 hover:border-white/20 hover:bg-[#2a1840] active:scale-95"
+          className="flex h-12 w-12 items-center justify-center rounded-2xl border border-white/10 bg-[#1e102e] shadow-sm transition-all duration-200 hover:border-white/20 hover:bg-[#2a1840] active:scale-95"
           aria-label="Previous slide"
         >
           <ChevronLeft />
@@ -413,7 +413,7 @@ const S08AcademicBoard: FC = () => {
 
         <button
           onClick={handleNext}
-          className="flex h-12 w-12 items-center justify-center rounded-2xl border border-white/10 bg-[#1e102e] shadow-xs transition-all duration-200 hover:border-white/20 hover:bg-[#2a1840] active:scale-95"
+          className="flex h-12 w-12 items-center justify-center rounded-2xl border border-white/10 bg-[#1e102e] shadow-sm transition-all duration-200 hover:border-white/20 hover:bg-[#2a1840] active:scale-95"
           aria-label="Next slide"
         >
           <ChevronRight />

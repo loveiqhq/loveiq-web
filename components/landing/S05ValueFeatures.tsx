@@ -47,7 +47,7 @@ const S05ValueFeatures: FC = () => {
     >
       <div className="pointer-events-none absolute inset-0" />
 
-      <div className="content-shell relative grid gap-10 lg:grid-cols-[1fr_1.05fr] lg:items-center lg:gap-0">
+      <div className="content-shell relative grid gap-10 lg:grid-cols-[1fr_1.05fr] lg:items-center lg:gap-[0px]">
         <div className="pointer-events-none absolute -left-[302px] top-[52.275px] h-[160px] w-[160px] rounded-full bg-[#FE6839] mix-blend-screen blur-[99.5px]" />
         <div className="pointer-events-none absolute -right-[1014.5px] bottom-[136px] h-[257px] w-[257px] rounded-full bg-[#541475] mix-blend-screen blur-[100px]" />
 
@@ -94,7 +94,7 @@ const S05ValueFeatures: FC = () => {
             {bullets.map((item) => (
               <div key={item.title} className="group flex gap-3 rounded-2xl bg-transparent p-4">
                 <div
-                  className="mt-0.5 flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl border border-white/10 bg-[#241433]/80 text-[#cbb8ff] shadow-[0_16px_50px_rgba(0,0,0,0.35)] transition duration-300 ease-out group-hover:-translate-y-1 group-hover:scale-[1.03] group-hover:border-white/20 group-hover:bg-linear-to-br group-hover:from-[#f26d4f] group-hover:via-[#9c7dff] group-hover:to-[#5d7cff] group-hover:text-[#0d0715]"
+                  className="mt-0.5 flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-2xl border border-white/10 bg-[#241433]/80 text-[#cbb8ff] shadow-[0_16px_50px_rgba(0,0,0,0.35)] transition duration-300 ease-out group-hover:-translate-y-1 group-hover:scale-[1.03] group-hover:border-white/20 group-hover:bg-gradient-to-br group-hover:from-[#f26d4f] group-hover:via-[#9c7dff] group-hover:to-[#5d7cff] group-hover:text-[#0d0715]"
                   aria-hidden
                 >
                   {item.icon === "arrow" ? (

@@ -25,14 +25,14 @@ const ArrowButton: FC = () => (
 const SurveyIllustration: FC = () => (
   <div className="relative flex h-full w-full items-center justify-center overflow-hidden rounded-3xl border border-white/5 bg-[#0A0510] transition-colors group-hover:border-white/10">
     {/* Ambient Glow */}
-    <div className="absolute left-0 top-0 h-full w-full bg-linear-to-br from-[#2E0147]/40 via-[#0A0510] to-[#0A0510]" />
+    <div className="absolute left-0 top-0 h-full w-full bg-gradient-to-br from-[#2E0147]/40 via-[#0A0510] to-[#0A0510]" />
     <div className="absolute -left-10 -top-10 h-32 w-32 rounded-full bg-[#FE6839]/10 blur-2xl" />
 
     {/* Main Card UI */}
     <div className="relative z-10 w-[80%]">
       <div className="relative overflow-hidden rounded-xl border border-white/10 bg-[#1a1025]/95 p-5 shadow-2xl backdrop-blur-xl transition-all duration-500 ease-out group-hover:-translate-y-2 group-hover:border-[#FE6839]/20 group-hover:shadow-[0_20px_40px_-12px_rgba(254,104,57,0.25)]">
         {/* Shine Effect */}
-        <div className="pointer-events-none absolute inset-0 h-full w-[200%] -translate-x-[150%] skew-x-12 bg-linear-to-r from-transparent via-white/5 to-transparent transition-transform duration-1000 ease-in-out group-hover:translate-x-full" />
+        <div className="pointer-events-none absolute inset-0 h-full w-[200%] -translate-x-[150%] skew-x-12 bg-gradient-to-r from-transparent via-white/5 to-transparent transition-transform duration-1000 ease-in-out group-hover:translate-x-[100%]" />
 
         {/* Header: Progress */}
         <div className="mb-5 flex items-center gap-3 border-b border-white/5 pb-3">
@@ -73,7 +73,7 @@ const SurveyIllustration: FC = () => (
 
           <div className="relative flex items-center gap-3 overflow-hidden rounded-lg border border-[#FE6839]/30 bg-[#FE6839]/10 p-2.5">
             {/* Option sweep animation */}
-            <div className="absolute inset-0 -translate-x-full bg-linear-to-r from-[#FE6839]/0 via-[#FE6839]/10 to-[#FE6839]/0 transition-transform duration-1000 group-hover:translate-x-full" />
+            <div className="absolute inset-0 -translate-x-full bg-gradient-to-r from-[#FE6839]/0 via-[#FE6839]/10 to-[#FE6839]/0 transition-transform duration-1000 group-hover:translate-x-full" />
             <div className="flex h-3.5 w-3.5 items-center justify-center rounded-full border-[1.5px] border-[#FE6839] shadow-[0_0_8px_rgba(254,104,57,0.4)]">
               <div className="h-1.5 w-1.5 rounded-full bg-[#FE6839]" />
             </div>
@@ -110,7 +110,7 @@ const SurveyIllustration: FC = () => (
 const ReportsIllustration: FC = () => (
   <div className="relative flex h-full w-full items-center justify-center overflow-hidden rounded-3xl border border-white/5 bg-[#0A0510] transition-colors group-hover:border-white/10">
     {/* Ambient Glow */}
-    <div className="absolute right-0 top-0 h-full w-full bg-linear-to-bl from-[#FE6839]/10 via-[#0A0510] to-[#0A0510]" />
+    <div className="absolute right-0 top-0 h-full w-full bg-gradient-to-bl from-[#FE6839]/10 via-[#0A0510] to-[#0A0510]" />
 
     {/* Main Card UI */}
     <div className="relative w-[80%] transform overflow-hidden rounded-xl border border-white/10 bg-[#1a1025] p-5 shadow-2xl transition-transform duration-500 group-hover:-translate-y-1">
@@ -138,10 +138,10 @@ const ReportsIllustration: FC = () => (
 
       {/* Animated Bar Chart */}
       <div className="flex h-16 items-end justify-between gap-2 px-1">
-        <div className="h-[40%] w-full rounded-xs bg-white/5 transition-all duration-700 ease-out group-hover:h-[50%]" />
-        <div className="h-[60%] w-full rounded-xs bg-white/10 transition-all delay-75 duration-700 ease-out group-hover:h-[75%]" />
-        <div className="h-[80%] w-full rounded-xs bg-linear-to-t from-[#FE6839] to-[#fe8c68] shadow-[0_0_15px_rgba(254,104,57,0.3)] transition-all delay-150 duration-700 ease-out group-hover:h-[95%]" />
-        <div className="h-[50%] w-full rounded-xs bg-white/5 transition-all delay-100 duration-700 ease-out group-hover:h-[45%]" />
+        <div className="h-[40%] w-full rounded-sm bg-white/5 transition-all duration-700 ease-out group-hover:h-[50%]" />
+        <div className="h-[60%] w-full rounded-sm bg-white/10 transition-all delay-75 duration-700 ease-out group-hover:h-[75%]" />
+        <div className="h-[80%] w-full rounded-sm bg-gradient-to-t from-[#FE6839] to-[#fe8c68] shadow-[0_0_15px_rgba(254,104,57,0.3)] transition-all delay-150 duration-700 ease-out group-hover:h-[95%]" />
+        <div className="h-[50%] w-full rounded-sm bg-white/5 transition-all delay-100 duration-700 ease-out group-hover:h-[45%]" />
       </div>
     </div>
 
@@ -153,14 +153,14 @@ const ReportsIllustration: FC = () => (
 const GrowthIllustration: FC = () => (
   <div className="relative flex h-full w-full items-center justify-center overflow-hidden rounded-3xl border border-white/5 bg-[#0A0510] transition-colors group-hover:border-white/10">
     {/* Ambient Glow */}
-    <div className="absolute bottom-0 left-1/2 h-full w-full -translate-x-1/2 bg-linear-to-t from-[#2E0147]/60 to-transparent" />
+    <div className="absolute bottom-0 left-1/2 h-full w-full -translate-x-1/2 bg-gradient-to-t from-[#2E0147]/60 to-transparent" />
 
     {/* Main Card UI */}
     <div className="w-[80%] transform overflow-hidden rounded-xl border border-white/10 bg-[#1a1025] shadow-2xl transition-transform duration-500 group-hover:-translate-y-1">
       {/* Video Preview Area */}
       <div className="relative flex aspect-video items-center justify-center bg-[#050208] transition-colors group-hover:bg-[#0A0510]">
         {/* Play Button with animation */}
-        <div className="z-10 flex h-12 w-12 items-center justify-center rounded-full border border-white/20 bg-white/10 backdrop-blur-xs transition-all duration-300 group-hover:scale-110 group-hover:border-[#FE6839] group-hover:bg-[#FE6839] group-hover:text-white">
+        <div className="z-10 flex h-12 w-12 items-center justify-center rounded-full border border-white/20 bg-white/10 backdrop-blur-sm transition-all duration-300 group-hover:scale-110 group-hover:border-[#FE6839] group-hover:bg-[#FE6839] group-hover:text-white">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="none">
             <polygon points="5 3 19 12 5 21 5 3" />
           </svg>
@@ -218,7 +218,7 @@ const SolutionSection: FC = () => {
       <div className="content-shell">
         {/* Header - Left aligned */}
         <div className="reveal-on-scroll mb-20 space-y-6 px-0 sm:px-14">
-          <h2 className="font-serif text-3xl font-normal leading-none tracking-tight text-white md:text-5xl">
+          <h2 className="font-serif text-3xl font-normal leading-[1] tracking-tight text-white md:text-5xl">
             Our Solution
           </h2>
           <p className="max-w-[672px] text-lg font-light leading-[1.4] text-[#9CA3AF]">
@@ -231,10 +231,10 @@ const SolutionSection: FC = () => {
           {solutions.map((item) => (
             <div
               key={item.title}
-              className={`reveal-on-scroll ${item.stagger} group flex w-full flex-col gap-8 rounded-4xl border border-white/5 bg-[#120B1C] p-3 transition-all duration-300 hover:border-[#FE6839]/30`}
+              className={`reveal-on-scroll ${item.stagger} group flex w-full flex-col gap-8 rounded-[2rem] border border-white/5 bg-[#120B1C] p-3 transition-all duration-300 hover:border-[#FE6839]/30`}
             >
               {/* Illustration area */}
-              <div className="relative aspect-4/3 w-full overflow-hidden rounded-3xl">
+              <div className="relative aspect-[4/3] w-full overflow-hidden rounded-[1.5rem]">
                 {item.illustration}
               </div>
 

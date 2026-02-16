@@ -111,7 +111,7 @@ const ChallengeVisionSection: FC = () => {
               <IconContainer>
                 <GoalIcon />
               </IconContainer>
-              <h3 className="font-serif text-[32px] font-normal leading-none text-white">
+              <h3 className="font-serif text-[32px] font-normal leading-[1] text-white">
                 Our Mission
               </h3>
               <p className="text-base leading-[1.4] text-[#9CA3AF]">
@@ -140,10 +140,10 @@ const ChallengeVisionSection: FC = () => {
               <IconContainer>
                 <EyeIcon />
               </IconContainer>
-              <h3 className="font-serif text-[32px] font-medium leading-none text-white">
+              <h3 className="font-serif text-[32px] font-medium leading-[1] text-white">
                 Our Vision
               </h3>
-              <p className="max-w-[540px] text-base leading-relaxed text-[#9CA3AF]">
+              <p className="max-w-[540px] text-base leading-[1.625] text-[#9CA3AF]">
                 <span className="text-white">
                   Our vision is to become the world&apos;s most trusted platform for human
                   self-understanding &amp; personal growth.
@@ -206,7 +206,7 @@ const ChallengeVisionSection: FC = () => {
               `}</style>
 
               {/* Ambient Background */}
-              <div className="absolute inset-0 bg-linear-to-b from-[#2E0147]/10 via-[#0A0510] to-[#0A0510]" />
+              <div className="absolute inset-0 bg-gradient-to-b from-[#2E0147]/10 via-[#0A0510] to-[#0A0510]" />
               <div className="absolute h-48 w-48 animate-[pulse-core_6s_ease-in-out_infinite] rounded-full bg-[#FE6839] opacity-10 blur-[90px]" />
 
               {/* Orbit Ring */}
@@ -216,7 +216,7 @@ const ChallengeVisionSection: FC = () => {
               <div className="relative flex h-full w-full items-center justify-center">
                 {/* Phase 1: Identity (Fingerprint) */}
                 <div className="absolute flex flex-col items-center justify-center opacity-0 mix-blend-plus-lighter animate-[mist-cycle_12s_ease-in-out_infinite_0s]">
-                  <div className="flex h-14 w-14 items-center justify-center rounded-full border border-[#a855f7]/30 bg-linear-to-b from-[#a855f7]/20 to-[#a855f7]/5 text-[#e9d5ff] shadow-[0_0_30px_rgba(168,85,247,0.25)] backdrop-blur-md">
+                  <div className="flex h-14 w-14 items-center justify-center rounded-full border border-[#a855f7]/30 bg-gradient-to-b from-[#a855f7]/20 to-[#a855f7]/5 text-[#e9d5ff] shadow-[0_0_30px_rgba(168,85,247,0.25)] backdrop-blur-md">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       width="24"
@@ -245,7 +245,7 @@ const ChallengeVisionSection: FC = () => {
 
                 {/* Phase 2: Needs (Heart - Filled) */}
                 <div className="absolute flex flex-col items-center justify-center opacity-0 mix-blend-plus-lighter animate-[mist-cycle_12s_ease-in-out_infinite_4s]">
-                  <div className="flex h-14 w-14 items-center justify-center rounded-full border border-[#c084fc]/30 bg-linear-to-b from-[#c084fc]/20 to-[#9333ea]/10 text-[#f3e8ff] shadow-[0_0_30px_rgba(192,132,252,0.25)] backdrop-blur-md">
+                  <div className="flex h-14 w-14 items-center justify-center rounded-full border border-[#c084fc]/30 bg-gradient-to-b from-[#c084fc]/20 to-[#9333ea]/10 text-[#f3e8ff] shadow-[0_0_30px_rgba(192,132,252,0.25)] backdrop-blur-md">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       width="24"
@@ -267,7 +267,7 @@ const ChallengeVisionSection: FC = () => {
 
                 {/* Phase 3: Patterns (Sparkles - Filled) */}
                 <div className="absolute flex flex-col items-center justify-center opacity-0 mix-blend-plus-lighter animate-[mist-cycle_12s_ease-in-out_infinite_8s]">
-                  <div className="flex h-14 w-14 items-center justify-center rounded-full border border-[#7c3aed]/30 bg-linear-to-b from-[#7c3aed]/20 to-[#6d28d9]/10 text-[#ddd6fe] shadow-[0_0_30px_rgba(124,58,237,0.25)] backdrop-blur-md">
+                  <div className="flex h-14 w-14 items-center justify-center rounded-full border border-[#7c3aed]/30 bg-gradient-to-b from-[#7c3aed]/20 to-[#6d28d9]/10 text-[#ddd6fe] shadow-[0_0_30px_rgba(124,58,237,0.25)] backdrop-blur-md">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       width="24"

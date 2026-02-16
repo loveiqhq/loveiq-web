@@ -206,7 +206,7 @@ const OrbitalDiagram: FC = () => {
       angle: -90,
       icon: <SmallMicroscopeIcon />,
       tooltipClass:
-        "pointer-events-none absolute -top-10 z-999 translate-y-2 select-none whitespace-nowrap rounded-full border border-[#a855f7]/30 bg-[#16121D]/90 px-3 py-1.5 text-[10px] font-bold uppercase tracking-wider text-white opacity-0 shadow-[0_4px_15px_rgba(0,0,0,0.5)] backdrop-blur-md transition-all duration-300 group-hover/icon:translate-y-0 group-hover/icon:opacity-100",
+        "pointer-events-none absolute -top-10 z-[999] translate-y-2 select-none whitespace-nowrap rounded-full border border-[#a855f7]/30 bg-[#16121D]/90 px-3 py-1.5 text-[10px] font-bold uppercase tracking-wider text-white opacity-0 shadow-[0_4px_15px_rgba(0,0,0,0.5)] backdrop-blur-md transition-all duration-300 group-hover/icon:translate-y-0 group-hover/icon:opacity-100",
       ringClass:
         "flex h-10 w-10 cursor-pointer items-center justify-center rounded-full border border-[#a855f7]/30 bg-[#16121D] shadow-[0_0_15px_rgba(168,85,247,0.15)] transition-all duration-500 hover:scale-110 hover:border-[#a855f7]/50 hover:shadow-[0_0_25px_rgba(168,85,247,0.3)]",
     },
@@ -216,7 +216,7 @@ const OrbitalDiagram: FC = () => {
       angle: 30,
       icon: <SmallFootprintsIcon />,
       tooltipClass:
-        "pointer-events-none absolute -top-10 z-999 translate-y-2 select-none whitespace-nowrap rounded-full border border-[#a855f7]/30 bg-[#16121D]/90 px-3 py-1.5 text-[10px] font-bold uppercase tracking-wider text-white opacity-0 shadow-[0_4px_15px_rgba(0,0,0,0.5)] backdrop-blur-md transition-all duration-300 group-hover/icon:translate-y-0 group-hover/icon:opacity-100",
+        "pointer-events-none absolute -top-10 z-[999] translate-y-2 select-none whitespace-nowrap rounded-full border border-[#a855f7]/30 bg-[#16121D]/90 px-3 py-1.5 text-[10px] font-bold uppercase tracking-wider text-white opacity-0 shadow-[0_4px_15px_rgba(0,0,0,0.5)] backdrop-blur-md transition-all duration-300 group-hover/icon:translate-y-0 group-hover/icon:opacity-100",
       ringClass:
         "flex h-10 w-10 cursor-pointer items-center justify-center rounded-full border border-[#a855f7]/30 bg-[#16121D] shadow-[0_0_15px_rgba(168,85,247,0.15)] transition-all duration-500 hover:scale-110 hover:border-[#a855f7]/50 hover:shadow-[0_0_25px_rgba(168,85,247,0.3)]",
     },
@@ -226,7 +226,7 @@ const OrbitalDiagram: FC = () => {
       angle: 150,
       icon: <SmallSettingsIcon />,
       tooltipClass:
-        "pointer-events-none absolute -top-10 z-999 translate-y-2 select-none whitespace-nowrap rounded-full border border-[#FE6839]/30 bg-[#16121D]/90 px-3 py-1.5 text-[10px] font-bold uppercase tracking-wider text-[#FE6839] opacity-0 shadow-[0_4px_15px_rgba(0,0,0,0.5)] backdrop-blur-md transition-all duration-300 group-hover/icon:translate-y-0 group-hover/icon:opacity-100",
+        "pointer-events-none absolute -top-10 z-[999] translate-y-2 select-none whitespace-nowrap rounded-full border border-[#FE6839]/30 bg-[#16121D]/90 px-3 py-1.5 text-[10px] font-bold uppercase tracking-wider text-[#FE6839] opacity-0 shadow-[0_4px_15px_rgba(0,0,0,0.5)] backdrop-blur-md transition-all duration-300 group-hover/icon:translate-y-0 group-hover/icon:opacity-100",
       ringClass:
         "flex h-10 w-10 cursor-pointer items-center justify-center rounded-full border border-[#FE6839]/30 bg-[#16121D] shadow-[0_0_15px_rgba(254,104,57,0.15)] transition-all duration-500 hover:scale-110 hover:border-[#FE6839]/50 hover:shadow-[0_0_25px_rgba(254,104,57,0.3)]",
     },
@@ -338,7 +338,7 @@ const OrbitalDiagram: FC = () => {
         </div>
 
         {/* === CENTER CORE (Static with hover effect) === */}
-        <div className="group absolute left-1/2 top-1/2 z-30 flex h-[128px] w-[128px] -translate-x-1/2 -translate-y-1/2 cursor-pointer items-center justify-center rounded-full border border-white/10 bg-linear-to-b from-[#1a1025] to-[#0a0510] shadow-[0_0_60px_rgba(46,1,71,0.5)] transition-all duration-500 hover:border-[#a855f7]/30 hover:shadow-[0_0_80px_rgba(168,85,247,0.3)]">
+        <div className="group absolute left-1/2 top-1/2 z-30 flex h-[128px] w-[128px] -translate-x-1/2 -translate-y-1/2 cursor-pointer items-center justify-center rounded-full border border-white/10 bg-gradient-to-b from-[#1a1025] to-[#0a0510] shadow-[0_0_60px_rgba(46,1,71,0.5)] transition-all duration-500 hover:border-[#a855f7]/30 hover:shadow-[0_0_80px_rgba(168,85,247,0.3)]">
           {/* Pulse ring on hover */}
           <div className="absolute inset-0 rounded-full border-2 border-[#a855f7]/0 transition-all duration-500 group-hover:scale-110 group-hover:border-[#a855f7]/20 group-hover:opacity-0" />
 
@@ -451,7 +451,7 @@ const ProcessSection: FC = () => {
         <div className="flex flex-col gap-14 lg:w-[568px]">
           {/* Heading */}
           <div className="space-y-10 px-2.5">
-            <h2 className="reveal-on-scroll font-serif text-3xl font-normal leading-none tracking-tight text-white md:text-5xl">
+            <h2 className="reveal-on-scroll font-serif text-3xl font-normal leading-[1] tracking-tight text-white md:text-5xl">
               How We Work
             </h2>
             <p className="reveal-on-scroll stagger-1 max-w-[512px] text-lg font-light leading-relaxed text-[#9CA3AF] md:text-xl">
@@ -475,9 +475,9 @@ const ProcessSection: FC = () => {
               className={`reveal-on-scroll stagger-${Math.min(index + 1, 4)} group flex cursor-default gap-6 md:gap-8`}
             >
               {/* Icon */}
-              <div className="relative shrink-0 pt-1">
+              <div className="relative flex-shrink-0 pt-1">
                 <div className="relative z-10 flex h-12 w-12 items-center justify-center overflow-hidden rounded-2xl border border-white/5 bg-[#1A1025] transition-all duration-700 ease-[cubic-bezier(0.2,0.8,0.2,1)] group-hover:scale-105 group-hover:border-[#a855f7]/30 group-hover:bg-[#2E0147] group-hover:shadow-[0_0_35px_-10px_rgba(168,85,247,0.4)] md:h-16 md:w-16">
-                  <div className="absolute inset-0 bg-linear-to-tr from-[#a855f7]/20 via-transparent to-transparent opacity-0 transition-opacity duration-1000 group-hover:opacity-100" />
+                  <div className="absolute inset-0 bg-gradient-to-tr from-[#a855f7]/20 via-transparent to-transparent opacity-0 transition-opacity duration-1000 group-hover:opacity-100" />
                   <div className="relative z-10 transition-colors duration-700 group-hover:text-white [&_svg]:h-6 [&_svg]:w-6 md:[&_svg]:h-7 md:[&_svg]:w-7">
                     {step.icon}
                   </div>

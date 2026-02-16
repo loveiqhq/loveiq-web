@@ -47,7 +47,7 @@ const S09Report: FC = () => {
           <div className="space-y-8">
             {features.map((item) => (
               <div key={item.title} className="group flex gap-3">
-                <div className="mt-[2px] flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-white/5 text-accent-orange shadow-soft transition duration-300 ease-out group-hover:-translate-y-[2px] group-hover:scale-105 group-hover:bg-linear-to-br group-hover:from-[#f26d4f] group-hover:via-[#ff9450] group-hover:to-[#f26d4f] group-hover:text-white">
+                <div className="mt-[2px] flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full bg-white/5 text-accent-orange shadow-soft transition duration-300 ease-out group-hover:-translate-y-[2px] group-hover:scale-105 group-hover:bg-gradient-to-br group-hover:from-[#f26d4f] group-hover:via-[#ff9450] group-hover:to-[#f26d4f] group-hover:text-white">
                   <svg
                     aria-hidden
                     className="h-4 w-4"
@@ -235,7 +235,7 @@ const S09Report: FC = () => {
               </div>
             </div>
 
-            <div className="absolute right-[-24px] top-28 flex min-w-[230px] items-center gap-3 rounded-2xl border border-[#3b2a4d] bg-[#2b1c3b]/95 px-5 py-4 text-sm text-white shadow-[0_22px_90px_rgba(0,0,0,0.6)] backdrop-blur-xs transition duration-300 ease-out animate-float-delayed">
+            <div className="absolute right-[-24px] top-28 flex min-w-[230px] items-center gap-3 rounded-2xl border border-[#3b2a4d] bg-[#2b1c3b]/95 px-5 py-4 text-sm text-white shadow-[0_22px_90px_rgba(0,0,0,0.6)] backdrop-blur-sm transition duration-300 ease-out animate-float-delayed">
               <div className="flex h-10 w-10 items-center justify-center rounded-full bg-[#5a2aa3] text-white shadow-[0_10px_30px_rgba(0,0,0,0.35)]">
                 <svg
                   aria-hidden

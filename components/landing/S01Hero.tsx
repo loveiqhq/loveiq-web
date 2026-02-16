@@ -27,7 +27,7 @@ const S01Hero: FC = () => {
       <div className="pointer-events-none absolute inset-0 overflow-hidden">
         <video
           ref={videoRef}
-          className="absolute inset-0 h-full w-full object-cover transition-opacity duration-500 ease-out sm:scale-105 sm:translate-y-[2%] sm:object-[50%_40%] object-[50%_30%]"
+          className="absolute inset-0 h-full w-full object-cover transition-opacity duration-500 ease-out sm:scale-105 sm:translate-y-[2%] sm:[object-position:50%_40%] [object-position:50%_30%]"
           autoPlay
           muted
           loop
@@ -39,12 +39,12 @@ const S01Hero: FC = () => {
           <source media="(max-width: 640px)" src="/couple-hero-mobile.mp4" type="video/mp4" />
           <source src="/couple-hero.mp4" type="video/mp4" />
         </video>
-        <div className="absolute inset-0 bg-linear-to-b from-[#0b0613]/35 via-[#0b0613]/55 to-[#0b0613]/80" />
-        <div className="absolute inset-x-0 bottom-0 h-64 bg-linear-to-b from-transparent via-[#0b0613]/65 to-[#0A0510]" />
+        <div className="absolute inset-0 bg-gradient-to-b from-[#0b0613]/35 via-[#0b0613]/55 to-[#0b0613]/80" />
+        <div className="absolute inset-x-0 bottom-0 h-64 bg-gradient-to-b from-transparent via-[#0b0613]/65 to-[#0A0510]" />
       </div>
 
       <div className="content-shell relative z-10 flex flex-col items-center px-4 text-center">
-        <div className="animate-on-scroll mt-2 inline-flex items-center gap-2 rounded-full border border-border bg-white/5 px-4 py-2 text-[11px] font-semibold tracking-[0.08em] text-[#D8B4FE] shadow-soft backdrop-blur-sm">
+        <div className="animate-on-scroll mt-2 inline-flex items-center gap-2 rounded-full border border-border bg-white/5 px-4 py-2 text-[11px] font-semibold tracking-[0.08em] text-[#D8B4FE] shadow-soft backdrop-blur">
           <span
             className="h-2 w-2 rounded-full bg-accent-orange shadow-[0_0_0_6px_rgba(242,109,79,0.12)] animate-pulse-glow"
             aria-hidden
@@ -57,7 +57,7 @@ const S01Hero: FC = () => {
             Gain Insights Into Your
           </h1>
           <div className="animate-on-scroll relative inline-block">
-            <span className="bg-linear-to-r from-[#ff6a3a] via-[#cf5afb] to-[#7d88ff] bg-clip-text font-serif text-[72px] font-medium italic leading-[72px] tracking-[-1.8px] text-transparent">
+            <span className="bg-gradient-to-r from-[#ff6a3a] via-[#cf5afb] to-[#7d88ff] bg-clip-text font-serif text-[72px] font-[500] italic leading-[72px] tracking-[-1.8px] text-transparent">
               Sexual Psychology
             </span>
             <div aria-hidden className="pointer-events-none absolute inset-x-0 top-full mt-[4px]">

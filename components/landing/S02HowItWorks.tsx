@@ -129,7 +129,7 @@ const S02HowItWorks: FC = () => {
       aria-labelledby="how-it-works-heading"
     >
       <div className="pointer-events-none absolute inset-0" />
-      <div className="pointer-events-none absolute inset-x-0 -top-20 h-24 bg-linear-to-b from-[#0b0613] via-[#0b0613]/60 to-[#0A0510]" />
+      <div className="pointer-events-none absolute inset-x-0 -top-20 h-24 bg-gradient-to-b from-[#0b0613] via-[#0b0613]/60 to-[#0A0510]" />
       <div className="pointer-events-none absolute left-[-440px] top-1/2 hidden h-[520px] w-[520px] -translate-y-1/2 lg:block">
         <div
           className="absolute inset-6 rounded-full border border-dashed border-[#a78bfa]/14 animate-spin-slow"
@@ -153,7 +153,7 @@ const S02HowItWorks: FC = () => {
                   }}
                 >
                   <div
-                    className="flex h-full w-full items-center justify-center rounded-2xl border border-white/10 bg-[rgba(20,15,30,0.9)] shadow-[0_16px_36px_rgba(0,0,0,0.35)] backdrop-blur-xs"
+                    className="flex h-full w-full items-center justify-center rounded-2xl border border-white/10 bg-[rgba(20,15,30,0.9)] shadow-[0_16px_36px_rgba(0,0,0,0.35)] backdrop-blur-sm"
                     style={{ ...iconSpinStyle, transformOrigin: "center center" }}
                   >
                     <span
@@ -200,7 +200,7 @@ const S02HowItWorks: FC = () => {
                   }}
                 >
                   <div
-                    className="flex h-full w-full items-center justify-center rounded-2xl border border-white/10 bg-[rgba(20,15,30,0.9)] shadow-[0_16px_36px_rgba(0,0,0,0.35)] backdrop-blur-xs"
+                    className="flex h-full w-full items-center justify-center rounded-2xl border border-white/10 bg-[rgba(20,15,30,0.9)] shadow-[0_16px_36px_rgba(0,0,0,0.35)] backdrop-blur-sm"
                     style={{ ...iconSpinStyle, transformOrigin: "center center" }}
                   >
                     <span

@@ -166,7 +166,7 @@ const GlossaryPage: FC = () => {
           <div className="mx-auto max-w-[768px] text-center relative z-10">
             <h1 className="font-serif text-4xl sm:text-5xl md:text-[61px] font-normal tracking-[-1.5px] leading-[1.1] reveal-on-scroll">
               The LoveIQ{" "}
-              <span className="bg-linear-to-r from-[#fe6839] via-[#a78bfa] to-[#e9d5ff] bg-clip-text text-transparent">
+              <span className="bg-gradient-to-r from-[#fe6839] via-[#a78bfa] to-[#e9d5ff] bg-clip-text text-transparent">
                 Glossary
               </span>
             </h1>
@@ -204,7 +204,7 @@ const GlossaryPage: FC = () => {
                 placeholder="Search a term or concept (e.g. 'Arousal', 'Boundaries')"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full rounded-full border border-white/10 bg-white/3 py-5 pl-[49px] pr-6 text-base text-white placeholder:text-white/30 hover:bg-white/5 hover:border-white/50 focus:border-2 focus:border-[rgba(254,104,57,0.6)] focus:bg-white/3 focus:outline-hidden focus:ring-0 transition"
+                className="w-full rounded-full border border-white/10 bg-white/[0.03] py-5 pl-[49px] pr-6 text-base text-white placeholder:text-white/30 hover:bg-white/[0.05] hover:border-white/50 focus:border-2 focus:border-[rgba(254,104,57,0.6)] focus:bg-white/[0.03] focus:outline-none focus:ring-0 transition"
               />
             </div>
 
