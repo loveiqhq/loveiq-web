@@ -34,6 +34,14 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       title: `${term.term} | LoveIQ Glossary`,
       description: term.definition,
       type: "article",
+      images: [
+        {
+          url: `${siteUrl}/images/og-image.png`,
+          width: 1200,
+          height: 630,
+          alt: `${term.term} - LoveIQ Glossary`,
+        },
+      ],
     },
   };
 }

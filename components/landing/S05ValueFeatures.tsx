@@ -1,7 +1,14 @@
 "use client";
 
 import type { FC } from "react";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, useSyncExternalStore } from "react";
+
+const noopSubscribe = () => () => {};
+const getVideoSrc = () =>
+  window.innerWidth <= 640
+    ? "/8060391-uhd_4096_2160_25fps-mobile.mp4"
+    : "/8060391-uhd_4096_2160_25fps.mp4";
+const getServerVideoSrc = (): string | null => null;
 
 const bullets = [
   {
@@ -21,6 +28,7 @@ const bullets = [
 const S05ValueFeatures: FC = () => {
   const [loadVideo, setLoadVideo] = useState(false);
   const sectionRef = useRef<HTMLElement | null>(null);
+  const videoSrc = useSyncExternalStore(noopSubscribe, getVideoSrc, getServerVideoSrc);
 
   useEffect(() => {
     const section = sectionRef.current;
@@ -62,7 +70,7 @@ const S05ValueFeatures: FC = () => {
 
         <div className="relative overflow-hidden rounded-[24px] border border-[rgba(255,255,255,0.08)] bg-[#0A0510] shadow-[0_30px_90px_rgba(0,0,0,0.55)] aspect-square lg:aspect-auto lg:h-[640px] order-1 w-full lg:order-1 lg:max-w-[456px]">
           <div className="relative h-full w-full overflow-hidden rounded-[24px]">
-            {loadVideo && (
+            {loadVideo && videoSrc && (
               <video
                 className="absolute inset-0 h-full w-full object-cover lg:object-cover"
                 autoPlay
@@ -71,14 +79,8 @@ const S05ValueFeatures: FC = () => {
                 playsInline
                 preload="none"
                 aria-hidden
-              >
-                <source
-                  media="(max-width: 640px)"
-                  src="/8060391-uhd_4096_2160_25fps-mobile.mp4"
-                  type="video/mp4"
-                />
-                <source src="/8060391-uhd_4096_2160_25fps.mp4" type="video/mp4" />
-              </video>
+                src={videoSrc}
+              />
             )}
           </div>
         </div>

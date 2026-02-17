@@ -138,8 +138,25 @@ export default async function RootLayout({ children }: { children: React.ReactNo
   return (
     <html lang="en" className={`${manrope.variable} ${lora.variable}`}>
       <head>
+        <link
+          rel="preload"
+          as="video"
+          href="/couple-hero-mobile.mp4"
+          type="video/mp4"
+          media="(max-width: 640px)"
+        />
+        <link
+          rel="preload"
+          as="video"
+          href="/couple-hero.mp4"
+          type="video/mp4"
+          media="(min-width: 641px)"
+        />
         <link rel="preconnect" href="https://cdn-cookieyes.com" />
         <link rel="preconnect" href="https://www.googletagmanager.com" />
+        <link rel="dns-prefetch" href="https://www.google.com" />
+        <link rel="dns-prefetch" href="https://www.gstatic.com" />
+        <link rel="dns-prefetch" href="https://images.unsplash.com" />
         <Script
           id="cookieyes"
           src="https://cdn-cookieyes.com/client_data/761bc9303937f7b41b200de8ed556d45/script.js"

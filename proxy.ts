@@ -57,7 +57,7 @@ export function proxy(request: NextRequest) {
   response.headers.set("Referrer-Policy", "strict-origin-when-cross-origin");
   response.headers.set(
     "Permissions-Policy",
-    "geolocation=(), microphone=(), camera=(), autoplay=(), payment=()"
+    "geolocation=(), microphone=(), camera=(), autoplay=(self), payment=()"
   );
   response.headers.set("Strict-Transport-Security", "max-age=63072000; includeSubDomains");
   // Cross-Origin-Opener-Policy for origin isolation

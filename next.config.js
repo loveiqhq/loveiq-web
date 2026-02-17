@@ -13,7 +13,32 @@ const nextConfig = {
     // Remove console.log in production
     removeConsole: process.env.NODE_ENV === "production" ? { exclude: ["error", "warn"] } : false,
   },
-  // Security headers are now set in proxy.ts with nonce-based CSP
+  // Cache headers for static public assets (security headers are in proxy.ts)
+  async headers() {
+    return [
+      {
+        // Videos — long cache, immutable (filenames change when content changes)
+        source: "/:path*.mp4",
+        headers: [
+          { key: "Cache-Control", value: "public, max-age=31536000, immutable" },
+        ],
+      },
+      {
+        // Images — long cache
+        source: "/:path*.{jpg,jpeg,png,webp,gif,avif}",
+        headers: [
+          { key: "Cache-Control", value: "public, max-age=31536000, immutable" },
+        ],
+      },
+      {
+        // SVGs — long cache
+        source: "/:path*.svg",
+        headers: [
+          { key: "Cache-Control", value: "public, max-age=31536000, immutable" },
+        ],
+      },
+    ];
+  },
 };
 
 module.exports = nextConfig;

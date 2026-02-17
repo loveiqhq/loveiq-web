@@ -30,7 +30,7 @@ const FooterSection: FC = () => {
                 LoveIQ
               </h2>
             </div>
-            <p className="max-w-xs text-sm leading-relaxed text-[#6B7280]">
+            <p className="max-w-xs text-sm leading-relaxed text-[#9CA3AF]">
               Democratizing sexual psychology. We translate complex research into actionable
               insights for everyday life.
             </p>
@@ -43,7 +43,7 @@ const FooterSection: FC = () => {
               <li>
                 <Link
                   href="/"
-                  className="text-[#6B7280] transition hover:text-white focus-visible-ring rounded"
+                  className="text-[#9CA3AF] transition hover:text-white focus-visible-ring rounded"
                 >
                   Home
                 </Link>
@@ -51,7 +51,7 @@ const FooterSection: FC = () => {
               <li>
                 <Link
                   href="/about"
-                  className="text-[#6B7280] transition hover:text-white focus-visible-ring rounded"
+                  className="text-[#9CA3AF] transition hover:text-white focus-visible-ring rounded"
                 >
                   About Us
                 </Link>
@@ -59,7 +59,7 @@ const FooterSection: FC = () => {
               <li>
                 <Link
                   href="/glossary"
-                  className="text-[#6B7280] transition hover:text-white focus-visible-ring rounded"
+                  className="text-[#9CA3AF] transition hover:text-white focus-visible-ring rounded"
                 >
                   Glossary
                 </Link>
@@ -67,7 +67,7 @@ const FooterSection: FC = () => {
               <li>
                 <Link
                   href="/trust-zone"
-                  className="text-[#6B7280] transition hover:text-white focus-visible-ring rounded"
+                  className="text-[#9CA3AF] transition hover:text-white focus-visible-ring rounded"
                 >
                   Trust Center
                 </Link>
@@ -78,7 +78,7 @@ const FooterSection: FC = () => {
           {/* Company Column */}
           <div className="space-y-4">
             <h3 className="text-lg font-semibold text-white">Company</h3>
-            <div className="space-y-2 text-sm text-[#6B7280]">
+            <div className="space-y-2 text-sm text-[#9CA3AF]">
               <p className="font-medium">Applied Psychometrics UG</p>
               <p>Hasenheide 62, 10967 Berlin</p>
               <p>hello@loveiq.org</p>
@@ -92,7 +92,7 @@ const FooterSection: FC = () => {
               <li>
                 <Link
                   href="/privacy-policy"
-                  className="text-[#6B7280] transition hover:text-white focus-visible-ring rounded"
+                  className="text-[#9CA3AF] transition hover:text-white focus-visible-ring rounded"
                   target="_blank"
                   rel="noreferrer noopener"
                 >
@@ -102,7 +102,7 @@ const FooterSection: FC = () => {
               <li>
                 <Link
                   href="/cookies"
-                  className="text-[#6B7280] transition hover:text-white focus-visible-ring rounded"
+                  className="text-[#9CA3AF] transition hover:text-white focus-visible-ring rounded"
                   target="_blank"
                   rel="noreferrer noopener"
                 >
@@ -112,7 +112,7 @@ const FooterSection: FC = () => {
               <li>
                 <Link
                   href="/imprint"
-                  className="text-[#6B7280] transition hover:text-white focus-visible-ring rounded"
+                  className="text-[#9CA3AF] transition hover:text-white focus-visible-ring rounded"
                   target="_blank"
                   rel="noreferrer noopener"
                 >
@@ -122,7 +122,7 @@ const FooterSection: FC = () => {
               <li>
                 <Link
                   href="/terms-and-conditions"
-                  className="text-[#6B7280] transition hover:text-white focus-visible-ring rounded"
+                  className="text-[#9CA3AF] transition hover:text-white focus-visible-ring rounded"
                   target="_blank"
                   rel="noreferrer noopener"
                 >
@@ -132,7 +132,7 @@ const FooterSection: FC = () => {
               <li>
                 <Link
                   href="/terms-of-use"
-                  className="text-[#6B7280] transition hover:text-white focus-visible-ring rounded"
+                  className="text-[#9CA3AF] transition hover:text-white focus-visible-ring rounded"
                   target="_blank"
                   rel="noreferrer noopener"
                 >
@@ -142,7 +142,7 @@ const FooterSection: FC = () => {
               <li>
                 <Link
                   href="/digital-content-terms"
-                  className="text-[#6B7280] transition hover:text-white focus-visible-ring rounded"
+                  className="text-[#9CA3AF] transition hover:text-white focus-visible-ring rounded"
                   target="_blank"
                   rel="noreferrer noopener"
                 >
@@ -152,7 +152,7 @@ const FooterSection: FC = () => {
               <li>
                 <Link
                   href="/medical-disclaimer"
-                  className="text-[#6B7280] transition hover:text-white focus-visible-ring rounded"
+                  className="text-[#9CA3AF] transition hover:text-white focus-visible-ring rounded"
                   target="_blank"
                   rel="noreferrer noopener"
                 >
