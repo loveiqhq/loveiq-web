@@ -75,7 +75,11 @@
       "Bash(cmd.exe /c \"ffmpeg -version\")",
       "Bash(cmd.exe /c \"ffmpeg -i \"\"C:\\\\Users\\\\Hamza Korkutovic\\\\loveiq-web\\\\mixkit-playful-couple-having-fun-between-the-sheets-42966-full-hd.mp4\"\" 2>&1\")",
       "Bash(export PATH=\"$PATH:/c/ffmpeg/bin:/c/Program Files/ffmpeg/bin:/c/Users/Hamza Korkutovic/AppData/Local/Microsoft/WinGet/Packages\")",
-      "Bash(cmd.exe /c \"where ffmpeg\")"
+      "Bash(cmd.exe /c \"where ffmpeg\")",
+      "Bash(gh api:*)",
+      "Bash(npx @tailwindcss/upgrade:*)",
+      "Bash(git checkout:*)",
+      "Bash(npm uninstall:*)"
     ]
   }
 }

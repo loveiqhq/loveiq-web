@@ -22,7 +22,7 @@ const S01Hero: FC = () => {
   return (
     <section
       id="start"
-      className="section-shell relative -mt-2 flex min-h-screen items-center overflow-hidden bg-page text-text-primary sm:-mt-3"
+      className="section-shell relative -mt-2 flex min-h-[82svh] items-center overflow-hidden bg-page text-text-primary sm:-mt-3 sm:min-h-screen"
     >
       <div className="pointer-events-none absolute inset-0 overflow-hidden">
         <video
