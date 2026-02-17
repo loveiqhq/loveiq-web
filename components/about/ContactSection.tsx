@@ -239,115 +239,155 @@ const ContactSection: FC = () => {
                 })
               }
             />
-            <form className="w-full space-y-6 md:space-y-8" onSubmit={handleSubmit}>
-              {/* 2-column grid for form fields on desktop */}
-              <div className="grid gap-6 md:grid-cols-2 md:gap-x-12 md:gap-y-8">
-                <FormField
-                  label="First name*"
-                  id="firstName"
-                  type="text"
-                  value={form.firstName}
-                  onChange={handleChange}
-                  disabled={submitting}
-                />
-                <FormField
-                  label="Phone*"
-                  id="phone"
-                  type="tel"
-                  value={form.phone}
-                  onChange={handleChange}
-                  disabled={submitting}
-                />
-                <FormField
-                  label="Last Name*"
-                  id="lastName"
-                  type="text"
-                  value={form.lastName}
-                  onChange={handleChange}
-                  disabled={submitting}
-                />
-                <FormField
-                  label="Email*"
-                  id="email"
-                  type="email"
-                  value={form.email}
-                  onChange={handleChange}
-                  disabled={submitting}
-                />
-              </div>
-
-              {/* Message and bottom row in 2-column layout on desktop */}
-              <div className="flex w-full flex-col items-center gap-6 md:grid md:grid-cols-2 md:items-end md:gap-x-12">
-                <div className="flex w-full max-w-[400px] flex-col gap-2 md:max-w-none">
-                  <label htmlFor="message" className="text-sm font-medium text-[#9CA3AF]">
-                    How can we help you?*
-                  </label>
-                  <textarea
-                    id="message"
-                    name="message"
-                    rows={4}
-                    className="w-full rounded-xl border border-white/10 bg-[#0a0510]/50 px-4 py-4 text-sm font-light text-white placeholder:text-[#4B5563] focus:border-white/30 focus:outline-none disabled:opacity-60"
-                    placeholder="Tell us a bit about yourself and your project goals"
-                    value={form.message}
-                    onChange={handleChange}
-                    maxLength={1000}
-                    required
-                    disabled={submitting}
-                    aria-describedby="message-count"
+            {status.type === "success" ? (
+              <div
+                className="flex w-full animate-fade-in-up flex-col items-center py-12"
+                role="status"
+                aria-live="polite"
+              >
+                {/* Gradient-bordered checkmark circle */}
+                <div className="relative mb-6 flex h-16 w-16 animate-scale-in items-center justify-center">
+                  <div
+                    className="absolute inset-0 rounded-full bg-gradient-to-br from-[#FE6839] to-[#9c7dff] opacity-60 blur-xl"
+                    aria-hidden="true"
                   />
-                  <div id="message-count" className="text-right text-xs text-[#4B5563]">
-                    {1000 - form.message.length} characters remaining
-                  </div>
-                </div>
-
-                <div className="flex w-full max-w-[400px] flex-col items-center gap-4 md:max-w-none md:flex-row md:items-center md:justify-start md:gap-6">
-                  <div className="flex justify-center md:justify-start">
-                    <div
-                      ref={recaptchaContainerRef}
-                      className="g-recaptcha min-h-[78px]"
-                      style={{ transform: "scale(0.85)", transformOrigin: "center top" }}
-                      aria-label="reCAPTCHA"
-                      data-theme="light"
-                      data-sitekey={siteKey}
-                    />
-                    {!captchaReady && (
-                      <div className="mt-2 text-xs font-medium text-[#4B5563]">
-                        Captcha loading... If it does not appear, disable blockers and reload.
-                      </div>
-                    )}
-                  </div>
-                  <button
-                    type="submit"
-                    className="flex w-full items-center justify-center gap-2 rounded-full border border-white/20 px-6 py-3 text-sm font-bold text-white transition hover:-translate-y-[2px] hover:border-white/35 focus-visible-ring disabled:cursor-not-allowed disabled:opacity-60 md:inline-flex md:w-fit md:px-8"
-                    disabled={submitting}
+                  <div
+                    className="absolute inset-0 rounded-full bg-gradient-to-br from-[#FE6839] to-[#9c7dff]"
+                    aria-hidden="true"
+                  />
+                  <div
+                    className="absolute inset-[2px] rounded-full bg-[#120B1C]"
+                    aria-hidden="true"
+                  />
+                  <svg
+                    className="relative h-7 w-7 text-white"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2.5"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    aria-hidden="true"
                   >
-                    {submitting ? "Sending..." : "Submit"}
-                    <svg
-                      aria-hidden
-                      viewBox="0 0 24 24"
-                      className="h-4 w-4"
-                      fill="none"
-                      stroke="currentColor"
-                      strokeWidth="2"
-                    >
-                      <path d="M5 12h14" />
-                      <path d="m12 5 7 7-7 7" />
-                    </svg>
-                  </button>
+                    <path d="M5 13l4 4L19 7" />
+                  </svg>
                 </div>
+                <h3 className="font-serif text-2xl text-white">Message Sent!</h3>
+                <p className="mt-2 text-sm text-white/70">We&apos;ll be in touch soon</p>
+                <button
+                  type="button"
+                  className="mt-6 rounded-full border border-white/20 px-6 py-2.5 text-sm font-semibold text-white transition hover:-translate-y-[1px] hover:border-white/35 focus-visible-ring"
+                  onClick={() => setStatus({ type: "idle" })}
+                >
+                  Send another message
+                </button>
               </div>
+            ) : (
+              <form className="w-full space-y-6 md:space-y-8" onSubmit={handleSubmit}>
+                {/* 2-column grid for form fields on desktop */}
+                <div className="grid gap-6 md:grid-cols-2 md:gap-x-12 md:gap-y-8">
+                  <FormField
+                    label="First name*"
+                    id="firstName"
+                    type="text"
+                    value={form.firstName}
+                    onChange={handleChange}
+                    disabled={submitting}
+                  />
+                  <FormField
+                    label="Phone*"
+                    id="phone"
+                    type="tel"
+                    value={form.phone}
+                    onChange={handleChange}
+                    disabled={submitting}
+                  />
+                  <FormField
+                    label="Last Name*"
+                    id="lastName"
+                    type="text"
+                    value={form.lastName}
+                    onChange={handleChange}
+                    disabled={submitting}
+                  />
+                  <FormField
+                    label="Email*"
+                    id="email"
+                    type="email"
+                    value={form.email}
+                    onChange={handleChange}
+                    disabled={submitting}
+                  />
+                </div>
 
-              {status.type === "error" && (
-                <div className="text-sm font-medium text-[#fca5a5]" role="alert">
-                  {status.message}
+                {/* Message and bottom row in 2-column layout on desktop */}
+                <div className="flex w-full flex-col items-center gap-6 md:grid md:grid-cols-2 md:items-end md:gap-x-12">
+                  <div className="flex w-full max-w-[400px] flex-col gap-2 md:max-w-none">
+                    <label htmlFor="message" className="text-sm font-medium text-[#9CA3AF]">
+                      How can we help you?*
+                    </label>
+                    <textarea
+                      id="message"
+                      name="message"
+                      rows={4}
+                      className="w-full rounded-xl border border-white/10 bg-[#0a0510]/50 px-4 py-4 text-sm font-light text-white placeholder:text-[#4B5563] focus:border-white/30 focus:outline-none disabled:opacity-60"
+                      placeholder="Tell us a bit about yourself and your project goals"
+                      value={form.message}
+                      onChange={handleChange}
+                      maxLength={1000}
+                      required
+                      disabled={submitting}
+                      aria-describedby="message-count"
+                    />
+                    <div id="message-count" className="text-right text-xs text-[#4B5563]">
+                      {1000 - form.message.length} characters remaining
+                    </div>
+                  </div>
+
+                  <div className="flex w-full max-w-[400px] flex-col items-center gap-4 md:max-w-none md:flex-row md:items-center md:justify-start md:gap-6">
+                    <div className="flex justify-center md:justify-start">
+                      <div
+                        ref={recaptchaContainerRef}
+                        className="g-recaptcha min-h-[78px]"
+                        style={{ transform: "scale(0.85)", transformOrigin: "center top" }}
+                        aria-label="reCAPTCHA"
+                        data-theme="light"
+                        data-sitekey={siteKey}
+                      />
+                      {!captchaReady && (
+                        <div className="mt-2 text-xs font-medium text-[#4B5563]">
+                          Captcha loading... If it does not appear, disable blockers and reload.
+                        </div>
+                      )}
+                    </div>
+                    <button
+                      type="submit"
+                      className="flex w-full items-center justify-center gap-2 rounded-full border border-white/20 px-6 py-3 text-sm font-bold text-white transition hover:-translate-y-[2px] hover:border-white/35 focus-visible-ring disabled:cursor-not-allowed disabled:opacity-60 md:inline-flex md:w-fit md:px-8"
+                      disabled={submitting}
+                    >
+                      {submitting ? "Sending..." : "Submit"}
+                      <svg
+                        aria-hidden
+                        viewBox="0 0 24 24"
+                        className="h-4 w-4"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth="2"
+                      >
+                        <path d="M5 12h14" />
+                        <path d="m12 5 7 7-7 7" />
+                      </svg>
+                    </button>
+                  </div>
                 </div>
-              )}
-              {status.type === "success" && (
-                <div className="text-sm font-medium text-[#34d399]" role="status">
-                  {status.message}
-                </div>
-              )}
-            </form>
+
+                {status.type === "error" && (
+                  <div className="text-sm font-medium text-[#fca5a5]" role="alert">
+                    {status.message}
+                  </div>
+                )}
+              </form>
+            )}
           </div>
         </div>
       </div>

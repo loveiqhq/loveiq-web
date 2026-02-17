@@ -153,69 +153,99 @@ export default function WaitlistPage() {
             </p>
           </div>
 
-          <form
-            className="mx-auto mb-6 flex w-full max-w-xl flex-col gap-3"
-            onSubmit={(evt) => {
-              evt.preventDefault();
-              if (status !== "loading") {
-                handleSubmit();
-              }
-            }}
-          >
-            <input
-              type="text"
-              name="website"
-              value={website}
-              onChange={(e) => setWebsite(e.target.value)}
-              className="absolute -left-[9999px] h-0 w-0 overflow-hidden"
-              tabIndex={-1}
-              autoComplete="off"
-              aria-hidden="true"
-            />
-            <div className="grid grid-cols-[1fr_auto] items-stretch gap-2 rounded-2xl border border-white/10 bg-white/5 p-2 shadow-xl shadow-black/20 transition-all hover:bg-white/10 focus-within:border-[#FE6839]/50 focus-within:ring-1 focus-within:ring-[#FE6839]/50 sm:gap-3 sm:rounded-full sm:p-2 sm:pl-4">
+          {status === "success" ? (
+            <div
+              className="mx-auto mb-6 flex w-full max-w-xl animate-fade-in-up flex-col items-center py-12"
+              role="status"
+              aria-live="polite"
+            >
+              {/* Gradient-bordered checkmark circle */}
+              <div className="relative mb-6 flex h-16 w-16 animate-scale-in items-center justify-center">
+                <div
+                  className="absolute inset-0 rounded-full bg-gradient-to-br from-[#FE6839] to-[#9c7dff] opacity-60 blur-xl"
+                  aria-hidden="true"
+                />
+                <div
+                  className="absolute inset-0 rounded-full bg-gradient-to-br from-[#FE6839] to-[#9c7dff]"
+                  aria-hidden="true"
+                />
+                <div
+                  className="absolute inset-[2px] rounded-full bg-[#0A0510]"
+                  aria-hidden="true"
+                />
+                <svg
+                  className="relative h-7 w-7 text-white"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2.5"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  aria-hidden="true"
+                >
+                  <path d="M5 13l4 4L19 7" />
+                </svg>
+              </div>
+              <h3 className="font-serif text-2xl text-white">You&apos;re In!</h3>
+              <p className="mt-2 text-sm text-white/70">
+                Check your email for confirmation details
+              </p>
+            </div>
+          ) : (
+            <form
+              className="mx-auto mb-6 flex w-full max-w-xl flex-col gap-3"
+              onSubmit={(evt) => {
+                evt.preventDefault();
+                if (status !== "loading") {
+                  handleSubmit();
+                }
+              }}
+            >
               <input
-                type="email"
-                name="email"
-                aria-label="Email address"
-                className="h-12 min-w-0 w-full border-none bg-transparent pr-12 text-base text-white placeholder-white/60 focus:outline-none focus:ring-0"
-                placeholder="name@email.com"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                autoComplete="email"
-                inputMode="email"
-                autoCorrect="off"
-                autoCapitalize="none"
-                data-lpignore="true"
-                data-1p-ignore="true"
-                required
+                type="text"
+                name="website"
+                value={website}
+                onChange={(e) => setWebsite(e.target.value)}
+                className="absolute -left-[9999px] h-0 w-0 overflow-hidden"
+                tabIndex={-1}
+                autoComplete="off"
+                aria-hidden="true"
               />
-              <button
-                type="submit"
-                className="justify-self-end whitespace-nowrap rounded-full bg-[#FE6839] px-4 py-2.5 text-sm font-semibold text-white shadow-lg shadow-[#FE6839]/20 transition-all hover:bg-[#ff7b52] hover:shadow-[#FE6839]/40 sm:px-7 sm:py-3 sm:text-base"
-                disabled={status === "loading"}
-              >
-                {status === "loading"
-                  ? "Submitting..."
-                  : status === "success"
-                    ? "Joined!"
-                    : "Join waitlist"}
-              </button>
-            </div>
-            <div className="min-h-[32px]" aria-live="polite" role="status">
-              {status === "success" && (
-                <p className="inline-flex items-center gap-2 rounded-full bg-white/10 px-4 py-2 text-sm font-semibold text-[#9ef0c0] shadow-[0_10px_30px_rgba(0,0,0,0.25)]">
-                  <span className="h-2 w-2 rounded-full bg-[#9ef0c0]" aria-hidden />
-                  You&apos;re on the waitlist. Check your email for confirmation.
-                </p>
-              )}
-              {status === "error" && errorMessage && (
-                <p className="inline-flex items-center gap-2 rounded-full bg-[#2a0f15] px-4 py-2 text-sm font-semibold text-[#fca5a5] shadow-[0_10px_30px_rgba(0,0,0,0.25)]">
-                  <span className="h-2 w-2 rounded-full bg-[#fca5a5]" aria-hidden />
-                  {errorMessage}
-                </p>
-              )}
-            </div>
-          </form>
+              <div className="grid grid-cols-[1fr_auto] items-stretch gap-2 rounded-2xl border border-white/10 bg-white/5 p-2 shadow-xl shadow-black/20 transition-all hover:bg-white/10 focus-within:border-[#FE6839]/50 focus-within:ring-1 focus-within:ring-[#FE6839]/50 sm:gap-3 sm:rounded-full sm:p-2 sm:pl-4">
+                <input
+                  type="email"
+                  name="email"
+                  aria-label="Email address"
+                  className="h-12 min-w-0 w-full border-none bg-transparent pr-12 text-base text-white placeholder-white/60 focus:outline-none focus:ring-0"
+                  placeholder="name@email.com"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  autoComplete="email"
+                  inputMode="email"
+                  autoCorrect="off"
+                  autoCapitalize="none"
+                  data-lpignore="true"
+                  data-1p-ignore="true"
+                  required
+                />
+                <button
+                  type="submit"
+                  className="justify-self-end whitespace-nowrap rounded-full bg-[#FE6839] px-4 py-2.5 text-sm font-semibold text-white shadow-lg shadow-[#FE6839]/20 transition-all hover:bg-[#ff7b52] hover:shadow-[#FE6839]/40 sm:px-7 sm:py-3 sm:text-base"
+                  disabled={status === "loading"}
+                >
+                  {status === "loading" ? "Submitting..." : "Join waitlist"}
+                </button>
+              </div>
+              <div className="min-h-[32px]" aria-live="polite" role="status">
+                {status === "error" && errorMessage && (
+                  <p className="inline-flex items-center gap-2 rounded-full bg-[#2a0f15] px-4 py-2 text-sm font-semibold text-[#fca5a5] shadow-[0_10px_30px_rgba(0,0,0,0.25)]">
+                    <span className="h-2 w-2 rounded-full bg-[#fca5a5]" aria-hidden />
+                    {errorMessage}
+                  </p>
+                )}
+              </div>
+            </form>
+          )}
 
           <div className="mb-8 flex flex-col items-center gap-3">
             <div className="-space-x-3 flex">
