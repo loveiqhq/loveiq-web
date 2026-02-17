@@ -1,12 +1,18 @@
 "use client";
 
 import type { FC } from "react";
-import { useCallback, useState } from "react";
+import { useCallback, useState, useSyncExternalStore } from "react";
 import Link from "next/link";
 import { trackLearnMore, trackStartSurvey } from "../../lib/analytics";
 
+const noopSubscribe = () => () => {};
+const getVideoSrc = () =>
+  window.innerWidth <= 640 ? "/couple-hero-mobile.mp4" : "/couple-hero.mp4";
+const getServerVideoSrc = (): string | null => null;
+
 const S01Hero: FC = () => {
   const [videoReady, setVideoReady] = useState(false);
+  const videoSrc = useSyncExternalStore(noopSubscribe, getVideoSrc, getServerVideoSrc);
 
   const videoRef = useCallback((video: HTMLVideoElement | null) => {
     if (!video) return;
@@ -17,6 +23,7 @@ const S01Hero: FC = () => {
     const onReady = () => setVideoReady(true);
     video.addEventListener("canplay", onReady, { once: true });
     video.addEventListener("loadeddata", onReady, { once: true });
+    video.addEventListener("playing", onReady, { once: true });
   }, []);
 
   return (
@@ -25,20 +32,22 @@ const S01Hero: FC = () => {
       className="section-shell relative -mt-2 flex min-h-[82svh] items-center overflow-hidden bg-page text-text-primary sm:-mt-3 sm:min-h-screen"
     >
       <div className="pointer-events-none absolute inset-0 overflow-hidden">
-        <video
-          ref={videoRef}
-          className="absolute inset-0 h-full w-full object-cover transition-opacity duration-500 ease-out sm:scale-105 sm:translate-y-[2%] sm:[object-position:50%_40%] [object-position:50%_30%]"
-          autoPlay
-          muted
-          loop
-          playsInline
-          preload="auto"
-          aria-hidden
-          style={{ opacity: videoReady ? 0.8 : 0 }}
-        >
-          <source media="(max-width: 640px)" src="/couple-hero-mobile.mp4" type="video/mp4" />
-          <source src="/couple-hero.mp4" type="video/mp4" />
-        </video>
+        {videoSrc && (
+          <video
+            ref={videoRef}
+            className="absolute inset-0 h-full w-full object-cover transition-opacity duration-300 ease-out sm:scale-105 sm:translate-y-[2%] sm:[object-position:50%_40%] [object-position:50%_30%]"
+            autoPlay
+            muted
+            loop
+            playsInline
+            preload="auto"
+            // @ts-expect-error -- fetchPriority is valid HTML but missing from React types
+            fetchPriority="high"
+            aria-hidden
+            src={videoSrc}
+            style={{ opacity: videoReady ? 0.8 : 0 }}
+          />
+        )}
         <div className="absolute inset-0 bg-gradient-to-b from-[#0b0613]/35 via-[#0b0613]/55 to-[#0b0613]/80" />
         <div className="absolute inset-x-0 bottom-0 h-64 bg-gradient-to-b from-transparent via-[#0b0613]/65 to-[#0A0510]" />
       </div>
