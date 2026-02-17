@@ -83,7 +83,8 @@
       "Bash(du:*)",
       "Bash(git diff:*)",
       "Bash(git status:*)",
-      "Bash(npm run test:coverage:*)"
+      "Bash(npm run test:coverage:*)",
+      "Bash(chmod:*)"
     ]
   }
 }

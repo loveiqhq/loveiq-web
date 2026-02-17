@@ -74,4 +74,67 @@ __tests__/
 
 ---
 
-_Last updated: 2026-02-15_
+## E2E Tests (Playwright)
+
+**Runner:** Playwright 1.58+
+**Config:** `playwright.config.ts`
+
+**Run Commands:**
+
+```bash
+npm run test:e2e           # Build prod + run all browser projects
+npx playwright show-report # Open last HTML report
+```
+
+**Browser Projects:**
+| Name | Device | Viewport |
+|------|--------|----------|
+| Desktop Chrome | Desktop Chrome | 1280×720 |
+| Desktop Firefox | Desktop Firefox | 1280×720 |
+| Desktop Safari | Desktop Safari | 1280×720 |
+| Mobile Chrome | Pixel 7 | 412×915 |
+| Mobile Safari | iPhone 15 Pro | 393×852 |
+
+**Test Files:**
+
+```
+e2e/
+├── smoke.spec.ts        # Landing, nav, footer, security headers, 404, API
+├── navigation.spec.ts   # Desktop nav links + mobile hamburger
+├── interactions.spec.ts # FAQ accordion, CTA hrefs, footer links, waitlist form
+└── pages.spec.ts        # All 12 static routes: status 200 + title check
+```
+
+**Viewport breakpoints:**
+
+- `sm` = 640px — hamburger hidden above this (`sm:hidden`)
+- `lg` = 1024px — desktop nav links shown above this (`hidden lg:flex`)
+- Desktop test skip: `test.skip(width < 1024, "desktop-only")`
+- Mobile test skip: `test.skip(width >= 640, "mobile-only")`
+
+**Viewport skip pattern:**
+
+```typescript
+test.beforeEach(async ({ page }) => {
+  const width = page.viewportSize()?.width ?? 0;
+  test.skip(width < 1024, "desktop-only");
+  await page.goto("/");
+});
+```
+
+**Web server config:**
+
+- Uses production build: `npm run build && npm run start`
+- `reuseExistingServer: !process.env.CI` — reuses running local server
+
+**Pre-push hook rule:**
+E2E tests must NOT be in pre-push hooks. Pre-push runs only `npm test` (Vitest). E2E runs in CI via the `browser-tests` job in `.github/workflows/security.yml`.
+
+**CI job:** `browser-tests` in `.github/workflows/security.yml`
+
+- Installs engines: `npx playwright install --with-deps chromium firefox webkit`
+- Uploads HTML report as artifact (14-day retention)
+
+---
+
+_Last updated: 2026-02-18_

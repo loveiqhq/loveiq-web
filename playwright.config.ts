@@ -10,17 +10,22 @@ export default defineConfig({
   use: {
     baseURL: "http://localhost:3000",
     trace: "on-first-retry",
+    screenshot: "only-on-failure",
+    video: "on-first-retry",
   },
   projects: [
-    {
-      name: "chromium",
-      use: { ...devices["Desktop Chrome"] },
-    },
+    { name: "Desktop Chrome", use: { ...devices["Desktop Chrome"] } },
+    { name: "Desktop Firefox", use: { ...devices["Desktop Firefox"] } },
+    { name: "Desktop Safari", use: { ...devices["Desktop Safari"] } },
+    { name: "Mobile Chrome", use: { ...devices["Pixel 7"] } },
+    { name: "Mobile Safari", use: { ...devices["iPhone 15 Pro"] } },
   ],
   webServer: {
-    command: "npm run dev",
+    command: "npm run build && npm run start",
     url: "http://localhost:3000",
     reuseExistingServer: !process.env.CI,
-    timeout: 60_000,
+    timeout: 120_000,
+    stdout: "ignore",
+    stderr: "pipe",
   },
 });

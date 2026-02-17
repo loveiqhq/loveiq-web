@@ -89,19 +89,19 @@ loveiq-web/
 
 Copy `.env.example` to `.env.local` and fill values:
 
-| Variable | Required | Purpose |
-|----------|----------|---------|
-| `NEXT_PUBLIC_SITE_URL` | Yes | Canonical URL for metadata |
-| `SUPABASE_URL` | For forms | Waitlist database |
-| `SUPABASE_SERVICE_ROLE_KEY` | For forms | Supabase auth (server-only!) |
-| `RESEND_API_KEY` | For forms | Email sending |
-| `RESEND_FROM` | No | From address (default: `LoveIQ <hello@send.loveiq.org>`) |
-| `RESEND_REPLY_TO` | No | Reply-to address |
-| `NEXT_PUBLIC_RECAPTCHA_SITE_KEY` | For contact | reCAPTCHA client key |
-| `RECAPTCHA_SECRET_KEY` | For contact | reCAPTCHA server key |
-| `SLACK_WAITLIST_WEBHOOK_URL` | No | Slack notifications |
-| `SLACK_CONTACT_WEBHOOK_URL` | No | Slack notifications |
-| `CONTACT_TO_EMAIL` | For contact | Contact form recipient |
+| Variable                         | Required    | Purpose                                                  |
+| -------------------------------- | ----------- | -------------------------------------------------------- |
+| `NEXT_PUBLIC_SITE_URL`           | Yes         | Canonical URL for metadata                               |
+| `SUPABASE_URL`                   | For forms   | Waitlist database                                        |
+| `SUPABASE_SERVICE_ROLE_KEY`      | For forms   | Supabase auth (server-only!)                             |
+| `RESEND_API_KEY`                 | For forms   | Email sending                                            |
+| `RESEND_FROM`                    | No          | From address (default: `LoveIQ <hello@send.loveiq.org>`) |
+| `RESEND_REPLY_TO`                | No          | Reply-to address                                         |
+| `NEXT_PUBLIC_RECAPTCHA_SITE_KEY` | For contact | reCAPTCHA client key                                     |
+| `RECAPTCHA_SECRET_KEY`           | For contact | reCAPTCHA server key                                     |
+| `SLACK_WAITLIST_WEBHOOK_URL`     | No          | Slack notifications                                      |
+| `SLACK_CONTACT_WEBHOOK_URL`      | No          | Slack notifications                                      |
+| `CONTACT_TO_EMAIL`               | For contact | Contact form recipient                                   |
 
 **The site renders without env vars.** Forms will fail gracefully with error messages.
 
@@ -120,28 +120,48 @@ npm run dev                  # http://localhost:3000
 ### CSP in Development
 
 The middleware (`proxy.ts`) relaxes CSP in dev mode:
+
 - Allows `'unsafe-eval'` for Next.js HMR
 - Allows `ws://localhost:*` for WebSocket connections
 - Skips `upgrade-insecure-requests`
 
 ### Common Issues
 
-| Issue | Fix |
-|-------|-----|
-| Form returns 403 | Clear cookies for localhost, refresh page |
-| CSP errors in console | Ensure running latest code with dev CSP relaxation |
+| Issue                 | Fix                                                                      |
+| --------------------- | ------------------------------------------------------------------------ |
+| Form returns 403      | Clear cookies for localhost, refresh page                                |
+| CSP errors in console | Ensure running latest code with dev CSP relaxation                       |
 | reCAPTCHA not loading | Set `NEXT_PUBLIC_RECAPTCHA_SITE_KEY`, register localhost in Google admin |
 
 ---
 
 ## Testing
 
-**No test framework configured.** Manual testing only.
+### Unit Tests (Vitest)
 
-To validate changes:
-1. Run `npm run lint` - Must pass
-2. Run `npm run build` - Must succeed
-3. Test affected pages/forms manually in dev mode
+- `npm test` — run all unit tests once
+- `npm run test:watch` — watch mode
+- `npm run test:coverage` — with coverage report
+- Tests live in `__tests__/` mirroring source structure
+
+### E2E Tests (Playwright)
+
+- `npm run test:e2e` — builds prod, starts server, runs all 5 browser projects
+- Browser projects: Desktop Chrome/Firefox/Safari, Mobile Chrome (Pixel 7), Mobile Safari (iPhone 15 Pro)
+- Reports saved to `playwright-report/`
+- See `.planning/codebase/TESTING.md` for full E2E reference
+
+### Pre-push hook standard
+
+- Pre-push runs: `npm test` (unit tests only, ~10–30s) ✅
+- E2E belongs in CI, NOT pre-push — too slow (~3–6 min), blocks developer flow ❌
+
+### To validate changes manually
+
+1. `npm run lint` — must pass
+2. `npm test` — must pass
+3. `npm run build` — must succeed
+4. `npm run test:e2e` — run before PRs or after touching UI
 
 ---
 
@@ -163,6 +183,7 @@ Runs on push/PR to `main`.
 ### Design Tokens
 
 CSS custom properties in `app/globals.css`:
+
 ```css
 --color-bg: #0b0613;
 --color-surface: #0f0a18;
@@ -172,6 +193,7 @@ CSS custom properties in `app/globals.css`:
 ```
 
 Extended in `tailwind.config.js`:
+
 ```js
 colors: {
   page: "var(--color-bg)",
@@ -188,12 +210,12 @@ colors: {
 
 ### Utility Classes
 
-| Class | Purpose |
-|-------|---------|
-| `.content-shell` | Max-width container (1200px) |
-| `.section-shell` | Section vertical padding |
+| Class                | Purpose                                         |
+| -------------------- | ----------------------------------------------- |
+| `.content-shell`     | Max-width container (1200px)                    |
+| `.section-shell`     | Section vertical padding                        |
 | `.animate-on-scroll` | Fade-up on scroll (add `.animate` when visible) |
-| `.reveal-on-scroll` | Alternative scroll reveal (add `.is-visible`) |
+| `.reveal-on-scroll`  | Alternative scroll reveal (add `.is-visible`)   |
 
 ### Component Patterns
 
@@ -202,9 +224,7 @@ colors: {
 const SectionName: FC = () => {
   return (
     <section className="relative bg-page py-16 lg:py-24">
-      <div className="content-shell">
-        {/* content */}
-      </div>
+      <div className="content-shell">{/* content */}</div>
     </section>
   );
 };
@@ -380,6 +400,7 @@ Check import paths. This repo uses relative imports (no `@/` alias).
 ### Forms fail silently
 
 Check browser DevTools Network tab for response. Common causes:
+
 - Missing CSRF cookie (refresh page)
 - Rate limited (wait 1 minute)
 - Missing env vars (check server logs)
@@ -405,15 +426,15 @@ Check browser DevTools Network tab for response. Common causes:
 
 ## File Quick Reference
 
-| Need to... | Look at... |
-|------------|------------|
-| Add landing section | `components/landing/LandingPage.tsx`, existing `S##*.tsx` |
-| Modify navigation | `components/landing/NavSection.tsx` |
-| Modify footer | `components/landing/FooterSection.tsx` |
-| Add API endpoint | `app/api/waitlist/route.ts` (reference) |
-| Change email template | `lib/emails/waitlist.ts` |
-| Add analytics event | `lib/analytics.ts` |
-| Modify design tokens | `app/globals.css` (CSS vars), `tailwind.config.js` |
-| Update security headers | `proxy.ts` |
-| Understand architecture | `.planning/codebase/ARCHITECTURE.md` |
-| Check coding conventions | `.planning/codebase/CONVENTIONS.md` |
+| Need to...               | Look at...                                                |
+| ------------------------ | --------------------------------------------------------- |
+| Add landing section      | `components/landing/LandingPage.tsx`, existing `S##*.tsx` |
+| Modify navigation        | `components/landing/NavSection.tsx`                       |
+| Modify footer            | `components/landing/FooterSection.tsx`                    |
+| Add API endpoint         | `app/api/waitlist/route.ts` (reference)                   |
+| Change email template    | `lib/emails/waitlist.ts`                                  |
+| Add analytics event      | `lib/analytics.ts`                                        |
+| Modify design tokens     | `app/globals.css` (CSS vars), `tailwind.config.js`        |
+| Update security headers  | `proxy.ts`                                                |
+| Understand architecture  | `.planning/codebase/ARCHITECTURE.md`                      |
+| Check coding conventions | `.planning/codebase/CONVENTIONS.md`                       |
