@@ -79,7 +79,10 @@
       "Bash(gh api:*)",
       "Bash(npx @tailwindcss/upgrade:*)",
       "Bash(git checkout:*)",
-      "Bash(npm uninstall:*)"
+      "Bash(npm uninstall:*)",
+      "Bash(du:*)",
+      "Bash(git diff:*)",
+      "Bash(git status:*)"
     ]
   }
 }
