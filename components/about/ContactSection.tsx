@@ -293,8 +293,9 @@ const ContactSection: FC = () => {
                     maxLength={1000}
                     required
                     disabled={submitting}
+                    aria-describedby="message-count"
                   />
-                  <div className="text-right text-xs text-[#4B5563]">
+                  <div id="message-count" className="text-right text-xs text-[#4B5563]">
                     {1000 - form.message.length} characters remaining
                   </div>
                 </div>
