@@ -409,8 +409,9 @@ h3,
   border: 1px solid rgba(255, 255, 255, 0.1);
   background: rgba(21, 10, 34, 0.85);
   box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
-  backdrop-filter: blur(24px);
-  -webkit-backdrop-filter: blur(24px);
+  /* backdrop-filter only on .is-open — on iOS Safari, -webkit-backdrop-filter
+     creates a GPU compositing layer even when visibility:hidden/pointer-events:none,
+     which can intercept touch events on the hamburger button above it */
   overflow: hidden;
   opacity: 0;
   transform: translateY(-12px) scale(0.97);
@@ -423,6 +424,8 @@ h3,
 }
 
 .mobile-menu-panel.is-open {
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
   opacity: 1;
   transform: translateY(0) scale(1);
   visibility: visible;
