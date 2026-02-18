@@ -409,17 +409,15 @@ h3,
   border: 1px solid rgba(255, 255, 255, 0.1);
   background: rgba(21, 10, 34, 0.85);
   box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
-  /* backdrop-filter only on .is-open — on iOS Safari, -webkit-backdrop-filter
-     creates a GPU compositing layer even when visibility:hidden/pointer-events:none,
-     which can intercept touch events on the hamburger button above it */
+  /* No backdrop-filter or transform in closed state — on iOS Safari both
+     create GPU compositing layers even when visibility:hidden/pointer-events:none,
+     which intercept touch events on elements below (hamburger, FAQ buttons, etc.) */
   overflow: hidden;
   opacity: 0;
-  transform: translateY(-12px) scale(0.97);
   visibility: hidden;
   pointer-events: none;
   transition:
     opacity 280ms cubic-bezier(0.4, 0, 0.2, 1),
-    transform 280ms cubic-bezier(0.4, 0, 0.2, 1),
     visibility 0ms 280ms;
 }
 
@@ -427,12 +425,10 @@ h3,
   backdrop-filter: blur(24px);
   -webkit-backdrop-filter: blur(24px);
   opacity: 1;
-  transform: translateY(0) scale(1);
   visibility: visible;
   pointer-events: auto;
   transition:
     opacity 300ms cubic-bezier(0.16, 1, 0.3, 1),
-    transform 300ms cubic-bezier(0.16, 1, 0.3, 1),
     visibility 0ms 0ms;
 }
 

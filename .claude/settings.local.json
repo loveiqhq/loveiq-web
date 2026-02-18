@@ -86,7 +86,8 @@
       "Bash(npm run test:coverage:*)",
       "Bash(chmod:*)",
       "Bash(Remove-Item newerror.txt)",
-      "Bash(del:*)"
+      "Bash(del:*)",
+      "Bash(Remove-Item \"C:\\\\Users\\\\Hamza Korkutovic\\\\loveiq-web\\\\newerror.txt\")"
     ]
   }
 }

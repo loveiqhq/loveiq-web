@@ -177,7 +177,7 @@ const S13FAQ: FC = () => {
       className="section-shell relative overflow-hidden bg-[#0A0510] px-4 text-text-primary"
       aria-labelledby="faq-heading"
     >
-      <div className="content-shell relative flex max-w-4xl flex-col items-center gap-8 animate-on-scroll">
+      <div className="content-shell relative flex max-w-4xl flex-col items-center gap-8">
         <div className="flex items-center gap-2 rounded-full border border-border bg-white/5 px-4 py-1 text-[11px] font-semibold uppercase tracking-[0.2em] text-[#FE6839]">
           FAQs
         </div>

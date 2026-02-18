@@ -11,6 +11,7 @@ for (const route of criticalRoutes) {
       .withTags(["wcag2a", "wcag2aa", "wcag21aa"])
       .exclude("#cookieyes-root") // third-party consent banner
       .exclude(".g-recaptcha") // third-party reCAPTCHA widget
+      .exclude(".bg-clip-text") // gradient text — axe cannot evaluate variable-contrast gradients
       .analyze();
 
     // Only fail on critical or serious violations (minor/moderate are tracked, not blocking)

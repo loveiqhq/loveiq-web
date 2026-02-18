@@ -231,8 +231,11 @@ export default function WaitlistPage() {
                   required
                 />
                 <button
-                  type="submit"
-                  className="justify-self-end whitespace-nowrap rounded-full bg-[#FE6839] px-4 py-2.5 text-sm font-semibold text-white shadow-lg shadow-[#FE6839]/20 transition-all hover:bg-[#ff7b52] hover:shadow-[#FE6839]/40 sm:px-7 sm:py-3 sm:text-base"
+                  type="button"
+                  onClick={() => {
+                    if (status !== "loading") handleSubmit();
+                  }}
+                  className="justify-self-end whitespace-nowrap rounded-full bg-gradient-brand px-4 py-2.5 text-sm font-semibold text-white shadow-pill transition-all hover:-translate-y-[2px] sm:px-7 sm:py-3 sm:text-base"
                   disabled={status === "loading"}
                 >
                   {status === "loading" ? "Submitting..." : "Join waitlist"}
@@ -281,20 +284,20 @@ export default function WaitlistPage() {
             ))}
           </div>
 
-          <div className="mt-10 flex flex-wrap items-center justify-center gap-4 text-[11px] text-gray-500">
+          <div className="mt-10 flex flex-wrap items-center justify-center gap-4 text-[11px] text-gray-400">
             <a href="/privacy-policy" className="hover:text-white/70 transition-colors">
               Privacy Policy
             </a>
-            <span className="text-gray-600">&gt;</span>
+            <span className="text-gray-400">&gt;</span>
             <a href="/terms-of-use" className="hover:text-white/70 transition-colors">
               Terms of Use
             </a>
-            <span className="text-gray-600">&gt;</span>
+            <span className="text-gray-400">&gt;</span>
             <a href="/medical-disclaimer" className="hover:text-white/70 transition-colors">
               Medical &amp; Psychological Disclaimer
             </a>
           </div>
-          <div className="mt-2 text-center text-[10px] text-gray-700">
+          <div className="mt-2 text-center text-[10px] text-gray-400">
             Ac 2026 LoveIQ &gt; Designed based on User Request
           </div>
         </div>
