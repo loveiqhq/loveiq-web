@@ -350,7 +350,6 @@ const ContactSection: FC = () => {
                         ref={recaptchaContainerRef}
                         className="g-recaptcha min-h-[78px]"
                         style={{ transform: "scale(0.85)", transformOrigin: "center top" }}
-                        aria-label="reCAPTCHA"
                         data-theme="light"
                         data-sitekey={siteKey}
                       />

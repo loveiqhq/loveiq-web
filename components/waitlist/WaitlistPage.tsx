@@ -95,6 +95,7 @@ export default function WaitlistPage() {
 
   const handleSubmit = async () => {
     if (!email || !email.includes("@")) {
+      setStatus("error");
       setErrorMessage("Please enter a valid email.");
       return;
     }
@@ -194,6 +195,7 @@ export default function WaitlistPage() {
           ) : (
             <form
               className="mx-auto mb-6 flex w-full max-w-xl flex-col gap-3"
+              noValidate
               onSubmit={(evt) => {
                 evt.preventDefault();
                 if (status !== "loading") {

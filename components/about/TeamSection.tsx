@@ -230,6 +230,7 @@ const TeamSection: FC = () => {
                     {member.linkedinUrl && (
                       <Link
                         href={member.linkedinUrl}
+                        aria-label={`${member.name} on LinkedIn`}
                         className="transition-all duration-300 hover:scale-110 hover:text-white"
                         target="_blank"
                         rel="noreferrer"

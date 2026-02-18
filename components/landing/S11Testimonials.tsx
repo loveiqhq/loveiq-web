@@ -15,7 +15,11 @@ const testimonials: Testimonial[] = [
         <span>The results were </span>
         <span className="font-bold">more insightful than I expected</span>
         <span>.</span>
-        <span> It connected dots between emotional triggers and communication styles I hadn’t noticed before. Solid UX, too.</span>
+        <span>
+          {" "}
+          It connected dots between emotional triggers and communication styles I hadn’t noticed
+          before. Solid UX, too.
+        </span>
       </>
     ),
     name: "Noah, 29",
@@ -28,7 +32,11 @@ const testimonials: Testimonial[] = [
         <span>The report was </span>
         <span className="font-bold">shockingly accurate</span>
         <span>.</span>
-        <span> And the science behind it? Legit. I liked seeing the blend of emotional intelligence and cognitive behavior models.</span>
+        <span>
+          {" "}
+          And the science behind it? Legit. I liked seeing the blend of emotional intelligence and
+          cognitive behavior models.
+        </span>
       </>
     ),
     name: "Amir, 41",
@@ -39,7 +47,9 @@ const testimonials: Testimonial[] = [
     quote: (
       <>
         <span>We took the quiz together and compared our results—it </span>
-        <span className="font-bold">sparked one of the best conversations we&apos;ve ever had.</span>
+        <span className="font-bold">
+          sparked one of the best conversations we&apos;ve ever had.
+        </span>
         <span> It helped us understand our emotional rhythm better.</span>
       </>
     ),
@@ -61,7 +71,11 @@ const testimonials: Testimonial[] = [
   },
 ];
 
-const ratingAvatars = ["/a791b20c354705558e2dce132f88640a8b4f563a.jpg", "/762ab2dcc4e38a7a2824b7a4f5174f2627a7eaae.png", "/2239bb32f51b4c83bfb647cee859127eae298678.jpg"];
+const ratingAvatars = [
+  "/a791b20c354705558e2dce132f88640a8b4f563a.jpg",
+  "/762ab2dcc4e38a7a2824b7a4f5174f2627a7eaae.png",
+  "/2239bb32f51b4c83bfb647cee859127eae298678.jpg",
+];
 
 const avatars = [
   { src: "/0caefb431b1f1926399c403cc0418e06f729df1c.jpg" },
@@ -72,13 +86,25 @@ const avatars = [
 
 const S11Testimonials: FC = () => {
   return (
-    <section className="section-shell relative overflow-hidden bg-[#0A0510] px-4 text-text-primary" aria-labelledby="stories-heading">
+    <section
+      className="section-shell relative overflow-hidden bg-[#0A0510] px-4 text-text-primary"
+      aria-labelledby="stories-heading"
+    >
       <div className="content-shell relative flex flex-col items-center gap-10">
         <div className="flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.18em] text-text-secondary">
           <div className="flex -space-x-2">
             {ratingAvatars.map((src, idx) => (
-              <div key={idx} className="h-7 w-7 overflow-hidden rounded-full border border-white/30 bg-white/10">
-                <Image src={src} alt="Happy customer" width={28} height={28} className="h-full w-full object-cover" />
+              <div
+                key={idx}
+                className="h-7 w-7 overflow-hidden rounded-full border border-white/30 bg-white/10"
+              >
+                <Image
+                  src={src}
+                  alt="Happy customer"
+                  width={28}
+                  height={28}
+                  className="h-full w-full object-cover"
+                />
               </div>
             ))}
           </div>
@@ -86,7 +112,10 @@ const S11Testimonials: FC = () => {
         </div>
 
         <div className="space-y-2 text-center">
-          <h2 id="stories-heading" className="font-serif text-3xl leading-tight text-text-primary sm:text-4xl md:text-5xl">
+          <h2
+            id="stories-heading"
+            className="font-serif text-3xl leading-tight text-text-primary sm:text-4xl md:text-5xl"
+          >
             <span className="text-[#c36ddf]">30,000+</span> people have taken a
             <br />
             first step to understand themselves.
@@ -100,7 +129,11 @@ const S11Testimonials: FC = () => {
               className="flex h-full flex-col justify-between rounded-[24px] border border-white/5 bg-[rgba(30,16,46,0.6)] p-10 shadow-[0_10px_44px_-3px_rgba(167,139,250,0.1),0_4px_6px_-4px_#A78BFA] backdrop-blur-[2px] transition-transform duration-500 ease-out transform-gpu hover:-translate-y-2 hover:shadow-[0_20px_60px_-3px_rgba(167,139,250,0.2),0_8px_12px_-4px_#A78BFA]"
             >
               <div>
-                <div className="mb-4 flex items-center gap-1 text-accent-orange" aria-label={`${item.stars} star rating`}>
+                <div
+                  className="mb-4 flex items-center gap-1 text-accent-orange"
+                  role="img"
+                  aria-label={`${item.stars} star rating`}
+                >
                   {Array.from({ length: item.stars }).map((_, i) => (
                     <svg
                       key={i}
@@ -120,7 +153,10 @@ const S11Testimonials: FC = () => {
               </div>
               <div className="mt-8 border-t border-white/10 pt-6">
                 <div className="flex items-center gap-3">
-                  <div className="h-14 w-14 overflow-hidden rounded-full border border-white/20 shadow-soft" aria-hidden="true">
+                  <div
+                    className="h-14 w-14 overflow-hidden rounded-full border border-white/20 shadow-soft"
+                    aria-hidden="true"
+                  >
                     <Image
                       src={avatars[idx]?.src ?? avatars[0].src}
                       alt={item.name}
@@ -131,7 +167,7 @@ const S11Testimonials: FC = () => {
                   </div>
                   <div className="leading-tight">
                     <p className="text-[16px] font-semibold leading-6 text-white">{item.name}</p>
-                    <p className="text-[14px] font-medium leading-5 text-[#6b7280]">{item.title}</p>
+                    <p className="text-[14px] font-medium leading-5 text-[#9ca3af]">{item.title}</p>
                   </div>
                 </div>
               </div>

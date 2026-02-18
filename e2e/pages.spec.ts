@@ -18,7 +18,11 @@ const routes = [
 for (const path of routes) {
   test(`${path} — loads with status 200 and LoveIQ title`, async ({ page }) => {
     const errors: string[] = [];
-    page.on("pageerror", (err) => errors.push(err.message));
+    page.on("pageerror", (err) => {
+      // Ignore third-party script errors outside our control
+      if (err.message.toLowerCase().includes("cookieyes")) return;
+      errors.push(err.message);
+    });
 
     const response = await page.goto(path);
     expect(response?.status()).toBe(200);

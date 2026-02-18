@@ -10,6 +10,7 @@ for (const route of criticalRoutes) {
     const results = await new AxeBuilder({ page })
       .withTags(["wcag2a", "wcag2aa", "wcag21aa"])
       .exclude("#cookieyes-root") // third-party consent banner
+      .exclude(".g-recaptcha") // third-party reCAPTCHA widget
       .analyze();
 
     // Only fail on critical or serious violations (minor/moderate are tracked, not blocking)
