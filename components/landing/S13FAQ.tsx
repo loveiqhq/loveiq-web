@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useRef, useLayoutEffect, useEffect, type FC } from "react";
+import { useState, useRef, useLayoutEffect, type FC } from "react";
 
 const faqs = [
   {
@@ -78,13 +78,7 @@ interface FAQItemProps {
 const FAQItem: FC<FAQItemProps> = ({ question, answer }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [contentHeight, setContentHeight] = useState(0);
-  const [mounted, setMounted] = useState(false);
   const contentRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    // eslint-disable-next-line react-hooks/set-state-in-effect -- intentional: hydration gate for Playwright
-    setMounted(true);
-  }, []);
 
   useLayoutEffect(() => {
     const updateHeight = () => {
@@ -106,7 +100,6 @@ const FAQItem: FC<FAQItemProps> = ({ question, answer }) => {
         onClick={() => setIsOpen(!isOpen)}
         className="flex w-full cursor-pointer select-none items-center justify-between gap-3 rounded-xl border border-white/5 bg-[#120b1c] px-4 py-3.5 text-left transition-colors duration-300 hover:border-white/10 sm:gap-4 sm:px-6 sm:py-4 disabled:opacity-100 disabled:cursor-pointer"
         aria-expanded={isOpen}
-        disabled={!mounted}
       >
         <span className="text-sm font-medium leading-snug text-white/90 sm:text-base md:text-lg">
           {question}

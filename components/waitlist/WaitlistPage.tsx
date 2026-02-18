@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { trackWaitlistSignup } from "@/lib/analytics";
 
 const faqs = [
@@ -92,11 +92,6 @@ export default function WaitlistPage() {
   const [website, setWebsite] = useState(""); // honeypot
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
-  const [mounted, setMounted] = useState(false);
-
-  useEffect(() => {
-    setMounted(true);
-  }, []);
 
   const handleSubmit = async () => {
     if (!email || !email.includes("@")) {
@@ -241,7 +236,7 @@ export default function WaitlistPage() {
                     if (status !== "loading") handleSubmit();
                   }}
                   className="justify-self-end whitespace-nowrap rounded-full bg-gradient-brand px-4 py-2.5 text-sm font-semibold text-white shadow-pill transition-colors sm:px-7 sm:py-3 sm:text-base disabled:opacity-100 disabled:cursor-pointer"
-                  disabled={!mounted || status === "loading"}
+                  disabled={status === "loading"}
                 >
                   {status === "loading" ? "Submitting..." : "Join waitlist"}
                 </button>

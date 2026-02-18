@@ -289,7 +289,6 @@ const NavSection: FC = () => {
                 aria-label={menuOpen ? "Close menu" : "Open menu"}
                 aria-expanded={menuOpen}
                 onClick={() => setMenuOpen((prev) => !prev)}
-                disabled={!mounted}
                 style={{ visibility: mounted && !isMobile ? "hidden" : undefined }}
               >
                 <div className="flex h-4 w-[18px] flex-col gap-[5px]">
