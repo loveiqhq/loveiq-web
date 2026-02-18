@@ -19,7 +19,8 @@ const MOBILE_BREAKPOINT = 640;
 
 function useScrollDirection() {
   const [isHidden, setIsHidden] = useState(false);
-  const [isMobile, setIsMobile] = useState(false);
+  // null = not yet determined (avoids false→true race on initial hydration)
+  const [isMobile, setIsMobile] = useState<boolean | null>(null);
   const lastScrollY = useRef(0);
   const lastDirection = useRef<"up" | "down" | null>(null);
 
@@ -97,7 +98,7 @@ function useScrollDirection() {
     };
   }, []);
 
-  return { isHidden, isMobile };
+  return { isHidden, isMobile: isMobile ?? false };
 }
 
 const NavSection: FC = () => {
@@ -105,13 +106,13 @@ const NavSection: FC = () => {
   const { isHidden, isMobile } = useScrollDirection();
   const menuRef = useRef<HTMLDivElement | null>(null);
 
-  // Close menu when hiding navbar or resizing to desktop
+  // Close menu when resizing to desktop (not on scroll-hide: avoids iOS Safari race)
   useEffect(() => {
-    if ((isHidden || !isMobile) && menuOpen) {
-      // eslint-disable-next-line react-hooks/set-state-in-effect -- intentional: sync menu state with scroll/resize
+    if (!isMobile && menuOpen) {
+      // eslint-disable-next-line react-hooks/set-state-in-effect -- intentional: sync menu state with resize
       setMenuOpen(false);
     }
-  }, [isHidden, isMobile, menuOpen]);
+  }, [isMobile, menuOpen]);
 
   useEffect(() => {
     if (!menuOpen) return;
