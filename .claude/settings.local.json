@@ -87,7 +87,8 @@
       "Bash(chmod:*)",
       "Bash(Remove-Item newerror.txt)",
       "Bash(del:*)",
-      "Bash(Remove-Item \"C:\\\\Users\\\\Hamza Korkutovic\\\\loveiq-web\\\\newerror.txt\")"
+      "Bash(Remove-Item \"C:\\\\Users\\\\Hamza Korkutovic\\\\loveiq-web\\\\newerror.txt\")",
+      "Bash(echo:*)"
     ]
   }
 }
