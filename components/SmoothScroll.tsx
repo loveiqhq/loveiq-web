@@ -12,6 +12,10 @@ export default function SmoothScroll({ children }: { children: React.ReactNode }
   const lenisRef = useRef<Lenis | null>(null);
 
   useEffect(() => {
+    // Signal that React has hydrated — tests (Playwright WebKit) wait for this
+    // before interacting, since Safari's JS engine hydrates slower than V8.
+    document.documentElement.dataset.hydrated = "true";
+
     if (isTouchDevice()) return;
 
     const lenis = new Lenis({

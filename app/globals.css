@@ -665,13 +665,11 @@ h3,
 
 /* Mobile navbar hide/show animation */
 .nav-header {
-  /* No static transform or will-change here — a permanent GPU compositing layer
-     (from transform/will-change) causes Safari/WebKit to misreport sm:hidden
-     child elements as visible. The GPU layer is created on-demand when the
-     nav-hidden transform is applied. */
+  /* No static transform, will-change, or backface-visibility here — any of these
+     create a permanent GPU compositing layer that causes Safari/WebKit to misreport
+     sm:hidden child elements as visible. The GPU layer is created on-demand when
+     the nav-hidden transform is applied. */
   transition: transform 300ms cubic-bezier(0.4, 0, 0.2, 1);
-  -webkit-backface-visibility: hidden;
-  backface-visibility: hidden;
 }
 
 .nav-header.nav-hidden {

@@ -8,6 +8,7 @@ test.describe("Desktop navigation", () => {
     const width = page.viewportSize()?.width ?? 0;
     test.skip(width < 1024, "desktop-only tests");
     await page.goto("/");
+    await page.locator("html[data-hydrated]").waitFor();
   });
 
   test("logo is visible", async ({ page }) => {
@@ -45,6 +46,7 @@ test.describe("Mobile navigation", () => {
     const width = page.viewportSize()?.width ?? 0;
     test.skip(width >= 640, "mobile-only tests");
     await page.goto("/");
+    await page.locator("html[data-hydrated]").waitFor();
   });
 
   test("hamburger button is visible", async ({ page }) => {
