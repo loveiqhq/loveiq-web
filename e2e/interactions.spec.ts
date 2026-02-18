@@ -5,7 +5,7 @@ test.describe("FAQ accordion (landing page)", () => {
     await page.goto("/");
     // Wait for React hydration — Safari (WebKit) hydrates slower than V8 and
     // clicks on non-hydrated elements don't trigger React onClick handlers.
-    await page.locator("html[data-hydrated]").waitFor();
+    await page.locator("html[data-hydrated]").waitFor({ state: "attached" });
   });
 
   test("clicking a question reveals the answer", async ({ page }) => {
@@ -85,7 +85,7 @@ test.describe("Footer links", () => {
 test.describe("Waitlist form", () => {
   test.beforeEach(async ({ page }) => {
     await page.goto("/waitlist");
-    await page.locator("html[data-hydrated]").waitFor();
+    await page.locator("html[data-hydrated]").waitFor({ state: "attached" });
   });
 
   test("email input is present", async ({ page }) => {
