@@ -12,6 +12,7 @@ for (const route of criticalRoutes) {
       .exclude("#cookieyes-root") // third-party consent banner
       .exclude(".g-recaptcha") // third-party reCAPTCHA widget
       .exclude(".bg-clip-text") // gradient text — axe cannot evaluate variable-contrast gradients
+      .exclude('[style*="clip-path"]') // clip-path inline style creates GPU compositing layer on Safari, causing axe to misreport text colors as #000000 (false positive)
       .analyze();
 
     // Only fail on critical or serious violations (minor/moderate are tracked, not blocking)

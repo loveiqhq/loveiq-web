@@ -141,6 +141,7 @@ const FAQItem: FC<FAQItemProps> = ({ question, answer }) => {
           maxHeight: isOpen ? contentHeight + 40 : 0,
           opacity: isOpen ? 1 : 0,
           marginTop: isOpen ? -4 : 0,
+          pointerEvents: isOpen ? "auto" : "none",
         }}
       >
         <div ref={contentRef} className="pt-5">
