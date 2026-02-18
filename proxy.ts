@@ -18,17 +18,19 @@ export function proxy(request: NextRequest) {
 
   const isDev = !isProduction;
 
-  // Build CSP header with nonce
-  // Production: nonce-based + 'self' + explicit external domain allowlist.
-  //   ('strict-dynamic' was removed: Playwright/WebKit enforces it strictly, overriding 'self',
-  //    which blocks Next.js static chunk <script> tags that lack nonces. Chrome/Firefox are
-  //    more lenient. Using 'self' + nonce is still secure for this site's threat model.)
+  // Build CSP header
+  // Production: 'self' + 'unsafe-inline' + explicit external domain allowlist.
+  //   Nonce-based CSP was tried but abandoned: Next.js App Router generates inline bootstrap
+  //   scripts (webpack loader, RSC streaming) that don't receive the nonce. WebKit/Safari
+  //   strictly enforces that ALL inline scripts need the nonce when nonce-* is in the policy,
+  //   which blocked React hydration entirely. Chrome/Firefox are more lenient. Since this site
+  //   has no user-generated content, 'unsafe-inline' is an acceptable tradeoff.
   // Development: permissive for HMR/webpack
   const cspHeader = [
     "default-src 'self'",
     isDev
       ? "script-src 'self' 'unsafe-inline' 'unsafe-eval'"
-      : `script-src 'self' 'nonce-${nonce}' https://www.googletagmanager.com https://www.google-analytics.com https://www.google.com/recaptcha/ https://www.gstatic.com/recaptcha/ https://cdn-cookieyes.com https://cookieyes.com`,
+      : `script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com https://www.google.com/recaptcha/ https://www.gstatic.com/recaptcha/ https://cdn-cookieyes.com https://cookieyes.com`,
     "style-src 'self' 'unsafe-inline'", // Tailwind requires unsafe-inline for styles
     "img-src 'self' data: blob: https://images.unsplash.com https://www.google-analytics.com https://www.googletagmanager.com https://cdn-cookieyes.com",
     "media-src 'self'",
