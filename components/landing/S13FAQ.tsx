@@ -136,12 +136,14 @@ const FAQItem: FC<FAQItemProps> = ({ question, answer }) => {
 
       {/* Answer Panel */}
       <div
-        className="relative z-10 w-full overflow-hidden transition-all duration-500 ease-out"
+        className="relative z-10 w-full overflow-hidden"
         style={{
           maxHeight: isOpen ? contentHeight + 40 : 0,
           opacity: isOpen ? 1 : 0,
           marginTop: isOpen ? -4 : 0,
           pointerEvents: isOpen ? "auto" : "none",
+          transition:
+            "max-height 500ms ease-out, opacity 500ms ease-out, margin-top 500ms ease-out",
         }}
       >
         <div ref={contentRef} className="pt-5">
