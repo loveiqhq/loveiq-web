@@ -1,7 +1,7 @@
 "use client";
 
 import type { FC } from "react";
-import { trackStartSurvey } from "../../lib/analytics";
+import { trackStartSurvey } from "@/lib/analytics";
 
 const S14CTA: FC = () => {
   return (

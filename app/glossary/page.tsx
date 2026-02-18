@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import GlossaryPage from "../../components/glossary/GlossaryPage";
+import GlossaryPage from "@/components/glossary/GlossaryPage";
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://www.loveiq.org";
 

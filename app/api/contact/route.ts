@@ -1,10 +1,10 @@
 import { NextResponse } from "next/server";
 import { Resend } from "resend";
 import { z } from "zod";
-import { checkRateLimit, getClientIp } from "../../../lib/ratelimit";
-import { fetchWithTimeout } from "../../../lib/fetch-with-timeout";
-import { verifyCsrfToken } from "../../../lib/csrf";
-import logger from "../../../lib/logger";
+import { checkRateLimit, getClientIp } from "@/lib/ratelimit";
+import { fetchWithTimeout } from "@/lib/fetch-with-timeout";
+import { verifyCsrfToken } from "@/lib/csrf";
+import logger from "@/lib/logger";
 
 // Lazy initialization to avoid build-time errors when env vars are not set
 let _resend: Resend | null = null;

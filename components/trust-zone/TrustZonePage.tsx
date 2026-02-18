@@ -4,8 +4,8 @@ import Image from "next/image";
 import Link from "next/link";
 import type { ReactNode } from "react";
 import { useEffect } from "react";
-import LegalNavSection from "../legal/LegalNavSection";
-import FooterSection from "../landing/FooterSection";
+import LegalNavSection from "@/components/legal/LegalNavSection";
+import FooterSection from "@/components/landing/FooterSection";
 
 const Pill = ({ children, className = "" }: { children: ReactNode; className?: string }) => (
   <span

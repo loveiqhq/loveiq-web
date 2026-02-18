@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import type { FC } from "react";
-import { trackStartSurvey } from "../../lib/analytics";
+import { trackStartSurvey } from "@/lib/analytics";
 
 const features = [
   {

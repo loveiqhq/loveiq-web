@@ -10,7 +10,10 @@ export default defineConfig({
       include: ["lib/**/*.ts", "app/api/**/*.ts", "proxy.ts"],
       exclude: ["node_modules", ".next", "__tests__"],
       thresholds: {
-        lines: 60,
+        lines: 70,
+        statements: 70,
+        functions: 65,
+        branches: 62,
       },
       reporter: ["text", "lcov"],
     },

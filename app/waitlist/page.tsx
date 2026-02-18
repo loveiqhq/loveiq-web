@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import WaitlistPage from "../../components/waitlist/WaitlistPage";
+import WaitlistPage from "@/components/waitlist/WaitlistPage";
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://www.loveiq.org";
 

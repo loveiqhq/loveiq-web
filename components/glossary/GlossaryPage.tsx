@@ -4,9 +4,9 @@ import type { FC } from "react";
 import { useState, useEffect, useMemo } from "react";
 import Link from "next/link";
 import GlossaryNavSection from "./GlossaryNavSection";
-import FooterSection from "../landing/FooterSection";
-import { trackStartSurvey } from "../../lib/analytics";
-import { glossaryTerms as allTerms, type GlossaryTerm } from "../../lib/glossary-data";
+import FooterSection from "@/components/landing/FooterSection";
+import { trackStartSurvey } from "@/lib/analytics";
+import { glossaryTerms as allTerms, type GlossaryTerm } from "@/lib/glossary-data";
 
 const alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");
 

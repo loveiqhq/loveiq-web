@@ -10,7 +10,7 @@ import ProcessSection from "./ProcessSection";
 import PublicationsSection from "./PublicationsSection";
 import TeamSection from "./TeamSection";
 import ContactSection from "./ContactSection";
-import FooterSection from "../landing/FooterSection";
+import FooterSection from "@/components/landing/FooterSection";
 
 const AboutPage: FC = () => {
   // Scroll reveal animation observer

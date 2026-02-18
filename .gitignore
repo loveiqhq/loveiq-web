@@ -43,3 +43,6 @@ dist/
 /blob-report/
 /playwright/.cache/
 
+# Lighthouse CI
+/.lighthouseci/
+

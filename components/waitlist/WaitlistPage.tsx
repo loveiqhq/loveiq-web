@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { useState } from "react";
-import { trackWaitlistSignup } from "../../lib/analytics";
+import { trackWaitlistSignup } from "@/lib/analytics";
 
 const faqs = [
   {

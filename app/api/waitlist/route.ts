@@ -1,11 +1,11 @@
 import { NextResponse } from "next/server";
 import { Resend } from "resend";
-import { waitlistEmail } from "../../../lib/emails/waitlist";
+import { waitlistEmail } from "@/lib/emails/waitlist";
 import { z } from "zod";
-import { checkRateLimit, checkCooldown, getClientIp } from "../../../lib/ratelimit";
-import { fetchWithTimeout } from "../../../lib/fetch-with-timeout";
-import { verifyCsrfToken } from "../../../lib/csrf";
-import logger from "../../../lib/logger";
+import { checkRateLimit, checkCooldown, getClientIp } from "@/lib/ratelimit";
+import { fetchWithTimeout } from "@/lib/fetch-with-timeout";
+import { verifyCsrfToken } from "@/lib/csrf";
+import logger from "@/lib/logger";
 
 type Payload = {
   email?: string;

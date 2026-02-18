@@ -10,6 +10,7 @@ npm run dev          # Start dev server at http://localhost:3000
 npm run build        # Production build
 npm run lint         # Run ESLint
 npm run start        # Run production build locally
+npm run analyze      # Bundle size analysis (opens visual treemap)
 ```
 
 ---
@@ -395,7 +396,7 @@ When working in this codebase:
 
 ### Build fails with "Module not found"
 
-Check import paths. This repo uses relative imports (no `@/` alias).
+Check import paths. This repo uses the `@/` alias (maps to project root). Use `@/lib/...`, `@/components/...`, `@/app/...` for cross-directory imports. Same-directory imports still use `./`.
 
 ### Forms fail silently
 

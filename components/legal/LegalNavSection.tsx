@@ -3,7 +3,7 @@
 import { useEffect, useState, useRef } from "react";
 import type { FC } from "react";
 import Link from "next/link";
-import { trackStartSurvey } from "../../lib/analytics";
+import { trackStartSurvey } from "@/lib/analytics";
 
 const navLinks = [
   { label: "Home", href: "/" },
