@@ -235,7 +235,7 @@ export default function WaitlistPage() {
                   onClick={() => {
                     if (status !== "loading") handleSubmit();
                   }}
-                  className="justify-self-end whitespace-nowrap rounded-full bg-gradient-brand px-4 py-2.5 text-sm font-semibold text-white shadow-pill transition hover:-translate-y-[2px] sm:px-7 sm:py-3 sm:text-base"
+                  className="justify-self-end whitespace-nowrap rounded-full bg-gradient-brand px-4 py-2.5 text-sm font-semibold text-white shadow-pill transition-colors sm:px-7 sm:py-3 sm:text-base"
                   disabled={status === "loading"}
                 >
                   {status === "loading" ? "Submitting..." : "Join waitlist"}

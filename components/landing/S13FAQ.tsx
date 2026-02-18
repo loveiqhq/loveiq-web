@@ -98,7 +98,7 @@ const FAQItem: FC<FAQItemProps> = ({ question, answer }) => {
       <button
         type="button"
         onClick={() => setIsOpen(!isOpen)}
-        className="flex w-full cursor-pointer select-none items-center justify-between gap-3 rounded-xl border border-white/5 bg-[#120b1c] px-4 py-3.5 text-left transition-all duration-300 hover:border-white/10 sm:gap-4 sm:px-6 sm:py-4"
+        className="flex w-full cursor-pointer select-none items-center justify-between gap-3 rounded-xl border border-white/5 bg-[#120b1c] px-4 py-3.5 text-left transition-colors duration-300 hover:border-white/10 sm:gap-4 sm:px-6 sm:py-4"
         aria-expanded={isOpen}
       >
         <span className="text-sm font-medium leading-snug text-white/90 sm:text-base md:text-lg">
