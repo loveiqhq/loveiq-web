@@ -108,13 +108,13 @@ const NavSection: FC = () => {
   const { isHidden, isMobile } = useScrollDirection();
   const menuRef = useRef<HTMLDivElement | null>(null);
 
-  // Close menu when resizing to desktop (not on scroll-hide: avoids iOS Safari race)
+  // Close menu when resizing to desktop.
+  // Only depends on isMobile — NOT menuOpen — so clicking the hamburger never
+  // triggers this effect and cannot race against setMenuOpen(true).
   useEffect(() => {
-    if (!isMobile && menuOpen) {
-      // eslint-disable-next-line react-hooks/set-state-in-effect -- intentional: sync menu state with resize
-      setMenuOpen(false);
-    }
-  }, [isMobile, menuOpen]);
+    // eslint-disable-next-line react-hooks/set-state-in-effect -- intentional: sync menu state with resize
+    if (!isMobile) setMenuOpen(false);
+  }, [isMobile]);
 
   useEffect(() => {
     if (!menuOpen) return;

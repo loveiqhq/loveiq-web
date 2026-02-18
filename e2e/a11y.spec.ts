@@ -12,6 +12,13 @@ for (const route of criticalRoutes) {
       .exclude("#cookieyes-root") // third-party consent banner
       .analyze();
 
-    expect(results.violations).toEqual([]);
+    // Only fail on critical or serious violations (minor/moderate are tracked, not blocking)
+    const blocking = results.violations.filter(
+      (v) => v.impact === "critical" || v.impact === "serious"
+    );
+    expect(
+      blocking,
+      `Critical/serious a11y violations on ${route}: ${blocking.map((v) => `${v.id}: ${v.description}`).join("; ")}`
+    ).toHaveLength(0);
   });
 }

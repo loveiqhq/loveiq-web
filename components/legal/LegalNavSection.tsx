@@ -105,13 +105,12 @@ const LegalNavSection: FC = () => {
   const { isHidden, isMobile } = useScrollDirection();
   const menuRef = useRef<HTMLDivElement | null>(null);
 
-  // Close menu when hiding navbar or resizing to desktop
+  // Close menu when navbar hides on scroll or viewport resizes to desktop.
+  // Only depends on isHidden/isMobile — NOT menuOpen — so clicks cannot race this effect.
   useEffect(() => {
-    if ((isHidden || !isMobile) && menuOpen) {
-      // eslint-disable-next-line react-hooks/set-state-in-effect -- intentional: sync menu state with scroll/resize
-      setMenuOpen(false);
-    }
-  }, [isHidden, isMobile, menuOpen]);
+    // eslint-disable-next-line react-hooks/set-state-in-effect -- intentional: sync menu state with scroll/resize
+    if (isHidden || !isMobile) setMenuOpen(false);
+  }, [isHidden, isMobile]);
 
   useEffect(() => {
     if (!menuOpen) return;
