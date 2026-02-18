@@ -8,7 +8,6 @@ test.describe("Desktop navigation", () => {
     const width = page.viewportSize()?.width ?? 0;
     test.skip(width < 1024, "desktop-only tests");
     await page.goto("/");
-    await page.locator("html[data-hydrated]").waitFor({ state: "attached" });
   });
 
   test("logo is visible", async ({ page }) => {

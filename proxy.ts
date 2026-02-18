@@ -19,13 +19,16 @@ export function proxy(request: NextRequest) {
   const isDev = !isProduction;
 
   // Build CSP header with nonce
-  // Production: nonce-based with strict-dynamic (domain allowlists kept as fallback for older browsers)
+  // Production: nonce-based + 'self' + explicit external domain allowlist.
+  //   ('strict-dynamic' was removed: Playwright/WebKit enforces it strictly, overriding 'self',
+  //    which blocks Next.js static chunk <script> tags that lack nonces. Chrome/Firefox are
+  //    more lenient. Using 'self' + nonce is still secure for this site's threat model.)
   // Development: permissive for HMR/webpack
   const cspHeader = [
     "default-src 'self'",
     isDev
       ? "script-src 'self' 'unsafe-inline' 'unsafe-eval'"
-      : `script-src 'self' 'nonce-${nonce}' 'strict-dynamic' https://www.googletagmanager.com https://www.google-analytics.com https://www.google.com/recaptcha/ https://www.gstatic.com/recaptcha/ https://cdn-cookieyes.com https://cookieyes.com`,
+      : `script-src 'self' 'nonce-${nonce}' https://www.googletagmanager.com https://www.google-analytics.com https://www.google.com/recaptcha/ https://www.gstatic.com/recaptcha/ https://cdn-cookieyes.com https://cookieyes.com`,
     "style-src 'self' 'unsafe-inline'", // Tailwind requires unsafe-inline for styles
     "img-src 'self' data: blob: https://images.unsplash.com https://www.google-analytics.com https://www.googletagmanager.com https://cdn-cookieyes.com",
     "media-src 'self'",
