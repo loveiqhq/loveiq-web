@@ -85,7 +85,8 @@
       "Bash(git status:*)",
       "Bash(npm run test:coverage:*)",
       "Bash(chmod:*)",
-      "Bash(Remove-Item newerror.txt)"
+      "Bash(Remove-Item newerror.txt)",
+      "Bash(del:*)"
     ]
   }
 }

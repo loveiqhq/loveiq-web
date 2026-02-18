@@ -19,8 +19,10 @@ const MOBILE_BREAKPOINT = 640;
 
 function useScrollDirection() {
   const [isHidden, setIsHidden] = useState(false);
-  // null = not yet determined (avoids false→true race on initial hydration)
-  const [isMobile, setIsMobile] = useState<boolean | null>(null);
+  // Start as true — safe default before checkMobile() runs.
+  // !true = false, so the close-menu effect never misfires on initial hydration.
+  // checkMobile() corrects it to false on desktop after mount.
+  const [isMobile, setIsMobile] = useState(true);
   const lastScrollY = useRef(0);
   const lastDirection = useRef<"up" | "down" | null>(null);
 
@@ -98,7 +100,7 @@ function useScrollDirection() {
     };
   }, []);
 
-  return { isHidden, isMobile: isMobile ?? false };
+  return { isHidden, isMobile };
 }
 
 const NavSection: FC = () => {
