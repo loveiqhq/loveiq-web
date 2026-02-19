@@ -2,11 +2,14 @@ import { test, expect } from "@playwright/test";
 
 // Desktop nav is visible at lg breakpoint (1024px+).
 // Hamburger is visible below sm breakpoint (640px).
+//
+// test.use() forces a specific viewport for each describe block, so these tests
+// run correctly on every browser project without any runtime skipping.
 
 test.describe("Desktop navigation", () => {
+  test.use({ viewport: { width: 1280, height: 720 } });
+
   test.beforeEach(async ({ page }) => {
-    const width = page.viewportSize()?.width ?? 0;
-    test.skip(width < 1024, "desktop-only tests");
     await page.goto("/");
   });
 
@@ -41,9 +44,9 @@ test.describe("Desktop navigation", () => {
 });
 
 test.describe("Mobile navigation", () => {
+  test.use({ viewport: { width: 390, height: 844 } });
+
   test.beforeEach(async ({ page }) => {
-    const width = page.viewportSize()?.width ?? 0;
-    test.skip(width >= 640, "mobile-only tests");
     await page.goto("/");
     await page.locator("html[data-hydrated]").waitFor({ state: "attached" });
   });
