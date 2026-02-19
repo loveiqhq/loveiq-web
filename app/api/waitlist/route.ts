@@ -1,4 +1,4 @@
-import { NextResponse } from "next/server";
+import { NextResponse, after } from "next/server";
 import { Resend } from "resend";
 import { waitlistEmail } from "@/lib/emails/waitlist";
 import { z } from "zod";
@@ -43,6 +43,21 @@ const RATE_LIMIT_CONFIG = {
 };
 
 const EMAIL_COOLDOWN_MS = 60_000; // 1 minute per email
+
+/**
+ * Schedule a side-effect to run after the response is sent.
+ * Uses Next.js `after()` so the serverless function stays alive until the work
+ * completes instead of being killed the moment the response is flushed.
+ * Falls back to fire-and-forget `void` in test environments where the
+ * Next.js request lifecycle is not active.
+ */
+function scheduleAfterResponse(fn: () => Promise<void>): void {
+  try {
+    after(fn);
+  } catch {
+    void fn();
+  }
+}
 
 async function sendConfirmationEmail(to: string, firstName: string | null) {
   const from = process.env.RESEND_FROM || "LoveIQ <hello@send.loveiq.org>";
@@ -240,9 +255,12 @@ export async function POST(request: Request) {
   }
 
   // DB insert succeeded — return success immediately.
-  // Email and Slack are best-effort: failures are logged but must not block or fail the response.
-  void sendConfirmationEmail(normalizedEmail, normalizedFirstName);
-  void notifySlackWaitlist({ email: normalizedEmail, firstName: normalizedFirstName, source });
+  // Email and Slack run after the response so the serverless function stays
+  // alive until they finish, but a failure never blocks or fails the response.
+  scheduleAfterResponse(() => sendConfirmationEmail(normalizedEmail, normalizedFirstName));
+  scheduleAfterResponse(() =>
+    notifySlackWaitlist({ email: normalizedEmail, firstName: normalizedFirstName, source })
+  );
 
   return NextResponse.json({ success: true });
 }
