@@ -5,6 +5,7 @@ This file configures GitHub Copilot to follow the security and coding standards 
 ## 📚 Required Reading
 
 Before suggesting code, understand:
+
 - `CLAUDE.md` - Codebase architecture and conventions
 - `SECURITY.md` - Security policy and requirements
 - `.github/SECURITY_CHECKLIST.md` - Security checklist for all changes
@@ -24,6 +25,7 @@ Before suggesting code, understand:
 All POST/PUT/DELETE/PATCH routes require:
 
 1. **CSRF Verification**
+
    ```typescript
    import { verifyCsrfToken } from "@/lib/csrf";
 
@@ -33,6 +35,7 @@ All POST/PUT/DELETE/PATCH routes require:
    ```
 
 2. **Rate Limiting**
+
    ```typescript
    import { checkRateLimit, getClientIp } from "@/lib/ratelimit";
 
@@ -48,6 +51,7 @@ All POST/PUT/DELETE/PATCH routes require:
    ```
 
 3. **Input Validation**
+
    ```typescript
    import { z } from "zod";
 
@@ -160,10 +164,10 @@ export default ComponentName;
 
 ## 🔧 Environment Variables
 
-| Prefix | Where Available | Example |
-|--------|----------------|---------|
-| None | Server only | `SUPABASE_SERVICE_ROLE_KEY` |
-| `NEXT_PUBLIC_` | Server + Client | `NEXT_PUBLIC_SITE_URL` |
+| Prefix         | Where Available | Example                     |
+| -------------- | --------------- | --------------------------- |
+| None           | Server only     | `SUPABASE_SERVICE_ROLE_KEY` |
+| `NEXT_PUBLIC_` | Server + Client | `NEXT_PUBLIC_SITE_URL`      |
 
 **Rule:** Only suggest `process.env` access in server components and API routes.
 **Exception:** `NEXT_PUBLIC_*` variables can be used anywhere.
@@ -181,6 +185,7 @@ export default ComponentName;
 ## ✅ Pre-commit Checklist
 
 Before marking code as complete:
+
 - [ ] No hardcoded secrets
 - [ ] API routes have CSRF + rate limiting + validation
 - [ ] Error messages are generic
@@ -192,6 +197,7 @@ Before marking code as complete:
 ## 🚨 Security Red Flags
 
 Alert user if code contains:
+
 - Hardcoded secrets (even test/example data)
 - Missing security controls in API routes
 - Unsafe patterns (eval, dangerouslySetInnerHTML)
@@ -199,6 +205,27 @@ Alert user if code contains:
 - Information disclosure in errors
 - Weak crypto (MD5, SHA1 for passwords)
 - Missing input validation
+
+## 🚨 Security Incident Response
+
+When you observe ANY of these triggers, switch to IR mode immediately:
+
+- Secret, API key, or token committed or visible in code, logs, or outputs
+- Suspicious edits to `.github/workflows/`, `proxy.ts`, auth code, or dependency files
+- Unexpected CI behaviour, build anomalies, or lockfile changes
+- Evidence of force-push, rewritten history, or account takeover
+- New postinstall scripts, base64 blobs in diffs, or unusual outbound calls in code
+
+**Follow the full protocol in `.github/INCIDENT_RESPONSE_AGENT.md` exactly.**
+
+Non-negotiable directives (from the protocol):
+
+1. **Do no harm** — no destructive/irreversible action without explicit written authorization
+2. **Preserve evidence first** — capture state, logs, hashes before changing anything
+3. **Least change** — smallest containment step that reduces risk
+4. **Default to escalation** — if uncertain, recommend containment, never "wait and see"
+
+Never print secret values. Label all risky suggested commands as "requires authorization".
 
 ## 📝 Code Style
 
@@ -223,6 +250,7 @@ return NextResponse.json({ error: "User admin@company.com not found" }, { status
 ```
 
 **Always log errors:**
+
 ```typescript
 try {
   // ...
@@ -235,12 +263,14 @@ try {
 ## 🔗 External Resources
 
 **When suggesting fetch calls:**
+
 - Use `fetchWithTimeout` from `@/lib/fetch-with-timeout`
 - Always include timeout (default: 10 seconds)
 - Handle errors gracefully
 - Don't expose internal errors to users
 
 **Example:**
+
 ```typescript
 import { fetchWithTimeout } from "@/lib/fetch-with-timeout";
 
@@ -255,6 +285,7 @@ const response = await fetchWithTimeout(url, {
 ## 📚 Reference Files
 
 For architectural decisions, check:
+
 - `.planning/codebase/ARCHITECTURE.md`
 - `.planning/codebase/CONVENTIONS.md`
 - Existing code in similar areas
@@ -262,6 +293,7 @@ For architectural decisions, check:
 ## 🤖 AI-Specific Guidelines
 
 **When generating code:**
+
 1. Follow existing patterns in the codebase
 2. Match the code style of surrounding code
 3. Include necessary imports
@@ -270,12 +302,14 @@ For architectural decisions, check:
 6. Suggest running tests after changes
 
 **When explaining code:**
+
 1. Reference specific files/line numbers
 2. Explain security considerations
 3. Mention any caveats or edge cases
 4. Suggest related documentation to read
 
 **When refactoring:**
+
 1. Preserve existing functionality
 2. Maintain security controls
 3. Keep changes minimal and focused
@@ -288,6 +322,7 @@ For architectural decisions, check:
 **This is a security-focused Next.js marketing site.**
 
 Key principles:
+
 - **Security first**: All API routes need CSRF + rate limiting + validation
 - **Type safety**: Proper TypeScript, no `any`
 - **Error handling**: Generic messages, detailed logging

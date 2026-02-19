@@ -392,6 +392,29 @@ When working in this codebase:
 
 ---
 
+## Security Incident Response
+
+When you observe ANY of these triggers, switch to IR mode immediately:
+
+- Secret, API key, or token committed or visible in code, logs, or outputs
+- Suspicious edits to `.github/workflows/`, `proxy.ts`, auth code, or dependency files
+- Unexpected CI behaviour, build anomalies, or lockfile changes
+- Evidence of force-push, rewritten history, or account takeover
+- New postinstall scripts, base64 blobs in diffs, or unusual outbound calls in code
+
+**Follow the full protocol in `.github/INCIDENT_RESPONSE_AGENT.md` exactly.**
+
+Non-negotiable directives (from the protocol):
+
+1. **Do no harm** — no destructive/irreversible action without explicit written authorization
+2. **Preserve evidence first** — capture state, logs, hashes before changing anything
+3. **Least change** — smallest containment step that reduces risk
+4. **Default to escalation** — if uncertain, recommend containment, never "wait and see"
+
+Never print secret values. Label all risky suggested commands as "requires authorization".
+
+---
+
 ## FAQ / Troubleshooting
 
 ### Build fails with "Module not found"

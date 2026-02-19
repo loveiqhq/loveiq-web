@@ -90,7 +90,21 @@
       "Bash(Remove-Item \"C:\\\\Users\\\\Hamza Korkutovic\\\\loveiq-web\\\\newerror.txt\")",
       "Bash(echo:*)",
       "Bash(npm run test:e2e:*)",
-      "Bash(tee:*)"
+      "Bash(tee:*)",
+      "Bash(npm ci:*)",
+      "Bash(git restore:*)",
+      "Bash(git -C \"C:/Users/Hamza Korkutovic/loveiq-web\" log --oneline -8)",
+      "Bash(git -C \"C:/Users/Hamza Korkutovic/loveiq-web\" status)",
+      "Bash(k6 version:*)",
+      "Bash(gh:*)",
+      "Bash(command -v gh:*)",
+      "Bash(winget:*)",
+      "Bash(\"/c/Program Files/k6/k6.exe\" version)",
+      "Bash(\"C:\\\\Program Files\\\\k6\\\\k6.exe\" run \"C:\\\\Users\\\\Hamza Korkutovic\\\\loveiq-web\\\\load-tests\\\\smoke.js\")",
+      "Bash(\"C:\\\\Program Files\\\\k6\\\\k6.exe\" run:*)",
+      "Bash(netstat:*)",
+      "Bash(tasklist:*)",
+      "Bash(python3:*)"
     ]
   }
 }

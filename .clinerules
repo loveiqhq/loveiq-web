@@ -1,8 +1,8 @@
-# Windsurf AI Rules for LoveIQ Web
+# Cline AI Rules for LoveIQ Web
 
 ## Documentation
 Read these files first:
-- `CLAUDE.md` - Main instructions
+- `CLAUDE.md` - Main instructions and architecture
 - `SECURITY.md` - Security policy
 - `.github/SECURITY_CHECKLIST.md` - Developer checklist
 
@@ -117,6 +117,7 @@ Never print secret values. Label all risky suggested commands as "requires autho
 
 ## Resources
 - `.github/SECURITY_QUICK_REFERENCE.md` - Quick reference
+- `.github/INCIDENT_RESPONSE_AGENT.md` - IR protocol
 - `SECURITY_SCANNING.md` - Security scanning details
 - `.planning/codebase/` - Architecture docs
 
