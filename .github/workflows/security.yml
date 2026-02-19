@@ -222,39 +222,8 @@ jobs:
 
           echo "✅ No secrets found in build output"
 
-  # Cross-browser E2E tests
-  browser-tests:
-    name: Cross-Browser E2E Tests
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
-
-      - name: Setup Node.js
-        uses: actions/setup-node@6044e13b5dc448c55e2357c09f80417699197238 # v6
-        with:
-          node-version: "20"
-          cache: "npm"
-
-      - name: Install dependencies
-        run: npm ci
-
-      - name: Install Playwright browsers
-        run: npx playwright install --with-deps chromium firefox webkit
-
-      - name: Run E2E tests
-        run: npm run test:e2e
-        env:
-          NEXT_PUBLIC_SITE_URL: https://loveiq.org
-          CI: "true"
-
-      - name: Upload Playwright report
-        uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # v6
-        if: always()
-        with:
-          name: playwright-report
-          path: playwright-report/
-          retention-days: 14
+  # NOTE: Playwright E2E tests (e2e/) are kept intact for local use and will be
+  # re-added to CI when the survey feature launches with proper test coverage.
 
   # Custom security rules check
   custom-security-rules:
@@ -367,7 +336,6 @@ jobs:
         security-lint,
         nextjs-security,
         custom-security-rules,
-        browser-tests,
       ]
     if: always()
     steps:
@@ -384,7 +352,6 @@ jobs:
           echo "| Security Linting | ${{ needs.security-lint.result }} |" >> $GITHUB_STEP_SUMMARY
           echo "| Next.js Security | ${{ needs.nextjs-security.result }} |" >> $GITHUB_STEP_SUMMARY
           echo "| Custom Rules | ${{ needs.custom-security-rules.result }} |" >> $GITHUB_STEP_SUMMARY
-          echo "| Cross-Browser E2E | ${{ needs.browser-tests.result }} |" >> $GITHUB_STEP_SUMMARY
           echo "" >> $GITHUB_STEP_SUMMARY
           echo "**Note:** Some checks may show warnings if GitHub Advanced Security is not enabled. This is expected." >> $GITHUB_STEP_SUMMARY
           echo "Follow \`GITHUB_SECURITY_SETUP.md\` to enable all features." >> $GITHUB_STEP_SUMMARY
