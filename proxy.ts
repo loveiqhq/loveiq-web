@@ -39,7 +39,9 @@ export function proxy(request: NextRequest) {
     "frame-ancestors 'none'",
     "base-uri 'self'",
     "form-action 'self'",
-    isDev ? "" : "upgrade-insecure-requests", // Skip upgrade-insecure-requests in dev (localhost is http)
+    isDev || request.nextUrl.hostname === "localhost" || request.nextUrl.hostname === "127.0.0.1"
+      ? ""
+      : "upgrade-insecure-requests", // Skip in dev and on localhost (Playwright WebKit on Linux doesn't implement the localhost exemption)
   ]
     .filter(Boolean)
     .join("; ");
