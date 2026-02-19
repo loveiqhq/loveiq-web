@@ -20,7 +20,7 @@ Use [Conventional Commits](https://www.conventionalcommits.org/):
 
 ```
 feat: add new landing section
-fix: resolve contact form validation error
+fix: resolve contact form validation errors
 chore: update dependencies
 docs: update API documentation
 style: format code with prettier
