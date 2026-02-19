@@ -285,11 +285,10 @@ const NavSection: FC = () => {
               </Link>
               <button
                 type="button"
-                className={`flex h-10 w-10 items-center justify-center rounded-2xl border border-white/10 bg-white/5 text-white/80 shadow-[0_10px_20px_rgba(0,0,0,0.25)] transition-colors hover:border-white/20 hover:text-white focus-visible-ring sm:hidden disabled:opacity-100 disabled:cursor-pointer ${menuOpen ? "hamburger-open" : ""}`}
+                className={`hidden max-sm:flex h-10 w-10 items-center justify-center rounded-2xl border border-white/10 bg-white/5 text-white/80 shadow-[0_10px_20px_rgba(0,0,0,0.25)] transition-colors hover:border-white/20 hover:text-white focus-visible-ring disabled:opacity-100 disabled:cursor-pointer ${menuOpen ? "hamburger-open" : ""}`}
                 aria-label={menuOpen ? "Close menu" : "Open menu"}
                 aria-expanded={menuOpen}
                 onClick={() => setMenuOpen((prev) => !prev)}
-                style={{ visibility: mounted && !isMobile ? "hidden" : undefined }}
               >
                 <div className="flex h-4 w-[18px] flex-col gap-[5px]">
                   <span className="hamburger-line" />

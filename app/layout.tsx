@@ -5,6 +5,7 @@ import { Lora, Manrope } from "next/font/google";
 import { headers } from "next/headers";
 import SmoothScroll from "@/components/SmoothScroll";
 import { NonceProvider } from "@/components/NonceProvider";
+import HydrationMarker from "@/components/HydrationMarker";
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://www.loveiq.org";
 
@@ -210,6 +211,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
         >
           Skip to main content
         </a>
+        <HydrationMarker />
         <NonceProvider nonce={nonce}>
           <SmoothScroll>{children}</SmoothScroll>
         </NonceProvider>
