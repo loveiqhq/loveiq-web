@@ -4,6 +4,7 @@ import { waitlistEmail } from "@/lib/emails/waitlist";
 import { z } from "zod";
 import { checkRateLimit, checkCooldown, getClientIp } from "@/lib/ratelimit";
 import { fetchWithTimeout } from "@/lib/fetch-with-timeout";
+import { getBreaker, CircuitOpenError } from "@/lib/circuit-breaker";
 import { verifyCsrfToken } from "@/lib/csrf";
 import logger from "@/lib/logger";
 
@@ -32,6 +33,8 @@ const waitlistSchema = z.object({
   website: z.string().max(0).optional().nullable(), // honeypot must be empty
 });
 
+const RESEND_TIMEOUT_MS = 8_000;
+
 // Rate limit configuration
 const RATE_LIMIT_CONFIG = {
   bucket: "waitlist",
@@ -40,6 +43,33 @@ const RATE_LIMIT_CONFIG = {
 };
 
 const EMAIL_COOLDOWN_MS = 60_000; // 1 minute per email
+
+async function sendConfirmationEmail(to: string, firstName: string | null) {
+  const from = process.env.RESEND_FROM || "LoveIQ <hello@send.loveiq.org>";
+  const replyTo = process.env.RESEND_REPLY_TO || "hello@loveiq.org";
+  const tpl = waitlistEmail({ firstName });
+
+  try {
+    const { error } = await Promise.race([
+      getResend().emails.send({
+        from,
+        to,
+        replyTo,
+        subject: tpl.subject,
+        html: tpl.html,
+        text: tpl.text,
+      }),
+      new Promise<never>((_, reject) =>
+        setTimeout(() => reject(new Error("Resend timeout")), RESEND_TIMEOUT_MS)
+      ),
+    ]);
+    if (error) {
+      logger.error({ error }, "Waitlist confirmation email failed");
+    }
+  } catch (err) {
+    logger.error({ err }, "Waitlist confirmation email error or timeout");
+  }
+}
 
 const notifySlackWaitlist = async ({
   email,
@@ -143,17 +173,29 @@ export async function POST(request: Request) {
   };
 
   // Idempotency: if the email already exists, return success to avoid enumeration
-  const existingRes = await fetchWithTimeout(
-    `${url}/rest/v1/${tableName}?email=eq.${encodeURIComponent(normalizedEmail)}&select=id&limit=1`,
-    {
-      headers: {
-        apikey: serviceRoleKey,
-        Authorization: `Bearer ${serviceRoleKey}`,
-      },
-      cache: "no-store",
-      timeoutMs: 10000, // 10 second timeout for DB
+  let existingRes: Response;
+  try {
+    existingRes = await getBreaker("supabase").fire(() =>
+      fetchWithTimeout(
+        `${url}/rest/v1/${tableName}?email=eq.${encodeURIComponent(normalizedEmail)}&select=id&limit=1`,
+        {
+          headers: {
+            apikey: serviceRoleKey,
+            Authorization: `Bearer ${serviceRoleKey}`,
+          },
+          cache: "no-store",
+          timeoutMs: 3000, // fits within Vercel free plan 10s limit
+        }
+      )
+    );
+  } catch (err) {
+    if (err instanceof CircuitOpenError) {
+      logger.warn("Supabase circuit open on waitlist duplicate check");
+    } else {
+      logger.error({ err }, "Supabase error on waitlist duplicate check");
     }
-  );
+    return NextResponse.json({ error: "Service temporarily unavailable." }, { status: 503 });
+  }
 
   if (!existingRes.ok) {
     return NextResponse.json({ error: "Unable to process request." }, { status: 500 });
@@ -164,41 +206,43 @@ export async function POST(request: Request) {
     return NextResponse.json({ success: true, already: true });
   }
 
-  const response = await fetchWithTimeout(`${url}/rest/v1/${tableName}`, {
-    method: "POST",
-    headers: {
-      apikey: serviceRoleKey,
-      Authorization: `Bearer ${serviceRoleKey}`,
-      "Content-Type": "application/json",
-      Prefer: "return=representation",
-    },
-    body: JSON.stringify(insertPayload),
-    timeoutMs: 10000, // 10 second timeout for DB
-  });
+  let response: Response;
+  try {
+    response = await getBreaker("supabase").fire(() =>
+      fetchWithTimeout(`${url}/rest/v1/${tableName}`, {
+        method: "POST",
+        headers: {
+          apikey: serviceRoleKey,
+          Authorization: `Bearer ${serviceRoleKey}`,
+          "Content-Type": "application/json",
+          Prefer: "return=representation",
+        },
+        body: JSON.stringify(insertPayload),
+        timeoutMs: 3000, // fits within Vercel free plan 10s limit
+      })
+    );
+  } catch (err) {
+    if (err instanceof CircuitOpenError) {
+      logger.warn("Supabase circuit open on waitlist insert");
+    } else {
+      logger.error({ err }, "Supabase error on waitlist insert");
+    }
+    return NextResponse.json({ error: "Service temporarily unavailable." }, { status: 503 });
+  }
 
   if (!response.ok) {
+    // 409 = UNIQUE constraint violation: a concurrent request inserted the same email
+    // a split-second before us. Treat as success — the record is in the DB.
+    if (response.status === 409) {
+      return NextResponse.json({ success: true, already: true });
+    }
     return NextResponse.json({ error: "Unable to process request." }, { status: 500 });
   }
 
-  // Send waitlist confirmation email via Resend
-  const from = process.env.RESEND_FROM || "LoveIQ <hello@send.loveiq.org>";
-  const replyTo = process.env.RESEND_REPLY_TO || "hello@loveiq.org";
-  const tpl = waitlistEmail({ firstName: normalizedFirstName });
-
-  const { error } = await getResend().emails.send({
-    from,
-    to: normalizedEmail,
-    replyTo,
-    subject: tpl.subject,
-    html: tpl.html,
-    text: tpl.text,
-  });
-
-  if (error) {
-    return NextResponse.json({ error: "Unable to process request." }, { status: 500 });
-  }
-
-  await notifySlackWaitlist({ email: normalizedEmail, firstName: normalizedFirstName, source });
+  // DB insert succeeded — return success immediately.
+  // Email and Slack are best-effort: failures are logged but must not block or fail the response.
+  void sendConfirmationEmail(normalizedEmail, normalizedFirstName);
+  void notifySlackWaitlist({ email: normalizedEmail, firstName: normalizedFirstName, source });
 
   return NextResponse.json({ success: true });
 }

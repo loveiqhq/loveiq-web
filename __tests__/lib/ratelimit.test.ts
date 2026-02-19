@@ -21,19 +21,21 @@ describe("getClientIp", () => {
     expect(getClientIp(req)).toBe("1.1.1.1");
   });
 
-  it("returns first IP from x-forwarded-for when x-real-ip is absent", () => {
+  // X-Forwarded-For is intentionally ignored — it is attacker-controlled and
+  // would allow rate-limit key spoofing. Only x-real-ip is trusted (set by Vercel).
+  it("ignores x-forwarded-for when x-real-ip is absent", () => {
     const req = makeRequest({ "x-forwarded-for": "10.0.0.1, 10.0.0.2" });
-    expect(getClientIp(req)).toBe("10.0.0.1");
+    expect(getClientIp(req)).toBe("unknown");
   });
 
-  it("handles single IP in x-forwarded-for", () => {
+  it("ignores x-forwarded-for with a single IP", () => {
     const req = makeRequest({ "x-forwarded-for": "192.168.1.1" });
-    expect(getClientIp(req)).toBe("192.168.1.1");
+    expect(getClientIp(req)).toBe("unknown");
   });
 
-  it("trims whitespace from x-forwarded-for IPs", () => {
-    const req = makeRequest({ "x-forwarded-for": "  10.0.0.1 , 10.0.0.2" });
-    expect(getClientIp(req)).toBe("10.0.0.1");
+  it("ignores x-forwarded-for with IPv6", () => {
+    const req = makeRequest({ "x-forwarded-for": "2001:db8::1" });
+    expect(getClientIp(req)).toBe("unknown");
   });
 
   it("returns 'unknown' when no IP headers present", () => {
@@ -41,18 +43,13 @@ describe("getClientIp", () => {
     expect(getClientIp(req)).toBe("unknown");
   });
 
-  it("returns 'unknown' when x-forwarded-for has invalid IP", () => {
+  it("returns 'unknown' when x-forwarded-for has invalid IP (also ignored)", () => {
     const req = makeRequest({ "x-forwarded-for": "not-an-ip" });
     expect(getClientIp(req)).toBe("unknown");
   });
 
-  it("returns 'unknown' when x-forwarded-for has IP with octets > 255", () => {
+  it("returns 'unknown' when x-forwarded-for has IP with octets > 255 (also ignored)", () => {
     const req = makeRequest({ "x-forwarded-for": "999.999.999.999" });
     expect(getClientIp(req)).toBe("unknown");
-  });
-
-  it("accepts valid IPv6 addresses in x-forwarded-for", () => {
-    const req = makeRequest({ "x-forwarded-for": "2001:db8::1" });
-    expect(getClientIp(req)).toBe("2001:db8::1");
   });
 });

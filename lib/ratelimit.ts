@@ -1,13 +1,14 @@
 /**
- * Persistent rate limiting using Supabase with in-memory fallback.
+ * Persistent rate limiting using Supabase.
  *
  * This module provides sliding-window rate limiting that persists across
- * server restarts and deployments, preventing abuse even during deployments.
- * When Supabase is unavailable, an in-memory fallback ensures rate limiting
- * still operates (per-instance only).
+ * server restarts and deployments. When Supabase is configured but unreachable,
+ * requests are blocked (fail-closed) to prevent rate limit bypass during outages.
+ * When Supabase is not configured at all (local dev), an in-memory fallback is used.
  */
 
 import { fetchWithTimeout } from "./fetch-with-timeout";
+import { getBreaker } from "./circuit-breaker";
 import logger from "./logger";
 
 const SUPABASE_URL = process.env.SUPABASE_URL;
@@ -104,35 +105,35 @@ export async function checkRateLimit(
 
   try {
     // Call Supabase RPC function to atomically check and update rate limit
-    // This uses a stored procedure for atomic operations
-    const response = await fetchWithTimeout(`${SUPABASE_URL}/rest/v1/rpc/check_rate_limit`, {
-      method: "POST",
-      headers: {
-        apikey: SUPABASE_SERVICE_ROLE_KEY,
-        Authorization: `Bearer ${SUPABASE_SERVICE_ROLE_KEY}`,
-        "Content-Type": "application/json",
-        Prefer: "return=representation",
-      },
-      body: JSON.stringify({
-        p_key: compositeKey,
-        p_limit: config.limit,
-        p_window_ms: config.windowMs,
-        p_now: now,
-      }),
-      cache: "no-store",
-      timeoutMs: RATELIMIT_TIMEOUT_MS,
-    });
+    // Wrapped in circuit breaker: after 3 failures, opens for 30s (fail fast, no timeout wait)
+    const response = await getBreaker("supabase").fire(() =>
+      fetchWithTimeout(`${SUPABASE_URL}/rest/v1/rpc/check_rate_limit`, {
+        method: "POST",
+        headers: {
+          apikey: SUPABASE_SERVICE_ROLE_KEY,
+          Authorization: `Bearer ${SUPABASE_SERVICE_ROLE_KEY}`,
+          "Content-Type": "application/json",
+          Prefer: "return=representation",
+        },
+        body: JSON.stringify({
+          p_key: compositeKey,
+          p_limit: config.limit,
+          p_window_ms: config.windowMs,
+          p_now: now,
+        }),
+        cache: "no-store",
+        timeoutMs: RATELIMIT_TIMEOUT_MS,
+      })
+    );
 
     if (!response.ok) {
-      // If the RPC doesn't exist, fall back to simple table-based approach
-      if (response.status === 404) {
-        return checkRateLimitSimple(compositeKey, config, now);
-      }
       logger.error(
         { status: response.status },
-        "[ratelimit] Supabase RPC failed, using in-memory fallback"
+        response.status === 404
+          ? "[ratelimit] check_rate_limit RPC not found — deploy the SQL function. Blocking request."
+          : "[ratelimit] Supabase RPC failed, blocking request (fail-closed)"
       );
-      return checkMemoryRateLimit(compositeKey, config);
+      return { allowed: false, remaining: 0, resetAt };
     }
 
     const result = await response.json();
@@ -142,94 +143,8 @@ export async function checkRateLimit(
       resetAt: new Date(result.reset_at ?? resetAt),
     };
   } catch (err) {
-    logger.error({ err }, "[ratelimit] Error checking rate limit, using in-memory fallback");
-    return checkMemoryRateLimit(compositeKey, config);
-  }
-}
-
-/**
- * Simple table-based rate limiting fallback.
- * Uses a rate_limits table with key, hits (array of timestamps), updated_at.
- */
-async function checkRateLimitSimple(
-  key: string,
-  config: RateLimitConfig,
-  now: number
-): Promise<RateLimitResult> {
-  const windowStart = now - config.windowMs;
-  const resetAt = new Date(now + config.windowMs);
-
-  try {
-    // Get existing rate limit record
-    const getResponse = await fetchWithTimeout(
-      `${SUPABASE_URL}/rest/v1/rate_limits?key=eq.${encodeURIComponent(key)}&select=hits`,
-      {
-        headers: {
-          apikey: SUPABASE_SERVICE_ROLE_KEY!,
-          Authorization: `Bearer ${SUPABASE_SERVICE_ROLE_KEY}`,
-        },
-        cache: "no-store",
-        timeoutMs: RATELIMIT_TIMEOUT_MS,
-      }
-    );
-
-    if (!getResponse.ok) {
-      logger.error(
-        { status: getResponse.status },
-        "[ratelimit] Failed to get rate limit, using in-memory fallback"
-      );
-      return checkMemoryRateLimit(key, config);
-    }
-
-    const records = (await getResponse.json()) as Array<{ hits: number[] }>;
-    const existingHits = records[0]?.hits ?? [];
-
-    // Filter hits within the current window
-    const validHits = existingHits.filter((t: number) => t > windowStart);
-    const hitCount = validHits.length;
-
-    // Check if over limit
-    if (hitCount >= config.limit) {
-      return {
-        allowed: false,
-        remaining: 0,
-        resetAt: new Date(Math.min(...validHits) + config.windowMs),
-      };
-    }
-
-    // Add new hit
-    const newHits = [...validHits, now];
-
-    // Upsert the rate limit record
-    const upsertResponse = await fetchWithTimeout(`${SUPABASE_URL}/rest/v1/rate_limits`, {
-      method: "POST",
-      headers: {
-        apikey: SUPABASE_SERVICE_ROLE_KEY!,
-        Authorization: `Bearer ${SUPABASE_SERVICE_ROLE_KEY}`,
-        "Content-Type": "application/json",
-        Prefer: "resolution=merge-duplicates",
-      },
-      body: JSON.stringify({
-        key,
-        hits: newHits,
-        updated_at: new Date(now).toISOString(),
-      }),
-      cache: "no-store",
-      timeoutMs: RATELIMIT_TIMEOUT_MS,
-    });
-
-    if (!upsertResponse.ok) {
-      logger.error({ status: upsertResponse.status }, "[ratelimit] Failed to upsert rate limit");
-    }
-
-    return {
-      allowed: true,
-      remaining: config.limit - newHits.length,
-      resetAt,
-    };
-  } catch (err) {
-    logger.error({ err }, "[ratelimit] Simple rate limit error, using in-memory fallback");
-    return checkMemoryRateLimit(key, config);
+    logger.error({ err }, "[ratelimit] Error checking rate limit, blocking request (fail-closed)");
+    return { allowed: false, remaining: 0, resetAt };
   }
 }
 
@@ -250,20 +165,26 @@ export async function checkCooldown(
   const now = Date.now();
 
   try {
-    const getResponse = await fetchWithTimeout(
-      `${SUPABASE_URL}/rest/v1/rate_limits?key=eq.${encodeURIComponent(compositeKey)}&select=updated_at`,
-      {
-        headers: {
-          apikey: SUPABASE_SERVICE_ROLE_KEY,
-          Authorization: `Bearer ${SUPABASE_SERVICE_ROLE_KEY}`,
-        },
-        cache: "no-store",
-        timeoutMs: RATELIMIT_TIMEOUT_MS,
-      }
+    const getResponse = await getBreaker("supabase").fire(() =>
+      fetchWithTimeout(
+        `${SUPABASE_URL}/rest/v1/rate_limits?key=eq.${encodeURIComponent(compositeKey)}&select=updated_at`,
+        {
+          headers: {
+            apikey: SUPABASE_SERVICE_ROLE_KEY,
+            Authorization: `Bearer ${SUPABASE_SERVICE_ROLE_KEY}`,
+          },
+          cache: "no-store",
+          timeoutMs: RATELIMIT_TIMEOUT_MS,
+        }
+      )
     );
 
     if (!getResponse.ok) {
-      return { allowed: true, retryAfterMs: 0 };
+      logger.error(
+        { status: getResponse.status },
+        "[ratelimit] Cooldown GET failed, blocking (fail-closed)"
+      );
+      return { allowed: false, retryAfterMs: cooldownMs };
     }
 
     const records = (await getResponse.json()) as Array<{ updated_at: string }>;
@@ -278,66 +199,38 @@ export async function checkCooldown(
     }
 
     // Update cooldown timestamp
-    await fetchWithTimeout(`${SUPABASE_URL}/rest/v1/rate_limits`, {
-      method: "POST",
-      headers: {
-        apikey: SUPABASE_SERVICE_ROLE_KEY,
-        Authorization: `Bearer ${SUPABASE_SERVICE_ROLE_KEY}`,
-        "Content-Type": "application/json",
-        Prefer: "resolution=merge-duplicates",
-      },
-      body: JSON.stringify({
-        key: compositeKey,
-        hits: [],
-        updated_at: new Date(now).toISOString(),
-      }),
-      cache: "no-store",
-      timeoutMs: RATELIMIT_TIMEOUT_MS,
-    });
+    await getBreaker("supabase").fire(() =>
+      fetchWithTimeout(`${SUPABASE_URL}/rest/v1/rate_limits`, {
+        method: "POST",
+        headers: {
+          apikey: SUPABASE_SERVICE_ROLE_KEY,
+          Authorization: `Bearer ${SUPABASE_SERVICE_ROLE_KEY}`,
+          "Content-Type": "application/json",
+          Prefer: "resolution=merge-duplicates",
+        },
+        body: JSON.stringify({
+          key: compositeKey,
+          hits: [],
+          updated_at: new Date(now).toISOString(),
+        }),
+        cache: "no-store",
+        timeoutMs: RATELIMIT_TIMEOUT_MS,
+      })
+    );
 
     return { allowed: true, retryAfterMs: 0 };
   } catch (err) {
-    logger.error({ err }, "[ratelimit] Cooldown check error");
-    return { allowed: true, retryAfterMs: 0 };
+    logger.error({ err }, "[ratelimit] Cooldown check error, blocking (fail-closed)");
+    return { allowed: false, retryAfterMs: cooldownMs };
   }
 }
 
 /**
  * Get client IP address from request headers.
- * Properly handles X-Forwarded-For from trusted proxies (Vercel).
+ * Trusts only x-real-ip which Vercel sets to the actual client IP.
+ * X-Forwarded-For is intentionally ignored — it is attacker-controlled and
+ * would allow rate limit key spoofing.
  */
 export function getClientIp(request: Request): string {
-  // Vercel sets x-real-ip to the actual client IP
-  const realIp = request.headers.get("x-real-ip");
-  if (realIp) {
-    return realIp;
-  }
-
-  // x-forwarded-for contains a comma-separated list of IPs
-  // First IP is typically the client (when behind Vercel)
-  const forwarded = request.headers.get("x-forwarded-for");
-  if (forwarded) {
-    const firstIp = forwarded.split(",")[0]?.trim();
-    if (firstIp && isValidIp(firstIp)) {
-      return firstIp;
-    }
-  }
-
-  return "unknown";
-}
-
-/**
- * Basic IP validation to prevent header spoofing with malformed data.
- */
-function isValidIp(ip: string): boolean {
-  // IPv4
-  const ipv4Regex = /^(\d{1,3}\.){3}\d{1,3}$/;
-  if (ipv4Regex.test(ip)) {
-    const parts = ip.split(".").map(Number);
-    return parts.every((part) => part >= 0 && part <= 255);
-  }
-
-  // IPv6 (simplified check)
-  const ipv6Regex = /^([0-9a-fA-F]{0,4}:){2,7}[0-9a-fA-F]{0,4}$/;
-  return ipv6Regex.test(ip);
+  return request.headers.get("x-real-ip") ?? "unknown";
 }

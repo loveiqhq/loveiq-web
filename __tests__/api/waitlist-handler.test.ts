@@ -232,7 +232,9 @@ describe("POST /api/waitlist", () => {
     expect(res.status).toBe(500);
   });
 
-  it("returns 500 when email sending fails", async () => {
+  it("returns success even when email sending fails (fire-and-forget)", async () => {
+    // Email is sent asynchronously after the DB insert — a Resend failure must
+    // not fail the request, because the signup is already persisted in the DB.
     allowCsrf();
     allowRateLimit();
     allowCooldown();
@@ -242,7 +244,7 @@ describe("POST /api/waitlist", () => {
     mockEmailSend.mockResolvedValue({ error: { message: "Send failed" } });
 
     const res = await POST(makeRequest({ email: "alice@example.com" }));
-    expect(res.status).toBe(500);
+    expect(res.status).toBe(200);
   });
 
   it("returns success for full happy path", async () => {

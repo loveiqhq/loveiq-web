@@ -1,0 +1,57 @@
+name: Load Test
+
+# Manual trigger only — do not run on every push.
+# Run before any major launch, marketing campaign, or traffic event.
+on:
+  workflow_dispatch:
+    inputs:
+      test_type:
+        description: "Test type"
+        required: true
+        default: "smoke"
+        type: choice
+        options:
+          - smoke
+          - load
+          - spike
+      target_url:
+        description: "Target URL (defaults to production)"
+        required: false
+        default: "https://www.loveiq.org"
+
+permissions:
+  contents: read
+
+jobs:
+  load-test:
+    name: k6 ${{ inputs.test_type }} test → ${{ inputs.target_url }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
+
+      - name: Install k6
+        run: |
+          sudo gpg -k
+          sudo gpg --no-default-keyring \
+            --keyring /usr/share/keyrings/k6-archive-keyring.gpg \
+            --keyserver hkp://keyserver.ubuntu.com:80 \
+            --recv-keys C5AD17C747E3415A3642D57D77C6C491D6AC1D69
+          echo "deb [signed-by=/usr/share/keyrings/k6-archive-keyring.gpg] https://dl.k6.io/deb stable main" \
+            | sudo tee /etc/apt/sources.list.d/k6.list
+          sudo apt-get update -qq
+          sudo apt-get install -y k6
+
+      - name: Run ${{ inputs.test_type }} test
+        run: |
+          k6 run \
+            -e BASE_URL="${{ inputs.target_url }}" \
+            --out json=k6-results.json \
+            load-tests/${{ inputs.test_type }}.js
+
+      - name: Upload results
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        with:
+          name: k6-results-${{ inputs.test_type }}
+          path: k6-results.json
+          retention-days: 30

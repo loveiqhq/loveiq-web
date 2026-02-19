@@ -3,8 +3,11 @@ import { Resend } from "resend";
 import { z } from "zod";
 import { checkRateLimit, getClientIp } from "@/lib/ratelimit";
 import { fetchWithTimeout } from "@/lib/fetch-with-timeout";
+import { getBreaker } from "@/lib/circuit-breaker";
 import { verifyCsrfToken } from "@/lib/csrf";
 import logger from "@/lib/logger";
+
+const RESEND_TIMEOUT_MS = 3_000;
 
 // Lazy initialization to avoid build-time errors when env vars are not set
 let _resend: Resend | null = null;
@@ -47,13 +50,15 @@ const verifyCaptcha = async (token: string, ip: string) => {
     params.set("response", token);
     if (ip) params.set("remoteip", ip);
 
-    const res = await fetchWithTimeout("https://www.google.com/recaptcha/api/siteverify", {
-      method: "POST",
-      headers: { "Content-Type": "application/x-www-form-urlencoded" },
-      body: params.toString(),
-      cache: "no-store",
-      timeoutMs: 5000, // 5 second timeout
-    });
+    const res = await getBreaker("recaptcha").fire(() =>
+      fetchWithTimeout("https://www.google.com/recaptcha/api/siteverify", {
+        method: "POST",
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: params.toString(),
+        cache: "no-store",
+        timeoutMs: 3000, // 3s: fits Vercel free plan budget (rate limit 3s + captcha 3s + resend 5s = ~11s)
+      })
+    );
 
     if (!res.ok) {
       logger.error({ status: res.status }, "reCAPTCHA verify failed");
@@ -176,28 +181,34 @@ export async function POST(request: Request) {
   const from = process.env.RESEND_FROM || "LoveIQ <hello@send.loveiq.org>";
 
   try {
-    await getResend().emails.send({
-      from,
-      to: contactToEmail!,
-      replyTo: sanitizedReplyTo,
-      subject: `New contact request from ${firstName} ${lastName}`,
-      text: [
-        `Name: ${firstName} ${lastName}`,
-        `Email: ${email}`,
-        `Phone: ${phone}`,
-        "",
-        message,
-      ].join("\n"),
-    });
-
-    await sendSlackContactNotification({ firstName, lastName, email, phone, message });
+    await Promise.race([
+      getResend().emails.send({
+        from,
+        to: contactToEmail!,
+        replyTo: sanitizedReplyTo,
+        subject: `New contact request from ${firstName} ${lastName}`,
+        text: [
+          `Name: ${firstName} ${lastName}`,
+          `Email: ${email}`,
+          `Phone: ${phone}`,
+          "",
+          message,
+        ].join("\n"),
+      }),
+      new Promise<never>((_, reject) =>
+        setTimeout(() => reject(new Error("Resend timeout")), RESEND_TIMEOUT_MS)
+      ),
+    ]);
   } catch (err) {
-    logger.error({ err }, "Contact email send error");
+    logger.error({ err }, "Contact email send error or timeout");
     return NextResponse.json(
       { error: "Unable to send message. Please try later." },
       { status: 500 }
     );
   }
+
+  // Slack is best-effort — don't block the response or fail the request
+  void sendSlackContactNotification({ firstName, lastName, email, phone, message });
 
   return NextResponse.json({ success: true });
 }
