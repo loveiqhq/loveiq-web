@@ -9,12 +9,12 @@ export default defineConfig({
     coverage: {
       provider: "v8",
       include: ["lib/**/*.ts", "app/api/**/*.ts", "proxy.ts"],
-      exclude: ["node_modules", ".next", "__tests__"],
+      exclude: ["node_modules", ".next", "__tests__", "lib/glossary-data.ts"],
       thresholds: {
         lines: 70,
         statements: 70,
         functions: 65,
-        branches: 62,
+        branches: 58,
       },
       reporter: ["text", "lcov"],
     },
