@@ -88,7 +88,9 @@
       "Bash(Remove-Item newerror.txt)",
       "Bash(del:*)",
       "Bash(Remove-Item \"C:\\\\Users\\\\Hamza Korkutovic\\\\loveiq-web\\\\newerror.txt\")",
-      "Bash(echo:*)"
+      "Bash(echo:*)",
+      "Bash(npm run test:e2e:*)",
+      "Bash(tee:*)"
     ]
   }
 }

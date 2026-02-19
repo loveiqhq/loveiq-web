@@ -5,7 +5,7 @@ export default defineConfig({
   fullyParallel: true,
   forbidOnly: !!process.env.CI,
   retries: process.env.CI ? 1 : 0,
-  workers: process.env.CI ? 1 : undefined,
+  workers: process.env.CI ? 1 : 3, // limit local parallelism so Firefox cold-start doesn't compete with 5 other simultaneous browser launches
   reporter: "html",
   use: {
     baseURL: "http://localhost:3000",
@@ -15,7 +15,11 @@ export default defineConfig({
   },
   projects: [
     { name: "Desktop Chrome", use: { ...devices["Desktop Chrome"] } },
-    { name: "Desktop Firefox", use: { ...devices["Desktop Firefox"] } },
+    {
+      name: "Desktop Firefox",
+      use: { ...devices["Desktop Firefox"] },
+      timeout: 60_000, // Firefox cold-start is slower than Chrome/WebKit when running in parallel
+    },
     { name: "Desktop Safari", use: { ...devices["Desktop Safari"] } },
     { name: "Mobile Chrome", use: { ...devices["Pixel 7"] } },
     { name: "Mobile Safari", use: { ...devices["iPhone 15 Pro"] } },
