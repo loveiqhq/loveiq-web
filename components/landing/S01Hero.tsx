@@ -45,11 +45,11 @@ const S01Hero: FC = () => {
             fetchPriority="high"
             aria-hidden
             src={videoSrc}
-            style={{ opacity: videoReady ? 0.8 : 0 }}
+            style={{ opacity: videoReady ? 1 : 0 }}
           />
         )}
-        <div className="absolute inset-0 bg-gradient-to-b from-[#0b0613]/35 via-[#0b0613]/55 to-[#0b0613]/80" />
-        <div className="absolute inset-x-0 bottom-0 h-64 bg-gradient-to-b from-transparent via-[#0b0613]/65 to-[#0A0510]" />
+        <div className="absolute inset-0 bg-gradient-to-b from-[#0b0613]/10 via-[#0b0613]/28 to-[#0b0613]/60" />
+        <div className="absolute inset-x-0 bottom-0 h-64 bg-gradient-to-b from-transparent via-[#0b0613]/45 to-[#0A0510]" />
       </div>
 
       <div className="content-shell relative z-10 flex flex-col items-center px-4 text-center">
