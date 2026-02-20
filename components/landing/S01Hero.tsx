@@ -16,6 +16,7 @@ const S01Hero: FC = () => {
 
   const videoRef = useCallback((video: HTMLVideoElement | null) => {
     if (!video) return;
+    video.playbackRate = 0.75;
     if (video.readyState >= 2) {
       setVideoReady(true);
       return;
