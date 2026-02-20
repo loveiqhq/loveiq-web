@@ -238,7 +238,8 @@ jobs:
           echo "Validating API route security patterns..."
 
           # Check that all API routes use CSRF verification
-          for file in $(find app/api -name 'route.ts' 2>/dev/null); do
+          # Excludes staging-* routes: dev-only endpoints that return 404 in production
+          for file in $(find app/api -name 'route.ts' -not -path "*/staging-*" 2>/dev/null); do
             if [ -f "$file" ] && grep -q "export.*POST\|export.*PUT\|export.*DELETE\|export.*PATCH" "$file"; then
               if ! grep -q "verifyCsrfToken" "$file"; then
                 echo "⚠️  $file: POST/PUT/DELETE/PATCH route missing CSRF verification"
@@ -248,7 +249,8 @@ jobs:
           done
 
           # Check that all API routes use rate limiting
-          for file in $(find app/api -name 'route.ts' 2>/dev/null); do
+          # Excludes staging-* routes: dev-only endpoints that return 404 in production
+          for file in $(find app/api -name 'route.ts' -not -path "*/staging-*" 2>/dev/null); do
             if [ -f "$file" ] && grep -q "export.*POST" "$file"; then
               if ! grep -q "checkRateLimit" "$file"; then
                 echo "⚠️  $file: POST route missing rate limiting"
@@ -258,7 +260,8 @@ jobs:
           done
 
           # Check that all API routes use Zod validation
-          for file in $(find app/api -name 'route.ts' 2>/dev/null); do
+          # Excludes staging-* routes: dev-only endpoints that return 404 in production
+          for file in $(find app/api -name 'route.ts' -not -path "*/staging-*" 2>/dev/null); do
             if [ -f "$file" ] && grep -q "export.*POST\|export.*PUT" "$file"; then
               if ! grep -q "z\.object\|zod" "$file"; then
                 echo "⚠️  $file: Route missing Zod schema validation"
