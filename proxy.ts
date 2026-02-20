@@ -12,7 +12,35 @@ function generateCsrfToken(): string {
   return Array.from(array, (byte) => byte.toString(16).padStart(2, "0")).join("");
 }
 
-export function proxy(request: NextRequest) {
+async function sha256(value: string): Promise<string> {
+  const data = new TextEncoder().encode(value);
+  const buf = await crypto.subtle.digest("SHA-256", data);
+  return Array.from(new Uint8Array(buf))
+    .map((b) => b.toString(16).padStart(2, "0"))
+    .join("");
+}
+
+export async function proxy(request: NextRequest) {
+  // Staging gate: when STAGING_PASSWORD is set, require a valid session cookie
+  const STAGING_PASSWORD = process.env.STAGING_PASSWORD;
+  if (STAGING_PASSWORD) {
+    const path = request.nextUrl.pathname;
+    const isPublic =
+      path === "/login" ||
+      path.startsWith("/api/staging-") ||
+      path.startsWith("/_next/") ||
+      path.startsWith("/images/") ||
+      path === "/favicon.ico";
+
+    if (!isPublic) {
+      const session = request.cookies.get("staging_session")?.value;
+      const expected = await sha256(STAGING_PASSWORD);
+      if (session !== expected) {
+        return NextResponse.redirect(new URL("/login", request.url));
+      }
+    }
+  }
+
   // Generate a random nonce for CSP
   const nonce = Buffer.from(crypto.randomUUID()).toString("base64");
 
