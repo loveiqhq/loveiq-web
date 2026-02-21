@@ -5,7 +5,7 @@ import type Lenis from "lenis";
 
 function isTouchDevice(): boolean {
   if (typeof window === "undefined") return false;
-  return window.matchMedia("(pointer: coarse)").matches;
+  return window.matchMedia("(pointer: coarse)").matches || navigator.maxTouchPoints > 0;
 }
 
 export default function SmoothScroll({ children }: { children: React.ReactNode }) {
