@@ -6,8 +6,7 @@ import Link from "next/link";
 import { trackLearnMore, trackStartSurvey } from "@/lib/analytics";
 
 const noopSubscribe = () => () => {};
-const getVideoSrc = () =>
-  window.innerWidth <= 640 ? "/couple-hero-mobile.mp4" : "/couple-hero.mp4";
+const getVideoSrc = () => "/couple-hero.mp4";
 const getServerVideoSrc = (): string | null => null;
 
 const S01Hero: FC = () => {
