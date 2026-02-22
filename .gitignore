@@ -33,6 +33,7 @@ coverage/
 tmp_*
 *.tmp
 dist/
+tsconfig.tsbuildinfo
 
 # Data source files
 *.csv

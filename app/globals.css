@@ -350,22 +350,6 @@ h3,
   animation: icon-float 3s ease-in-out infinite;
 }
 
-/* Mobile menu dropdown animation */
-@keyframes menu-slide-down {
-  0% {
-    opacity: 0;
-    transform: translateY(-10px) scale(0.98);
-  }
-  100% {
-    opacity: 1;
-    transform: translateY(0) scale(1);
-  }
-}
-
-.animate-menu-slide-down {
-  animation: menu-slide-down 0.25s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
-}
-
 /* ─── Premium Mobile Menu System ─── */
 
 /* Backdrop overlay */

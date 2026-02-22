@@ -356,5 +356,5 @@ jobs:
           echo "| Next.js Security | ${{ needs.nextjs-security.result }} |" >> $GITHUB_STEP_SUMMARY
           echo "| Custom Rules | ${{ needs.custom-security-rules.result }} |" >> $GITHUB_STEP_SUMMARY
           echo "" >> $GITHUB_STEP_SUMMARY
-          echo "**Note:** Some checks may show warnings if GitHub Advanced Security is not enabled. This is expected." >> $GITHUB_STEP_SUMMARY
-          echo "Follow \`GITHUB_SECURITY_SETUP.md\` to enable all features." >> $GITHUB_STEP_SUMMARY
+          echo "**Note:** CodeQL and Semgrep SARIF results require GitHub Advanced Security to appear in the Security tab." >> $GITHUB_STEP_SUMMARY
+          echo "Enable it in: Settings → Code security and analysis → GitHub Advanced Security." >> $GITHUB_STEP_SUMMARY

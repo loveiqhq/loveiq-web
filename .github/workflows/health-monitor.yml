@@ -1,0 +1,50 @@
+name: Health Monitor
+
+on:
+  push:
+    branches: [main, staging]
+  schedule:
+    # Also runs every day at 8:00 AM UTC to catch non-deploy outages
+    - cron: "0 8 * * *"
+  workflow_dispatch: # Allow manual trigger from GitHub Actions UI
+
+permissions:
+  contents: read
+
+jobs:
+  health-check:
+    name: Production Health Check
+    runs-on: ubuntu-latest
+    steps:
+      - name: Wait for Vercel deployment
+        # Only wait after a push — scheduled/manual runs check current prod state
+        if: github.event_name == 'push'
+        run: sleep 90
+
+      - name: Check /api/health
+        id: health
+        run: |
+          RESPONSE=$(curl -s -w "\n%{http_code}" https://www.loveiq.org/api/health)
+          HTTP_STATUS=$(echo "$RESPONSE" | tail -n1)
+          BODY=$(echo "$RESPONSE" | head -n-1)
+
+          echo "HTTP status: $HTTP_STATUS"
+          echo "Response body: $BODY"
+          echo "http_status=$HTTP_STATUS" >> $GITHUB_OUTPUT
+          echo "body=$BODY" >> $GITHUB_OUTPUT
+
+          if [ "$HTTP_STATUS" -ne 200 ]; then
+            echo "HEALTH CHECK FAILED: status $HTTP_STATUS"
+            exit 1
+          fi
+
+          echo "Health check passed"
+
+      - name: Alert Slack on failure
+        if: failure()
+        run: |
+          curl -s -X POST "${{ secrets.SLACK_WAITLIST_WEBHOOK_URL }}" \
+            -H "Content-Type: application/json" \
+            -d "{
+              \"text\": \":rotating_light: *loveiq.org health check FAILED*\nStatus: ${{ steps.health.outputs.http_status }}\nResponse: ${{ steps.health.outputs.body }}\nCheck: https://www.loveiq.org/api/health\"
+            }"

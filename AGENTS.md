@@ -134,7 +134,7 @@ PROXY.TS / MIDDLEWARE RULES:
 - CSRF cookie settings: only modify if sec-review explicitly requests it.
 
 DATABASE MIGRATION RULES:
-- Read .planning/supabase_migration.sql for existing schema patterns.
+- Read supabase/migrations/ for existing schema patterns.
 - Always include RLS (Row Level Security) policies.
 - Use IF NOT EXISTS for idempotent migrations.
 - Place migration files in .planning/ directory.

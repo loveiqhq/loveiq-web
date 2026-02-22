@@ -31,7 +31,7 @@ ci: pin GitHub Actions to SHA
 ## Code Standards
 
 - **TypeScript** strict mode is enabled
-- **Relative imports** only (no `@/` alias)
+- **Use `@/` alias** for cross-directory imports (`@/lib/...`, `@/components/...`), relative imports for same-directory
 - **ESLint** must pass (`npm run lint`)
 - **Prettier** formats code on commit (via husky + lint-staged)
 - Follow existing patterns in `components/landing/` for new sections

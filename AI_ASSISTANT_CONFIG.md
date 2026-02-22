@@ -4,15 +4,15 @@ This repository includes configuration files for multiple AI coding assistants t
 
 ## 📁 Configuration Files
 
-| File | AI Assistant | Description |
-|------|-------------|-------------|
-| `CLAUDE.md` | Claude (Anthropic) | Main instructions for Claude Code |
-| `.cursorrules` | Cursor AI | Instructions for Cursor editor |
-| `.github/copilot-instructions.md` | GitHub Copilot | Instructions for Copilot in VS Code |
-| `.windsurfrules` | Windsurf (Codeium) | Instructions for Windsurf editor |
-| `.continuerules` | Continue | Instructions for Continue extension |
-| `.aider.conf.yml` | Aider | Configuration for Aider CLI tool |
-| `.codeium/instructions.md` | Codeium | Instructions for Codeium extension |
+| File                              | AI Assistant       | Description                         |
+| --------------------------------- | ------------------ | ----------------------------------- |
+| `CLAUDE.md`                       | Claude (Anthropic) | Main instructions for Claude Code   |
+| `.cursorrules`                    | Cursor AI          | Instructions for Cursor editor      |
+| `.github/copilot-instructions.md` | GitHub Copilot     | Instructions for Copilot in VS Code |
+| `.windsurfrules`                  | Windsurf (Codeium) | Instructions for Windsurf editor    |
+| `.continuerules`                  | Continue           | Instructions for Continue extension |
+| `.aider.conf.yml`                 | Aider              | Configuration for Aider CLI tool    |
+| `.codeium/instructions.md`        | Codeium            | Instructions for Codeium extension  |
 
 ## 🎯 What They Do
 
@@ -45,34 +45,41 @@ All configuration files ensure AI assistants:
 ## 🔧 How to Use
 
 ### Claude Code (Current)
+
 Already configured via `CLAUDE.md` - no additional setup needed.
 
 ### Cursor AI
+
 1. Open project in Cursor
 2. Cursor automatically reads `.cursorrules`
 3. AI suggestions will follow the rules
 
 ### GitHub Copilot
+
 1. Install Copilot extension in VS Code
 2. Copilot reads `.github/copilot-instructions.md`
 3. Suggestions follow the guidelines
 
 ### Windsurf
+
 1. Open project in Windsurf editor
 2. Reads `.windsurfrules` automatically
 3. AI assistance follows the rules
 
 ### Continue
+
 1. Install Continue extension in VS Code
 2. Reads `.continuerules` automatically
 3. Code suggestions follow the patterns
 
 ### Aider
+
 1. Install Aider: `pip install aider-chat`
 2. Run in project directory: `aider`
 3. Configuration loaded from `.aider.conf.yml`
 
 ### Codeium
+
 1. Install Codeium extension
 2. Reads `.codeium/instructions.md`
 3. Autocomplete follows the rules
@@ -152,7 +159,6 @@ All AI assistants reference:
 2. **`SECURITY.md`** - Security policy and incident response
 3. **`.github/SECURITY_CHECKLIST.md`** - Pre-commit security checklist
 4. **`.github/SECURITY_QUICK_REFERENCE.md`** - Quick reference card
-5. **`SECURITY_SCANNING.md`** - Security scanning documentation
 
 ## 🔄 Keeping in Sync
 
@@ -177,25 +183,33 @@ When updating security requirements:
 To verify AI assistants follow the rules:
 
 ### Test 1: API Route Security
+
 Ask AI to create a new API route. Should include:
+
 - ✅ CSRF verification
 - ✅ Rate limiting
 - ✅ Zod validation
 - ✅ Error handling
 
 ### Test 2: Secret Detection
+
 Try to add a hardcoded API key. AI should:
-- ⚠️  Warn against it
+
+- ⚠️ Warn against it
 - 💡 Suggest using environment variables
 
 ### Test 3: Unsafe Patterns
+
 Try to use `eval()` or `dangerouslySetInnerHTML`. AI should:
-- ⚠️  Flag as security risk
+
+- ⚠️ Flag as security risk
 - 💡 Suggest safer alternatives
 
 ### Test 4: Environment Variables
+
 Try to access `process.env.SECRET` in a client component. AI should:
-- ⚠️  Warn it won't work
+
+- ⚠️ Warn it won't work
 - 💡 Suggest `NEXT_PUBLIC_*` prefix or move to server
 
 ## 📝 File Formats
@@ -219,19 +233,18 @@ If you're using an AI assistant not listed here:
 
 ## 🔗 Related Documentation
 
-- `IMPLEMENTATION_COMPLETE.md` - Security implementation summary
-- `GITHUB_SECURITY_SETUP.md` - GitHub security features setup
-- `SECURITY_IMPLEMENTATION_SUMMARY.md` - Technical details
 - `.github/README.md` - GitHub configuration overview
 
 ## 📞 Support
 
 **Questions about AI assistant configs?**
+
 - Check the specific config file for your tool
 - Review `CLAUDE.md` for detailed patterns
 - See `.github/SECURITY_CHECKLIST.md` for requirements
 
 **Updating configs?**
+
 - Keep all files in sync
 - Test with each AI assistant if possible
 - Document changes in this file
@@ -241,9 +254,11 @@ If you're using an AI assistant not listed here:
 ## Summary
 
 **7 AI assistants configured** to follow the same security practices:
+
 - Claude Code, Cursor, Copilot, Windsurf, Continue, Aider, Codeium
 
 **All enforce:**
+
 - API route security (CSRF + rate limiting + validation)
 - No hardcoded secrets
 - No unsafe patterns
