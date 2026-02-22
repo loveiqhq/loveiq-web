@@ -104,7 +104,8 @@
       "Bash(\"C:\\\\Program Files\\\\k6\\\\k6.exe\" run:*)",
       "Bash(netstat:*)",
       "Bash(tasklist:*)",
-      "Bash(python3:*)"
+      "Bash(python3:*)",
+      "Bash(git mv:*)"
     ]
   }
 }

@@ -3,8 +3,8 @@ const path = require('path');
 const { parse } = require('csv-parse/sync');
 
 // ─── Paths ─────────────────────────────────────────────────────────────────────
-const csvPath = path.join(__dirname, '..', 'Glossary - GlossaryV2.csv');
-const tsPath = path.join(__dirname, '..', 'lib', 'glossary-data.ts');
+const csvPath = path.join(__dirname, '..', 'data', 'glossary-source.csv');
+const tsPath = path.join(__dirname, '..', 'data', 'glossary-data.ts');
 
 // ─── Slug generator (same logic as existing scripts) ───────────────────────────
 function generateSlug(term) {
@@ -340,7 +340,7 @@ function main() {
   // Sort by ID
   const allTerms = Array.from(csvTerms.values()).sort((a, b) => a.id - b.id);
 
-  let output = `// Auto-generated from Glossary - GlossaryV2.csv
+  let output = `// Auto-generated from data/glossary-source.csv
 // Do not edit manually
 
 export interface GlossaryTerm {

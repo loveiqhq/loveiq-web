@@ -6,7 +6,7 @@ import Link from "next/link";
 import GlossaryNavSection from "./GlossaryNavSection";
 import FooterSection from "@/components/landing/FooterSection";
 import { trackStartSurvey } from "@/lib/analytics";
-import { glossaryTerms as allTerms, type GlossaryTerm } from "@/lib/glossary-data";
+import { glossaryTerms as allTerms, type GlossaryTerm } from "@/data/glossary-data";
 
 const alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");
 

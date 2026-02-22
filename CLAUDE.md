@@ -50,9 +50,11 @@ loveiq-web/
 │   ├── csrf.ts                 # CSRF token verification
 │   ├── ratelimit.ts            # IP-based rate limiting (Supabase-backed)
 │   ├── fetch-with-timeout.ts   # Fetch wrapper with timeout
-│   ├── glossary-data.ts        # Glossary content
 │   └── emails/
 │       └── waitlist.ts         # Waitlist confirmation email template
+├── data/
+│   ├── glossary-data.ts        # Auto-generated glossary terms (688KB, from CSV)
+│   └── glossary-source.csv     # Source CSV; regenerate via `node scripts/update-glossary.js`
 ├── public/                     # Static assets (images, videos)
 ├── proxy.ts                    # Middleware: CSP headers, CSRF cookies, security logging
 ├── .github/workflows/

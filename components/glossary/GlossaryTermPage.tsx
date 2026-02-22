@@ -3,8 +3,8 @@
 import type { FC } from "react";
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import Link from "next/link";
-import type { GlossaryTerm } from "@/lib/glossary-data";
-import { glossaryTerms } from "@/lib/glossary-data";
+import type { GlossaryTerm } from "@/data/glossary-data";
+import { glossaryTerms } from "@/data/glossary-data";
 import GlossaryNavSection from "./GlossaryNavSection";
 import FooterSection from "@/components/landing/FooterSection";
 

@@ -1,4 +1,4 @@
-// Auto-generated from Glossary - GlossaryV2.csv
+// Auto-generated from data/glossary-source.csv
 // Do not edit manually
 
 export interface GlossaryTerm {
